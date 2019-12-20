@@ -43,9 +43,7 @@ public class FetchJSonFileSync {
 //            param[0] is cat/modelType
             String subCatURL = getSubCategoriesUrl(mainCategory);
             String dataFromServer = NetManager.getInstance().makeSyncStringRequest(subCatURL);
-
             //comment
-
                 if(dataFromServer.contains("\"Settings\","))
                     dataFromServer = dataFromServer.replace("\"Settings\",","");
 

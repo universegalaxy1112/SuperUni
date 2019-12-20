@@ -47,6 +47,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     public ObservableBoolean isFavorite;
     public ObservableBoolean isSeen;
     private boolean isMovies = false;
+    private boolean isSerie = false;
     private boolean hidePlayFromStart = false;
     ActivityMultiSeasonDetailBinding movieDetailsBinding;
     MultiSeasonAdapter moviesRecyclerAdapter;
@@ -58,6 +59,13 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         videoStreamManager = VideoStreamManager.getInstance();
         this.mContext = context;
         mMainCategoryId=mainCategoryId;
+        if(mainCategoryId == 0) { //is the position for the movies
+            isMovies = true;
+        }
+        else if(mainCategoryId == 1 || mainCategoryId == 2 || mainCategoryId == 6) { //is the position for the series or series jids
+            isSerie = true;
+            mMainCategoryId = mainCategoryId;
+        }
     }
 
     @Override
@@ -169,16 +177,18 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         DataManager.getInstance().saveData("favoriteMovies", videoStreamManager.getFavoriteMovies());
 
     }
-
-    public void onClickPlayStart(View view) {
-        onPlay(true);
+    public void playSD(View view) {
+        onPlay(0);
+    }
+    public void playHD(View view){
+        onPlay(1);
+    }
+    public void playTrailor(View view) {
+        onPlay(2);
     }
 
-    public void onClickPlay(View view) {
-        onPlay(false);
-    }
 
-    private void onPlay(boolean fromStart) {
+    private void onPlay(int type) {
         if(!videoStreamManager.getSeenMovies().contains(String.valueOf(mMovie.getContentId()))) {
             videoStreamManager.setLocalSeen(String.valueOf(mMovie.getContentId()));
             if(!hidePlayFromStart) {
@@ -186,9 +196,13 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             }
         }
         isSeen.notifyChange();
+        if(isMovies)
+            addRecentMovies(mMovie);
+        if(isSerie)
+            addRecentSerie();
         addRecentSerie();
         DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
-        viewCallback.onPlaySelected(mMovie, fromStart);
+        viewCallback.onPlaySelected(mMovie, type);
     }
 
     private void addRecentMovies(Movie movie) {
@@ -267,7 +281,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
          movieDetailsBinding.setMovieDetailItem(mMovie);
         movieDetailsBinding.setMovieDetailsVM(this);
         movieDetailsBinding.scrollview.fullScroll(ScrollView.FOCUS_UP);
-        movieDetailsBinding.playBtn.requestFocus();
+        movieDetailsBinding.playHD.requestFocus();
         rowsRecycler.scrollToPosition(episodeposition);
 
     }

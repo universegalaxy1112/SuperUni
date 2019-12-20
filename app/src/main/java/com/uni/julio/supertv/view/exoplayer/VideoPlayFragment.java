@@ -1,9 +1,11 @@
 package com.uni.julio.supertv.view.exoplayer;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -64,6 +66,7 @@ import com.google.android.exoplayer2.util.Util;
 import com.uni.julio.supertv.BuildConfig;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
@@ -114,6 +117,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private int playerWindow;
     private long playerPosition;
     private int movieId;
+    private int type=0;
     private LiveTVToggleUIListener liveTVToggleListener;
     private ProgressBar progressBarView;
     @Override
@@ -157,25 +161,10 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         progressBarView = (ProgressBar) rootPlayerView.findViewById(R.id.player_view_progress_bar);
         simpleExoPlayerView.setControllerVisibilityListener(this);
         simpleExoPlayerView.requestFocus();
-        rootView.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Log.d("asdf","asdf");
-                return false;
-            }
-        });
+
         if(hideControls) {
             debugRootView.setVisibility(View.GONE);
             simpleExoPlayerView.setUseController(false);
-
-            simpleExoPlayerView.setOnKeyListener(new View.OnKeyListener() {
-                @Override
-                public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    Log.d("asdf","asdf");
-                    return false;
-                }
-            });
-
         }
          return rootPlayerView;
     }
@@ -317,7 +306,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         if(intent.getIntExtra("mainCategoryId", -1) == 4) {//eventso
             hideControls = true;
         }
-
         if (player == null) {
             boolean preferExtensionDecoders = intent.getBooleanExtra(PREFER_EXTENSION_DECODERS, false);
             UUID drmSchemeUuid = intent.hasExtra(DRM_SCHEME_UUID_EXTRA)
@@ -368,13 +356,24 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             player.setId3Output(eventLogger);
 
             simpleExoPlayerView.setPlayer(player);
-//            if (isTimelineStatic)
-            {
-                if (playerPosition == C.TIME_UNSET) {
-                    player.seekToDefaultPosition(playerWindow);
-                } else {
-                    player.seekTo(playerWindow, playerPosition);
-                }
+            if(intent.getIntExtra("mainCategoryId", -1) != 4&& playerPosition!=0) {//eventso
+                Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
+                    @TargetApi(Build.VERSION_CODES.M)
+                    @Override
+                    public void onAccept() {
+                        //playerPosition=0;
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        if (playerPosition == C.TIME_UNSET) {
+                            player.seekToDefaultPosition(playerWindow);
+                        } else {
+                            player.seekTo(playerWindow, playerPosition);
+                        }
+                    }
+                });
+
             }
             player.setPlayWhenReady(shouldAutoPlay);
             debugViewHelper = new DebugTextViewHelper(player, debugTextView);

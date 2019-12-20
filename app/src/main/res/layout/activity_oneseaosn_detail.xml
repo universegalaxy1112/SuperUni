@@ -117,23 +117,7 @@
                                 tools:ignore="VectorDrawableCompat"
                                 tools:targetApi="m" />
 
-                            <ImageView
-                                android:id="@+id/imageView9"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:clickable="true"
-                                android:contentDescription="TODO"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                android:onClick="@{movieDetailsVM::onClickPlayStart}"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.498"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.634"
-                                app:srcCompat="@drawable/play_btn"
-                                tools:ignore="VectorDrawableCompat" />
+
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                          <FrameLayout
@@ -156,6 +140,51 @@
                                     android:paddingTop="@dimen/dip_100"
                                     android:background="@color/detail_background"
                                     android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:textColor="@color/white"
+                                            android:textSize="@dimen/sp_12"
+                                            android:focusable="true"
+                                            android:background="@drawable/login_background"
+                                            android:textStyle="bold"
+                                            android:padding="@dimen/dip_8"
+                                            android:layout_marginRight="@dimen/dip_12"
+                                            android:onClick="@{movieDetailsVM.playHD}"
+                                            android:text="PLAY HD"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:textColor="@color/white"
+                                            android:textSize="@dimen/sp_12"
+                                            android:focusable="true"
+                                            android:background="@drawable/login_background"
+                                            android:textStyle="bold"
+                                            android:padding="@dimen/dip_8"
+                                            android:layout_marginRight="@dimen/dip_12"
+                                            android:onClick="@{movieDetailsVM.playSD}"
+                                            android:text="PLAY SD"/>
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center"
+                                            android:textColor="@color/white"
+                                            android:textSize="@dimen/sp_12"
+                                            android:focusable="true"
+                                            android:background="@drawable/login_background"
+                                            android:textStyle="bold"
+                                            android:padding="@dimen/dip_8"
+                                            android:layout_marginRight="@dimen/dip_12"
+                                            android:onClick="@{movieDetailsVM.playTrailor}"
+                                            android:text="PLAY TRAILER"/>
+                                    </LinearLayout>
 
                                     <TextView
                                         android:id="@+id/description"

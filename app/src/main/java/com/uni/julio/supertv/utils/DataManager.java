@@ -73,6 +73,6 @@ public class DataManager {
         return pref.getInt(key, defaultValue);
     }
     public long getLong(String key, long defaultValue) {
-        return pref.getLong(key, defaultValue);
+        return Long.valueOf(pref.getLong(key, defaultValue));
     }
 }

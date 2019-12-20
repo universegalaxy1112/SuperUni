@@ -39,7 +39,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
           movieCategoryId= extras.getInt("movieCategoryId",0);
           movie=(Movie) new Gson().fromJson(extras.getString("movie"), Movie.class);
         if(mainCategoryId == 4 || mainCategoryId == 6 || mainCategoryId == 7){
-             onPlaySelected(movie, mainCategoryId);
+             onPlaySelectedDirect(movie, mainCategoryId);
              finish();
              return;
         }
@@ -57,7 +57,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         return false;
     }
     
-    public void onPlaySelected(Movie movie, int mainCategoryId) {
+    public void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
         int movieId = movie.getContentId();
         String[] uris = {movie.getStreamUrl()};
         String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
@@ -66,27 +66,43 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         startActivity(launchIntent);
     }
 
-    public void onPlaySelected(Movie movie, boolean fromStart) {
-         int movieId = movie.getContentId();
-        String[] uris = new String[] {movie.getStreamUrl()};
-        String movieUrl = movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
+    public void onPlaySelected(Movie movie, int type) {
+         int movieId = movie.getContentId();   String[] uris={};
+        switch (type){
+            case 0:
+                uris = new String[] {movie.getStreamUrl()};
+                break;
+            case 1:
+                if(movie.getSDUrl()==null){
+                    uris = new String[] {movie.getStreamUrl()};
+                }
+                else{
+                    uris = new String[] {movie.getSDUrl()};
+                }
+                break;
+            case 2:
+                if(movie.getTrailerUrl()==null){
+                    uris = new String[] {movie.getStreamUrl()};
+                }
+                else{
+                    uris = new String[] {movie.getTrailerUrl()};
+                }
+                break;
+            default:
+        }
+
+        String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
         String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
         String[] extensions = new String[] {extension};
-
-        long secondsToPlay = 0;
-        if(!fromStart) {
-            secondsToPlay = DataManager.getInstance().getLong("seconds" + movieId, 0);
-        }
-        else {
-            DataManager.getInstance().saveData("seconds" + movieId, 0);
-        }
-
+        long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
+        //DataManager.getInstance().saveData("seconds" + movieId, temp);
         Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
         launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
                 .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
                 .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
                 .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, secondsToPlay)
                 .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", type)
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
         startActivity(launchIntent);

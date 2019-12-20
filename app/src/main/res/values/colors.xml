@@ -280,5 +280,6 @@
     <color name="wp_blue">#287fdf</color>
     <color name="wp_green">#3fc97b</color>
     <color name="wp_red">#E52623</color>
+    <color name="focused_button">#9C3636</color>
     <color name="wp_yellow">#ecd74d</color>
 </resources>

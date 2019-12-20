@@ -93,11 +93,14 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
     public void onSubCategoriesLoaded(MainCategory mainCategory, List<MovieCategory> movieCategories) {
 
         //remove 4K from the list
+        MovieCategory movieCategory1=new MovieCategory();
+        movieCategory1.setCatName("Favorite");
         for(MovieCategory movieCategory : movieCategories) {
 //            if(movieCategory.getCatName().toLowerCase().contains("4k")) {
 //                movieCategories.remove(movieCategory);
 //            }
         }
+        movieCategories.add(0,movieCategory1);
         videoStreamManager.getMainCategory(mainCategory.getId()).setMovieCategories(movieCategories);
 
 //        mainCategory.setMovieCategories(movieCategories);

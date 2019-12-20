@@ -6,7 +6,7 @@ import com.uni.julio.supertv.model.Movie;
 public interface MovieDetailsViewModelContract {
      interface View extends Lifecycle.View {
 
-        void onPlaySelected(Movie movie, boolean fromStart);
+        void onPlaySelected(Movie movie, int fromStart);
         void finishActivity();
         void showMovieDetails(Movie movie ,int maincategory, int moviecategory);
         void onMovieSelected(int selectedRow,int SelectedMovie);

@@ -6,6 +6,8 @@ public abstract class VideoStream  {//implements Cloneable {
     private String ContentType;
     private String Title;
     private String StreamUrl;
+    private String SDUrl;
+    private String TrailerUrl;
     private int position;
     private boolean HDBranded;
     private boolean seen;
@@ -44,8 +46,22 @@ public abstract class VideoStream  {//implements Cloneable {
     public String getStreamUrl() {
         return StreamUrl;
     }
+    public String getSDUrl() {
+        return SDUrl;
+    }
+    public String getTrailerUrl() {
+        return TrailerUrl;
+    }
+
+
     public void setStreamUrl(String streamUrl) {
         StreamUrl = streamUrl;
+    }
+    public void setSDUrl(String sdUrl) {
+        SDUrl = sdUrl;
+    }
+    public void setTrailerUrl(String trailerUrl) {
+        TrailerUrl = trailerUrl;
     }
 
     public int getPosition() { return position; }

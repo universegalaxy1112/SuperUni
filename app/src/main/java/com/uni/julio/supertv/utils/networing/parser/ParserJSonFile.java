@@ -239,6 +239,10 @@ public class ParserJSonFile {
             }
             if(json_obj.has("StreamUrl"))
                 obj.setStreamUrl(json_obj.getString("StreamUrl"));
+            if(json_obj.has("StreamUrl2"))
+                obj.setSDUrl(json_obj.getString("StreamUrl2"));
+            if(json_obj.has("StreamUrl3"))
+                obj.setTrailerUrl(json_obj.getString("StreamUrl3"));
 
             if(VideoStreamManager.getInstance().getSeenMovies().contains(String.valueOf(obj.getContentId())))
                 obj.setSeen(true);

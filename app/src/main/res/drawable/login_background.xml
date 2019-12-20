@@ -4,6 +4,6 @@
     <item android:state_pressed="true"
         android:drawable="@color/netflix_red"/>
     <item android:state_focused="true"
-        android:drawable="@color/wp_red"/>
+        android:drawable="@color/focused_button"/>
     <item android:drawable="@color/catalyst_redbox_background"/>
 </selector>

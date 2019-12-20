@@ -25,6 +25,7 @@ import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MovieDetailsViewModel implements MovieDetailsViewModelContract.ViewModel, MovieSelectedListener {
@@ -38,12 +39,20 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
      public ObservableBoolean isFavorite;
     public ObservableBoolean isSeen;
     private boolean isMovies = false;
+    private boolean isSerie=false;
     private boolean hidePlayFromStart = false;
     ActivityOneseaosnDetailBinding movieDetailsBinding;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
         mMainCategoryId=mainCategoryId;
+        if(mainCategoryId == 0) { //is the position for the movies
+            isMovies = true;
+        }
+        else if(mainCategoryId == 1 || mainCategoryId == 2 || mainCategoryId == 6) { //is the position for the series or series jids
+            isSerie = true;
+            mMainCategoryId = mainCategoryId;
+        }
     }
 
     @Override
@@ -108,25 +117,30 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
 
     }
 
-    public void onClickPlayStart(View view) {
-        onPlay(true);
+    public void playSD(View view) {
+        onPlay(1);
     }
-
-    public void onClickPlay(View view) {
-        onPlay(false);
+    public void playHD(View view){
+        onPlay(0);
     }
-
-    private void onPlay(boolean fromStart) {
+    public void playTrailor(View view) {
+        onPlay(2);
+    }
+    private void onPlay(int type) {
         if(!videoStreamManager.getSeenMovies().contains(String.valueOf(mMovie.getContentId()))) {
             videoStreamManager.setLocalSeen(String.valueOf(mMovie.getContentId()));
             if(!hidePlayFromStart) {
                 isSeen.set(true);
             }
         }
-        isSeen.notifyChange();
+        if(isMovies)
             addRecentMovies(mMovie);
+        if(isSerie)
+            addRecentSerie();
+        isSeen.notifyChange();
+        addRecentMovies(mMovie);
         DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
-        viewCallback.onPlaySelected(mMovie, fromStart);
+        viewCallback.onPlaySelected(mMovie, type);
     }
 
     private void addRecentMovies(Movie movie) {
@@ -139,18 +153,22 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         else {
             List<Movie> movieList = new Gson().fromJson(recentMovies, new TypeToken<List<Movie>>() { }.getType());
             boolean needsToAdd = true;
-            for(Movie mov : movieList) {
-                if(movie.getContentId() == mov.getContentId()) {
+            Iterator it = movieList.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                if (movie.getContentId() == ((Movie) it.next()).getContentId()) {
                     needsToAdd = false;
                     break;
                 }
             }
-            if(needsToAdd) {
-                if(movieList.size() == 10) {
+            if (needsToAdd) {
+                if (movieList.size() == 10) {
                     movieList.remove(9);
                 }
-                movieList.add(0,movie);
-                DataManager.getInstance().saveData("recentMovies", new Gson().toJson(movieList));
+                movieList.add(0, movie);
+                DataManager.getInstance().saveData("recentMovies", new Gson().toJson((Object) movieList));
             }
         }
     }
