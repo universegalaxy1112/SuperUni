@@ -1,0 +1,5 @@
+include ':app'
+gradle.ext.exoplayerRoot = 'E:\\workspace\\Mine\\2019_project\\Oct\\SuperTv1\\ExoPlayer-release-v2'
+gradle.ext.exoplayerModulePrefix = ''
+apply from: new File(gradle.ext.exoplayerRoot, 'core_settings.gradle')
+rootProject.name='My Application'

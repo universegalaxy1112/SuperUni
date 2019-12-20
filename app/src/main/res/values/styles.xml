@@ -1,0 +1,123 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="SuperTvDefault" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColorPrimary">@color/kubrick_text_color_light</item>
+        <item name="android:windowBackground">@color/bg_general</item>
+        <item name="android:progressBarStyle">@style/SuperTvProgressBar</item>
+        <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="colorPrimary">@color/app_color_accent</item>
+        <item name="colorPrimaryDark">@color/bg_general</item>
+        <item name="colorAccent">@color/app_color_accent</item>
+
+    </style>
+    <style name="AppThemeDialog" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/white</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+         <item name="android:textColorPrimary">@color/white</item>
+    </style>
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/netflix_red</item>
+        <item name="android:textColorPrimary">@color/bg_general</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/app_color_primary</item>
+        <item name="colorPrimaryDark">@color/app_color_primary_dark</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+    <style name="CustomAlertDialogStyle" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/netflix_red</item>
+        <item name="android:textColorSecondary">@color/netflix_red</item>
+        <item name="android:actionMenuTextColor">@color/netflix_red</item>
+    </style>
+     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+
+        <item name="textAllCaps">true</item>
+    </style>
+    <style name="text.subtitle">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">@dimen/dip_8</item>
+        <item name="android:layout_marginTop">@dimen/dip_8</item>
+    </style>
+    <style name="text">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+    </style>
+    <style name="text.more">
+        <item name="android:textColor">@color/netflix_red</item>
+        <item name="android:textSize">@dimen/sp_13</item>
+    </style>    <style name="text.account">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+    <style name="text.livetv">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+    </style>
+    <style name="text.additional_info">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:layout_marginLeft">@dimen/dip_8</item>
+    </style>
+    <style name="text.description">
+        <item name="android:textColor">@color/text_secondary_dark</item>
+        <item name="android:layout_marginLeft">@dimen/dip_8</item>
+    </style>
+    <style name="text.error_text">
+        <item name="android:textColor">@color/loading_error</item>
+        <item name="android:layout_marginLeft">@dimen/dip_8</item>
+    </style>
+    <style name="text.movie_detail_title"  >
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+     </style>
+    <style name="SuperTvProgressBar" parent="Theme.AppCompat.Light.NoActionBar">
+     </style>
+
+    <style name="Widget.Styled.ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:icon" >@android:color/transparent</item>
+        <item name="android:background">@color/black</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:displayOptions">none|useLogo|showHome</item>
+        <item name="android:actionMenuTextAppearance">@style/Widget.Styled.ActionBarMenuTextStyle
+        </item>
+    </style>
+
+    <style name="Widget.Styled.ActionBarMenuTextStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/kubrick_text_color_light</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="SuperTvDefault.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SuperTvDefault.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="SuperTvDefault.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget"></style>
+
+
+
+
+</resources>

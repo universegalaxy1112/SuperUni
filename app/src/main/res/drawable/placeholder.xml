@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/actionbar_bg_color"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/placeholder_small_cover"
+         android:width ="@dimen/dip_80"
+        android:height="@dimen/dip_80"
+        android:bottom="@dimen/dip_80"
+        android:left="@dimen/dip_80"
+        android:right="@dimen/dip_80"
+        android:top="@dimen/dip_80"/>
+</layer-list>

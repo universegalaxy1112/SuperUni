@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dip_30"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="504dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_screen_username" />
+
+        <EditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:nextFocusDown="@id/edit_password"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/transparent" />
+
+        <TextView
+            style="@style/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_screen_password" />
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:imeActionId="@+id/login"
+            android:nextFocusDown="@id/cv_loginScreen_login"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:inputType="textPassword"
+            tools:ignore="InvalidImeActionId"
+            android:imeOptions="actionDone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:layout_marginTop="@dimen/dip_20"
+            android:layout_marginBottom="@dimen/dip_24"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                />
+                <TextView
+                    android:id="@+id/cv_loginScreen_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/login_screen_login"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    android:focusable="true"
+                    android:background="@drawable/login_background"
+                    android:textStyle="bold" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:background="@color/transparent" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

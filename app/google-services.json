@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "945635828148",
+    "firebase_url": "https://my-project-1564944409258.firebaseio.com",
+    "project_id": "my-project-1564944409258",
+    "storage_bucket": "my-project-1564944409258.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945635828148:android:d8149a293395f8d593d2e1",
+        "android_client_info": {
+          "package_name": "com.uni.julio.supertv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945635828148-hcefnnvru4aals64tl6pq18hr4n97vd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh5c7OdB1tpGdFeBENtcC7Hh1zIcPnKvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945635828148-hcefnnvru4aals64tl6pq18hr4n97vd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

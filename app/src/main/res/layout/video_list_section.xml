@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="movieCategory"
+            type="com.uni.julio.supertv.model.MovieCategory" />
+        <variable
+            name="categoryAdapter"
+            type="com.uni.julio.supertv.adapter.MoviesCategoryAdapter" />
+    </data>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/bg_general"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+ >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all_pane_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/allbtnbackground"
+        android:focusable="true"
+        android:nextFocusLeft="@id/search_icon"
+        android:nextFocusRight="@id/reload"
+        android:onClick="@{categoryAdapter::onClickItem}">
+
+        <TextView
+            android:id="@+id/ic_more"
+            style="@style/text.more"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dip_24"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:focusable="false"
+            android:text="See All"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/reload"
+            android:layout_width="@dimen/dip_24"
+            android:layout_height="@dimen/dip_24"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:focusable="true"
+            android:src="@drawable/ic_reload"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/category_name"
+            style="@style/text.description"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dip_28"
+            android:text="@{movieCategory.catName}"
+            android:textSize="@dimen/sp_16"
+            android:focusable="false"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:minHeight="@dimen/movieRecycler_minheight">
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/loadingBar"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            app:indicatorColor="@color/netflix_red"
+            app:indicatorName="BallPulseIndicator"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/error_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            style="@style/text.error_text"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <com.uni.julio.supertv.helper.TVRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:nextFocusRight="@id/fl_main_layout"
+            android:descendantFocusability="afterDescendants"
+            >
+        </com.uni.julio.supertv.helper.TVRecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
+</layout>

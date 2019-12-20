@@ -1,0 +1,70 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="liveTVFragmentVM"
+            type="com.uni.julio.supertv.viewmodel.LiveTVViewModel" />
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_general">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/exo_player"
+        android:orientation="horizontal">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="top"
+            android:id="@+id/live_category_tab"
+            android:background="@color/item_name_black_overlay"
+            android:padding="@dimen/dip_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/category_tab"
+                app:tabMode="scrollable"
+                app:tabIndicatorColor="@color/netflix_red"
+                app:tabTextColor="@color/grey"
+                app:tabSelectedTextColor="@color/white"
+                app:tabBackground="@drawable/tabbackground"
+                android:layout_gravity="left">
+
+            </com.google.android.material.tabs.TabLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/item_name_black_overlay"
+            android:padding="@dimen/dip_8"
+            android:layout_gravity="bottom"
+            android:id="@+id/live_programs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.uni.julio.supertv.helper.TVRecyclerView
+                android:id="@+id/programming_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dip_16"
+                android:focusable="false"
+                android:nextFocusUp="@id/category_tab"/>
+        </LinearLayout>
+    </FrameLayout>
+ </LinearLayout>
+</layout>

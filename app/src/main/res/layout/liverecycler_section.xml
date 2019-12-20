@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all_pane_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dip_4"
+        android:layout_marginLeft="@dimen/dip_10"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginTop="@dimen/bw_generic_12_margin">
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text.description"
+            android:textSize="@dimen/sp_16"
+            android:text="Tv Local y Nacional"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.uni.julio.supertv.helper.TVRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:focusable="true"
+        android:descendantFocusability="afterDescendants"
+        android:nextFocusDown="@id/all_pane_btn"
+        android:scrollbars="horizontal">
+
+    </com.uni.julio.supertv.helper.TVRecyclerView>
+</LinearLayout>
