@@ -87,15 +87,7 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position){
-        holder.getViewDataBinding().getRoot().findViewById(R.id.all_pane_btn).setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
-                    recyclerView.smoothScrollToPosition(position);
-                    imageView.setFocusable(true);
-                }
-            }
-        });
+
         MovieCategory movieCategory=mMoviesList.get(position);
         List<Movie> movieList = (List<Movie>) movieCategory.getMovieList();
         holder.getViewDataBinding().getRoot().setVisibility(View.VISIBLE);

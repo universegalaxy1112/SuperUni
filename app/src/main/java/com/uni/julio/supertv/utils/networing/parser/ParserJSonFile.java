@@ -40,7 +40,7 @@ public class ParserJSonFile {
             if(!videoArray.getString(i).toLowerCase().contains("4_k")) {
                 movieCat = new MovieCategory();
                 movieCat.setCatName(videoArray.getString(i));
-                movieCat.setId(i);
+                movieCat.setId(i+1);
                 dataArray.add(movieCat);
             }
         }

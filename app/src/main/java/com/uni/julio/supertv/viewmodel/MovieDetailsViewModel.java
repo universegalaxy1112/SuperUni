@@ -2,6 +2,7 @@ package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.OneSeasonAdapter;
-import com.uni.julio.supertv.databinding.ActivityOneseaosnDetailBinding;
+import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
 import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
@@ -41,7 +42,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     private boolean isMovies = false;
     private boolean isSerie=false;
     private boolean hidePlayFromStart = false;
-    ActivityOneseaosnDetailBinding movieDetailsBinding;
+    ActivityOneseasonDetailBinding movieDetailsBinding;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
@@ -72,7 +73,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     }
 
     @Override
-    public void showMovieDetails(Movie movie, ActivityOneseaosnDetailBinding movieDetailsBinding , int mainCategoryId,int movieCategoryId) {
+    public void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding , int mainCategoryId,int movieCategoryId) {
         mMainCategoryId=mainCategoryId;
         this.movieDetailsBinding=movieDetailsBinding;
         if(mainCategoryId == 4) { //eventos
@@ -107,13 +108,18 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         if(isFavorite.get()) {
              videoStreamManager.removeLocalFavorite(String.valueOf(mMovie.getContentId()));
              isFavorite.set(false);
+             removeFavorite(mMovie);
         }
         else {
              videoStreamManager.setLocalFavorite(String.valueOf(mMovie.getContentId()));
              isFavorite.set(true);
+             addFavorite(mMovie);
         }
         isFavorite.notifyChange();
         DataManager.getInstance().saveData("favoriteMovies", videoStreamManager.getFavoriteMovies());
+        String favoriteMovies=DataManager.getInstance().getString("favoriteMoviesData1","");
+        List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
+        Log.d("asdf",favoriteMovies);
 
     }
 
@@ -133,16 +139,39 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                 isSeen.set(true);
             }
         }
-        if(isMovies)
-            addRecentMovies(mMovie);
-        if(isSerie)
-            addRecentSerie();
+             addRecentMovies(mMovie);
+             addFavorite(mMovie);
         isSeen.notifyChange();
-        addRecentMovies(mMovie);
         DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
         viewCallback.onPlaySelected(mMovie, type);
     }
+    private void addFavorite(Movie movie){
+       String favoriteMovies=DataManager.getInstance().getString("favoriteMoviesData1","");
+       if(TextUtils.isEmpty(favoriteMovies)){
+           List<Movie> movies=new ArrayList<>();
+           movies.add(movie);
+           DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movies));
+       }
+       else{
+           List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
+           movieList.add(0,movie);
+           DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movieList));
 
+       }
+    }
+    private void removeFavorite(Movie movie){
+        String favoriteMovies=DataManager.getInstance().getString("favoriteMoviesData1","");
+        if(TextUtils.isEmpty(favoriteMovies)){
+            List<Movie> movies=new ArrayList<>();
+            //movies.add(movie);
+            DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movies));
+        }
+        else{
+            List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
+            movieList.remove(movie);
+            DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movieList));
+        }
+    }
     private void addRecentMovies(Movie movie) {
         String recentMovies = DataManager.getInstance().getString("recentMovies","");
         if (TextUtils.isEmpty(recentMovies)) {

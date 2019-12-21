@@ -52,7 +52,9 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
             if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
                 loadingMoviesViewModel.loadSubCategories(mainCategoryId);
             }
-
+            else if(selectedType== ModelTypes.SelectedType.SERIES){
+                loadingMoviesViewModel.loadSeasons(mainCategoryId,movieCategoryId,serieId);
+            }
             isInit=true;
         }
     }

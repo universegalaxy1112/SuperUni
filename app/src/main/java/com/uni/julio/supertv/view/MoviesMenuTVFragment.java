@@ -232,6 +232,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 extras.putInt("movieCategoryId", serie.getMovieCategoryIdOwner());
                 extras.putInt("serieId", serie.getPosition());
                 extras.putString("serie", new Gson().toJson(serie));
+                DataManager.getInstance().saveData("lastSerieSelected",new Gson().toJson(serie));
                 MoviesMenuTVFragment.this.launchActivity(LoadingActivity.class, extras);
             }else if(item instanceof Movie) {
                 Movie movie = (Movie) item;

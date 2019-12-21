@@ -1,17 +1,21 @@
 package com.uni.julio.supertv.model;
 
+
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Serie extends Movie {
+public class Serie extends Movie implements Cloneable {
 
     private List<Season> seasons;
     private String seasonCountText;
 
     private transient int movieCategoryIdOwner = -1;
-
+     public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
     public Serie() {
         seasons = new ArrayList<>();
         setPosition(-1);//at start set position to -1

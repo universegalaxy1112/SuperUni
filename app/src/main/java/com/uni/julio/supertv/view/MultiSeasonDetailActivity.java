@@ -78,7 +78,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
                 break;
             default:
         }
-        if(uris[0].equals("")){
+        if(uris[0]==null){
             uris = new String[] {movie.getStreamUrl()};
         }
          String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");

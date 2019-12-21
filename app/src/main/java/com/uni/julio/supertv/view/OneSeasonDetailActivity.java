@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
-import com.uni.julio.supertv.databinding.ActivityOneseaosnDetailBinding;
+import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.utils.DataManager;
@@ -19,7 +19,7 @@ import com.uni.julio.supertv.viewmodel.MovieDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModelContract;
 public class OneSeasonDetailActivity extends BaseActivity implements MovieDetailsViewModelContract.View  {
     MovieDetailsViewModel movieDetailsViewModel;
-    ActivityOneseaosnDetailBinding activityOneseaosnDetailBinding;
+    ActivityOneseasonDetailBinding activityOneseaosnDetailBinding;
     Movie movie;
      @Override
     protected Lifecycle.ViewModel getViewModel() {
@@ -44,7 +44,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
              return;
         }
         movieDetailsViewModel = new MovieDetailsViewModel(getBaseContext(), mainCategoryId);
-        activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseaosn_detail);
+        activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
         activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
         showMovieDetails(movie,mainCategoryId,movieCategoryId);
     }

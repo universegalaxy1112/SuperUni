@@ -85,6 +85,7 @@ boolean denyAll = false;
                             }else{
                                 NetManager.getInstance().performLoginCode( mPassView.getText().toString(), this);
                                 is_coderequest=true;
+                                return;
                             }
 
                          }

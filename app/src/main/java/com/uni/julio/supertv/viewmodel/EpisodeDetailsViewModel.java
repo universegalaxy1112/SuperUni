@@ -2,6 +2,7 @@ package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -168,14 +169,64 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         if(isFavorite.get()) {
             videoStreamManager.removeLocalFavorite(String.valueOf(mMovie.getContentId()));
             isFavorite.set(false);
+
         }
         else {
             videoStreamManager.setLocalFavorite(String.valueOf(mMovie.getContentId()));
             isFavorite.set(true);
+
         }
         isFavorite.notifyChange();
         DataManager.getInstance().saveData("favoriteMovies", videoStreamManager.getFavoriteMovies());
+        addFavorite();
+     }
+    private void addFavorite(){
+        String serieType = "";
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
+            serieType = "favoriteSerie";
+        } else {
+            serieType = "favoriteKids";
+        }
+        String favoriteSeries=DataManager.getInstance().getString(serieType,"");
+        Serie newserie=new Serie();
+        newserie=serie;
+        //newserie.setSeasons(new ArrayList<Season>());
+        if(TextUtils.isEmpty(favoriteSeries)){
+            List<Serie> series=new ArrayList<>();
+            if(checkNeedAdd()){
+                series.add(newserie);
+                DataManager.getInstance().saveData(serieType, new Gson().toJson(series));
+            }
+        }
+        else{
+            List<Serie> series = new Gson().fromJson(favoriteSeries, new TypeToken<List<Serie>>() {}.getType());
+            if(checkNeedAdd()){
+                for(Serie serie1:series){
+                    if(serie1.getContentId()==serie.getContentId()) return ;
+                }
+                series.add(0,newserie);
+            }else{
+                if(series.contains(newserie))
+                series.remove(newserie);
+            }
+            DataManager.getInstance().saveData(serieType, new Gson().toJson(series));
+        }
+        favoriteSeries=DataManager.getInstance().getString(serieType,"");
+        List<Serie> seriesss=new Gson().fromJson(favoriteSeries,new TypeToken<List<Serie>>(){}.getType());
+        Log.d("asdf",favoriteSeries);
 
+
+    }
+    private boolean checkNeedAdd(){
+        List<Season> seasons;
+        seasons=this.serie.getSeasons();
+        for(Season season:seasons){
+            List<? extends VideoStream>  movieList=season.getEpisodeList();
+            for(VideoStream movie:movieList){
+               if(videoStreamManager.isLocalSeen(String.valueOf(movie.getContentId()))) return true;
+            }
+        }
+     return true;
     }
     public void playSD(View view) {
         onPlay(0);
@@ -196,43 +247,13 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             }
         }
         isSeen.notifyChange();
-        if(isMovies)
-            addRecentMovies(mMovie);
-        if(isSerie)
-            addRecentSerie();
         addRecentSerie();
         DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
         viewCallback.onPlaySelected(mMovie, type);
     }
 
-    private void addRecentMovies(Movie movie) {
-        String recentMovies = DataManager.getInstance().getString("recentMovies","");
-        if (TextUtils.isEmpty(recentMovies)) {
-            List<Movie> movies = new ArrayList<>();
-            movies.add(movie);
-            DataManager.getInstance().saveData("recentMovies", new Gson().toJson(movies));
-        }
-        else {
-            List<Movie> movieList = new Gson().fromJson(recentMovies, new TypeToken<List<Movie>>() { }.getType());
-            boolean needsToAdd = true;
-            for(Movie mov : movieList) {
-                if(movie.getContentId() == mov.getContentId()) {
-                    needsToAdd = false;
-                    break;
-                }
-            }
-            if(needsToAdd) {
-                if(movieList.size() == 10) {
-                    movieList.remove(9);
-                }
-                movieList.add(0,movie);
-                DataManager.getInstance().saveData("recentMovies", new Gson().toJson(movieList));
-            }
-        }
-    }
 
     private void addRecentSerie() {
-
         try {
             String lastSelectedSerie = DataManager.getInstance().getString("lastSerieSelected", null);
             if (lastSelectedSerie != null) {

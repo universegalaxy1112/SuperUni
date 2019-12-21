@@ -22,39 +22,39 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
-             android:layout_width="match_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:fitsSystemWindows="true"
             app:layout_constraintTop_toTopOf="parent">
-<!--
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginStart="48dp"
-                app:expandedTitleMarginEnd="64dp"
-                android:fitsSystemWindows="true">
+            <!--
+                        <android.support.design.widget.CollapsingToolbarLayout
+                            android:id="@+id/collapsing_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                            app:contentScrim="?attr/colorPrimary"
+                            app:expandedTitleMarginStart="48dp"
+                            app:expandedTitleMarginEnd="64dp"
+                            android:fitsSystemWindows="true">
 
-                <com.antonioleiva.materializeyourapp.SquareImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="parallax"/>
+                            <com.antonioleiva.materializeyourapp.SquareImageView
+                                android:id="@+id/image"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:fitsSystemWindows="true"
+                                app:layout_collapseMode="parallax"/>
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:layout_collapseMode="pin" />
+                            <android.support.v7.widget.Toolbar
+                                android:id="@+id/toolbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="?attr/actionBarSize"
+                                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                                app:layout_collapseMode="pin" />
 
-            </android.support.design.widget.CollapsingToolbarLayout>
--->
+                        </android.support.design.widget.CollapsingToolbarLayout>
+            -->
 
         </com.google.android.material.appbar.AppBarLayout>
         <LinearLayout
@@ -65,14 +65,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:foregroundGravity="top"
-                        app:imageUrl="@{movieDetailItem.hDFondoUrl}" />
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:foregroundGravity="top"
+                    app:imageUrl="@{movieDetailItem.hDFondoUrl}" />
                 <androidx.core.widget.NestedScrollView
                     android:id="@+id/scroll"
                     android:layout_width="match_parent"
@@ -120,13 +120,13 @@
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                         <FrameLayout
+                        <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
 
 
-                             <com.bosphere.fadingedgelayout.FadingEdgeLayout
+                            <com.bosphere.fadingedgelayout.FadingEdgeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 app:fel_edge="top"
@@ -145,6 +145,7 @@
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
                                         <TextView
+                                            android:id="@+id/playHD"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:gravity="center"
@@ -155,7 +156,7 @@
                                             android:textStyle="bold"
                                             android:padding="@dimen/dip_8"
                                             android:layout_marginRight="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM.playHD}"
+                                            android:onClick="@{movieDetailsVM::playHD}"
                                             android:text="PLAY HD"/>
 
                                         <TextView
@@ -169,7 +170,7 @@
                                             android:textStyle="bold"
                                             android:padding="@dimen/dip_8"
                                             android:layout_marginRight="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM.playSD}"
+                                            android:onClick="@{movieDetailsVM::playSD}"
                                             android:text="PLAY SD"/>
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -182,7 +183,7 @@
                                             android:textStyle="bold"
                                             android:padding="@dimen/dip_8"
                                             android:layout_marginRight="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM.playTrailor}"
+                                            android:onClick="@{movieDetailsVM::playTrailor}"
                                             android:text="PLAY TRAILER"/>
                                     </LinearLayout>
 
@@ -325,14 +326,7 @@
                                     android:orientation="horizontal">
                                 </LinearLayout>
                             </LinearLayout>
-                             <ImageView
-                                 android:id="@+id/imageView4"
-                                 android:layout_width="@dimen/video_list_row_width"
-                                 android:layout_height="@dimen/video_list_row_height"
-                                 android:layout_gravity="right"
-                                 app:imageUrl="@{movieDetailItem.hDPosterUrl}"
-                                 android:layout_marginRight="@dimen/dip_32"
-                                 />
+
                         </FrameLayout>
 
                     </LinearLayout>
@@ -341,5 +335,5 @@
 
 
         </LinearLayout>
-     </LinearLayout>
+    </LinearLayout>
 </layout>

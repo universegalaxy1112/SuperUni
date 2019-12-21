@@ -1,6 +1,6 @@
 package com.uni.julio.supertv.viewmodel;
 
-import com.uni.julio.supertv.databinding.ActivityOneseaosnDetailBinding;
+import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
 import com.uni.julio.supertv.model.Movie;
 
 public interface MovieDetailsViewModelContract {
@@ -15,6 +15,6 @@ public interface MovieDetailsViewModelContract {
 
     //this will have methods that the activity/fragment will call from the ViewModel
     interface ViewModel extends Lifecycle.ViewModel {
-         void showMovieDetails(Movie movie, ActivityOneseaosnDetailBinding movieDetailsBinding,   int mainCategoryId,int movieCategoryId);
+         void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding,   int mainCategoryId,int movieCategoryId);
     }
 }

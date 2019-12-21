@@ -163,7 +163,7 @@ public class FetchJSonFileSync {
             String mainCategoryEncoded = URLEncoder.encode(movieCategory, "utf-8");
             switch(mainCategory) {//main category
                 case ModelTypes.MOVIE_CATEGORIES:
-                    tmpURL = "/movie.php?cat="+mainCategoryEncoded;
+                    tmpURL = "/movies.php?cat="+mainCategoryEncoded;
                     break;
                 case ModelTypes.SERIES_CATEGORIES:
                     tmpURL = "/series.php?cat="+mainCategoryEncoded+"&tipo=2";

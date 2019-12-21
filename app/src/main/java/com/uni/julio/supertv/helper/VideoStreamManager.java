@@ -22,7 +22,6 @@ public class VideoStreamManager {
 
     private static Set<String> localFavorites;
     private static Set<String> localSeen;
-
     private VideoStreamManager() {
         mainCategoriesList = new ArrayList<>();
         liveTVCategoriesList = new ArrayList<>();
