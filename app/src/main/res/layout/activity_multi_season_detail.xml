@@ -37,6 +37,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:adjustViewBounds="true"
+                        android:focusable="true"
                         app:imageUrl="@{movieDetailItem.SDPosterUrl}"
                         />
 
@@ -62,6 +63,7 @@
                                 android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
+                                android:focusable="true"
                                 android:onClick="@{movieDetailsVM::onClickFavorite}"
                                 app:showFavoriteIcon="@{movieDetailsVM.isFavorite}"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +77,8 @@
                                 android:layout_marginLeft="@dimen/bw_generic_16_margin"
                                 android:layout_marginTop="@dimen/bw_generic_16_margin"
                                 android:clickable="true"
+                                android:focusable="true"
+
                                 android:foreground="?android:attr/selectableItemBackground"
                                 android:onClick="@{movieDetailsVM::finishActivity}"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -105,6 +109,7 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dip_32"
                                         android:orientation="horizontal">
                                         <TextView
                                             android:id="@+id/playHD"
@@ -114,11 +119,12 @@
                                             android:textColor="@color/white"
                                             android:textSize="@dimen/sp_12"
                                             android:focusable="true"
-                                            android:background="@drawable/login_background"
+                                            android:background="@drawable/play_background"
                                             android:textStyle="bold"
                                             android:padding="@dimen/dip_8"
                                             android:layout_marginRight="@dimen/dip_12"
                                             android:onClick="@{movieDetailsVM::playHD}"
+                                            app:invisible="@{movieDetailsVM.isHD}"
                                             android:text="PLAY HD"/>
 
                                         <TextView
@@ -128,11 +134,12 @@
                                             android:textColor="@color/white"
                                             android:textSize="@dimen/sp_12"
                                             android:focusable="true"
-                                            android:background="@drawable/login_background"
+                                            android:background="@drawable/play_background"
                                             android:textStyle="bold"
                                             android:padding="@dimen/dip_8"
                                             android:layout_marginRight="@dimen/dip_12"
                                             android:onClick="@{movieDetailsVM::playSD}"
+                                            app:invisible="@{movieDetailsVM.isSD}"
                                             android:text="PLAY SD"/>
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -141,11 +148,12 @@
                                             android:textColor="@color/white"
                                             android:textSize="@dimen/sp_12"
                                             android:focusable="true"
-                                            android:background="@drawable/login_background"
+                                            android:background="@drawable/play_background"
                                             android:textStyle="bold"
                                             android:padding="@dimen/dip_8"
                                             android:layout_marginRight="@dimen/dip_12"
                                             android:onClick="@{movieDetailsVM::playTrailor}"
+                                            app:invisible="@{movieDetailsVM.isTrailer}"
                                             android:text="PLAY TRAILER"/>
                                     </LinearLayout>
 

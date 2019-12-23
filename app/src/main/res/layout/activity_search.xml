@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dip_16"
                 android:focusable="false"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

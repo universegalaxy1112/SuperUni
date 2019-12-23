@@ -228,13 +228,11 @@ public class NetManager {
                 .subscribe(new Subscriber<List<? extends VideoStream>>() {
                     @Override
                     public void onCompleted() {
-                        //System.out.println("onCompleted retrieveMoviesForSubCategory " +mainCategory.getModelType() + "  "+ movieCategory.getCatName());
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        ;//Log.d("liveTV","onMoviesForCategoryCompletedError "+movieCategory.getCatName());
-//                        Log.e("liveTV","onMoviesForCategoryCompletedError "+e.getMessage());
                         movieCategory.setErrorLoading(true);
                         listener.onMoviesForCategoryCompletedError(movieCategory);
                     }

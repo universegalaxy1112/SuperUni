@@ -10,20 +10,23 @@ import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityMultiSeasonDetailBinding;
 import com.uni.julio.supertv.helper.VideoStreamManager;
+import com.uni.julio.supertv.listeners.EpisodeLoadListener;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.library.CustomProgressDialog;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.EpisodeDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.EpisodeDetailsViewModelContract;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 
-public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDetailsViewModelContract.View {
+public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDetailsViewModelContract.View, EpisodeLoadListener {
     EpisodeDetailsViewModel movieDetailsViewModel;
     ActivityMultiSeasonDetailBinding activityMultiSeasonDetailBinding;
     int mainCategoryId;
     int movieCategoryId;
     int serieId;
+    private CustomProgressDialog customProgressDialog;
 
     @Override
     protected Lifecycle.ViewModel getViewModel() {
@@ -48,6 +51,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            hideProgressDialog();
             finishActivity();
             return true;
         }
@@ -101,9 +105,26 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
 
     @Override
     public void showMovieDetails(Serie serie, int maincategory, int moviecategory) {
-        movieDetailsViewModel.showMovieDetails(serie,activityMultiSeasonDetailBinding,maincategory,moviecategory);
-
+        movieDetailsViewModel.showMovieDetails(serie,activityMultiSeasonDetailBinding,maincategory,moviecategory, this);
+        showCustomProgressDialog();
     }
 
 
+    public void showCustomProgressDialog(){
+        if(customProgressDialog == null) customProgressDialog = new CustomProgressDialog(this, getString(R.string.wait));
+        customProgressDialog.show();
+    }
+    public void showCustomProgressDialog(String message){
+        customProgressDialog = new CustomProgressDialog(this, message);
+        customProgressDialog.setCancelable(false);
+        customProgressDialog.show();
+    }
+    public void hideProgressDialog(){
+        if(customProgressDialog != null) customProgressDialog.dismiss();
+    }
+
+    @Override
+    public void onLoaded() {
+        hideProgressDialog();
+    }
 }

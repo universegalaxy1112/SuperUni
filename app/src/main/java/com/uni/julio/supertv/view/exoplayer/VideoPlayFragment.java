@@ -356,21 +356,21 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             player.setId3Output(eventLogger);
 
             simpleExoPlayerView.setPlayer(player);
-            if(intent.getIntExtra("mainCategoryId", -1) != 4&& playerPosition!=0) {//eventso
+            if(intent.getIntExtra("mainCategoryId", -1) != 4&& intent.getIntExtra("type",1)!=2 && playerPosition!=0) {//eventso
                 Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
                     @TargetApi(Build.VERSION_CODES.M)
                     @Override
                     public void onAccept() {
-                        //playerPosition=0;
-                    }
-
-                    @Override
-                    public void onCancel() {
                         if (playerPosition == C.TIME_UNSET) {
                             player.seekToDefaultPosition(playerWindow);
                         } else {
                             player.seekTo(playerWindow, playerPosition);
                         }
+                    }
+
+                    @Override
+                    public void onCancel() {
+
                     }
                 });
 

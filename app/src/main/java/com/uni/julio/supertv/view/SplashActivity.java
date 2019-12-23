@@ -56,6 +56,22 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
         }
 
     }
+
+    @Override
+    public void onCheckForUpdateCompleted(boolean z, String str) {
+
+    }
+
+    @Override
+    public void onDownloadUpdateCompleted(String str) {
+
+    }
+
+    @Override
+    public void onDownloadUpdateError(int i) {
+
+    }
+
     @Override
     public void onLoginCompleted(boolean success) {
         if(success){

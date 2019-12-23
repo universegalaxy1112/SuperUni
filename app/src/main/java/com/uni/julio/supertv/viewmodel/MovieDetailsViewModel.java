@@ -42,6 +42,9 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     private boolean isMovies = false;
     private boolean isSerie=false;
     private boolean hidePlayFromStart = false;
+    public ObservableBoolean isHD;
+    public ObservableBoolean isSD;
+    public ObservableBoolean isTrailer;
     ActivityOneseasonDetailBinding movieDetailsBinding;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
@@ -82,10 +85,16 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         if(hidePlayFromStart) {
             isSeen = new ObservableBoolean(false);
         }
-        else  {
+        else {
             isSeen = new ObservableBoolean(videoStreamManager.isLocalSeen(String.valueOf(movie.getContentId())));
         }
+        isHD=movie.getStreamUrl()==null||movie.getStreamUrl().equals("null")||movie.getStreamUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
+        isSD=(movie.getSDUrl()==null||movie.getSDUrl().equals("null")||movie.getSDUrl().equals(""))?new ObservableBoolean(true):new ObservableBoolean(false);
+        isTrailer=movie.getTrailerUrl()==null||movie.getTrailerUrl().equals("null")||movie.getTrailerUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
         isFavorite = new ObservableBoolean(videoStreamManager.isLocalFavorite(String.valueOf(movie.getContentId())));
+        isHD.notifyChange();
+        isSD.notifyChange();
+        isTrailer.notifyChange();
         mMovie = movie;
         movieDetailsBinding.setMovieDetailItem(movie);
         TVRecyclerView rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
@@ -116,13 +125,8 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
              addFavorite(mMovie);
         }
         isFavorite.notifyChange();
-        DataManager.getInstance().saveData("favoriteMovies", videoStreamManager.getFavoriteMovies());
-        String favoriteMovies=DataManager.getInstance().getString("favoriteMoviesData1","");
-        List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
-        Log.d("asdf",favoriteMovies);
-
+        DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
     }
-
     public void playSD(View view) {
         onPlay(1);
     }
@@ -139,45 +143,62 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                 isSeen.set(true);
             }
         }
-             addRecentMovies(mMovie);
-             addFavorite(mMovie);
+        addRecentMovies(mMovie);
         isSeen.notifyChange();
         DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
         viewCallback.onPlaySelected(mMovie, type);
     }
     private void addFavorite(Movie movie){
-       String favoriteMovies=DataManager.getInstance().getString("favoriteMoviesData1","");
+        String serieType = "";
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.MOVIE_CATEGORIES) {
+            serieType = "favoriteMovies";
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES){
+            serieType = "favoriteEntertainment";
+        }
+       String favoriteMovies=DataManager.getInstance().getString(serieType,"");
        if(TextUtils.isEmpty(favoriteMovies)){
            List<Movie> movies=new ArrayList<>();
            movies.add(movie);
-           DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movies));
+           DataManager.getInstance().saveData(serieType,new Gson().toJson(movies));
        }
        else{
            List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
            movieList.add(0,movie);
-           DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movieList));
+           DataManager.getInstance().saveData(serieType,new Gson().toJson(movieList));
 
        }
     }
     private void removeFavorite(Movie movie){
-        String favoriteMovies=DataManager.getInstance().getString("favoriteMoviesData1","");
+        String serieType = "";
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.MOVIE_CATEGORIES) {
+            serieType = "favoriteMovies";
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES){
+            serieType = "favoriteEntertainment";
+        }
+        String favoriteMovies=DataManager.getInstance().getString(serieType,"");
         if(TextUtils.isEmpty(favoriteMovies)){
             List<Movie> movies=new ArrayList<>();
             //movies.add(movie);
-            DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movies));
+            DataManager.getInstance().saveData(serieType,new Gson().toJson(movies));
         }
         else{
             List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
             movieList.remove(movie);
-            DataManager.getInstance().saveData("favoriteMoviesData1",new Gson().toJson(movieList));
+            DataManager.getInstance().saveData(serieType,new Gson().toJson(movieList));
         }
     }
     private void addRecentMovies(Movie movie) {
-        String recentMovies = DataManager.getInstance().getString("recentMovies","");
+        String serieType = "";
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.MOVIE_CATEGORIES) {
+            serieType = "recentMovies";
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES){
+            serieType = "recentEntertainment";
+        }
+        String recentMovies = DataManager.getInstance().getString(serieType,"");
         if (TextUtils.isEmpty(recentMovies)) {
             List<Movie> movies = new ArrayList<>();
             movies.add(movie);
-            DataManager.getInstance().saveData("recentMovies", new Gson().toJson(movies));
+            DataManager.getInstance().saveData(serieType, new Gson().toJson(movies));
         }
         else {
             List<Movie> movieList = new Gson().fromJson(recentMovies, new TypeToken<List<Movie>>() { }.getType());
@@ -197,54 +218,11 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                     movieList.remove(9);
                 }
                 movieList.add(0, movie);
-                DataManager.getInstance().saveData("recentMovies", new Gson().toJson((Object) movieList));
+                DataManager.getInstance().saveData(serieType, new Gson().toJson((Object) movieList));
             }
         }
     }
 
-    private void addRecentSerie() {
-
-        try {
-            String lastSelectedSerie = DataManager.getInstance().getString("lastSerieSelected", null);
-            if (lastSelectedSerie != null) {
-                Serie serie = new Gson().fromJson(lastSelectedSerie, Serie.class);
-
-                String recentSeries = "";
-
-                String serieType = "";
-                if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
-                    serieType = "recentSeries";
-                } else {
-                    serieType = "recentKidsSeries";
-                }
-                recentSeries = DataManager.getInstance().getString(serieType, "");
-
-                if (TextUtils.isEmpty(recentSeries)) {
-                    List<Serie> series = new ArrayList<>();
-                    series.add(serie);
-
-                    DataManager.getInstance().saveData(serieType, new Gson().toJson(series));
-                } else {
-                    List<Serie> serieList = new Gson().fromJson(recentSeries, new TypeToken<List<Serie>>() {
-                    }.getType());
-                    boolean needsToAdd = true;
-                    for (Serie ser : serieList) {
-                        if (serie.getContentId() == ser.getContentId()) {
-                            needsToAdd = false;
-                            break;
-                        }
-                    }
-                    if (needsToAdd) {
-                        if (serieList.size() == 10) {
-                            serieList.remove(9);
-                        }
-                        serieList.add(0, serie);
-                        DataManager.getInstance().saveData(serieType, new Gson().toJson(serieList));
-                    }
-                }
-            }
-        }catch(Exception e) {}
-    }
 
 
     @Override

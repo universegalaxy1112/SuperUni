@@ -1,5 +1,6 @@
 package com.uni.julio.supertv.viewmodel;
 
+import android.app.ProgressDialog;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.listeners.DownloaderListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.DataManager;
@@ -16,7 +18,7 @@ import com.uni.julio.supertv.utils.networing.NetManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SplashViewModel implements SplashViewModelContract.ViewModel, StringRequestListener {
+public class SplashViewModel implements SplashViewModelContract.ViewModel, StringRequestListener, DownloaderListener {
 
 //    public boolean isConnected;
     private NetManager netManager;
@@ -107,5 +109,21 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
     @Override
     public void onError() {
         viewCallback.onLoginCompleted(false);
+    }
+    public void checkForUpdate() {
+       // this.netManager.performCheckForUpdate(this);
+    }
+
+
+
+    public void downloadUpdate(String location, ProgressDialog progress) {
+       // Downloader.getInstance().performDownload(location, progress, this);
+    }
+    public void onDownloadError(int error) {
+        this.viewCallback.onDownloadUpdateError(error);
+    }
+
+    public void onDownloadComplete(String location) {
+        this.viewCallback.onDownloadUpdateCompleted(location);
     }
 }

@@ -36,19 +36,19 @@ public class LiveTVServicesManual {
                 subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
     public static Observable<List<LiveTVCategory>> getLiveTVCategories(final MainCategory category) {
-
         return Observable.create(new Observable.OnSubscribe<List<LiveTVCategory>>() {
             @Override
             public void call(Subscriber<? super List<LiveTVCategory>> subscriber) {
                 subscriber.onNext(retrieveLiveTVCategories(category));
                 subscriber.onCompleted();
             }
-        })
-                .subscribeOn(Schedulers.io())
+        })      .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
     private static List<? extends VideoStream> retrieveEpisodesForSerie(Serie serie, Integer season) {
@@ -95,7 +95,8 @@ public class LiveTVServicesManual {
                 subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.loginCodeRequest(code, stringRequestListener)));
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        }) .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
     public static boolean loginCodeRequest(String code, final StringRequestListener stringRequestListener) {
         String loginCodeUrl;
@@ -124,7 +125,8 @@ public class LiveTVServicesManual {
                 subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.getCodeRequest(stringRequestListener)));
                 subscriber.onCompleted();
             }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        }).subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     public static boolean getCodeRequest(final StringRequestListener stringRequestListener) {
@@ -155,7 +157,8 @@ public class LiveTVServicesManual {
                 subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
@@ -186,7 +189,8 @@ public class LiveTVServicesManual {
                 subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
@@ -204,7 +208,8 @@ public class LiveTVServicesManual {
                 subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
     private static List<? extends VideoStream> retrieveMoviesForSubCat(String mainCategory, String movieCategory, int timeOut) {
@@ -220,7 +225,8 @@ public class LiveTVServicesManual {
                 subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
     private static List<MovieCategory> retrieveSubCategories(MainCategory category) {
@@ -236,7 +242,8 @@ public class LiveTVServicesManual {
                 subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

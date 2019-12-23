@@ -1,7 +1,11 @@
 package com.uni.julio.supertv.utils;
 
 
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,7 +49,7 @@ public class Dialogs {
     }
 
     public static void showOneButtonDialog(AppCompatActivity activity, String title, String message, final DialogInterface.OnClickListener dialogListener) {
-        new MaterialDialog.Builder(activity)
+        MaterialDialog dialog=new MaterialDialog.Builder(activity)
                 .title(title)
                 .content(message)
                 .positiveText("OK")
@@ -72,6 +76,10 @@ public class Dialogs {
                 .titleColorRes(R.color.bg_general)
                 .contentColorRes(R.color.bg_general)
                 .show();
+
+        View po=dialog.getActionButton(DialogAction.NEGATIVE);
+        po.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
+        po.setPadding(16,4,16,4);
      }
 
     public static void showTwoButtonsDialog(AppCompatActivity activity, int message, final DialogListener dialogListener) {
@@ -79,7 +87,7 @@ public class Dialogs {
     }
 
     public static void showTwoButtonsDialog(AppCompatActivity activity, int accept, int cancel, int message, final DialogListener dialogListener) {
-        new MaterialDialog.Builder(activity)
+        MaterialDialog dialg=new MaterialDialog.Builder(activity)
                 .content(message)
                 .positiveText(accept)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -101,5 +109,11 @@ public class Dialogs {
                 .negativeColorRes(R.color.netflix_red)
                 .contentColorRes(R.color.bg_general)
                 .show();
+        View ne=dialg.getActionButton(DialogAction.POSITIVE);
+        View po=dialg.getActionButton(DialogAction.NEGATIVE);
+        ne.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
+        po.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
+        ne.setPadding(16,4,16,4);
+        po.setPadding(16,4,16,4);
     }
 }

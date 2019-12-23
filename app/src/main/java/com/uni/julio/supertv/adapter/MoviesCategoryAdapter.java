@@ -26,6 +26,7 @@ import com.uni.julio.supertv.listeners.MovieAcceptedListener;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.listeners.SearchSelectedListener;
 import com.uni.julio.supertv.listeners.ShowAsGridListener;
+import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.MovieCategory;
 import com.uni.julio.supertv.utils.Device;
@@ -85,6 +86,21 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
     protected void focusIn(View v, int position) {
 
     }
+    public void onResume() {
+        if(
+                VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.MOVIE_CATEGORIES ||
+                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.SERIES_CATEGORIES ||
+                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES ||
+                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES ||
+                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.KARAOKE_CATEGORIES
+        ) {
+            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), mMoviesList.get(0), this, timeOutPerRow[0]);
+            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), mMoviesList.get(1), this, timeOutPerRow[0]);
+            mMoviesList = VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getMovieCategories();
+            this.notifyItemChanged(0);
+            this.notifyItemChanged(1);
+        }
+    }
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position){
 
@@ -94,20 +110,15 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
         holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.movieCategory,movieCategory);
         holder.viewDataBinding.getRoot().findViewById(R.id.all_pane_btn).setTag(position);
         boolean needsRedraw = true;
-        if(treatAsBox){
-            holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.categoryAdapter,this);
-        }
-        else{
-            holder.getViewDataBinding().getRoot().findViewById(R.id.all_pane_btn).setTag(position);
-            holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.categoryAdapter,this);
-        }
+        holder.getViewDataBinding().getRoot().findViewById(R.id.all_pane_btn).setTag(position);
+        holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.categoryAdapter,this);
         if(movieCategory.hasErrorLoading()){
             holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.VISIBLE);
             holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.VISIBLE);
             ((TextView)holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt)).setText(mContext.getString(R.string.generic_loading_message));
             holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.GONE);
             holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setTag(position);//clicks
-             holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
+            holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
             holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
             holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
 
@@ -124,8 +135,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
                     notifyItemChanged((Integer) v.getTag());
                 }
             });
-
-
         }
         else
         {
@@ -179,7 +188,7 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
                 }
             });
             if (rowsRecycler.getItemDecorationCount() == 0) {
-                rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(20,32,48,16));
+                rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(20,16,48,16));
             }
          }
         }
@@ -209,7 +218,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
             movieCategory.setErrorLoading(false);
             if(treatAsBox && movieCategory.getCatName().contains("ettings")) {
                 movieCategory.setCatName("");//solo mostrar LUPA
-
                 if(movieCategory.getMovieList().size() > 1) {
                     movieCategory.getMovieList().remove(1);
                 }

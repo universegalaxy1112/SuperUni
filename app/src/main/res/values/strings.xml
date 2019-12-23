@@ -132,6 +132,6 @@
     <string name="adults_set_password_success_message">La contraseña ha sido configurada correctamente.</string>
     <string name="adults_set_password_empty_message">Debes agregar al menos 4 dígitos para la contraseña.</string>
     <string name="adults_password_message">Por favor introduce la contraseña para accesar a esta categoría.</string>
-    <string name="from_start">Play from Start?</string>
+    <string name="from_start">Continuar viendo?</string>
 
 </resources>

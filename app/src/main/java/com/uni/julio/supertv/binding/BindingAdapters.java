@@ -131,7 +131,7 @@ public class BindingAdapters {
 
     @BindingAdapter({"showFavoriteIcon"})
     public static void bindShowFavoriteIcon(ImageView view, boolean favorite) {
-        view.setImageResource(favorite ? R.drawable.ic_favorite_red_24dp : R.drawable.ic_favorite_white_24dp);
+        view.setImageResource(favorite ? R.drawable.ic_favorite_like : R.drawable.ic_favorite_normal);
 
     }
 

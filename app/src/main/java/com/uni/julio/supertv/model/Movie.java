@@ -42,9 +42,6 @@ public class Movie extends VideoStream {
     public void setSearchActors(String searchActors) {
         this.searchActors = searchActors;
     }
-
-
-
     public void setHDFondoUrl(String HDFondoUrl2) {
     this.HDFondoUrl = HDFondoUrl2;
 }

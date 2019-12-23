@@ -73,26 +73,16 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
                 uris = new String[] {movie.getStreamUrl()};
                 break;
             case 1:
-                if(movie.getSDUrl()==null){
-                    uris = new String[] {movie.getStreamUrl()};
-                }
-                else{
                     uris = new String[] {movie.getSDUrl()};
-                }
                 break;
             case 2:
-                if(movie.getTrailerUrl()==null){
-                    uris = new String[] {movie.getStreamUrl()};
-                }
-                else{
                     uris = new String[] {movie.getTrailerUrl()};
-                }
                 break;
             default:
         }
 
         String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
-        String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
+        String extension = uris[0].substring(movieUrl.lastIndexOf(".") + 1);
         String[] extensions = new String[] {extension};
         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
         //DataManager.getInstance().saveData("seconds" + movieId, temp);

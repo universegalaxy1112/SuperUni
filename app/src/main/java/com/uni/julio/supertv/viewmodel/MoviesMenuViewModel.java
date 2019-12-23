@@ -56,7 +56,9 @@ public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewMode
 
     @Override
     public void onViewResumed() {
-
+        if(moviesCategoryAdapter != null) {
+            moviesCategoryAdapter.onResume();
+        }
     }
 
     @Override

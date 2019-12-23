@@ -31,6 +31,7 @@ import androidx.loader.app.LoaderManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.exoplayer2.util.Util;
 import com.google.gson.Gson;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.MoviesPresenter;
@@ -48,6 +49,7 @@ import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +73,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     /* access modifiers changed from: private */
     public final Handler mHandler = new Handler();
     private DisplayMetrics mMetrics;
+    List<MovieCategory> mCategoriesList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,11 +103,10 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         setupEventListeners();
         prepareEntranceTransition();
         prepareBackgroundManager();
-
         this.mRowsAdapter = new SortedArrayObjectAdapter((Comparator) new ListRowComparator(), (Presenter) new ListRowPresenter());
-        loadData();
         setAdapter(this.mRowsAdapter);
-       getHeadersFragment().setOnHeaderClickedListener(new HeadersFragment.OnHeaderClickedListener() {
+        loadData();
+        getHeadersFragment().setOnHeaderClickedListener(new HeadersFragment.OnHeaderClickedListener() {
 
            @Override
            public void onHeaderClicked(RowHeaderPresenter.ViewHolder viewHolder, Row row) {
@@ -149,24 +151,35 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         setHeadersTransitionOnBackEnabled(true);
         setBrandColor(ContextCompat.getColor(getActivity(), R.color.contact_us_link_color));
         //setSearchAffordanceColor(ContextCompat.getColor(getActivity(), R.color.search_opaque));
-
-
     }
-
     private void loadData() {
-            List<MovieCategory> mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
+        if(VideoStreamManager.getInstance().getMainCategoriesList().size()<7){
+            VideoStreamManager.getInstance().FillMainCategories();
+        }
+            mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
             setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
             for (int i = 0; i < mCategoriesList.size(); i++) {
-                if(!mCategoriesList.get(i).isLoaded()) {
-                    NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId),  mCategoriesList.get(i), this, 60);
-                }else{
-                    loadRow(mCategoriesList.get(i));
-                }
+                loadHeader(mCategoriesList.get(i));
+                load(i);
             }
     }
+    private void load(int row){
+        if(mCategoriesList.get(row).hasErrorLoading()){
 
+        }
+        if(!mCategoriesList.get(row).isLoaded()) {
+            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId),  mCategoriesList.get(row), this, 60);
+        }else{
+            loadRow(mCategoriesList.get(row));
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 60);
+        NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(1), this, 60);
+    }
     private void loadRow(MovieCategory category) {
-
         HeaderItem header = new HeaderItem((long) category.getId(), category.getCatName());
         Movie showAsGrid = new Movie();
         showAsGrid.setTitle("Ver Todas");
@@ -177,15 +190,27 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         showAsGrid.setLength(category.getId());
         ListRow r = new ListRow(header, listRowAdapter);
         r.setId((long) category.getId());
+        this.mRowsAdapter.removeItems(category.getId(),1);
         this.mRowsAdapter.add(r);
-        synchronized(mRowsAdapter){
+        synchronized(this.mRowsAdapter){
             this.mRowsAdapter.notify();
         }
-
     }
-
-
-
+    private void loadHeader(MovieCategory category){
+        HeaderItem header = new HeaderItem((long) category.getId(), category.getCatName());
+        Movie showAsGrid = new Movie();
+        showAsGrid.setTitle("Ver Todas");
+        showAsGrid.setPosition(-1);
+        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter((Presenter) new MoviesPresenter(getActivity().getApplicationContext()));
+        listRowAdapter.addAll(0, new ArrayList());
+        showAsGrid.setLength(category.getId());
+        ListRow r = new ListRow(header, listRowAdapter);
+        r.setId((long) category.getId());
+        this.mRowsAdapter.add(r);
+        synchronized(this.mRowsAdapter){
+            this.mRowsAdapter.notify();
+        }
+    }
     public void onMoviesForCategoryCompleted(MovieCategory movieCategory) {
         movieCategory.setLoaded(true);
         if(!movieCategory.hasErrorLoading()) {
@@ -193,7 +218,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             movieCategory.setErrorLoading(false);
             if( movieCategory.getCatName().contains("ettings")) {
                 movieCategory.setCatName("");
-
                 if(movieCategory.getMovieList().size() > 1) {
                     movieCategory.getMovieList().remove(1);
                 }
@@ -202,11 +226,13 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             }
             loadRow(movieCategory);
             VideoStreamManager.getInstance().getMainCategory(mainCategoryId).addMovieCategory(movieCategory.getId(), movieCategory);
-
         }
+
     }
     @Override
     public void onMoviesForCategoryCompletedError(MovieCategory movieCategory) {
+        movieCategory.setErrorLoading(false);
+        //VideoStreamManager.getInstance().getMainCategory(mainCategoryId).addMovieCategory(movieCategory.getId(), movieCategory);
     }
     public void addRecentSerie(Serie serie) {
         DataManager.getInstance().saveData("lastSerieSelected", new Gson().toJson((Object) serie));
@@ -287,7 +313,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 public void run() {
                     if (MoviesMenuTVFragment.this.mBackgroundURI != null) {
                         MoviesMenuTVFragment.this.updateBackground(MoviesMenuTVFragment.this.mBackgroundURI.toString());
-                    } else {
+                    }else {
                         MoviesMenuTVFragment.this.clearBackground();
                     }
                 }

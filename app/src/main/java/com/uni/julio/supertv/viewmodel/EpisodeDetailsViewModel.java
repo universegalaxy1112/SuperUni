@@ -21,6 +21,7 @@ import com.uni.julio.supertv.databinding.ActivityMultiSeasonDetailBinding;
 import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
+import com.uni.julio.supertv.listeners.EpisodeLoadListener;
 import com.uni.julio.supertv.listeners.LoadEpisodesForSerieResponseListener;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.listeners.SeasonSelectListener;
@@ -34,7 +35,9 @@ import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.networing.NetManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.ViewModel, LoadEpisodesForSerieResponseListener, SeasonSelectListener,MovieSelectedListener {
     private int mMainCategoryId ;
@@ -49,6 +52,9 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     public ObservableBoolean isSeen;
     private boolean isMovies = false;
     private boolean isSerie = false;
+    public ObservableBoolean isHD;
+    public ObservableBoolean isSD;
+    public ObservableBoolean isTrailer;
     private boolean hidePlayFromStart = false;
     ActivityMultiSeasonDetailBinding movieDetailsBinding;
     MultiSeasonAdapter moviesRecyclerAdapter;
@@ -56,6 +62,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     GridLayoutManager rowslayoutmanger;
     Serie serie;
     TabLayout tabLayout;
+    EpisodeLoadListener episodeLoadListener;
     public EpisodeDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         this.mContext = context;
@@ -86,10 +93,11 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     }
 
     @Override
-    public void showMovieDetails(Serie serie, ActivityMultiSeasonDetailBinding movieDetailsBinding , int mainCategoryId, int movieCategoryId) {
+    public void showMovieDetails(Serie serie, ActivityMultiSeasonDetailBinding movieDetailsBinding , int mainCategoryId, int movieCategoryId, EpisodeLoadListener episodeLoadListener) {
         this.mMainCategoryId=mainCategoryId;
         this.mMovieCategoryId=movieCategoryId;
         this.movieDetailsBinding=movieDetailsBinding;
+        this.episodeLoadListener=episodeLoadListener;
         this.serie=serie;
         rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
         rowslayoutmanger = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.more_video)));
@@ -164,6 +172,12 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             isSeen = new ObservableBoolean(videoStreamManager.isLocalSeen(String.valueOf(mMovie.getContentId())));
         }
         isFavorite = new ObservableBoolean(videoStreamManager.isLocalFavorite(String.valueOf(mMovie.getContentId())));
+        isHD=mMovie.getStreamUrl()==null||mMovie.getStreamUrl().equals("null")||mMovie.getStreamUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
+        isSD=mMovie.getSDUrl()==null||mMovie.getSDUrl().equals("null")||mMovie.getSDUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
+        isTrailer=mMovie.getTrailerUrl()==null||mMovie.getTrailerUrl().equals("null")||mMovie.getTrailerUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
+        isHD.notifyChange();
+        isSD.notifyChange();
+        isTrailer.notifyChange();
     }
     public void onClickFavorite(View view) {
         if(isFavorite.get()) {
@@ -177,20 +191,22 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
 
         }
         isFavorite.notifyChange();
-        DataManager.getInstance().saveData("favoriteMovies", videoStreamManager.getFavoriteMovies());
+        DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
         addFavorite();
      }
     private void addFavorite(){
         String serieType = "";
         if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
             serieType = "favoriteSerie";
-        } else {
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES) {
             serieType = "favoriteKids";
+        }else{
+            serieType = "favoriteKara";
         }
         String favoriteSeries=DataManager.getInstance().getString(serieType,"");
         Serie newserie=new Serie();
-        newserie=serie;
-        //newserie.setSeasons(new ArrayList<Season>());
+        newserie=serie.clone();
+        newserie.setSeasons(new ArrayList<Season>());
         if(TextUtils.isEmpty(favoriteSeries)){
             List<Serie> series=new ArrayList<>();
             if(checkNeedAdd()){
@@ -199,7 +215,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             }
         }
         else{
-            List<Serie> series = new Gson().fromJson(favoriteSeries, new TypeToken<List<Serie>>() {}.getType());
+             List<Serie> series=new Gson().fromJson(favoriteSeries,new TypeToken<List<Serie>>(){}.getType());
             if(checkNeedAdd()){
                 for(Serie serie1:series){
                     if(serie1.getContentId()==serie.getContentId()) return ;
@@ -212,21 +228,22 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             DataManager.getInstance().saveData(serieType, new Gson().toJson(series));
         }
         favoriteSeries=DataManager.getInstance().getString(serieType,"");
-        List<Serie> seriesss=new Gson().fromJson(favoriteSeries,new TypeToken<List<Serie>>(){}.getType());
+        List<Serie> series=new Gson().fromJson(favoriteSeries,new TypeToken<List<Serie>>(){}.getType());
         Log.d("asdf",favoriteSeries);
 
 
     }
+
     private boolean checkNeedAdd(){
         List<Season> seasons;
         seasons=this.serie.getSeasons();
         for(Season season:seasons){
             List<? extends VideoStream>  movieList=season.getEpisodeList();
             for(VideoStream movie:movieList){
-               if(videoStreamManager.isLocalSeen(String.valueOf(movie.getContentId()))) return true;
+               if(videoStreamManager.isLocalFavorite(String.valueOf(movie.getContentId()))) return true;
             }
         }
-     return true;
+     return false;
     }
     public void playSD(View view) {
         onPlay(0);
@@ -264,8 +281,10 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                 String serieType = "";
                 if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
                     serieType = "recentSeries";
-                } else {
-                    serieType = "recentKidsSeries";
+                } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES) {
+                    serieType = "recentKids";
+                }else{
+                    serieType = "recentKara";
                 }
                 recentSeries = DataManager.getInstance().getString(serieType, "");
 
@@ -313,6 +332,8 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         showEpisode(0);
         moviesRecyclerAdapter = new MultiSeasonAdapter(mContext, rowsRecycler,movieList, 4, this);
         rowsRecycler.setAdapter(moviesRecyclerAdapter);
+        this.episodeLoadListener.onLoaded();
+
     }
     @Override
     public void onError() {

@@ -66,16 +66,45 @@ public class FetchJSonFileSync {
                     case ModelTypes.MOVIE_CATEGORIES:
                         recentMovies = DataManager.getInstance().getString("recentMovies","");
                         break;
+                    case ModelTypes.ENTERTAINMENT_CATEGORIES:
+                        recentMovies = DataManager.getInstance().getString("recentEntertainment","");
+                        break;
                     case ModelTypes.SERIES_CATEGORIES:
                         recentMovies = DataManager.getInstance().getString("recentSeries","");
                         break;
                     case ModelTypes.SERIES_KIDS_CATEGORIES:
-                        recentMovies = DataManager.getInstance().getString("recentKidsSeries","");
+                        recentMovies = DataManager.getInstance().getString("recentKids","");
+                        break;
+                    case ModelTypes.KARAOKE_CATEGORIES:
+                        recentMovies = DataManager.getInstance().getString("recentKara","");
                         break;
                 }
 
                 if(!TextUtils.isEmpty(recentMovies)) {
                     dataFromServer = "{\"Videos\": "+recentMovies + "}";
+                }
+                else {
+                    return new ArrayList<>();
+                }
+            }else if(movieCategory.toLowerCase().contains("favorite")) {
+                String favoriteMovies = "";
+                switch(mainCategory) {//main category
+                    case ModelTypes.MOVIE_CATEGORIES:
+                        favoriteMovies = DataManager.getInstance().getString("favoriteMovies","");
+                        break;
+                    case ModelTypes.ENTERTAINMENT_CATEGORIES:
+                        favoriteMovies = DataManager.getInstance().getString("favoriteEntertainment","");
+                        break;
+                    case ModelTypes.SERIES_CATEGORIES:
+                        favoriteMovies = DataManager.getInstance().getString("favoriteSerie","");
+                        break;
+                    case ModelTypes.SERIES_KIDS_CATEGORIES:
+                        favoriteMovies = DataManager.getInstance().getString("favoriteKids","");
+                        break;
+                }
+
+                if(!TextUtils.isEmpty(favoriteMovies)) {
+                    dataFromServer = "{\"Videos\": "+favoriteMovies + "}";
                 }
                 else {
                     return new ArrayList<>();
@@ -163,7 +192,7 @@ public class FetchJSonFileSync {
             String mainCategoryEncoded = URLEncoder.encode(movieCategory, "utf-8");
             switch(mainCategory) {//main category
                 case ModelTypes.MOVIE_CATEGORIES:
-                    tmpURL = "/movies.php?cat="+mainCategoryEncoded;
+                    tmpURL = "/movies.php?CATEGORY="+mainCategoryEncoded;
                     break;
                 case ModelTypes.SERIES_CATEGORIES:
                     tmpURL = "/series.php?cat="+mainCategoryEncoded+"&tipo=2";
