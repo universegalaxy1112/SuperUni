@@ -133,5 +133,11 @@ public class Device {
         }
         return versionName;
     }
-
+    public static String getVersionInstalled() {
+        try {
+            return LiveTvApplication.getAppContext().getPackageManager().getPackageInfo(LiveTvApplication.getAppContext().getPackageName(), 0).versionName;
+        } catch (Exception e) {
+            return "0.0.1";
+        }
+    }
 }

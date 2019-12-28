@@ -115,5 +115,6 @@ public class Dialogs {
         po.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
         ne.setPadding(16,4,16,4);
         po.setPadding(16,4,16,4);
+        po.requestFocus();
     }
 }

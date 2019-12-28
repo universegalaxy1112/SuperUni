@@ -10,4 +10,6 @@ public class WebConfig {
     public static final String loginURL             = domain + "/GsZzwW3PqfXm268C/Connect/login.php?user={USER}&pass={PASS}&device_id={DEVICE_ID}&model={MODEL}&fw={FW}&country={COUNTRY}";
     public static final String liveTVCategoriesURL          = domain + "GsZzwW3PqfXm268C/Connect/live_categorias.php";
     public static final String liveTVChannelsURL            = domain + "/GsZzwW3PqfXm268C/Connect/live_canales.php?cve={CAT_ID}";
+    public static final String updateURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/upgrade_version.php?new_version";
+
 }

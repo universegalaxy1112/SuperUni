@@ -2,33 +2,37 @@ package com.uni.julio.supertv.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 
-import com.uni.julio.supertv.LiveTvApplication;
+import androidx.core.content.FileProvider;
+
+ import com.uni.julio.supertv.LiveTvApplication;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
-public class Files {
+public class Files extends FileProvider {
     public static File GetFile(String path) {
         try {
             return new File(path);
-        }catch (Exception e){}
-        return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static File GetFile(String path, String child) {
         try {
             return new File(path, child);
-        }catch (Exception e){}
-        return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static String GetExternalsFilesDir() {
         return LiveTvApplication.getAppContext().getExternalFilesDir(null).getAbsolutePath();
     }
-
 
     public static String GetFilesDir() {
         return LiveTvApplication.getAppContext().getFilesDir().getAbsolutePath();
@@ -38,74 +42,57 @@ public class Files {
         return LiveTvApplication.getAppContext().getCacheDir().getAbsolutePath();
     }
 
-    public static String ReadFile(String filename)
-    {
-        String data = null;
-        try
-        {
+    public static String ReadFile(String filename) {
+        try {
             File file = new File(filename);
-            byte fileContent[] = new byte[(int)file.length()];
-
+            byte[] fileContent = new byte[((int) file.length())];
             FileInputStream fin = new FileInputStream(file);
             fin.read(fileContent);
             fin.close();
-            data = new String(fileContent);
+            return new String(fileContent);
+        } catch (Exception e) {
+            return null;
         }
-        catch (Exception e){data = null;}
-        return data;
     }
 
-    public static boolean WriteFile(String filename, String data)
-    {
-        FileOutputStream fOut = null;
-        OutputStreamWriter osw = null;
-        try
-        {
-            try
-            {
-//                DBG("SUtils", "WriteFile(), File = " + filename);
-                File file = new File(filename);
-                if(!file.exists())
-                {
-                    File parent = new File(file.getParent());
-                    parent.mkdirs();
-                    parent = null;
-
-                    file.createNewFile();
-                }
-                file = null;
-            } catch (Exception ex) {}
-
-            fOut = new FileOutputStream(filename);
-            osw = new OutputStreamWriter(fOut);
-            osw.append(data);
-            osw.flush();
-            osw.close();
-            fOut.close();
+    public static boolean WriteFile(String filename, String data) {
+        try {
+            File file = new File(filename);
+            if (!file.exists()) {
+                new File(file.getParent()).mkdirs();
+                file.createNewFile();
+            }
+        } catch (Exception e) {
         }
-        catch (Exception e)
-        {
-//            DBG_EXCEPTION(e);
+        try {
+            FileOutputStream fOut = new FileOutputStream(filename);
+            try {
+                OutputStreamWriter osw = new OutputStreamWriter(fOut);
+                try {
+                    osw.append(data);
+                    osw.flush();
+                    osw.close();
+                    fOut.close();
+                    OutputStreamWriter outputStreamWriter = osw;
+                    FileOutputStream fileOutputStream = fOut;
+                    return true;
+                } catch (Exception e2) {
+                    OutputStreamWriter outputStreamWriter2 = osw;
+                    FileOutputStream fileOutputStream2 = fOut;
+                    return false;
+                }
+            } catch (Exception e3) {
+                FileOutputStream fileOutputStream3 = fOut;
+                return false;
+            }
+        } catch (Exception e4) {
             return false;
         }
-        return true;
     }
 
-//    public static Bitmap getBitmap(String imagePath)
-//    {
-//        try {
-//            File f = new File(imagePath);
-//            return BitmapFactory.decodeStream(new FileInputStream(f));
-//        }
-//        catch (FileNotFoundException e)
-//        {
-//            return null;
-//        }
-//    }
     public static Bitmap getBitmap(String path) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
+        Options options = new Options();
         options.inSampleSize = 2;
-        final Bitmap b = BitmapFactory.decodeFile(path, options);
-        return b;
+        return BitmapFactory.decodeFile(path, options);
     }
 }

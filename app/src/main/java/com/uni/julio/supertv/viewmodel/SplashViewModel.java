@@ -13,6 +13,7 @@ import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.networing.Downloader;
 import com.uni.julio.supertv.utils.networing.NetManager;
 
 import org.json.JSONException;
@@ -76,13 +77,9 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
     public void onCompleted(String response) {
         if(!TextUtils.isEmpty(response)) {
             try {
-//                String user = DataManager.getInstance().getString("usr","");
-//                String password = DataManager.getInstance().getString("pss","");
-
-//                {"user":"abel3","status":"1","expire_date":"2017-03-21 00:00:00","message":"","user-agent":"s1oqqGfrT06PPZ70dHUqJBxMx5lJibaHzzC"}
 
                 JSONObject jsonObject = new JSONObject(response);
-                if("1".equals((String) jsonObject.getString("status"))) {
+                if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
                     String userAgent = (String) jsonObject.getString("user-agent");
                     if (!jsonObject.isNull("pin")) {
                         DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
@@ -98,6 +95,15 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
                         return;
                     }
                 }
+                if (jsonObject.has("android_version")) {
+                    Log.d("version",Device.getVersionInstalled());
+                    if (!Device.getVersionInstalled().replaceAll("\\.", "").equals(jsonObject.getString("android_version"))) {
+                        this.viewCallback.onCheckForUpdateCompleted(true, jsonObject.getString("link_android") + "/android" + jsonObject.getString("android_version") + ".apk");
+                        return;
+                    }
+                    this.viewCallback.onCheckForUpdateCompleted(false, null);
+                    return;
+                }
             } catch (JSONException e) {
 //                e.printStackTrace();
             }
@@ -111,13 +117,11 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
         viewCallback.onLoginCompleted(false);
     }
     public void checkForUpdate() {
-       // this.netManager.performCheckForUpdate(this);
+        this.netManager.performCheckForUpdate(this);
     }
 
-
-
     public void downloadUpdate(String location, ProgressDialog progress) {
-       // Downloader.getInstance().performDownload(location, progress, this);
+        Downloader.getInstance().performDownload(location, progress, this);
     }
     public void onDownloadError(int error) {
         this.viewCallback.onDownloadUpdateError(error);

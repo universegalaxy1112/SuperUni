@@ -101,6 +101,9 @@ public class FetchJSonFileSync {
                     case ModelTypes.SERIES_KIDS_CATEGORIES:
                         favoriteMovies = DataManager.getInstance().getString("favoriteKids","");
                         break;
+                    case ModelTypes.KARAOKE_CATEGORIES:
+                        favoriteMovies = DataManager.getInstance().getString("favoriteKara","");
+                        break;
                 }
 
                 if(!TextUtils.isEmpty(favoriteMovies)) {

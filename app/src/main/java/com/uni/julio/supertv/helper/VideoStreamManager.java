@@ -48,7 +48,7 @@ public class VideoStreamManager {
         mainCategoriesList.add(createMainCategory("Karaoke", R.drawable.karaoke, ModelTypes.KARAOKE_CATEGORIES, 6));
         mainCategoriesList.add(createMainCategory("Adultos", R.drawable.adults, ModelTypes.ADULTS_CATEGORIES, 7));
         if(Device.canTreatAsBox()) {
-            mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.settings, ModelTypes.SETTINGS, 8));
+            mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.setting, ModelTypes.SETTINGS, 8));
         }
     }
 

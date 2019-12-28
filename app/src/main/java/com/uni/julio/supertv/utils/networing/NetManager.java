@@ -140,6 +140,18 @@ public class NetManager {
         });
     }
 
+    public void performCheckForUpdate(StringRequestListener stringRequestListener) {
+        LiveTVServicesManual.performCheckForUpdate(stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(  new Subscriber<Boolean>() {
+            public void onCompleted() {
+            }
+
+            public void onError(Throwable e) {
+            }
+
+            public void onNext(Boolean result) {
+            }
+        });
+    }
     public void retrieveLiveTVPrograms(final MainCategory mainCategory, final LoadProgramsForLiveTVCategoryResponseListener liveTVCategoryResponseListener) {
         LiveTVServicesManual.getLiveTVCategories(mainCategory)
                 .subscribe(new Subscriber<List<LiveTVCategory>>() {

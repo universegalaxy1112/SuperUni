@@ -98,6 +98,7 @@ import java.util.Locale;
     po.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
     ne.setPadding(16,4,16,4);
     po.setPadding(16,4,16,4);
+
   }
 
   @SuppressLint("InflateParams")

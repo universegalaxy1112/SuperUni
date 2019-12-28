@@ -106,7 +106,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
     @Override
     public void showMovieDetails(Serie serie, int maincategory, int moviecategory) {
         movieDetailsViewModel.showMovieDetails(serie,activityMultiSeasonDetailBinding,maincategory,moviecategory, this);
-        showCustomProgressDialog();
+        //showCustomProgressDialog();
     }
 
 
@@ -120,11 +120,11 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         customProgressDialog.show();
     }
     public void hideProgressDialog(){
-        if(customProgressDialog != null) customProgressDialog.dismiss();
+        //if(customProgressDialog != null) customProgressDialog.dismiss();
     }
 
     @Override
     public void onLoaded() {
-        hideProgressDialog();
+        //hideProgressDialog();
     }
 }

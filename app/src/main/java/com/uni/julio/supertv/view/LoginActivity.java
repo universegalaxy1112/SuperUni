@@ -217,19 +217,7 @@ boolean denyAll = false;
 
         mUsernameView = (EditText) findViewById(R.id.edit_username);
         mPassView = (EditText) findViewById(R.id.edit_password);
-//      populateAutoComplete();
 
-        //requestPhonePermission();
-        requestPhonePermission();
-        Button crashButton = new Button(this);
-        crashButton.setText("Crash!");
-        crashButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Crashlytics.getInstance().crash();
-            }
-        });
-        LinearLayout aa=findViewById(R.id.test);
-        aa.addView(crashButton);
         mPassView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {

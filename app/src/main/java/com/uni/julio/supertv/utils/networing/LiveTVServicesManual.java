@@ -216,8 +216,32 @@ public class LiveTVServicesManual {
         FetchJSonFileSync fetch = new FetchJSonFileSync();
         return fetch.retrieveMovies(mainCategory, movieCategory, timeOut);
     }
-    public static Observable<List<MovieCategory>> getSubCategories(final MainCategory category) {
+    public static Observable<Boolean> performCheckForUpdate(final StringRequestListener stringRequestListener) {
+        return Observable.create( new Observable.OnSubscribe<Boolean>() {
+            public void call(Subscriber<? super Boolean> subscriber) {
+                subscriber.onNext(checkForUpdateRequest(stringRequestListener));
+                subscriber.onCompleted();
+            }
+        }).subscribeOn(Schedulers.computation())
+          .unsubscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread());
+    }
+    public static boolean checkForUpdateRequest(final StringRequestListener stringRequestListener) {
+        String checkForUpdateUrl = WebConfig.updateURL;
+        if (!TextUtils.isEmpty(checkForUpdateUrl)) {
+            NetManager.getInstance().makeStringRequest(checkForUpdateUrl, new StringRequestListener() {
+                public void onCompleted(String response) {
+                    stringRequestListener.onCompleted(response);
+                }
 
+                public void onError() {
+                    stringRequestListener.onError();
+                }
+            });
+        }
+        return true;
+    }
+    public static Observable<List<MovieCategory>> getSubCategories(final MainCategory category) {
         return Observable.create(new Observable.OnSubscribe<List<MovieCategory>>() {
             @Override
             public void call(Subscriber<? super List<MovieCategory>> subscriber) {
