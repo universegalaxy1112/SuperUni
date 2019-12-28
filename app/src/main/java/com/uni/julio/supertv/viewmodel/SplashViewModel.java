@@ -97,7 +97,9 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
                 }
                 if (jsonObject.has("android_version")) {
                     Log.d("version",Device.getVersionInstalled());
-                    if (!Device.getVersionInstalled().replaceAll("\\.", "").equals(jsonObject.getString("android_version"))) {
+                    String a=Device.getVersionInstalled().replaceAll("\\.", "");
+                    String b=jsonObject.getString("android_version");
+                    if (!jsonObject.getString("android_version").equals("")&&!Device.getVersionInstalled().replaceAll("\\.", "").equals(jsonObject.getString("android_version"))) {
                         this.viewCallback.onCheckForUpdateCompleted(true, jsonObject.getString("link_android") + "/android" + jsonObject.getString("android_version") + ".apk");
                         return;
                     }

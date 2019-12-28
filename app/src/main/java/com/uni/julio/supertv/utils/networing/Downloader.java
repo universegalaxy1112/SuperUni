@@ -23,7 +23,6 @@ import com.uni.julio.supertv.utils.DownloaderBroadcastReceiver;
 import java.io.File;
 
 public class Downloader {
-    public static int PACKAGE_MANAGER_CODE = 1;
     private static Downloader sDownloader = null;
     private Context context = LiveTvApplication.getAppContext();
     /* access modifiers changed from: private */
