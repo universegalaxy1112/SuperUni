@@ -60,7 +60,7 @@
             android:imeOptions="actionDone"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dip_40"
+            android:layout_height="@dimen/dip_30"
             android:layout_marginTop="@dimen/dip_20"
             android:layout_marginBottom="@dimen/dip_24"
             android:orientation="horizontal">

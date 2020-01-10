@@ -39,7 +39,6 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity implements StringRequestListener {
 private EditText mUsernameView;
 private EditText mPassView;
-private boolean is_coderequest=false;
 private CustomProgressDialog customProgressDialog;
 public static final int BLOCKED_OR_NEVER_ASKED = 2;
 public static final int DENIED = 1;
@@ -51,7 +50,6 @@ boolean denyAll = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setupUI();
     }
     public void onCompleted(String response) {
@@ -76,18 +74,10 @@ boolean denyAll = false;
                             }
                             DataManager.getInstance().saveData("theUser", new Gson().toJson(user));
                             Intent launchIntent = new Intent(this, MainActivity.class);
-                            if(is_coderequest)
-                            {
-                                startActivity(launchIntent);
-                                overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                                finish();
-                                return;
-                            }else{
-                                NetManager.getInstance().performLoginCode( mPassView.getText().toString(), this);
-                                is_coderequest=true;
-                                return;
-                            }
-
+                            startActivity(launchIntent);
+                            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                            finish();
+                            return;
                          }
                     } else {
 
@@ -247,7 +237,6 @@ boolean denyAll = false;
         });
     }
     private void attemptLogin(){
-        is_coderequest=false;
         mUsernameView.setError(null);
         mPassView.setError(null);
         String username=mUsernameView.getText().toString();

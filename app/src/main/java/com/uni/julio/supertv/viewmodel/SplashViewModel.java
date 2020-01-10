@@ -69,7 +69,7 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
             }, 2000);
         }
         else {
-            netManager.performLoginCode(password,this);
+            netManager.performLoginCode(usr,password,id,this);
         }
     }
 

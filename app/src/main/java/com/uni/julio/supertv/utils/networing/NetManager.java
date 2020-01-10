@@ -115,9 +115,10 @@ public class NetManager {
                     }
                 });
     }
-    public void performLoginCode(String code, StringRequestListener stringRequestListener) {
-        LiveTVServicesManual.performLoginCode(code, stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe( new Subscriber<Boolean>() {
+    public void performLoginCode(String user,String code,String device_id, StringRequestListener stringRequestListener) {
+        LiveTVServicesManual.performLoginCode(user,code,device_id, stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe( new Subscriber<Boolean>() {
             public void onCompleted() {
+
             }
 
             public void onError(Throwable e) {

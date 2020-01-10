@@ -210,10 +210,11 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             } else {
-                intent = new Intent(Intent.ACTION_VIEW);
+                intent = new Intent("android.intent.action.INSTALL_PACKAGE");
                 intent.setDataAndType(Uri.fromFile(file),
                         "application/vnd.android.package-archive");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             }
             intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
             intent.putExtra("android.intent.extra.RETURN_RESULT", false);

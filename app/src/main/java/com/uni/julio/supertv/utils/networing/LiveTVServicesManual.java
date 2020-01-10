@@ -63,7 +63,6 @@ public class LiveTVServicesManual {
     private static boolean loginRequest(String usr, String pss, final StringRequestListener stringRequestListener) {
         String loginUrl;
          try {
-
                loginUrl = WebConfig.loginURL
                     .replace("{USER}",usr)
                     .replace("{PASS}",pss)
@@ -89,19 +88,21 @@ public class LiveTVServicesManual {
             });        }
         return true;
     }
-    public static Observable<Boolean> performLoginCode(final String code, final StringRequestListener stringRequestListener) {
+    public static Observable<Boolean> performLoginCode(final String user,final String code, final String device_id,final StringRequestListener stringRequestListener) {
         return Observable.create( new Observable.OnSubscribe<Boolean>() {
             public void call(Subscriber<? super Boolean> subscriber) {
-                subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.loginCodeRequest(code, stringRequestListener)));
+                subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.loginCodeRequest(user,code,device_id, stringRequestListener)));
                 subscriber.onCompleted();
             }
         }) .subscribeOn(Schedulers.computation())
                 .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
-    public static boolean loginCodeRequest(String code, final StringRequestListener stringRequestListener) {
+    public static boolean loginCodeRequest(String user,String code, String device_id,final StringRequestListener stringRequestListener) {
         String loginCodeUrl;
         try {
-            loginCodeUrl = WebConfig.LoginCodeURL.replace("{CODE}", code);
+            loginCodeUrl = WebConfig.LoginSplash.replace("{USER}", user)
+                                                .replace("{PASS}",code)
+                                                .replace("{DEVICE_ID}",device_id);
         } catch (Exception e) {
             loginCodeUrl = "";
         }

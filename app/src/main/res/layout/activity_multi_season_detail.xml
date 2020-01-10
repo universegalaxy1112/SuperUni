@@ -136,7 +136,7 @@
                                             android:focusable="true"
                                             android:background="@drawable/play_background"
                                             android:textStyle="bold"
-                                            android:padding="@dimen/dip_8"
+                                            android:padding="@dimen/dip_2"
                                             android:layout_marginRight="@dimen/dip_12"
                                             android:onClick="@{movieDetailsVM::playSD}"
                                             app:invisible="@{movieDetailsVM.isSD}"

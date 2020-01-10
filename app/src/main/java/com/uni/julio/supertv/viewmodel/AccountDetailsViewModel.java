@@ -58,7 +58,7 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     public void onGoToMenu(View view) {
         viewCallback.onError();
     }
-    public void onCloseSession(View view) {
+   public void onCloseSession(View view) {
         if (Device.canTreatAsBox()) {
             Dialogs.showTwoButtonsDialog(this.mActivity,R.string.accept ,  (R.string.cancel),  R.string.end_session_message,  new DialogListener() {
                 public void onAccept() {
@@ -77,7 +77,8 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
             this.isLoading.set(true);
             String theUser = DataManager.getInstance().getString("theUser", "");
             if (!TextUtils.isEmpty(theUser)) {
-                NetManager.getInstance().makeStringRequest(WebConfig.removeUserURL.replace("{USER}", ((User) new Gson().fromJson(theUser, User.class)).getName()), new StringRequestListener() {
+                String url=WebConfig.removeUserURL.replace("{USER}", ((User) new Gson().fromJson(theUser, User.class)).getName()).replace("{DEVICE_ID}",new Gson().fromJson(theUser,User.class).getDeviceId());
+                NetManager.getInstance().makeStringRequest(url, new StringRequestListener() {
                     public void onCompleted(String response) {
                         if (response.toLowerCase().contains("success")) {
                             AccountDetailsViewModel.this.viewCallback.onCloseSessionSelected();
