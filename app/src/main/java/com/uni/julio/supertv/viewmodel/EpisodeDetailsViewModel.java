@@ -104,7 +104,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         rowslayoutmanger.setOrientation(LinearLayoutManager.VERTICAL);
         rowsRecycler.setLayoutManager(rowslayoutmanger);
         if (rowsRecycler.getItemDecorationCount() == 0) {
-            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(16,16,16,16));
+            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(24,16,24,16));
         }
         if(this.serie.getSeasons().size()>0){
             addSeasonButtons();
@@ -155,8 +155,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             moviesRecyclerAdapter = new MultiSeasonAdapter(mContext, rowsRecycler,movieList, 4, this);
             rowsRecycler.setAdapter(moviesRecyclerAdapter);
         }
-
-
     }
     public void finishActivity(View view) {
         viewCallback.finishActivity();
@@ -183,7 +181,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         if(isFavorite.get()) {
             videoStreamManager.removeLocalFavorite(String.valueOf(mMovie.getContentId()));
             isFavorite.set(false);
-
         }
         else {
             videoStreamManager.setLocalFavorite(String.valueOf(mMovie.getContentId()));
@@ -227,10 +224,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             }
             DataManager.getInstance().saveData(serieType, new Gson().toJson(series));
         }
-        favoriteSeries=DataManager.getInstance().getString(serieType,"");
-        List<Serie> series=new Gson().fromJson(favoriteSeries,new TypeToken<List<Serie>>(){}.getType());
-        Log.d("asdf",favoriteSeries);
-
 
     }
 

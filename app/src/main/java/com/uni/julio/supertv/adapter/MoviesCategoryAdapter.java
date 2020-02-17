@@ -139,7 +139,7 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
         else
         {
             if(!movieCategory.isLoaded()&& (movieList==null|| movieList.size()==0)){
-                if(!movieCategory.isLoaded()){
+                if(!movieCategory.isLoading()){
                      needsRedraw = false;
                     holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.VISIBLE);
                     holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
@@ -193,7 +193,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
          }
         }
         holder.getViewDataBinding().executePendingBindings();
-
     }
     @Override
     protected void onDataBinding(MyViewHolder holder, int position) {

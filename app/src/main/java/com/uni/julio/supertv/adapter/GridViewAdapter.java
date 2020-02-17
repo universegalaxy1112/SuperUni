@@ -66,16 +66,16 @@ public class GridViewAdapter extends TVRecyclerViewAdapter<GridViewAdapter.MyVie
 
     @Override
     protected void focusOut(View v, int position) {
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.1f, 1.0f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.1f, 1.0f);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.06f, 1.0f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.06f, 1.0f);
         AnimatorSet set = new AnimatorSet();
         set.play(scaleX).with(scaleY);
         set.start();
     }
     @Override
     protected void focusIn(View v, int position) {
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.1f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.1f);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.06f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.06f);
         AnimatorSet set = new AnimatorSet();
         set.play(scaleX).with(scaleY);
         set.start();

@@ -4,11 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-
     <data>
         <variable
             name="movieDetailsVM"
-            type="com.uni.julio.supertv.viewmodel.MovieDetailsViewModel" />
+            type="com.uni.julio.supertv.viewmodel.EpisodeDetailsViewModel" />
         <variable
             name="movieDetailItem"
             type="com.uni.julio.supertv.model.Movie" />
@@ -19,38 +18,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:fitsSystemWindows="true"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </com.google.android.material.appbar.AppBarLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:foregroundGravity="top"
-                    app:imageUrl="@{movieDetailItem.hDFondoUrl}" />
-                <androidx.core.widget.NestedScrollView
-                    android:id="@+id/scroll"
+                android:layout_height="wrap_content">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        android:focusable="true"
+                        app:imageUrl="@{movieDetailItem.SDPosterUrl}"
+                        />
+
+                </LinearLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scrollview">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -83,6 +76,7 @@
                                 android:layout_marginTop="@dimen/bw_generic_16_margin"
                                 android:clickable="true"
                                 android:focusable="true"
+
                                 android:foreground="?android:attr/selectableItemBackground"
                                 android:onClick="@{movieDetailsVM::finishActivity}"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -92,14 +86,10 @@
                                 tools:targetApi="m" />
 
 
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
                         <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-
-
-
                             <com.bosphere.fadingedgelayout.FadingEdgeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -111,7 +101,7 @@
                                     android:layout_height="wrap_content"
                                     android:paddingRight="@dimen/dip_16"
                                     android:paddingLeft="@dimen/dip_16"
-                                    android:paddingTop="@dimen/dip_100"
+                                    android:paddingTop="@dimen/dip_90"
                                     android:background="@color/detail_background"
                                     android:orientation="vertical">
                                     <LinearLayout
@@ -144,7 +134,7 @@
                                             android:focusable="true"
                                             android:background="@drawable/play_background"
                                             android:textStyle="bold"
-                                            android:padding="@dimen/dip_8"
+                                            android:padding="@dimen/dip_2"
                                             android:layout_marginRight="@dimen/dip_12"
                                             android:onClick="@{movieDetailsVM::playSD}"
                                             app:invisible="@{movieDetailsVM.isSD}"
@@ -194,7 +184,7 @@
                                         android:layout_height="wrap_content"
                                         app:setActors="@{movieDetailItem.Actors}" />
                                     <LinearLayout
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal"
                                         android:gravity="center">
@@ -212,22 +202,28 @@
                                             android:layout_height="wrap_content"
                                             app:setDirector="@{movieDetailItem.Director}" />
                                     </LinearLayout>
-
-                                    <TextView
-                                        android:id="@+id/textView6"
-                                        style="@style/text.subtitle"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="MORE LIKE THIS" />
-                                    <com.uni.julio.supertv.helper.TVRecyclerView
-                                        android:id="@+id/recycler_view"
+                                    <com.google.android.material.tabs.TabLayout
+                                        android:id="@+id/detail_tab"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:nextFocusUp="@drawable/play_btn"
+                                        app:tabMode="scrollable"
+                                        app:tabIndicatorColor="@color/netflix_red"
+                                        app:tabTextColor="@color/grey"
+                                        app:tabSelectedTextColor="@color/white"
+                                        app:tabBackground="@drawable/tabbackground"
+                                        android:layout_gravity="left"
+                                        android:layout_marginBottom="36dp"
+                                        android:layout_marginTop="36dp">
+                                    </com.google.android.material.tabs.TabLayout>
+                                    <com.uni.julio.supertv.helper.TVRecyclerView
+                                        android:id="@+id/recycler_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
                                         android:paddingTop="4dp"
-                                        android:paddingLeft="4dp"/>
+                                        android:paddingLeft="4dp"
+                                        />
                                 </LinearLayout>
-
                             </com.bosphere.fadingedgelayout.FadingEdgeLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -236,7 +232,6 @@
                                 android:layout_marginLeft="@dimen/dip_16"
                                 android:layout_marginBottom="@dimen/dip_16"
                                 android:layout_marginTop="@dimen/dip_28"
-
                                 android:orientation="vertical"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent">
@@ -304,14 +299,10 @@
                                     android:orientation="horizontal">
                                 </LinearLayout>
                             </LinearLayout>
-
                         </FrameLayout>
-
                     </LinearLayout>
-                </androidx.core.widget.NestedScrollView>
+                </ScrollView>
             </FrameLayout>
-
-
         </LinearLayout>
     </LinearLayout>
 </layout>

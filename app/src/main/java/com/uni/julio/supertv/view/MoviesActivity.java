@@ -115,7 +115,7 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
             return true;
         }
         long current = System. currentTimeMillis();
-        boolean res = false;
+        boolean res;
         if (current - mLastKeyDownTime < 300 ) {
             res = true;
         } else {

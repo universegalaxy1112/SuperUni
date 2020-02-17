@@ -82,6 +82,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         }
 
         String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
+        uris[0]=movieUrl+"?token=aaaaaaa";
         String extension = uris[0].substring(movieUrl.lastIndexOf(".") + 1);
         String[] extensions = new String[] {extension};
         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
@@ -104,7 +105,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         activityOneseaosnDetailBinding.setMovieDetailItem(movie);
         movieDetailsViewModel.showMovieDetails(movie,activityOneseaosnDetailBinding,mainCategory,movieCategory);
     }
-
     @Override
     public void onMovieSelected(int selectedRow, int selectedMovie) {
         Movie movie=(Movie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(selectedRow).getMovie(selectedMovie);

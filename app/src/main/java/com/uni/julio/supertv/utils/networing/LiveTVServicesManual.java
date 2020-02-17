@@ -147,7 +147,21 @@ public class LiveTVServicesManual {
     }
 
 
+    public static Observable<List<? extends VideoStream>> searchVideo(final MainCategory mainCategory, final String pattern, final int timeOut) {
+        return Observable.create(  new Observable.OnSubscribe<List<? extends VideoStream>>() {
+            public void call(Subscriber<? super List<? extends VideoStream>> subscriber) {
+                subscriber.onNext(LiveTVServicesManual.fetchSearchVideo(mainCategory, pattern, timeOut));
+                subscriber.onCompleted();
+            }
+        }).subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 
+    /* access modifiers changed from: private */
+    public static List<? extends VideoStream> fetchSearchVideo(MainCategory mainCategory, String pattern, int timeOut) {
+        return new FetchJSonFileSync().retrieveSearchMovies(mainCategory, pattern, timeOut);
+    }
 
     public static Observable<Integer> getSeasonsForSerie(final Serie serie) {
 

@@ -72,7 +72,7 @@ public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewMode
         moviesGridRV.setLayoutManager(mLayoutManager);
         moviesGridRV.setAdapter(moreVideoAdapter);
      if (moviesGridRV.getItemDecorationCount() == 0) {
-         moviesGridRV.addItemDecoration(new RecyclerViewItemDecoration(48,16,0,16));
+         moviesGridRV.addItemDecoration(new RecyclerViewItemDecoration(24,12,24,12));
      }
     }
 

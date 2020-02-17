@@ -8,11 +8,14 @@ import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.networing.NetManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import rx.Observable;
 
 public class VideoStreamManager {
 
@@ -67,7 +70,7 @@ public class VideoStreamManager {
     }
     public MainCategory getMainCategory(int id) { return mainCategoriesList.get(id); }
 
-    public List<VideoStream> searchForMovies(MainCategory mainCategory, String searchString,boolean searchForSeries ) {
+/*    public List<VideoStream> searchForMovies(MainCategory mainCategory, String searchString,boolean searchForSeries ) {
         Set<VideoStream> searchList = new HashSet<>();
         Set<VideoStream> tmpList;
 
@@ -81,24 +84,7 @@ public class VideoStreamManager {
         List<VideoStream> finalList = new ArrayList<>();
         finalList.addAll(searchList);
         return finalList;
-    }
-
-//    public List<VideoStream> searchForMovies(String searchString) {
-//        Set<VideoStream> searchList = new HashSet<>();
-//        Set<VideoStream> tmpList;
-//
-//        for(MainCategory mainCategory : mainCategoriesList) {
-//            tmpList = mainCategory.searchForMovies(searchString);
-//            if(tmpList != null && tmpList.size() != 0) {
-//                searchList.addAll(tmpList);
-//            }
-//        }
-////        HashSet<Integer> seen = new HashSet<>();
-////        searchList.removeIf(e->!seen.add(e.getContentId()));
-//        List<VideoStream> finalList = new ArrayList<>();
-//        finalList.addAll(searchList);
-//        return finalList;
-//    }
+    }*/
 
 
     public List<LiveProgram> getAllLivePrograms() {

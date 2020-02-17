@@ -54,19 +54,6 @@ public class Serie extends Movie implements Cloneable {
         this.movieCategoryIdOwner = movieCategoryIdOwner;
     }
 
-//    public int getPosition() { return position; }
-//    public void setPosition(int position) { this.position = position; }
 
-    public Set<VideoStream> searchForMovies(String searchString) {
-        Set<VideoStream> searchList = new HashSet<>();
-        Set<VideoStream> tmpList;
 
-        for(Season season : seasons) {
-            tmpList = season.searchForMovies(searchString);
-            if(tmpList != null && tmpList.size() != 0) {
-                searchList.addAll(tmpList);
-            }
-        }
-        return searchList;
-    }
 }

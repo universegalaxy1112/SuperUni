@@ -34,14 +34,6 @@ public class Season {
     public void setName(String name) { this.name = name; }
 
 
-    public Set<VideoStream> searchForMovies(final String searchString) {
-        Set<VideoStream> searchList = new HashSet<>();
-        for(VideoStream videoStream : episodeList) {
-            if(videoStream.contains(searchString)) {
-                searchList.add(videoStream);
-            }
-        }
-        return searchList;
-    }
+
 
 }

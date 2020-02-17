@@ -230,9 +230,9 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     }
     @Override
     public void onMoviesForCategoryCompletedError(MovieCategory movieCategory) {
-        movieCategory.setErrorLoading(false);
+        movieCategory.setLoaded(true);
+        movieCategory.setErrorLoading(true);
         NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
-
     }
     public void addRecentSerie(Serie serie) {
         DataManager.getInstance().saveData("lastSerieSelected", new Gson().toJson((Object) serie));

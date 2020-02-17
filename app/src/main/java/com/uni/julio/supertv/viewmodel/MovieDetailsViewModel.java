@@ -105,7 +105,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         rowsRecycler.setLayoutManager(rowslayoutmanger);
         rowsRecycler.setAdapter(moviesRecyclerAdapter);
         if (rowsRecycler.getItemDecorationCount() == 0) {
-            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(20,48,32,16));
+            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(24,12,24,12));
         }
     }
 
@@ -142,10 +142,10 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
             if(!hidePlayFromStart) {
                 isSeen.set(true);
             }
+            addRecentMovies(mMovie);
+            isSeen.notifyChange();
+            DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
         }
-        addRecentMovies(mMovie);
-        isSeen.notifyChange();
-        DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
         viewCallback.onPlaySelected(mMovie, type);
     }
     private void addFavorite(Movie movie){

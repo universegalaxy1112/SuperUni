@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="@dimen/dip_12"
         >
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/Appbarlayout"
@@ -195,7 +196,6 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         style="@style/text.description"
-
                         android:gravity="left"
                         android:text="@{user.version}"
                         />
@@ -204,7 +204,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="25"
+                    android:layout_weight="10"
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -214,24 +214,36 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="15">
-                    <TextView
-                        android:id="@+id/play_from_start_button"
+                    android:layout_height="wrap_content">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dip_16"
+                        app:cardCornerRadius="@dimen/dip_4"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/login_background"
-                        android:focusable="true"
-                        style="@style/text.account"
-                        android:nextFocusLeft="@+id/play_button"
-                        android:nextFocusRight="@+id/play_from_start_button"
-                        android:nextFocusUp="@+id/favorites"
-                        android:nextFocusDown="@+id/play_from_start_button"
-                        android:padding="16dp"
-                        android:onClick="@{accountDetailsVM::onCloseSession}"
-                        android:text="Cerrar sesión"
-                        android:textStyle="bold" />
+                        app:cardUseCompatPadding="true"
+                        app:cardElevation="@dimen/dip_2"
+                        >
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/cv_loginScreen_login"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                style="@style/text.account"
+                                android:text="Cerrar sesión"
+                                android:background="@drawable/login_background"
+                                android:focusable="true"
+                                android:padding="12dp"
+                                android:onClick="@{accountDetailsVM::onCloseSession}"
+                                android:layout_centerInParent="true"
+                                android:textStyle="bold"
+                                />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.uni.julio.supertv.utils.networing.parser;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.Episode;
@@ -82,7 +83,6 @@ public class ParserJSonFile {
         LiveProgram liveProgram;
         for (int i = 0; i < videoArray.length(); i++) {
             liveProgram = new LiveProgram();
-
             fillObject(liveProgram,videoArray.getJSONObject(i));
             liveProgram.setPosition(i);
             dataArray.add(liveProgram);
@@ -118,100 +118,43 @@ public class ParserJSonFile {
 
     public static List<? extends VideoStream> getParsedMovies(String mainCategory, String movieCategory, String data) throws JSONException {
 
-//        seenMovies = DataManager.getInstance().getStringSet("seenMovies");
-//        favoriteMovies = DataManager.getInstance().getStringSet("favoriteMovies");
 
         String JSON_ARRAY_VAR = "";
         List<VideoStream> dataArray = new ArrayList<>();
+            JSONObject videosJson = new JSONObject(data);
+            JSONArray videoArray = null;
+            JSON_ARRAY_VAR = "Videos";
+            videoArray = videosJson.getJSONArray(JSON_ARRAY_VAR);
 
-        switch (movieCategory) {
-            case "Setting": { //settings is different
-                JSONObject videosJson = new JSONObject(data);
-                JSONArray videoArray = null;
-                JSON_ARRAY_VAR = "Videos";
-                videoArray = videosJson.getJSONArray(JSON_ARRAY_VAR);
-                for (int i = 0; i < videoArray.length(); i++) {
-                    VideoStream setting = new Setting();
-                    fillObject(setting,videoArray.getJSONObject(i));
-                    dataArray.add(setting);
+            dataArray = new ArrayList<>();
+
+            VideoStream movie = null;
+
+            for (int i = 0; i < videoArray.length(); i++) {
+
+                switch (mainCategory) {
+                    case ModelTypes.MOVIE_CATEGORIES:
+                    case ModelTypes.ENTERTAINMENT_CATEGORIES:
+                    case ModelTypes.EVENTS_CATEGORIES:
+                    case ModelTypes.ADULTS_CATEGORIES:
+                        movie = new Movie();
+                        break;
+                    case ModelTypes.SERIES_CATEGORIES:
+                    case ModelTypes.SERIES_KIDS_CATEGORIES:
+                    case ModelTypes.KARAOKE_CATEGORIES:
+                        movie = new Serie();
+                        break;
+                    //case ModelTypes.LIVE_TV_CATEGORIES:
                 }
+                movie.setPosition(i);
+                fillObject(movie, videoArray.getJSONObject(i));
+                dataArray.add(movie);
+
             }
-            break;
 
-            default: {
-
-                JSONObject videosJson = new JSONObject(data);
-                JSONArray videoArray = null;
-                JSON_ARRAY_VAR = "Videos";
-                videoArray = videosJson.getJSONArray(JSON_ARRAY_VAR);
-
-                dataArray = new ArrayList<>();
-
-                VideoStream movie = null;
-
-                for (int i = 0; i < videoArray.length(); i++) {
-
-                    switch (mainCategory)
-                    {
-                        case ModelTypes.MOVIE_CATEGORIES:
-                            movie = new Movie();
-                            break;
-                        case ModelTypes.SERIES_CATEGORIES:
-                        case ModelTypes.SERIES_KIDS_CATEGORIES:
-                        case ModelTypes.KARAOKE_CATEGORIES:
-                            movie = new Serie();
-                            break;
-                        case ModelTypes.EVENTS_CATEGORIES:
-                            movie = new Movie();
-                            break;
-                        case ModelTypes.ADULTS_CATEGORIES:
-                            movie = new Movie();
-                            break;
-//                        case ModelTypes.KARAOKE_CATEGORIES:
-//                            movie = new Movie();
-//                            break;
-                        case ModelTypes.LIVE_TV_CATEGORIES:
-                        case ModelTypes.MUSIC_CATEGORIES:
-                            break;
-                        case ModelTypes.ENTERTAINMENT_CATEGORIES:
-                            movie = new Movie();
-                            break;
-                    }
-                    movie.setPosition(i);
-                    fillObject(movie,videoArray.getJSONObject(i));
-
-                    // don't add movies that contain "roku 4" o "roku4" o "4k"
-                    String title = movie.getTitle();
-//                    if(
-//                            !title.toLowerCase().contains("roku 4") &&
-//                            !title.toLowerCase().contains("roku4") &&
-//                            !title.toLowerCase().contains("4k") &&
-//                            !title.toLowerCase().contains("4 k")
-//                            ) {
-                        dataArray.add(movie);//here
-//                    }
-                }
-            }
-            break;
-
-//            case "livetv": {
-//                JSON_ARRAY_VAR = "Livetv";
-//                videoArray = videosJson.getJSONArray(JSON_ARRAY_VAR);
-//                for (int i = 0; i < videoArray.length(); i++){
-//                    VideoStream livetv = new Movie();
-//                    fillObject(livetv,videoArray.getJSONObject(i));
-//                    dataArray.add(livetv);
-//                }
-//            }
-//            break;
-
-        }
 
         return dataArray;
-//        Movies movieList = new Movies();
-//        movieList.setMovieList(dataArray);
-//        movieList.setCategory(movieCategory);
-//        return movieList;
+
     }
 
 
@@ -226,7 +169,7 @@ public class ParserJSonFile {
     }
 
     public static void fillObject(VideoStream obj, JSONObject json_obj) {
-
+        Log.d("adsf","asdf");
         try {
 
             if(json_obj.has("ContentId"))
@@ -281,7 +224,7 @@ public class ParserJSonFile {
                 if (json_obj.has("Watched"))
                     movie.setWatched(json_obj.getBoolean("Watched"));
                 if (json_obj.has("Length")) {
-                    if(TextUtils.isEmpty(json_obj.getString("Length"))) {
+                    if(TextUtils.isEmpty(json_obj.getString("Length"))||json_obj.getString("Length").equals("null")) {
                         movie.setLength(0);
                     }
                     else {
@@ -449,7 +392,7 @@ public class ParserJSonFile {
 
         } catch (JSONException e) {
 
-//            Log.i(LOG_TAG, e.getMessage());
+            Log.i(LOG_TAG, e.getMessage());
         }
 
     }

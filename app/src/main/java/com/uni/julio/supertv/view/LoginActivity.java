@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -86,7 +87,6 @@ boolean denyAll = false;
                         switch (errorFound) {
                             case "103":
                             case "104":
-
                                 Dialogs.showOneButtonDialog(this, getString(R.string.attention), getString(R.string.login_error_change_device).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -265,9 +265,8 @@ boolean denyAll = false;
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+             showProgress(true);
              NetManager.getInstance().performLogin(username,password, this);
-
         }
     }
     private boolean isPasswordValid(String password) {

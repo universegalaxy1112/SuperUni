@@ -67,12 +67,12 @@
                                 android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
+                                android:focusable="true"
                                 android:onClick="@{movieDetailsVM::onClickFavorite}"
                                 app:showFavoriteIcon="@{movieDetailsVM.isFavorite}"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 tools:ignore="VectorDrawableCompat" />
-
                             <ImageView
                                 android:id="@+id/imageView7"
                                 android:layout_width="20dp"

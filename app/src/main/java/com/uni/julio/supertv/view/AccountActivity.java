@@ -64,7 +64,6 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
         if (item.getItemId() == android.R.id.home) {
             finish();
         }
-
         return super.onOptionsItemSelected(item);
     }
     @Override

@@ -11,5 +11,6 @@ public class WebConfig {
     public static final String liveTVCategoriesURL          = domain + "GsZzwW3PqfXm268C/Connect/live_categorias.php";
     public static final String liveTVChannelsURL            = domain + "/GsZzwW3PqfXm268C/Connect/live_canales.php?cve={CAT_ID}";
     public static final String updateURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/upgrade_version.php?new_version";
+    public static final String videoSearchURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/searchVideo.php?type={TYPE}&pattern={PATTERN}";
 
 }

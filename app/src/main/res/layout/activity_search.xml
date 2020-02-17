@@ -46,6 +46,8 @@
                 android:padding="@dimen/dip_16"
                 android:focusable="false"
                 android:gravity="center_vertical"
+                app:hidden="@{SearchFM.isLoading}"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -54,6 +56,21 @@
                 app:layout_constraintVertical_bias="0.5"
                 android:descendantFocusability="afterDescendants">
             </com.uni.julio.supertv.helper.TVRecyclerView>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateOnly="true"
+                app:hidden="@{!SearchFM.isLoading}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

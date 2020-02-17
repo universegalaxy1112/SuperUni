@@ -27,7 +27,6 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
     private User user;
      public SplashViewModel(SplashViewModelContract.View splash) {
         this.viewCallback= splash;
-//        isConnected = Connectivity.isConnected();
         netManager = NetManager.getInstance();
     }
 

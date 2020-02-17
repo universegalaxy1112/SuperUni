@@ -96,7 +96,6 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
             tabLayout.addView(tabItem);
             tabLayout.getTabAt(i).setText(categoryList.get(i).getCatName());
          }
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

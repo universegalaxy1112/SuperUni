@@ -144,8 +144,8 @@ public class FetchJSonFileSync {
     public List<LiveTVCategory> retrieveLiveTVCategories(MainCategory mainCategory) {
         try {
             String subCatURL = getLiveTVCategoriesUrl(mainCategory);
-            String dataFromServer = HttpRequest.getInstance().performRequest(subCatURL);
-//            String dataFromServer = NetManager.getInstance().makeSyncStringRequest(subCatURL);
+            //String dataFromServer = HttpRequest.getInstance().performRequest(subCatURL);
+            String dataFromServer = NetManager.getInstance().makeSyncStringRequest(subCatURL);
             ;//Log.d("liveTV","retrieveLiveTVCategories "+dataFromServer);
             return ParserJSonFile.getParsedLiveTVCategories(dataFromServer);
 
@@ -186,6 +186,27 @@ public class FetchJSonFileSync {
         } catch (UnsupportedEncodingException e) {
         }
         return WebConfig.baseURL + tmpURL;
+    }
+    public List<? extends VideoStream> retrieveSearchMovies(MainCategory mainCategory, String pattern, int timeOut) {
+        int type = -1;
+        try {
+            String modelType = mainCategory.getModelType();
+            if(modelType.equals(ModelTypes.MOVIE_CATEGORIES)){
+                type=1;
+            }else if(modelType.equals(ModelTypes.SERIES_CATEGORIES)){
+                type=2;
+            }else if(modelType.equals(ModelTypes.SERIES_KIDS_CATEGORIES)){
+                type=3;
+            }else if(modelType.equals(ModelTypes.EVENTS_CATEGORIES)){
+                type=4;
+            }else if(modelType.equals(ModelTypes.ADULTS_CATEGORIES)){
+                type=5;
+            }
+            return ParserJSonFile.getParsedMovies(mainCategory.getModelType(), "", NetManager.getInstance().makeSyncStringRequest(WebConfig.videoSearchURL.replace("{TYPE}", "" + type).replace("{PATTERN}", pattern), timeOut));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private String getMoviesForCategoryUrl(String mainCategory, String movieCategory) {

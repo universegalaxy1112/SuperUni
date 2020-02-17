@@ -1,6 +1,7 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -22,10 +23,19 @@ import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.networing.LiveTVServicesManual;
+import com.uni.julio.supertv.utils.networing.NetManager;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class SearchViewModel implements SearchViewModelContract.ViewModel, MovieSelectedListener {
 
@@ -36,13 +46,13 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     private Context mContext;
     private GridLayoutManager mLayoutManager;
     private EditText mEditText;
-    private List<VideoStream> movies;
-    private MoviesRecyclerAdapter rowsRecyclerAdapter;
+    private List<? extends VideoStream> movies;
     private int selectedId = -1;//-1 = search
     private int columns = 3;//default for portrait
     private TVRecyclerView mMoviesGridRV;
     private Pattern pattern;
-
+    GridViewAdapter moreVideoAdapter;
+    public ObservableBoolean isLoading;
     public SearchViewModel(Context context, MainCategory mainCategory) {
         ;//Log.d("liveTV","SearchViewModel from "+mainCategory.getModelType());
         isConnected = new ObservableBoolean(Connectivity.isConnected());
@@ -50,6 +60,8 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
         mContext = context;
         mMainCategory = mainCategory;
         pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        isLoading = new ObservableBoolean(false);
+
     }
 
     public String removeSpecialChars(String s) {
@@ -84,16 +96,48 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
 
     @Override
     public void showMovieList(TVRecyclerView moviesGridRV, String query,final boolean searchSerie) {
+        isLoading.set(true);
         columns = 3;
-         movies = videoStreamManager.searchForMovies(mMainCategory,query,searchSerie);
-        GridViewAdapter moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,0,this);
+        movies = new ArrayList();
+          moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,0,this);
         mLayoutManager=new GridLayoutManager(mContext,Integer.parseInt(mContext.getString(R.string.more_video)));
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         moviesGridRV.setLayoutManager(mLayoutManager);
         moviesGridRV.setAdapter(moreVideoAdapter);
         if (moviesGridRV.getItemDecorationCount() == 0) {
-            moviesGridRV.addItemDecoration(new RecyclerViewItemDecoration(48,16,0,16));
+            moviesGridRV.addItemDecoration(new RecyclerViewItemDecoration(24,12,24,12));
         }
+        LiveTVServicesManual.searchVideo(mMainCategory,removeSpecialChars(query),10)
+                .delay(2, TimeUnit.SECONDS, Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<? extends VideoStream>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("error","error");
+                        isLoading.set(false);
+                    }
+
+                    @Override
+                    public void onNext(List<? extends VideoStream> videos) {
+                        isLoading.set(false);
+
+                        movies = videos;
+                        int moviecatId = mMainCategory.getMovieCategories().size() - 1;
+                        for (VideoStream vs : movies) {
+                            if (vs instanceof Serie) {
+                                ((Serie) vs).setMovieCategoryIdOwner(moviecatId);
+                            }
+                        }
+                        SearchViewModel.this.mMainCategory.getMovieCategory(moviecatId).setMovieList(movies);
+                        moreVideoAdapter.updateMovies(movies);
+                        moreVideoAdapter.notifyDataSetChanged();
+
+                    }
+                });
+
     }
     @Override
     public void onConfigurationChanged() {

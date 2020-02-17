@@ -55,8 +55,6 @@ public class NetManager {
 
     }
 
-
-
     public void makeStringRequest(String url, final StringRequestListener stringRequestListener) {
         UTF8StringRequest stringRequest = new UTF8StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -262,13 +260,6 @@ public class NetManager {
 
                             }
                         }
-
-                        //SuperTV test to emulate error loading movies
-//                        if(movieCategory.getCatName().contains("ecientes")) {
-//                            movieCategory.setErrorLoading(true);
-//                            listener.onMoviesForCategoryCompletedError(movieCategory);
-//                        }
-//                        else
                         {
 
                             if(Device.canTreatAsBox() && movieCategory.getCatName().contains("ettings")) {
@@ -282,7 +273,8 @@ public class NetManager {
                 });
     }
 
-    public void retrieveSeasons(final Serie serie, final LoadSeasonsForSerieResponseListener seriesListener) {
+
+     public void retrieveSeasons(final Serie serie, final LoadSeasonsForSerieResponseListener seriesListener) {
 
         //Log.i("NetManager", "retrieveSeasons");
 

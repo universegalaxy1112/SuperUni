@@ -29,16 +29,5 @@ public class MainCategory extends BaseCategory {
     public void addMovieCategory(int position, MovieCategory movieCategory) { movieCategories.set(position, movieCategory); }
     public List<MovieCategory> getMovieCategories() { return movieCategories; }
     public MovieCategory getMovieCategory(int position) { return movieCategories.get(position); }
-    public Set<VideoStream> searchForMovies(String searchString, boolean searchSerie) {
-        Set<VideoStream> searchList = new HashSet<>();
-        Set<VideoStream> tmpList;
-        for(MovieCategory movieCategory : movieCategories) {
-            tmpList = movieCategory.searchForMovies(searchString, searchSerie);
-            if(tmpList != null && tmpList.size() != 0) {
-                searchList.addAll(tmpList);
-            }
-        }
-        return searchList;
-    }
 
 }

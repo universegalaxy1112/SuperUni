@@ -29,40 +29,4 @@ public class MovieCategory extends BaseCategory {
 
     public boolean hasErrorLoading() { return hasErrorLoading; }
     public void setErrorLoading(boolean errorLoading) { hasErrorLoading = errorLoading; }
-
-
-    public Set<VideoStream> searchForMovies(String searchString, boolean searchSerie) {
-        Set<VideoStream> searchList = new HashSet<>();
-        Set<VideoStream> tmpList;
-
-        for(VideoStream videoStream : movieList) {
-            if(videoStream instanceof Serie) {
-                if(searchSerie) {
-
-                    if(((Serie) videoStream).getSearchTitle()!= null && ((Serie) videoStream).getSearchTitle().toLowerCase().contains(searchString)) {
-                        searchList.add(videoStream);
-                    }
-//                    tmpList = ((Serie) videoStream).searchForMovies(searchString);
-//                    if (tmpList != null && tmpList.size() != 0) {
-//                        searchList.addAll(tmpList);
-//                    }
-                }
-                else {
-                    tmpList = ((Serie) videoStream).searchForMovies(searchString);
-                    if (tmpList != null && tmpList.size() != 0) {
-                        searchList.addAll(tmpList);
-                    }
-                }
-            }
-            else {
-                Movie mov = (Movie)videoStream;
-                if(mov.contains(searchString)) {
-                    searchList.add(videoStream);
-                }
-            }
-        }
-        return searchList;
-    }
-
-
 }

@@ -42,12 +42,10 @@ public class LiveTvApplication extends MultiDexApplication {
             User user = new Gson().fromJson(theUser, User.class);
             userAgent = user.getUser_agent();
         }
-        return new DefaultHttpDataSourceFactory(userAgent, bandwidthMeter);
+        return new DefaultHttpDataSourceFactory(userAgent);
     }
 
     public boolean useExtensionRenderers() {
         return BuildConfig.FLAVOR.equals("withExtensions");
     }
-
-
 }

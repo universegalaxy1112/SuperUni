@@ -40,7 +40,6 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         movieCategoryId = extras.getInt("movieCategoryId",-1);
         serieId = extras.getInt("serieId",-1);
         loadingMoviesViewModel = new LoadingMoviesViewModel();
-
     }
     private boolean isInit = false;
     @Override
@@ -79,7 +78,6 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         }else{
             launchActivity(MoviesActivity.class, extras);
         }
-
         getActivity().finish();
     }
 
@@ -116,7 +114,7 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         extras.putInt("movieCategoryId", movieCategoryId);
         extras.putInt("serieId", serieId);
         launchActivity(MultiSeasonDetailActivity.class, extras);
-         getActivity().finish();
+        getActivity().finish();
     }
 
     @Override

@@ -132,6 +132,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             CookieHandler.setDefault(DEFAULT_COOKIE_MANAGER);
         }
     }
+
     private boolean hideControls = false;
     private boolean isLiveTV = false;
     @SuppressLint("ClickableViewAccessibility")
