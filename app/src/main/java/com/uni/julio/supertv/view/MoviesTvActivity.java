@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.uni.julio.supertv.R;
 
 
-public class MoviesTvActivity extends AppCompatActivity {
+public class MoviesTvActivity extends Activity {
     MoviesMenuTVFragment fragment;
     @Override
     public void onCreate(Bundle savedInstanceState) {

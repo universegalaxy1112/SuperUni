@@ -235,6 +235,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                     return;
                 }
             }
+        this.mRowsAdapter.add(r);
         synchronized (mRowsAdapter){
             this.mRowsAdapter.notify();
         }
