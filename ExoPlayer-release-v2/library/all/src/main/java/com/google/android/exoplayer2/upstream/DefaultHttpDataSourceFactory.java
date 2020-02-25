@@ -51,7 +51,7 @@ public final class DefaultHttpDataSourceFactory implements Factory {
   public DefaultHttpDataSourceFactory(
       String userAgent, TransferListener<? super DataSource> listener) {
     this(userAgent, listener, DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
-        DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS, false);
+        DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS, true);
   }
 
   /**

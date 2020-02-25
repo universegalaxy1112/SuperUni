@@ -42,8 +42,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#88000000"
-        android:orientation="vertical">
-
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <androidx.mediarouter.app.MediaRouteButton
+            android:id="@+id/media_route_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:mediaRouteTypes="user"
+            />
         <TextView android:id="@+id/debug_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,6 +73,8 @@
                 android:visibility="gone"/>
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.uni.julio.supertv.LiveTvApplication;
@@ -22,6 +23,7 @@ public class VideoPlayActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.video_container,videoPlayFragment).commit();
+
     }
     @Override
     public void onStart(){
@@ -52,6 +54,11 @@ public class VideoPlayActivity extends AppCompatActivity {
         videoPlayFragment.onNewIntent(intent);
     }
     @Override
+    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
+
+        return true;
+    }
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             finish();
@@ -75,9 +82,8 @@ public class VideoPlayActivity extends AppCompatActivity {
         }
         if(keyCode==KeyEvent.KEYCODE_MEDIA_REWIND){
             videoPlayFragment.doRewindVideo();
-
         }
-
-        return false;
+        videoPlayFragment.controlVolumn(event);
+        return true;
     }
 }

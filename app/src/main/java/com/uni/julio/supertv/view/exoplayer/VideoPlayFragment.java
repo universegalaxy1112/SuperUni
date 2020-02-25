@@ -20,8 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.mediarouter.app.MediaRouteButton;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -64,6 +66,13 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.cast.MediaLoadRequestData;
+import com.google.android.gms.cast.framework.CastButtonFactory;
+import com.google.android.gms.cast.framework.CastContext;
+import com.google.android.gms.cast.framework.CastSession;
+import com.google.android.gms.cast.framework.SessionManagerListener;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.uni.julio.supertv.BuildConfig;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
@@ -72,6 +81,8 @@ import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
+import com.uni.julio.supertv.utils.VideoProvider;
+import com.uni.julio.supertv.view.ExpandedControlsActivity;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -123,6 +134,12 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private int type=0;
     private LiveTVToggleUIListener liveTVToggleListener;
     private ProgressBar progressBarView;
+    MediaRouteButton mediaRouteButton;
+    private MediaInfo mSelectedMedia;
+    private CastContext mCastContext;
+    private CastSession mCastSession;
+    private SessionManagerListener<CastSession> mSessionManagerListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,9 +152,102 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         }
         Intent intent = getActivity().getIntent();
         title = intent.getStringExtra("title");
+        setupCastListener();
+        mCastContext = CastContext.getSharedInstance(LiveTvApplication.getAppContext());
+        mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
 
     }
+    private void setupCastListener() {
+        mSessionManagerListener = new SessionManagerListener<CastSession>() {
 
+            @Override
+            public void onSessionEnded(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionResumed(CastSession session, boolean wasSuspended) {
+                onApplicationConnected(session);
+            }
+
+            @Override
+            public void onSessionResumeFailed(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionStarted(CastSession session, String sessionId) {
+                onApplicationConnected(session);
+            }
+
+            @Override
+            public void onSessionStartFailed(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionStarting(CastSession session) {
+            }
+
+            @Override
+            public void onSessionEnding(CastSession session) {
+            }
+
+            @Override
+            public void onSessionResuming(CastSession session, String sessionId) {
+            }
+
+            @Override
+            public void onSessionSuspended(CastSession session, int reason) {
+            }
+
+            private void onApplicationConnected(CastSession castSession) {
+                mCastSession = castSession;
+                if (null != mSelectedMedia) {
+
+                    if (true) {
+                       // mVideoView.pause();
+                        loadRemoteMedia(0, true);
+                        return;
+                    } else {
+                        //mPlaybackState = PlaybackState.IDLE;
+                        //updatePlaybackLocation(PlaybackLocation.REMOTE);
+                    }
+                }
+                //updatePlayButton(mPlaybackState);
+                getActivity().invalidateOptionsMenu();
+            }
+
+            private void onApplicationDisconnected() {
+                //updatePlaybackLocation(PlaybackLocation.LOCAL);
+                //mPlaybackState = PlaybackState.IDLE;
+                //mLocation = PlaybackLocation.LOCAL;
+                //updatePlayButton(mPlaybackState);
+                getActivity().invalidateOptionsMenu();
+            }
+        };
+    }
+    private void loadRemoteMedia(int position, boolean autoPlay) {
+        if (mCastSession == null) {
+            return;
+        }
+        final RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
+        if (remoteMediaClient == null) {
+            return;
+        }
+        remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
+            @Override
+            public void onStatusUpdated() {
+                Intent intent = new Intent(getActivity(), ExpandedControlsActivity.class);
+                startActivity(intent);
+                remoteMediaClient.unregisterCallback(this);
+            }
+        });
+        remoteMediaClient.load(new MediaLoadRequestData.Builder()
+                .setMediaInfo(mSelectedMedia)
+                .setAutoplay(autoPlay)
+                .setCurrentTime(position).build());
+    }
     private boolean hideControls = false;
     private boolean isLiveTV = false;
     @SuppressLint("ClickableViewAccessibility")
@@ -148,6 +258,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         debugRootView =  rootPlayerView.findViewById(R.id.controls_root);
         debugTextView =  rootPlayerView.findViewById(R.id.debug_text_view);
         retryButton =  rootPlayerView.findViewById(R.id.retry_button);
+        mediaRouteButton = rootPlayerView.findViewById(R.id.media_route_button);
+        CastButtonFactory.setUpMediaRouteButton(LiveTvApplication.getAppContext(),mediaRouteButton);
+
         retryButton.setOnClickListener(this);
         retryButton.setBackgroundResource(R.drawable.primary_button_selector);
         retryButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -199,14 +312,22 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume(){
         super.onResume();
+        mCastContext.getSessionManager().addSessionManagerListener(
+                mSessionManagerListener, CastSession.class);
         if((Util.SDK_INT<=23||player==null)){
             initializePlayer();
+
             Tracking.getInstance((AppCompatActivity) getActivity()).setAction((this.title));
         }
     }
+   public void controlVolumn(@NonNull KeyEvent event){
+        mCastContext.onDispatchVolumeKeyEventBeforeJellyBean(event);
+   }
     @Override
     public void onPause(){
         super.onPause();
+        mCastContext.getSessionManager().removeSessionManagerListener(
+                mSessionManagerListener, CastSession.class);
         if(Util.SDK_INT<=23){
             releasePlayer();
             Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
@@ -320,6 +441,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
         playerPosition = C.TIME_UNSET;
         playerPosition = intent.getLongExtra(SECONDS_TO_START_EXTRA, 0);
+        mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
         if(intent.getIntExtra("mainCategoryId", -1) == 4) {//eventso
             hideControls = true;
         }
@@ -489,9 +611,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             return;
         }
         debugRootView.removeAllViews();
-
         retryButton.setVisibility(playerNeedsSource ? View.VISIBLE : View.GONE);
         debugRootView.addView(retryButton);
+
 
         if (player == null) {
             return;

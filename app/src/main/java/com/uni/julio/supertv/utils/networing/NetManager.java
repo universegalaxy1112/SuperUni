@@ -123,8 +123,8 @@ public class NetManager {
         viewcallback.onDeviceLoaded(castDevice);
 
     }
-    public void getMessages(StringRequestListener stringRequestListener){
-        LiveTVServicesManual.getMessages(stringRequestListener).delay(2,TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    public void getMessages(String user,StringRequestListener stringRequestListener){
+        LiveTVServicesManual.getMessages(user,stringRequestListener).delay(2,TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Boolean>() {
                     @Override
                     public void onCompleted() {

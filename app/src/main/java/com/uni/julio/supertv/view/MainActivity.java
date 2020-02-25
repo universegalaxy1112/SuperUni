@@ -77,7 +77,9 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         getViewModel().onViewAttached(getLifecycleView());
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("SuperTV");
-        NetManager.getInstance().getMessages(this);
+        String theUser = DataManager.getInstance().getString("theUser","");
+        User user = new Gson().fromJson(theUser, User.class);
+        NetManager.getInstance().getMessages(user.getName(),this);
          setSupportActionBar(toolbar);
         if(Device.treatAsBox){
             findViewById(R.id.Appbarlayout).setVisibility(View.GONE);
@@ -222,9 +224,11 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             User user = new Gson().fromJson(theUser, User.class);
             Dialogs.showCustomDialog(this,R.string.attention,"Dear "+ user.getName()+", "+"Your membership expires on "+ user.getExpiration_date(),this);
         }
-        if(index == videoArray.length()) return;
+        if(index > videoArray.length()) return;
         try{
-            Dialogs.showCustomDialog(this,videoArray.getJSONObject(index-1).getString("title"),videoArray.getJSONObject(index-1).getString("message"),this);
+            if(!videoArray.getJSONObject(index - 1).getString("message").equals("") && !videoArray.getJSONObject(index - 1).getString("message").equals("null")) {
+                Dialogs.showCustomDialog(this,getString(R.string.attention),videoArray.getJSONObject(index-1).getString("message"),this);
+            }
 
         }catch (JSONException e){
 

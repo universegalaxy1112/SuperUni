@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
 
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.LiveProgram;
 import com.uni.julio.supertv.model.LiveTVCategory;
@@ -26,8 +27,8 @@ import rx.schedulers.Schedulers;
 //import com.livetv.android.utils.networking.parser.FetchJSonFile;
 
 public class LiveTVServicesManual {
-
     public static Observable<Boolean> performLogin (final String usr, final String pss, final StringRequestListener stringRequestListener) {
+
         return Observable.create(new Observable.OnSubscribe<Boolean>() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -97,19 +98,19 @@ public class LiveTVServicesManual {
         }) .subscribeOn(Schedulers.computation())
                 .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
-    public static Observable<Boolean> getMessages(final StringRequestListener stringRequestListener) {
+    public static Observable<Boolean> getMessages(final String user, final StringRequestListener stringRequestListener) {
         return Observable.create( new Observable.OnSubscribe<Boolean>() {
             public void call(Subscriber<? super Boolean> subscriber) {
-                subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.messageRequest(stringRequestListener)));
+                subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.messageRequest(user,stringRequestListener)));
                 subscriber.onCompleted();
             }
         }) .subscribeOn(Schedulers.computation())
                 .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
-    public static boolean messageRequest(final StringRequestListener stringRequestListener){
+    public static boolean messageRequest(String user,final StringRequestListener stringRequestListener){
         String messageUrl=WebConfig.getMessage;
         try{
-            NetManager.getInstance().makeStringRequest(messageUrl, new StringRequestListener() {
+            NetManager.getInstance().makeStringRequest(messageUrl.replace("{USER}", user), new StringRequestListener() {
                 @Override
                 public void onCompleted(String response) {
                     stringRequestListener.onCompleted(response);
