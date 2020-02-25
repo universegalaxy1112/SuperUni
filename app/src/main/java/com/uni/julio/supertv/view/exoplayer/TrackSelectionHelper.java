@@ -93,7 +93,6 @@ import java.util.Locale;
     dialog.show();
     Button ne=dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
     Button po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-    Log.d("asdf", String.valueOf(activity.getApplicationContext().getResources().getColor(R.color.white)));
     ne.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
     po.setBackground(activity.getResources().getDrawable(R.drawable.dialog_btn_background));
     ne.setPadding(16,4,16,4);

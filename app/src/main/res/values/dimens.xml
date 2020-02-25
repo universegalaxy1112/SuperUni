@@ -12,7 +12,7 @@
     <dimen name="search_people_title_text_size">@dimen/text_micro</dimen>
     <dimen name="toolbar_title_text_size">20dp</dimen>
     <dimen name="detail_image_height">@dimen/dip_200</dimen>
-    <dimen name="detail_image__multi_height">@dimen/dip_120</dimen>
+    <dimen name="detail_image__multi_height">@dimen/dip_108</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_progress_bar_size">40dp</dimen>
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
@@ -1598,4 +1598,5 @@
   <dimen name="sp_498">498sp</dimen>
   <dimen name="sp_499">499sp</dimen>
   <dimen name="sp_500">500sp</dimen>
-</resources>
+    <dimen name="lb_browse_rows_margin_top">24dp</dimen>
+   </resources>

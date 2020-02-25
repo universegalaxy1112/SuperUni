@@ -19,7 +19,6 @@
         app:cardBackgroundColor="@color/card_bg"
         app:cardCornerRadius="6dp"
         app:cardElevation="1dp"
-        android:nextFocusUp="@drawable/play_btn"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

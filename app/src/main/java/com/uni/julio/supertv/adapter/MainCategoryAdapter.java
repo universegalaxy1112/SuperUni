@@ -4,10 +4,13 @@ package com.uni.julio.supertv.adapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -40,6 +43,16 @@ public class MainCategoryAdapter extends TVRecyclerViewAdapter<TVRecyclerViewAda
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View itemView= LayoutInflater.from(mContext).inflate(R.layout.maincategory_list,viewGroup,false);
+        int orientation=mContext.getResources().getConfiguration().orientation;
+        if(orientation == Configuration.ORIENTATION_PORTRAIT){
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            ((WindowManager)(mContext.getSystemService(Context.WINDOW_SERVICE))).getDefaultDisplay().getMetrics(displayMetrics);
+            int screenWidth = displayMetrics.widthPixels;
+            int px=(int)mContext.getResources().getDisplayMetrics().density*50;
+            int width=(screenWidth-2*mContext.getResources().getInteger(R.integer.main_padding)*Integer.parseInt(mContext.getString(R.string.maincategory_column_num))-px)/Integer.parseInt(mContext.getString(R.string.maincategory_column_num));
+            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, width);
+            itemView.setLayoutParams(params);
+        }
         return new MyViewHolder(mContext,itemView);
     }
 

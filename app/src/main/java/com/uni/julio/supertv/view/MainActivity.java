@@ -1,5 +1,7 @@
 package com.uni.julio.supertv.view;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -7,30 +9,57 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.adapter.CastAdapter;
+import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
+import com.uni.julio.supertv.listeners.MessageCallbackListener;
+import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.model.ModelTypes;
+import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModel;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class MainActivity extends BaseActivity implements MainCategoriesMenuViewModelContract.View{
+import java.util.ArrayList;
+
+
+public class MainActivity extends BaseActivity implements MainCategoriesMenuViewModelContract.View, StringRequestListener, MessageCallbackListener {
     private MainCategoriesMenuViewModel mainCategoriesMenuViewModel;
-     @Override
+    private boolean requested=false;
+    JSONArray videoArray = null;
+    int index=0;
+
+    @Override
     protected Lifecycle.ViewModel getViewModel() {
         return mainCategoriesMenuViewModel;
     }
+
+
 
     @Override
     protected Lifecycle.View getLifecycleView() {
@@ -40,11 +69,14 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
+         mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
+         this.requested=false;
+
         setContentView(R.layout.activity_main);
         getViewModel().onViewAttached(getLifecycleView());
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("SuperTV");
+        NetManager.getInstance().getMessages(this);
          setSupportActionBar(toolbar);
         if(Device.treatAsBox){
             findViewById(R.id.Appbarlayout).setVisibility(View.GONE);
@@ -56,6 +88,11 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    @Override
+    public void onResume(){
+         super.onResume();
+         requested = false;
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -77,6 +114,8 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
 
     @Override
     public void onMainCategorySelected(MainCategory mainCategory) {
+         if(requested) return;
+         requested = true;
         int mainCategoryId = mainCategory.getId();
         if(mainCategoryId==8){
             onAccountPressed();
@@ -106,7 +145,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
                 .input("", "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
-
                         if(input.toString().equals(DataManager.getInstance().getString("adultsPassword", ""))) {
                             Bundle extras = new Bundle();
                             extras.putSerializable("selectedType", ModelTypes.SelectedType.MAIN_CATEGORY);
@@ -143,7 +181,48 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onAccountPressed() {
         launchActivity(AccountActivity.class);
+    }
 
+    @Override
+    public void onCompleted(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            videoArray = jsonObject.getJSONArray("messages");
+            showPopup(index);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void showPopup(final int index){
+        if(index == 0)
+        {
+            String theUser = DataManager.getInstance().getString("theUser","");
+            User user = new Gson().fromJson(theUser, User.class);
+            Dialogs.showCustomDialog(this,R.string.attention,"Dear "+ user.getName()+", "+"Your membership expires on "+ user.getExpiration_date(),this);
+        }
+        if(index == videoArray.length()) return;
+        try{
+            Dialogs.showCustomDialog(this,videoArray.getJSONObject(index-1).getString("title"),videoArray.getJSONObject(index-1).getString("message"),this);
+
+        }catch (JSONException e){
+
+        }
+
+    }
+    @Override
+    public void onError() {
+
+    }
+
+    @Override
+    public void onDismiss() {
+        index++;
+        showPopup(index);
+    }
+
+    @Override
+    public void onAccept() {
 
     }
 }

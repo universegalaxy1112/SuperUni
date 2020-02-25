@@ -11,6 +11,11 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.uni.julio.supertv.LiveTvApplication;
+import com.uni.julio.supertv.listeners.StringRequestListener;
+import com.uni.julio.supertv.utils.networing.NetManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Locale;
@@ -20,12 +25,19 @@ import java.util.UUID;
 public class Device {
 
     public static boolean treatAsBox = false;
-
+    private static Device m_Device;
+    public static String ip="";
     public static boolean canTreatAsBox() {
         return treatAsBox;
     }
-
+    public static Device getInstance() {
+        if(m_Device == null) {
+            m_Device = new Device();
+        }
+        return m_Device;
+    }
     public static void setHDMIStatus() {
+
         /*if(true) { //change this to use a compilation flavor
             treatAsBox = true;
             return;
@@ -61,7 +73,25 @@ public class Device {
     public static String getFW() {
         return android.os.Build.VERSION.RELEASE;
     }
+    public  void getIP(){
+        NetManager.getInstance().makeStringRequest("https://api.ipify.org/?format=json", new StringRequestListener() {
+            @Override
+            public void onCompleted(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    ip =jsonObject.getString("ip");
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+    }
     public static String getModel() {
         return android.os.Build.MODEL;
     }
@@ -140,4 +170,7 @@ public class Device {
             return "0.0.1";
         }
     }
+
+
+
 }

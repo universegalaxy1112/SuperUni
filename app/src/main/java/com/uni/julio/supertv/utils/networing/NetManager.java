@@ -14,6 +14,7 @@ import com.uni.julio.supertv.listeners.LoadProgramsForLiveTVCategoryResponseList
 import com.uni.julio.supertv.listeners.LoadSeasonsForSerieResponseListener;
 import com.uni.julio.supertv.listeners.LoadSubCategoriesResponseListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
+import com.uni.julio.supertv.model.CastDevice;
 import com.uni.julio.supertv.model.LiveTVCategory;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.model.Movie;
@@ -22,6 +23,8 @@ import com.uni.julio.supertv.model.Season;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.viewmodel.MovieDetailsViewModel;
+import com.uni.julio.supertv.viewmodel.MovieDetailsViewModelContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -113,8 +117,34 @@ public class NetManager {
                     }
                 });
     }
+    public void getCastDevices(MovieDetailsViewModelContract.View viewcallback){
+        CastDevice castDevice = new CastDevice();
+        castDevice.setName("New");
+        viewcallback.onDeviceLoaded(castDevice);
+
+    }
+    public void getMessages(StringRequestListener stringRequestListener){
+        LiveTVServicesManual.getMessages(stringRequestListener).delay(2,TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Boolean>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                    }
+                });
+
+
+    }
+
     public void performLoginCode(String user,String code,String device_id, StringRequestListener stringRequestListener) {
-        LiveTVServicesManual.performLoginCode(user,code,device_id, stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe( new Subscriber<Boolean>() {
+        LiveTVServicesManual.performLoginCode(user,code,device_id, stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe( new Subscriber<Boolean>() {
             public void onCompleted() {
 
             }
@@ -126,18 +156,7 @@ public class NetManager {
             }
         });
     }
-    public void performGetCode(StringRequestListener stringRequestListener) {
-        LiveTVServicesManual.performGetCode(stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(  new Subscriber<Boolean>() {
-            public void onCompleted() {
-            }
 
-            public void onError(Throwable e) {
-            }
-
-            public void onNext(Boolean result) {
-            }
-        });
-    }
 
     public void performCheckForUpdate(StringRequestListener stringRequestListener) {
         LiveTVServicesManual.performCheckForUpdate(stringRequestListener).delay(2, TimeUnit.SECONDS, Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(  new Subscriber<Boolean>() {
@@ -217,12 +236,10 @@ public class NetManager {
                 .subscribe(new Subscriber<List<MovieCategory>>() {
                     @Override
                     public void onCompleted() {
-//                            System.out.println("Categories for main category completed");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        ;//Log.d("liveTV", "error subcategories is "+e.getMessage());
                         subCategoriesResponseListener.onSubCategoriesLoadedError();
                     }
 
@@ -239,7 +256,6 @@ public class NetManager {
                 .subscribe(new Subscriber<List<? extends VideoStream>>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
@@ -247,33 +263,25 @@ public class NetManager {
                         movieCategory.setErrorLoading(true);
                         listener.onMoviesForCategoryCompletedError(movieCategory);
                     }
-
                     @Override
                     public void onNext(List<? extends VideoStream> movies) {
-
-                        for(VideoStream video : movies) {
-                            if(video instanceof Serie) {
-                                ((Serie) video).setMovieCategoryIdOwner(movieCategory.getId());
+                        if(movies != null ) {
+                            for(VideoStream video : movies) {
+                                if(video instanceof Serie) {
+                                    ((Serie) video).setMovieCategoryIdOwner(movieCategory.getId());
+                                }
+                                else if(video instanceof Movie){
+                                    ((Movie) video).setMovieCategoryIdOwner(movieCategory.getId());
+                                }
                             }
-                            else if(video instanceof Movie){
-                                ((Movie) video).setMovieCategoryIdOwner(movieCategory.getId());
-
-                            }
+                            movieCategory.setMovieList(movies);
+                           listener.onMoviesForCategoryCompleted(movieCategory);
+                        }else{
+                            listener.onMoviesForCategoryCompletedError(movieCategory);
                         }
-                        {
-
-                            if(Device.canTreatAsBox() && movieCategory.getCatName().contains("ettings")) {
-                                movieCategory.setCatName("");//solo mostrar LUPA
-                            }
-
-                            mainCategory.getMovieCategory(movieCategory.getId()).setMovieList(movies);
-                            listener.onMoviesForCategoryCompleted(mainCategory.getMovieCategory(movieCategory.getId()));
                         }
-                    }
                 });
     }
-
-
      public void retrieveSeasons(final Serie serie, final LoadSeasonsForSerieResponseListener seriesListener) {
 
         //Log.i("NetManager", "retrieveSeasons");
@@ -314,12 +322,9 @@ public class NetManager {
                         //   ;//Log.d("liveTV", "error episodes is "+e.getMessage());
                         episodesForSerieResponseListener.onError();
                     }
-
                     @Override
                     public void onNext(List<? extends VideoStream> movies) {
                         season.setEpisodeList(movies);
-
-
                         episodesForSerieResponseListener.onEpisodesForSerieCompleted(season);
 //
                     }

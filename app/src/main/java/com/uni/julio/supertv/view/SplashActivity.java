@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.utils.Connectivity;
@@ -54,6 +55,7 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Device.setHDMIStatus();
+        Device.getInstance().getIP();
         HttpRequest.getInstance().trustAllHosts();//trust all HTTPS hosts
         splashViewModel = new SplashViewModel(this);
     }
@@ -101,11 +103,9 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
                 }
             });
             return;
-        }else{
+        }else {
             splashViewModel.login();
         }
-
-
     }
     private void downloadUpdate(String location) {
         if (Connectivity.isConnected()) {
@@ -142,7 +142,6 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
             return 1;
         }
         return 2;
-
     }
     public boolean requestStoragePermission() {
         if (Build.VERSION.SDK_INT < 23 || getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {

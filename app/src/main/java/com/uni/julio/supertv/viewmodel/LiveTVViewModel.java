@@ -1,7 +1,9 @@
 package com.uni.julio.supertv.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -28,6 +30,7 @@ import com.uni.julio.supertv.utils.Connectivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveProgramSelectedListener, LiveTVCategorySelectedListener  {
 
@@ -38,11 +41,11 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
     private GridLayoutManager mLayoutManager;
      private TVRecyclerView mProgramRV;
      private LivetvAdapter rowsRecyclerAdapter;
-
+     private int currentCategory=0;
     public static int lastContentIdSelected = -1;
     private int lastProgramPosition;
     private ActivityLiveBinding activityLiveBinding;
-
+    TabLayout tabLayout;
     public LiveTVViewModel(Context context ) {
         isConnected = new ObservableBoolean(Connectivity.isConnected());
         videoStreamManager = VideoStreamManager.getInstance();
@@ -67,6 +70,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         this.viewCallback = null;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void showProgramList(ActivityLiveBinding activityLiveBinding){
         this.activityLiveBinding=activityLiveBinding;
@@ -74,7 +78,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         mProgramRV = activityLiveBinding.getRoot().findViewById(R.id.programming_recycler);
         List<LiveProgram> liveProgramList = videoStreamManager.getAllLivePrograms();
 
-        rowsRecyclerAdapter =new LivetvAdapter(mContext,liveProgramList,this);
+        rowsRecyclerAdapter =new LivetvAdapter(mContext,liveProgramList,mProgramRV,this);
         mLayoutManager = new GridLayoutManager(mContext,1);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mProgramRV.setLayoutManager(mLayoutManager);
@@ -89,7 +93,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
 
         categoryList.add(allCat);
         categoryList.addAll(videoStreamManager.getLiveTVCategoriesList());
-        TabLayout tabLayout=activityLiveBinding.categoryTab;
+        tabLayout=activityLiveBinding.categoryTab;
         for(int i=0;i<categoryList.size();i++){
 
             TabItem tabItem=new TabItem(mContext);
@@ -99,6 +103,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                currentCategory = tab.getPosition();
                 onLiveTVCategorySelected(categoryList.get(tab.getPosition()));
             }
 
@@ -156,7 +161,8 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).setVisibility(View.VISIBLE);
         activityLiveBinding.getRoot().findViewById(R.id.live_programs).setVisibility(View.VISIBLE);
 
-     }
+
+    }
 
     public void hideChannels() {
         Animation bottomUp = AnimationUtils.loadAnimation(LiveTvApplication.getAppContext(), R.anim.show_from_bottom);
@@ -165,7 +171,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         activityLiveBinding.getRoot().findViewById(R.id.live_programs).startAnimation(upbottom);
         activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).setVisibility(View.GONE);
         activityLiveBinding.getRoot().findViewById(R.id.live_programs).setVisibility(View.GONE);
-    }
+     }
 
     public void toggleChannels() {
         if(activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).getVisibility()== View.VISIBLE){

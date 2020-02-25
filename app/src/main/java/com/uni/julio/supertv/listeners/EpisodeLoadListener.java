@@ -4,4 +4,6 @@ import com.uni.julio.supertv.model.ImageResponse;
 
 public interface EpisodeLoadListener {
     void onLoaded();
+    void onError();
+    void showCustomProgress();
 }

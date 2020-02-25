@@ -109,14 +109,14 @@ public class ParserJSonFile {
         for (int i = 0; i < videoArray.length(); i++) {
 
             movie = new Episode();
-
+            movie.setPosition(i);
             fillObject(movie,videoArray.getJSONObject(i));
             dataArray.add(movie);
         }
         return dataArray;
     }
 
-    public static List<? extends VideoStream> getParsedMovies(String mainCategory, String movieCategory, String data) throws JSONException {
+    public static List<? extends VideoStream> getParsedMovies(String mainCategory, String movieCategory, String data) throws JSONException,NullPointerException {
 
 
         String JSON_ARRAY_VAR = "";
@@ -169,7 +169,6 @@ public class ParserJSonFile {
     }
 
     public static void fillObject(VideoStream obj, JSONObject json_obj) {
-        Log.d("adsf","asdf");
         try {
 
             if(json_obj.has("ContentId"))

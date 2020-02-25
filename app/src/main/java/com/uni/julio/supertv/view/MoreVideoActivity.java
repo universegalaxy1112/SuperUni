@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityMorevideoBinding;
 import com.uni.julio.supertv.helper.VideoStreamManager;
@@ -29,6 +30,8 @@ public class MoreVideoActivity extends BaseActivity implements MoviesGridViewMod
         return moviesGridViewModel;
     }
 
+
+
     @Override
     protected Lifecycle.View getLifecycleView() {
         return this;
@@ -37,7 +40,7 @@ public class MoreVideoActivity extends BaseActivity implements MoviesGridViewMod
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras=getIntent().getExtras();
+         Bundle extras=getIntent().getExtras();
         selectedType=(ModelTypes.SelectedType)extras.get("selectedType");
         mainCategoryId=extras.getInt("mainCategoryId",-1);
         movieCategoryId=extras.getInt("movieCategoryId",-1);

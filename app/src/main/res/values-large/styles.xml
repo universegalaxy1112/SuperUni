@@ -24,4 +24,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="text.episode_title">
+        <item name="android:textSize">@dimen/sp_11</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text.episodeName">
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:layout_marginTop">@dimen/dip_8</item>
+        <item name="android:textColor">@color/info_orange</item>
+    </style>
 </resources>

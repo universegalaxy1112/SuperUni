@@ -37,7 +37,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/fondoUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
@@ -75,8 +75,8 @@
                                 tools:ignore="VectorDrawableCompat" />
                             <ImageView
                                 android:id="@+id/imageView7"
-                                android:layout_width="20dp"
-                                android:layout_height="23dp"
+                                android:layout_width="@dimen/dip_28"
+                                android:layout_height="@dimen/dip_28"
                                 android:layout_marginStart="@dimen/bw_generic_16_margin"
                                 android:layout_marginTop="@dimen/bw_generic_16_margin"
                                 android:clickable="true"
@@ -107,60 +107,80 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:paddingRight="@dimen/dip_16"
-                                    android:paddingLeft="@dimen/dip_16"
+                                    android:paddingRight="@dimen/dip_12"
+                                    android:paddingLeft="@dimen/dip_12"
                                     android:paddingTop="@dimen/dip_100"
                                     android:background="@color/detail_background"
                                     android:orientation="vertical">
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dip_32"
+                                        android:layout_marginTop="@dimen/dip_24"
                                         android:orientation="horizontal">
-                                        <TextView
-                                            android:id="@+id/playHD"
+                                        <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textColor="@color/white"
-                                            android:textSize="@dimen/sp_12"
-                                            android:focusable="true"
-                                            android:background="@drawable/play_background"
-                                            android:textStyle="bold"
-                                            android:padding="@dimen/dip_8"
-                                            android:layout_marginRight="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM::playHD}"
+                                            android:layout_marginEnd="@dimen/dip_4"
+                                            app:cardCornerRadius="@dimen/dip_4"
+                                            app:cardElevation="@dimen/dip_2"
                                             app:invisible="@{movieDetailsVM.isHD}"
-                                             android:text="PLAY HD"/>
-
-                                        <TextView
+                                            >
+                                            <TextView
+                                                android:id="@+id/playHD"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:textColor="@color/white"
+                                                android:textSize="@dimen/sp_12"
+                                                android:focusable="true"
+                                                android:background="@drawable/play_background"
+                                                android:textStyle="bold"
+                                                android:padding="@dimen/dip_6"
+                                                android:onClick="@{movieDetailsVM::playHD}"
+                                                android:text="PLAY HD"/>
+                                        </androidx.cardview.widget.CardView>
+                                        <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textColor="@color/white"
-                                            android:textSize="@dimen/sp_12"
-                                            android:focusable="true"
-                                            android:background="@drawable/play_background"
-                                            android:textStyle="bold"
-                                            android:padding="@dimen/dip_8"
-                                            android:layout_marginRight="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM::playSD}"
+                                            android:layout_marginEnd="@dimen/dip_4"
+                                            app:cardCornerRadius="@dimen/dip_4"
+                                            app:cardElevation="@dimen/dip_2"
                                             app:invisible="@{movieDetailsVM.isSD}"
-                                            android:text="PLAY SD"/>
-                                        <TextView
+                                            >
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:textColor="@color/white"
+                                                android:textSize="@dimen/sp_12"
+                                                android:focusable="true"
+                                                android:background="@drawable/play_background"
+                                                android:textStyle="bold"
+                                                android:padding="@dimen/dip_6"
+                                                android:onClick="@{movieDetailsVM::playSD}"
+                                                android:text="PLAY SD"/>
+                                        </androidx.cardview.widget.CardView>
+                                        <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:textColor="@color/white"
-                                            android:textSize="@dimen/sp_12"
-                                            android:focusable="true"
-                                            android:background="@drawable/play_background"
-                                            android:textStyle="bold"
-                                            android:padding="@dimen/dip_8"
-                                            android:layout_marginRight="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM::playTrailor}"
+                                            app:cardCornerRadius="@dimen/dip_4"
+                                            app:cardElevation="@dimen/dip_2"
                                             app:invisible="@{movieDetailsVM.isTrailer}"
-                                            android:text="PLAY TRAILER"/>
+                                            >
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:gravity="center"
+                                                android:textColor="@color/white"
+                                                android:textSize="@dimen/sp_12"
+                                                android:focusable="true"
+                                                android:background="@drawable/play_background"
+                                                android:textStyle="bold"
+                                                android:padding="@dimen/dip_6"
+                                                android:onClick="@{movieDetailsVM::playTrailor}"
+                                                android:text="PLAY TRAILER"/>
+                                        </androidx.cardview.widget.CardView>
+
                                     </LinearLayout>
 
                                     <TextView
@@ -168,8 +188,7 @@
                                         style="@style/text.subtitle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:paddingTop="@dimen/dip_16"
-
+                                        android:paddingTop="@dimen/dip_6"
                                         android:text="Description" />
 
                                     <TextView
@@ -211,17 +230,16 @@
                                             app:setDirector="@{movieDetailItem.Director}" />
                                     </LinearLayout>
 
-                                    <TextView
+                                    <!--<TextView
                                         android:id="@+id/textView6"
                                         style="@style/text.subtitle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="MORE LIKE THIS" />
+                                        android:text="MORE LIKE THIS" />-->
                                     <com.uni.julio.supertv.helper.TVRecyclerView
                                         android:id="@+id/recycler_view"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:nextFocusUp="@drawable/play_btn"
                                         android:paddingTop="4dp"
                                         android:paddingLeft="4dp"/>
                                 </LinearLayout>
@@ -230,9 +248,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dip_16"
-                                android:layout_marginLeft="@dimen/dip_16"
-                                android:layout_marginBottom="@dimen/dip_16"
+                                android:layout_marginStart="@dimen/dip_12"
+                                android:layout_marginBottom="@dimen/dip_12"
                                 android:layout_marginTop="@dimen/dip_28"
 
                                 android:orientation="vertical"
@@ -258,7 +275,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/text.additional_info"
                                         android:layout_marginRight="@dimen/dip_8"
-                                        android:text="@{movieDetailItem.releaseDate}"/>
+                                        android:text="@{movieDetailItem.getReleaseDate}"/>
                                     <RatingBar
                                         android:id="@+id/ratingBar"
                                         style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
@@ -272,7 +289,7 @@
                                         android:layout_height="wrap_content"
                                         style="@style/text.additional_info"
                                         android:layout_marginRight="@dimen/dip_8"
-                                        app:showDuration="@{movieDetailItem.Length}"
+                                        app:showDuration="@{movieDetailItem.getLength}"
                                         />
 
                                     <androidx.cardview.widget.CardView
@@ -289,7 +306,7 @@
                                             android:textColor="@color/black"
                                             android:paddingLeft="@dimen/dip_4"
                                             android:paddingRight="@dimen/dip_4"
-                                            app:showHDIcon="@{movieDetailItem.HDBranded}"
+                                            app:showHDIcon="@{movieDetailItem.isHDBranded}"
                                             android:text="HD"
                                             />
                                     </androidx.cardview.widget.CardView>

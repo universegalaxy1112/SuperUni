@@ -21,10 +21,13 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.crashlytics.android.Crashlytics;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
+import com.uni.julio.supertv.listeners.MessageCallbackListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.Connectivity;
@@ -37,7 +40,7 @@ import com.uni.julio.supertv.utils.networing.NetManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoginActivity extends AppCompatActivity implements StringRequestListener {
+public class LoginActivity extends AppCompatActivity implements StringRequestListener, MessageCallbackListener {
 private EditText mUsernameView;
 private EditText mPassView;
 private CustomProgressDialog customProgressDialog;
@@ -54,7 +57,8 @@ boolean denyAll = false;
         setupUI();
     }
     public void onCompleted(String response) {
-            if (!TextUtils.isEmpty(response)) {
+        hideProgressDialog();
+        if (!TextUtils.isEmpty(response)) {
                 try {
                     final String email = mUsernameView.getText().toString();
                     String password = mPassView.getText().toString();
@@ -74,10 +78,8 @@ boolean denyAll = false;
                                 DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
                             }
                             DataManager.getInstance().saveData("theUser", new Gson().toJson(user));
-                            Intent launchIntent = new Intent(this, MainActivity.class);
-                            startActivity(launchIntent);
-                            overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                            finish();
+                            startMain();
+
                             return;
                          }
                     } else {
@@ -138,10 +140,12 @@ boolean denyAll = false;
 
         DataManager.getInstance().saveData("theUser", "");
     }
-
-
-
-
+    private void startMain(){
+        Intent launchIntent = new Intent(this, MainActivity.class);
+        startActivity(launchIntent);
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        finish();
+    }
     @Override
     public void onError() {
         showErrorMessage();
@@ -392,4 +396,13 @@ boolean denyAll = false;
         if(customProgressDialog != null) customProgressDialog.dismiss();
      }
 
+    @Override
+    public void onDismiss() {
+        startMain();
+    }
+
+    @Override
+    public void onAccept() {
+
+    }
 }

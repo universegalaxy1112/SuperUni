@@ -36,7 +36,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
         isTV = new ObservableBoolean(Device.canTreatAsBox());
 //        videoStreamManager = VideoStreamManager.getInstance();
         mActivity = activity;
-
     }
 
     @Override
@@ -96,9 +95,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
         this.viewCallback.onCloseSessionNoInternet();
 
     }
-
-
-
     @Override
     public void showAccountDetails(ActivityAccountBinding accountDetailsFragmentBinding) {
         String theUser = DataManager.getInstance().getString("theUser","");

@@ -23,7 +23,6 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/allbtnbackground"
         android:focusable="true"
-        android:nextFocusLeft="@id/search_icon"
         android:nextFocusRight="@id/reload"
         android:onClick="@{categoryAdapter::onClickItem}">
 

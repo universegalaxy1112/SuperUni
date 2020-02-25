@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.utils.Dialogs;
@@ -17,6 +18,7 @@ import com.uni.julio.supertv.viewmodel.Lifecycle;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected abstract Lifecycle.ViewModel getViewModel();
+
     //force sub-fragments to implement the getFragmentInstance to pass to onViewAttached
     protected abstract Lifecycle.View getLifecycleView();
     protected ModelTypes.SelectedType selectedType;
@@ -28,9 +30,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setCurrentActivity();
+    }
+     protected void setCurrentActivity() {
+        LiveTvApplication.setCurrentActivity(this);
     }
 
+     protected void clearActivity() {
+        AppCompatActivity appCompatActivity=LiveTvApplication.appCompatActivity;
+        if(this.equals(appCompatActivity))
+            LiveTvApplication.setCurrentActivity(null);
+
+    }
     //    Handler handler = new Handler(Looper.getMainLooper() /*UI thread*/);
 
     //just send the key event to the fragment
@@ -41,23 +52,29 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
     @Override
     public void onResume() {
-
         super.onResume();
+        setCurrentActivity();
         getViewModel().onViewResumed();
-
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        clearActivity();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        setCurrentActivity();
         getViewModel().onViewAttached(getLifecycleView());
     }
 
     @Override
-    public void onStop() {
-
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
+        clearActivity();
      }
+
     public void launchActivity(Class classToLaunch) {
         Intent launchIntent = new Intent(getActivity(), classToLaunch);
         startActivity(launchIntent);

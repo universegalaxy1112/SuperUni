@@ -74,6 +74,7 @@ public class OneSeasonAdapter extends TVRecyclerViewAdapter<OneSeasonAdapter.MyV
     }
     @Override
     protected void focusIn(View v, int position) {
+        recyclerView.scrollToPosition(position);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.06f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.06f);
         AnimatorSet set = new AnimatorSet();

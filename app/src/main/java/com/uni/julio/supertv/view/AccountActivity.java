@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityAccountBinding;
 import com.uni.julio.supertv.utils.DataManager;
@@ -28,6 +29,8 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
         return accountDetailsViewModel;
     }
 
+
+
     @Override
     protected Lifecycle.View getLifecycleView() {
         return this;
@@ -36,6 +39,7 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         activityAccountBinding= DataBindingUtil.setContentView(this, R.layout.activity_account);
         accountDetailsViewModel = new AccountDetailsViewModel(getActivity());
         activityAccountBinding.setAccountDetailsVM(accountDetailsViewModel);

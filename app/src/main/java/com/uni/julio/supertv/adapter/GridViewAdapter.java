@@ -3,17 +3,21 @@ package com.uni.julio.supertv.adapter;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
@@ -57,6 +61,13 @@ public class GridViewAdapter extends TVRecyclerViewAdapter<GridViewAdapter.MyVie
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View itemView= LayoutInflater.from(mContext).inflate(R.layout.gridview_row,viewGroup,false);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((WindowManager)(mContext.getSystemService(Context.WINDOW_SERVICE))).getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        int px=(int)mContext.getResources().getDisplayMetrics().density*32;
+        int width=(screenWidth-24*Integer.parseInt(mContext.getString(R.string.more_video))-px)/Integer.parseInt(mContext.getString(R.string.more_video));
+        ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (int) (1.5*width));
+        itemView.setLayoutParams(params);
         directory = Files.GetFile(Files.GetCacheDir());
         if(directory != null && !directory.exists()) {
             directory.mkdirs();
@@ -74,6 +85,7 @@ public class GridViewAdapter extends TVRecyclerViewAdapter<GridViewAdapter.MyVie
     }
     @Override
     protected void focusIn(View v, int position) {
+        recyclerView.scrollToPosition(position);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.06f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.06f);
         AnimatorSet set = new AnimatorSet();

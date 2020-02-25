@@ -73,11 +73,11 @@ public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewMode
     }
 
     @Override
-    public void showMovieLists(ImageView imageView,TVRecyclerView categoriesRecyclerview, int mainCategoryPosition) {
+    public void showMovieLists(TVRecyclerView categoriesRecyclerview, int mainCategoryPosition) {
         mCategoriesRecyclerview = categoriesRecyclerview;
         mMainCategoryPosition = mainCategoryPosition;
         mMoviesList = VideoStreamManager.getInstance().getMainCategory(mainCategoryPosition).getMovieCategories();
-        moviesCategoryAdapter =new MoviesCategoryAdapter(mContext,imageView,categoriesRecyclerview,mMoviesList,mMainCategoryPosition,this,this,this,this);
+        moviesCategoryAdapter =new MoviesCategoryAdapter(mContext,categoriesRecyclerview,mMoviesList,mMainCategoryPosition,this,this,this,this);
         mLayoutManager = new GridLayoutManager(mContext,1);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mCategoriesRecyclerview.setLayoutManager(mLayoutManager);

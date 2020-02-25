@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.TVRecyclerViewAdapter;
 import com.uni.julio.supertv.listeners.LiveProgramSelectedListener;
 import com.uni.julio.supertv.model.LiveProgram;
@@ -24,11 +25,13 @@ public class LivetvAdapter extends TVRecyclerViewAdapter<LivetvAdapter.MyViewHol
 
 private Context mContext;
 private List<LiveProgram> livePrograms;
+private TVRecyclerView recyclerView;
 private LiveProgramSelectedListener liveProgramSelectedListener;
-    public LivetvAdapter(Context context, List<LiveProgram> livePrograms, LiveProgramSelectedListener liveProgramSelectedListener) {
+    public LivetvAdapter(Context context, List<LiveProgram> livePrograms, TVRecyclerView recyclerView, LiveProgramSelectedListener liveProgramSelectedListener) {
         mContext=context;
         this.livePrograms=livePrograms;
         this.liveProgramSelectedListener=liveProgramSelectedListener;
+        this.recyclerView=recyclerView;
     }
     @NonNull
     @Override
@@ -41,12 +44,10 @@ private LiveProgramSelectedListener liveProgramSelectedListener;
 
     @Override
     protected void focusOut(View v, int position) {
-
     }
     @Override
     protected void focusIn(View v, int position) {
-
-
+        this.recyclerView.scrollToPosition(position);
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder,int position){

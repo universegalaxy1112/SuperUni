@@ -24,7 +24,7 @@ public interface MoviesMenuViewModelContract {
     //this will have methods that the activity/fragment will call from the ViewModel
     interface ViewModel extends Lifecycle.ViewModel {
         //void loadMoviesForCategory(MainCategory category);
-        void showMovieLists(ImageView imageView,TVRecyclerView categoriesRecyclerview, int mainCategoryPosition);
+        void showMovieLists(TVRecyclerView categoriesRecyclerview, int mainCategoryPosition);
         void showEpisodeLists(RecyclerView categoriesRecyclerview, int mainCategoryId, int movieCategoryId, int serieId);
     }
 }

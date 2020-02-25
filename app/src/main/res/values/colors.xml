@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">#03A9F4</color>
+    <color name="primary_dark">#0288D1</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">@color/primary</color>
     <color name="colorPrimary">#7b4bff</color>
     <color name="colorPrimaryDark">#6539ba</color>
     <color name="colorAccent">#FF4081</color>
@@ -15,7 +19,8 @@
     <color name="more_btn_bg">#F3181818</color>
     <color name="detail_transparent">#58030303</color>
     <color name="card_bg">#F2161616</color>
-    <color name="detail_background">#F2161616</color>
+    <color name="detail_background">#F5141414</color>
+    <color name="browse_background">#C8141414</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
@@ -60,7 +65,7 @@
     <color name="cardview_light_background">#ffffffff</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="bgButton">#E5505050</color>
+    <color name="bgButton">#F0303030</color>
     <color name="chromecast_blue">#33b5e5</color>
     <color name="common_action_bar_splitter">#d2d2d2</color>
     <color name="common_signin_btn_dark_text_default">@android:color/white</color>
@@ -83,7 +88,7 @@
     <color name="contact_us_dialer_status_color">#221f1f</color>
     <color name="contact_us_dialer_status_selected_color">@color/netflix_red</color>
     <color name="contact_us_header_bg">#ffffff</color>
-    <color name="contact_us_link_color">#2196f3</color>
+    <color name="contact_us_link_color">#0B42FF</color>
     <color name="contact_us_text_color">#221f1f</color>
     <color name="content_advisory_netflix_bar">@color/netflix_red</color>
     <color name="content_advisory_rating">@color/white</color>
@@ -130,6 +135,7 @@
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
     <color name="grey">#888</color>
+    <color name="divider">#AEAEAE</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="home_sliding_menu_bg">#fa141313</color>

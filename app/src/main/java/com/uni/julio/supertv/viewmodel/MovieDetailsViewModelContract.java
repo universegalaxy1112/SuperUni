@@ -1,6 +1,7 @@
 package com.uni.julio.supertv.viewmodel;
 
 import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
+import com.uni.julio.supertv.model.CastDevice;
 import com.uni.julio.supertv.model.Movie;
 
 public interface MovieDetailsViewModelContract {
@@ -8,6 +9,7 @@ public interface MovieDetailsViewModelContract {
 
         void onPlaySelected(Movie movie, int fromStart);
         void finishActivity();
+        void onDeviceLoaded(CastDevice castDevice);
         void showMovieDetails(Movie movie ,int maincategory, int moviecategory);
         void onMovieSelected(int selectedRow,int SelectedMovie);
 

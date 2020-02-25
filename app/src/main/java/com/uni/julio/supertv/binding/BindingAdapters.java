@@ -3,6 +3,7 @@ package com.uni.julio.supertv.binding;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -21,7 +22,19 @@ public class BindingAdapters {
     public static void bindHiddenVisibility(View view, boolean hidden) {
         view.setVisibility(hidden ? View.GONE : View.VISIBLE);
     }
+    @BindingAdapter({"visibleText"})
+    public static void visibleText(View view, String text) {
+        if(text == null ) {
+            view.setVisibility(View.GONE);
+            return;
+        }
+        view.setVisibility(text.equals("") ? View.GONE : View.VISIBLE);
+    }
+    @BindingAdapter({"visibleText"})
+    public static void visibleInt(View view, int text) {
 
+        view.setVisibility(text == 0 ? View.GONE : View.VISIBLE);
+    }
     @BindingAdapter({"invisible"})
     public static void bindInvisibleVisibility(View view, boolean invisible) {
         view.setVisibility(invisible ? View.INVISIBLE : View.VISIBLE);
@@ -51,6 +64,10 @@ public class BindingAdapters {
             ((ViewGroup)view.getParent()).findViewById(R.id.actors).setVisibility(View.VISIBLE);
         }
     }
+    @BindingAdapter({"setTitleEpisode"})
+    public static void setTitleEpisode(TextView view, int text){
+        view.setText("Episode "+(text+1));
+    }
     @BindingAdapter({"setDirector"})
     public static void setDirector(TextView view, String text) {
         if(text==null||text.equals("")){
@@ -69,9 +86,6 @@ public class BindingAdapters {
     public static void loadImage(final ImageView imageView, String url) {
         if(TextUtils.isEmpty(url)) {
             return;
-        }
-        if(url.equals("lupita")) {
-            imageView.setImageResource(R.drawable.ic_search_black_24dp);
         }
         else {
 //            retrieveImage(url, imageView);

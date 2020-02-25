@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import com.afollestad.materialdialogs.Theme;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
+import com.uni.julio.supertv.listeners.MessageCallbackListener;
 
 public class Dialogs {
 
@@ -34,6 +36,68 @@ public class Dialogs {
 
     public static void showOneButtonDialog(AppCompatActivity activity, int title, int message) {
         showOneButtonDialog(activity, activity.getString(title),activity.getString(message), null);
+    }
+    public static void showCustomDialog(AppCompatActivity activity, String title, String message, final MessageCallbackListener messageCallbackListener){
+        final MaterialDialog dialog=new MaterialDialog.Builder(activity)
+                .customView(R.layout.castloadingdialog,false)
+                .contentLineSpacing(0)
+                .theme(Theme.LIGHT)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        messageCallbackListener.onAccept();
+                    }
+                })
+                .backgroundColor(activity.getResources().getColor(R.color.white))
+                .dismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        messageCallbackListener.onDismiss();
+                    }
+                })
+                .show();
+        TextView titleView= dialog.getCustomView().findViewById(R.id.title);
+        TextView contentView= dialog.getCustomView().findViewById(R.id.content);
+        titleView.setText(title);
+        contentView.setText(message);
+        TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+    public static void showCustomDialog(AppCompatActivity activity, int title, String message, final MessageCallbackListener messageCallbackListener){
+        final MaterialDialog dialog=new MaterialDialog.Builder(activity)
+                .customView(R.layout.castloadingdialog,false)
+                .contentLineSpacing(0)
+                .theme(Theme.LIGHT)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        messageCallbackListener.onAccept();
+                    }
+                })
+                .backgroundColor(activity.getResources().getColor(R.color.white))
+                .dismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        messageCallbackListener.onDismiss();
+                    }
+                })
+                .show();
+        TextView titleView= dialog.getCustomView().findViewById(R.id.title);
+        TextView contentView= dialog.getCustomView().findViewById(R.id.content);
+        titleView.setText(title);
+        contentView.setText(message);
+        TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     public static void showOneButtonDialog(AppCompatActivity activity, String message) {

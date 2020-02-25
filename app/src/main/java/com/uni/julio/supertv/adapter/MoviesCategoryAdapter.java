@@ -50,11 +50,10 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
     private final int[] timeOutPerRow;
     TVRecyclerView recyclerView;
     ImageView imageView;
-    public MoviesCategoryAdapter(Context context, ImageView imageView,TVRecyclerView recyclerView, List<MovieCategory> videoDataList, int mainCategoryPosition, MovieAcceptedListener movieAcceptedListener, MovieSelectedListener movieSelectedListener, ShowAsGridListener showAsGridListener, SearchSelectedListener searchSelectedListener) {
+    public MoviesCategoryAdapter(Context context ,TVRecyclerView recyclerView, List<MovieCategory> videoDataList, int mainCategoryPosition, MovieAcceptedListener movieAcceptedListener, MovieSelectedListener movieSelectedListener, ShowAsGridListener showAsGridListener, SearchSelectedListener searchSelectedListener) {
         this.mMoviesList=videoDataList;
         this.mContext=context;
         this.recyclerView=recyclerView;
-        this.imageView=imageView;
         mMovieAcceptedListener = movieAcceptedListener;
         mMovieSelectedListener = movieSelectedListener;
         mShowAsGridListener = showAsGridListener;
@@ -66,7 +65,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
             timeOutPerRow[i] = minTimeout;
         }
         if(Device.canTreatAsBox()) {
-//        if(Device.canTreatAsBox() && Screen.getOrientation() == Screen.Orientation.LANDSCAPE ) { //only in landscape
             treatAsBox = true;
         }
     }
@@ -84,6 +82,7 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
     }
     @Override
     protected void focusIn(View v, int position) {
+        recyclerView.scrollToPosition(position);
 
     }
     public void onResume() {
@@ -159,9 +158,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
             needsRedraw=false;
         }
         if(needsRedraw) {
-            if (movieCategory.getCatName().contains("ecientes")) {
-                //((TextView)holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt)).setVisibility(View.GONE);
-            }
             holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
             holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
             holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
@@ -172,13 +168,8 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
             GridLayoutManager rowslayoutmanger = new GridLayoutManager(mContext, 1);
             rowslayoutmanger.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-            MoviesRecyclerAdapter moviesRecyclerAdapter = new MoviesRecyclerAdapter(mContext,imageView, rowsRecycler,movieList, position, mMovieSelectedListener);
-            if(treatAsBox && (movieCategory.getCatName().contains("ettings") || movieCategory.getCatName().equals(""))) {
-                moviesRecyclerAdapter.setTreatAsBox(false);
-            }
-            else {
-                moviesRecyclerAdapter.setTreatAsBox(treatAsBox);
-            }
+            MoviesRecyclerAdapter moviesRecyclerAdapter = new MoviesRecyclerAdapter(mContext, rowsRecycler,movieList, position, mMovieSelectedListener);
+            moviesRecyclerAdapter.setTreatAsBox(treatAsBox);
             rowsRecycler.setLayoutManager(rowslayoutmanger);
             rowsRecycler.setAdapter(moviesRecyclerAdapter);
             rowsRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -196,7 +187,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
     }
     @Override
     protected void onDataBinding(MyViewHolder holder, int position) {
-
     }
     public void onClickItem(View view) {
          mShowAsGridListener.onShowAsGridSelected((Integer)view.getTag());
@@ -207,8 +197,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
     public int getItemCount() {
         return mMoviesList.size();
     }
-
-
 
     public void onMoviesForCategoryCompleted(MovieCategory movieCategory) {
         movieCategory.setLoaded(true);

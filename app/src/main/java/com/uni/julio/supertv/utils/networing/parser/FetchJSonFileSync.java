@@ -123,6 +123,9 @@ public class FetchJSonFileSync {
                 }
 //                    Log.d("liveTV", "dataFromServer for " + moviesForCatURL + " = " + dataFromServer);
             }
+            if(dataFromServer == null ) {
+                return null;
+            }
             return ParserJSonFile.getParsedMovies(mainCategory, movieCategory, dataFromServer);
         } catch (JSONException e) {
             e.printStackTrace();

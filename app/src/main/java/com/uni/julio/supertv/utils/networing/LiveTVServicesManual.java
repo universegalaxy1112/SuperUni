@@ -97,6 +97,34 @@ public class LiveTVServicesManual {
         }) .subscribeOn(Schedulers.computation())
                 .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
+    public static Observable<Boolean> getMessages(final StringRequestListener stringRequestListener) {
+        return Observable.create( new Observable.OnSubscribe<Boolean>() {
+            public void call(Subscriber<? super Boolean> subscriber) {
+                subscriber.onNext(Boolean.valueOf(LiveTVServicesManual.messageRequest(stringRequestListener)));
+                subscriber.onCompleted();
+            }
+        }) .subscribeOn(Schedulers.computation())
+                .unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+    public static boolean messageRequest(final StringRequestListener stringRequestListener){
+        String messageUrl=WebConfig.getMessage;
+        try{
+            NetManager.getInstance().makeStringRequest(messageUrl, new StringRequestListener() {
+                @Override
+                public void onCompleted(String response) {
+                    stringRequestListener.onCompleted(response);
+                }
+
+                @Override
+                public void onError() {
+                    stringRequestListener.onError();
+                }
+            });
+        }catch (Exception e){
+            stringRequestListener.onError();
+        }
+        return true;
+    }
     public static boolean loginCodeRequest(String user,String code, String device_id,final StringRequestListener stringRequestListener) {
         String loginCodeUrl;
         try {

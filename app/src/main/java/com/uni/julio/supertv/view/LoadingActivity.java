@@ -5,6 +5,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import androidx.annotation.RequiresApi;
+
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.LiveTVCategory;
@@ -25,6 +27,8 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
     protected Lifecycle.ViewModel getViewModel() {
         return loadingMoviesViewModel;
     }
+
+
     @Override
     protected Lifecycle.View getLifecycleView() {
         return this;
@@ -34,6 +38,7 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Bundle extras = getIntent().getExtras();
         selectedType = (ModelTypes.SelectedType) extras.get("selectedType");
         mainCategoryId = extras.getInt("mainCategoryId",-1);
@@ -86,25 +91,31 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         showError();
     }
     public void showError() {
-        if(Connectivity.isConnected()) {
-            Dialogs.showOneButtonDialog(getActivity(), R.string.generic_error_title, R.string.generic_loading_message, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+        try{
+            if(Connectivity.isConnected()) {
+                Dialogs.showOneButtonDialog(getActivity(), R.string.generic_error_title, R.string.generic_loading_message, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 //                    getActivity().finish();
-                    finishActivity();
-                }
-            });
-        }
-        else {
-            noInternetConnection(new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+                        finishActivity();
+                    }
+                });
+            }
+            else {
+                noInternetConnection(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 //                    launchActivity(LoginActivity.class);
 //                    getActivity().finish();
-                    finishActivity();
-                }
-            });
+                        finishActivity();
+                    }
+                });
+            }
+        }catch (IllegalStateException e){
+            finishActivity();
+
         }
+
     }
     @Override
     public void onSeasonsForSerieLoaded() {

@@ -71,6 +71,7 @@ import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.Tracking;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -118,6 +119,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private int playerWindow;
     private long playerPosition;
     private int movieId;
+    private String title = null;
     private int type=0;
     private LiveTVToggleUIListener liveTVToggleListener;
     private ProgressBar progressBarView;
@@ -140,11 +142,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          View rootPlayerView= inflater.inflate(R.layout.activity_video_play, container, false);
-        View rootView = rootPlayerView.findViewById(R.id.root);
-        //rootView.setOnClickListener(this);
-        debugRootView = (LinearLayout) rootPlayerView.findViewById(R.id.controls_root);
-        debugTextView = (TextView) rootPlayerView.findViewById(R.id.debug_text_view);
-        retryButton = (Button) rootPlayerView.findViewById(R.id.retry_button);
+        debugRootView =  rootPlayerView.findViewById(R.id.controls_root);
+        debugTextView =  rootPlayerView.findViewById(R.id.debug_text_view);
+        retryButton =  rootPlayerView.findViewById(R.id.retry_button);
         retryButton.setOnClickListener(this);
         retryButton.setBackgroundResource(R.drawable.primary_button_selector);
         retryButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -158,9 +158,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                 }
             }
         });
-        simpleExoPlayerView = (SimpleExoPlayerView) rootPlayerView.findViewById(R.id.player_view);
+        simpleExoPlayerView =  rootPlayerView.findViewById(R.id.player_view);
 
-        progressBarView = (ProgressBar) rootPlayerView.findViewById(R.id.player_view_progress_bar);
+        progressBarView =  rootPlayerView.findViewById(R.id.player_view_progress_bar);
         simpleExoPlayerView.setControllerVisibilityListener(this);
         simpleExoPlayerView.requestFocus();
 
@@ -190,6 +190,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         super.onStart();
         if(Util.SDK_INT>23){
             initializePlayer();
+            Tracking.getInstance((AppCompatActivity) getActivity()).setAction((this.title));
         }
     }
     @Override
@@ -197,6 +198,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         super.onResume();
         if((Util.SDK_INT<=23||player==null)){
             initializePlayer();
+            Tracking.getInstance((AppCompatActivity) getActivity()).setAction((this.title));
         }
     }
     @Override
@@ -204,6 +206,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         super.onPause();
         if(Util.SDK_INT<=23){
             releasePlayer();
+            Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         }
     }
     @Override
@@ -211,6 +214,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         super.onStop();
         if (Util.SDK_INT > 23) {
             releasePlayer();
+            Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         }
     }
     public void onNewIntent(Intent intent) {
@@ -311,6 +315,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         Intent intent = getActivity().getIntent();
         //SuperTV add progressbar here
         movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
+        title = intent.getStringExtra("title");
         playerPosition = C.TIME_UNSET;
         playerPosition = intent.getLongExtra(SECONDS_TO_START_EXTRA, 0);
         if(intent.getIntExtra("mainCategoryId", -1) == 4) {//eventso
@@ -344,7 +349,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                     showToast(errorStringId);
                     return;
                 }
-            }
+               }
 
             @SimpleExoPlayer.ExtensionRendererMode int extensionRendererMode =
                     ((LiveTvApplication) getActivity().getApplication()).useExtensionRenderers()
@@ -528,6 +533,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                     }
                     button.setText(label);
                     button.setTag(i);
+                    button.setPadding(2,2,2,2);
                     button.setOnClickListener(this);
                     debugRootView.addView(button, debugRootView.getChildCount() - 1);
                 }

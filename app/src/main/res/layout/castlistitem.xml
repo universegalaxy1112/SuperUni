@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="castItem"
+            type="com.uni.julio.supertv.model.CastDevice" />
+        <variable
+            name="castAdapter"
+            type="com.uni.julio.supertv.adapter.CastAdapter" />
+    </data>
+    <LinearLayout
+        android:id="@+id/device_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/castoptionButton"
+        android:clickable="true"
+        android:gravity="left|center_vertical"
+        android:background="@color/white">
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:materialIcon="cast"
+            app:materialIconColor="@color/netflix_red"
+            app:materialIconSize="24dp"
+            android:layout_marginEnd="@dimen/dip_8"
+            android:scaleType="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            style="@style/text.more"
+            android:layout_height="wrap_content"
+            android:text="@{castItem.getName}"/>
+    </LinearLayout>
+</layout>

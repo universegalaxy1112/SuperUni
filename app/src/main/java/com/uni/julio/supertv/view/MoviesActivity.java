@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityMoviesBinding;
 import com.uni.julio.supertv.helper.TVRecyclerView;
@@ -69,7 +70,7 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
                     @Override
                     public void run() {
                         if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
-                            moviesMenuViewModel.showMovieLists(activityMoviesBinding.searchIcon,activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
+                            moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
                         }
                         waveSwipeRefreshLayout.setRefreshing(false);
                     }
@@ -77,7 +78,7 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
             }
         });
         if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
-            moviesMenuViewModel.showMovieLists(activityMoviesBinding.searchIcon,activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
+            moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
         }
      }
     private long mLastKeyDownTime = 0;

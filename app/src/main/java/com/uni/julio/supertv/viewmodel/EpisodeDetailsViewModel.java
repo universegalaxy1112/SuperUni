@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.MultiSeasonAdapter;
 import com.uni.julio.supertv.databinding.ActivityMultiSeasonDetailBinding;
@@ -34,6 +36,7 @@ import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.networing.NetManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -99,12 +102,21 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         this.movieDetailsBinding=movieDetailsBinding;
         this.episodeLoadListener=episodeLoadListener;
         this.serie=serie;
+        ImageView fondoImage=movieDetailsBinding.fondoUrl;
+        try{
+            if(!TextUtils.isEmpty(serie.getHDFondoUrl()) && !serie.getHDFondoUrl().equals(" ") && !serie.getHDFondoUrl().equals("")) {
+                Picasso.get().load(serie.getHDFondoUrl()).placeholder(R.drawable.placeholder).into(fondoImage);
+            }
+        }catch (IllegalArgumentException e){
+
+        }
+
         rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
-        rowslayoutmanger = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.more_video)));
+        rowslayoutmanger = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.episode)));
         rowslayoutmanger.setOrientation(LinearLayoutManager.VERTICAL);
         rowsRecycler.setLayoutManager(rowslayoutmanger);
         if (rowsRecycler.getItemDecorationCount() == 0) {
-            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(24,16,24,16));
+            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(6,16,6,16));
         }
         if(this.serie.getSeasons().size()>0){
             addSeasonButtons();
@@ -119,7 +131,9 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             tabLayout.addView(tabItem);
             tabLayout.getTabAt(i).setText(serie.getSeason(i).getName());
             tabItem.setBackgroundColor(mContext.getResources().getColor(R.color.white));
-        }
+            tabItem.setPadding(2,0,2,0);
+
+         }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -146,6 +160,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         if(episodeList == null||episodeList.size()==0){
             if(!season.isLoading()){
                 needsRedraw=false;
+                this.episodeLoadListener.showCustomProgress();
                 NetManager.getInstance().retrieveEpisodesForSerie(serie,season,this);
             }
         }
@@ -154,6 +169,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             showEpisode(0);
             moviesRecyclerAdapter = new MultiSeasonAdapter(mContext, rowsRecycler,movieList, 4, this);
             rowsRecycler.setAdapter(moviesRecyclerAdapter);
+
         }
     }
     public void finishActivity(View view) {
@@ -330,7 +346,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     }
     @Override
     public void onError() {
-
+        this.episodeLoadListener.onError();
     }
     @Override
     public void onMovieSelected(int selectedRow, int selectedEpisode) {

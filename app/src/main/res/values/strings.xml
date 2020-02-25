@@ -34,12 +34,11 @@
     <string name="maincategory_column_num">2</string>
     <string name="maincategory_direction">0</string>
     <string name="more_video">2</string>
+    <string name="episode">1</string>
     <string name="login_screen_username">Username</string>
     <string name="login_screen_password">Password</string>
     <string name="login_screen_login">Login</string>
     <string name="wait">Please Wait...</string>
-
-
     <string name="tag_esp_srt">Español</string>
     <string name="tag_esp">Español</string>
     <string name="tag_eng">Ingles</string>
@@ -116,6 +115,7 @@
     <string name="login_error_no_authorized">Este dispositivo no está autorizado.</string>
     <string name="login_error_usr_pss_incorrect">Usuario o contraseña incorrectos.</string>
     <string name="login_error_generic">No se pudo iniciar sesión [CODE].</string>
+    <string name="login_error_nosession">No se pudo iniciar sesión.</string>
 
     <string name="login_error_demo">Las cuentas de demostración no pueden ser usadas en Android. Por favor comunícate con el Administrador para solicitar una cuenta real.</string>
     <!--<string name="login_error_change_account">Este dispositivo está ligado a otra cuenta, desea usar una cuenta nueva?</string>-->
@@ -136,5 +136,12 @@
     <string name="adults_set_password_empty_message">Debes agregar al menos 4 dígitos para la contraseña.</string>
     <string name="adults_password_message">Por favor introduce la contraseña para accesar a esta categoría.</string>
     <string name="from_start">Continuar viendo?</string>
+    <string name="castTitle">Cast or Phone?</string>
+    <string name="castingTitle">Cast to</string>
+    <string name="cast">Cast</string>
+    <string name="castLoading">Searching for devices...</string>
+    <string name="phone">Play on Phone</string>
+    <string name="castDescription">Make sure your phone and cast device are connected to the same Wi-Fi</string>
+    <string name="app_id">4F8B3483</string>
 
 </resources>

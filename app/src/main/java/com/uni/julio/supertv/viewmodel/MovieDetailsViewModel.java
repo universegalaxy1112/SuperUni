@@ -97,7 +97,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         isTrailer.notifyChange();
         mMovie = movie;
         movieDetailsBinding.setMovieDetailItem(movie);
-        TVRecyclerView rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
+        /*TVRecyclerView rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
         GridLayoutManager rowslayoutmanger = new GridLayoutManager(mContext, 1);
         rowslayoutmanger.setOrientation(LinearLayoutManager.HORIZONTAL);
         movieList= videoStreamManager.getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovieList();
@@ -106,7 +106,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         rowsRecycler.setAdapter(moviesRecyclerAdapter);
         if (rowsRecycler.getItemDecorationCount() == 0) {
             rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(24,12,24,12));
-        }
+        }*/
     }
 
      public void finishActivity(View view) {

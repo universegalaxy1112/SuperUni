@@ -46,13 +46,12 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
     private TVRecyclerView recyclerView;
     private File directory;
     private ImageView imageView;
-    public MoviesRecyclerAdapter(Context context,ImageView imageView, TVRecyclerView recyclerView, List<?extends VideoStream> videoDataList, int rowPosition, MovieSelectedListener movieSelectedListener) {
+    public MoviesRecyclerAdapter(Context context, TVRecyclerView recyclerView, List<?extends VideoStream> videoDataList, int rowPosition, MovieSelectedListener movieSelectedListener) {
         this.mMovies=videoDataList;
         this.mContext=context;
         this.mRowPosition=rowPosition;
         this.movieSelectedListener=movieSelectedListener;
         this.recyclerView=recyclerView;
-        this.imageView=imageView;
     }
     @NonNull
     @Override
@@ -77,12 +76,13 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
 
     @Override
     protected void focusIn(View v, final int position) {
+        recyclerView.scrollToPosition(position);
+
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.0f, 1.1f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.0f, 1.1f);
         AnimatorSet set = new AnimatorSet();
         set.play(scaleX).with(scaleY);
         set.start();
-        imageView.setFocusable(false);
 
 
     }

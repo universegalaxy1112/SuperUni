@@ -64,7 +64,7 @@ public class MainCategoriesMenuViewModel implements MainCategoriesMenuViewModelC
             manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mMainCategoriesRV.setLayoutManager(manager);
         mMainCategoriesRV.setAdapter(mainCategoryAdapter);
-        mMainCategoriesRV.addItemDecoration(new RecyclerViewItemDecoration(24,24,24,24));
+        mMainCategoriesRV.addItemDecoration(new RecyclerViewItemDecoration(20,mContext.getResources().getInteger(R.integer.main_padding),20,mContext.getResources().getInteger(R.integer.main_padding)));
     }
 
 
