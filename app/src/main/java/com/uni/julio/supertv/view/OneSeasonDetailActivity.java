@@ -79,8 +79,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
 
         super.onPause();
     }
-
-
     public boolean isAvailable()
     {
         GoogleApiAvailability availability = GoogleApiAvailability.getInstance();

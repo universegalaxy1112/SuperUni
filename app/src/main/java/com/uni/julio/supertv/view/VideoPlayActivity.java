@@ -22,35 +22,33 @@ public class VideoPlayActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.video_container,videoPlayFragment).commit();
-
     }
     @Override
     public void onStart(){
         super.onStart();
-        LiveTvApplication.setCurrentActivity(this);
     }
     @Override
     public void onResume(){
         super.onResume();
-        LiveTvApplication.setCurrentActivity(this);
+        LiveTvApplication.getInstance().setCurrentActivity(this);
+
     }
     @Override
     public void onDestroy(){
         super.onDestroy();
-        LiveTvApplication.setCurrentActivity(null);
         Tracking.getInstance(this).onStop();
 
     }
     @Override
     public void onPause(){
         super.onPause();
-        Tracking.getInstance(this).setAction("IDLE");
+        AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
+        if(this.equals(appCompatActivity))
+            LiveTvApplication.getInstance().setCurrentActivity(null);
     }
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        LiveTvApplication.setCurrentActivity(this);
-
         videoPlayFragment.onNewIntent(intent);
     }
     @Override
@@ -59,9 +57,7 @@ public class VideoPlayActivity extends AppCompatActivity {
             finish();
             return true;
         }
-        if(keyCode==KeyEvent.KEYCODE_DPAD_CENTER){
-            videoPlayFragment.dispatchKeyEvent();
-        }
+
         if(keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
             videoPlayFragment.dispatchKeyEvent();
         }

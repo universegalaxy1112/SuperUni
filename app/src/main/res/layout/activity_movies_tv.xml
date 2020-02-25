@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
-    <data>
-        <variable
-            name="moviesMenuFragmentVM"
-            type="com.uni.julio.supertv.viewmodel.MoviesMenuViewModel" />
-    </data>
-<LinearLayout
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/browse_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <fragment
-        android:id="@+id/main_browse_fragment"
-        android:name="com.uni.julio.supertv.view.MoviesMenuTVFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.MoviesTvActivity"
-        tools:deviceIds="tv"
-        tools:ignore="MergeRootFrame" />
-</LinearLayout>
-
-</layout>
+    android:layout_height="match_parent"
+    android:background="@color/bg_general"
+    >
+</FrameLayout>

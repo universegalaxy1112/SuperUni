@@ -94,6 +94,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     private TextView description;
     private CardView hd;
     private BrowseFrameLayout mFrameLayout;
+    @SuppressLint("CutPasteId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,7 +151,13 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 launchActivity(MoreVideoActivity.class, extras);
             }
         });
-
+        View view=getActivity().findViewById(R.id.browse_fragment).findViewById(R.id.scale_frame);
+        title=view.findViewById(R.id.title);
+        release_date=view.findViewById(R.id.release_date);
+        ratingBar= view.findViewById(R.id.ratingBar);
+        length=view.findViewById(R.id.length);
+        description=view.findViewById(R.id.description_detail);
+        hd= view.findViewById(R.id.hd);
     }
 
 
@@ -187,7 +194,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         setBrandColor(ContextCompat.getColor(getActivity(), R.color.contact_us_link_color));
         //setSearchAffordanceColor(ContextCompat.getColor(getActivity(), R.color.search_opaque));
     }
-    private void loadData() {
+    public void loadData() {
         mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
         setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
         for (int i = 0; i < mCategoriesList.size(); i++) {
@@ -221,7 +228,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         ListRow r = new ListRow(header, listRowAdapter);
         r.setId((long) category.getId());
         //this.mRowsAdapter.removeItems(category.getId(),1);
-        if(category.getId() ==0 || category.getId() == 1 ){
             for(int i=0; i<mRowsAdapter.size();i++){
                 if(((ListRow)mRowsAdapter.get(i)).getId() == category.getId()){
                     mRowsAdapter.removeItems(category.getId(),1);
@@ -229,8 +235,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                     return;
                 }
             }
-        }
-        this.mRowsAdapter.add(r);
         synchronized (mRowsAdapter){
             this.mRowsAdapter.notify();
         }
@@ -244,6 +248,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         this.mRowsAdapter.add(r);
         this.mRowsAdapter.notify();
     }
+
     public void onMoviesForCategoryCompleted(MovieCategory movieCategory) {
 
         movieCategory.setLoaded(true);
@@ -257,7 +262,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     public void onMoviesForCategoryCompletedError(MovieCategory movieCategory) {
         movieCategory.setLoaded(false);
         movieCategory.setErrorLoading(true);
-        NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
+        //NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
     }
     public void addRecentSerie(Serie serie) {
         DataManager.getInstance().saveData("lastSerieSelected", new Gson().toJson((Object) serie));
@@ -311,12 +316,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         @Override
         public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item,
                                    RowPresenter.ViewHolder rowViewHolder, Row row) {
-            title=(TextView)getActivity().findViewById(R.id.main_browse_fragment).findViewById(R.id.scale_frame).findViewById(R.id.title);
-            release_date=(TextView)getActivity().findViewById(R.id.main_browse_fragment).findViewById(R.id.scale_frame).findViewById(R.id.release_date);
-            ratingBar=(RatingBar) getActivity().findViewById(R.id.main_browse_fragment).findViewById(R.id.scale_frame).findViewById(R.id.ratingBar);
-            length=(TextView)getActivity().findViewById(R.id.main_browse_fragment).findViewById(R.id.scale_frame).findViewById(R.id.length);
-            description=(TextView)getActivity().findViewById(R.id.main_browse_fragment).findViewById(R.id.scale_frame).findViewById(R.id.description_detail);
-            hd=(CardView) getActivity().findViewById(R.id.main_browse_fragment).findViewById(R.id.scale_frame).findViewById(R.id.hd);
+
             if (item instanceof Movie) {
                 try {
                     if (!(((Movie) item).getPosition() == -1 || ((Movie) item).getHDFondoUrl() == null)) {

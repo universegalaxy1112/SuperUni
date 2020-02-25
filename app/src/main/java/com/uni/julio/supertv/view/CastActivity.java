@@ -26,18 +26,15 @@ public class CastActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
-        LiveTvApplication.setCurrentActivity(this);
+
     }
     @Override
     public void onResume(){
         super.onResume();
-        LiveTvApplication.setCurrentActivity(this);
     }
     @Override
     public void onDestroy(){
         super.onDestroy();
-        LiveTvApplication.setCurrentActivity(null);
-
     }
     @Override
     public void onPause(){
@@ -46,7 +43,6 @@ public class CastActivity extends AppCompatActivity {
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        LiveTvApplication.setCurrentActivity(this);
 
         videoPlayFragment.onNewIntent(intent);
     }

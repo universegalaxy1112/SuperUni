@@ -33,6 +33,7 @@ import org.json.JSONObject;
 
 public class LiveTvApplication extends MultiDexApplication implements StringRequestListener, MessageCallbackListener {
     private static Context applicationContext;
+    private static LiveTvApplication mInstance;
     protected String userAgent;
     public Handler handler;
     public User user;
@@ -40,22 +41,26 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     protected String userName = "";
     protected String password ="";
     protected String id = "";
-    public static AppCompatActivity appCompatActivity=null;
+    public AppCompatActivity appCompatActivity=null;
+    public static LiveTvApplication getInstance() {
+        if(mInstance == null) {
+            mInstance = new LiveTvApplication();
+        }
+        return mInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         handler=new Handler();
         applicationContext = getApplicationContext();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    sendLocation();          // this method will contain your almost-finished HTTP calls
-                    handler.postDelayed(this, 9000);
-                }
-            }, 9000);
-
+        if(mInstance == null) {
+            mInstance = new LiveTvApplication();
+        }
     }
-    public  static void setCurrentActivity(AppCompatActivity activity){
+    public void setCurrentActivity(AppCompatActivity activity){
           appCompatActivity=activity;
+          sendLocation();
     }
     public void sendLocation(){
         if( appCompatActivity != null){
@@ -68,12 +73,11 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                     id = user.getDeviceId();
                 }
             }
-
             NetManager.getInstance().performLoginCode(userName,password, id,this);
         }
-
-
-
+    }
+    public AppCompatActivity getActivity(){
+        return appCompatActivity;
     }
     public static Context getAppContext() {
         return applicationContext;
@@ -102,7 +106,6 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     public void onCompleted(String response) {
         try{
             if(appCompatActivity !=null){
-
                 if (!TextUtils.isEmpty(response)) {
 
                     try {
@@ -114,7 +117,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                             switch (errorFound) {
                                 case "103":
                                 case "104":
-                                    Dialogs.showOneButtonDialog(appCompatActivity, getString(R.string.attention), getString(R.string.login_error_change_device).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appCompatActivity, appCompatActivity.getString(R.string.attention), appCompatActivity.getString(R.string.login_error_change_device).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -123,7 +126,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 //
                                     break;
                                 case "105":
-                                    Dialogs.showOneButtonDialog(appCompatActivity, getString(R.string.attention), getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appCompatActivity, appCompatActivity.getString(R.string.attention), appCompatActivity.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -131,10 +134,10 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                     });
                                     break;
                                 case "107":
-
-                                    Dialogs.showCustomDialog(appCompatActivity,getString(R.string.attention),"Dear "+user.getName()+", Your Membership is expired! Please extend your membership.",this);
+                                    Dialogs.showCustomDialog(appCompatActivity,appCompatActivity.getString(R.string.attention),"Dear "+user.getName()+", Your Membership is expired! Please extend your membership.",this);
                                      break;
                                 case "108": {
+
                                    break;
                                 }
                                 case "109": {
@@ -147,13 +150,10 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                 }
                                 break;
                                 default:
-                                    Dialogs.showCustomDialog(appCompatActivity,getString(R.string.attention),"Dear "+user.getName()+", Your  ",this);
+                                    Dialogs.showCustomDialog(appCompatActivity,appCompatActivity.getString(R.string.attention),"Dear "+user.getName()+", Your account is inactive due to some problems. Please contact the support.",this);
                                     break;
                             }
-
                         }
-
-
                     } catch (JSONException e) {
                     }
 

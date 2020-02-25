@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +37,7 @@ import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModel;
@@ -71,7 +73,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         super.onCreate(savedInstanceState);
          mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
          this.requested=false;
-
         setContentView(R.layout.activity_main);
         getViewModel().onViewAttached(getLifecycleView());
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -92,7 +93,27 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onResume(){
          super.onResume();
+         LiveTvApplication.getInstance().setCurrentActivity(this);
          requested = false;
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
+        if(this.equals(appCompatActivity))
+            LiveTvApplication.getInstance().setCurrentActivity(null);
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
+        if(this.equals(appCompatActivity))
+            LiveTvApplication.getInstance().setCurrentActivity(null);
+        LiveTvApplication.getInstance().setCurrentActivity(null);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

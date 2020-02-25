@@ -119,8 +119,7 @@
                 android:value="com.uni.julio.supertv.view.OneSeasonDetailActivity"/>
         </activity>
         <meta-data
-            android:name=
-                "com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
             android:value="com.uni.julio.supertv.CastOptionsProvider" />
     </application>
 </manifest>

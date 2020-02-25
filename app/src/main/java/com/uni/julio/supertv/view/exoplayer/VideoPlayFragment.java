@@ -119,7 +119,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private int playerWindow;
     private long playerPosition;
     private int movieId;
-    private String title = null;
+    private String title = "";
     private int type=0;
     private LiveTVToggleUIListener liveTVToggleListener;
     private ProgressBar progressBarView;
@@ -133,6 +133,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         if (CookieHandler.getDefault() != DEFAULT_COOKIE_MANAGER) {
             CookieHandler.setDefault(DEFAULT_COOKIE_MANAGER);
         }
+        Intent intent = getActivity().getIntent();
+        title = intent.getStringExtra("title");
+
     }
 
     private boolean hideControls = false;
@@ -315,7 +318,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         Intent intent = getActivity().getIntent();
         //SuperTV add progressbar here
         movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
-        title = intent.getStringExtra("title");
         playerPosition = C.TIME_UNSET;
         playerPosition = intent.getLongExtra(SECONDS_TO_START_EXTRA, 0);
         if(intent.getIntExtra("mainCategoryId", -1) == 4) {//eventso
