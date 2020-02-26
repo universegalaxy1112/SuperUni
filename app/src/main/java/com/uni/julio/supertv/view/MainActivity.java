@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.uni.julio.supertv.LiveTvApplication;
@@ -80,7 +84,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         String theUser = DataManager.getInstance().getString("theUser","");
         User user = new Gson().fromJson(theUser, User.class);
         NetManager.getInstance().getMessages(user.getName(),this);
-         setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         if(Device.treatAsBox){
             findViewById(R.id.Appbarlayout).setVisibility(View.GONE);
         }

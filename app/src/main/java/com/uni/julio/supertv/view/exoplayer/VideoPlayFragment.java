@@ -73,12 +73,15 @@ import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.uni.julio.supertv.BuildConfig;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.VideoProvider;
@@ -152,9 +155,20 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         }
         Intent intent = getActivity().getIntent();
         title = intent.getStringExtra("title");
-        setupCastListener();
-        mCastContext = CastContext.getSharedInstance(LiveTvApplication.getAppContext());
-        mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
+
+        if(!Device.treatAsBox){
+            try {
+                if(isAvailable()){
+                    setupCastListener();
+                    mCastContext = CastContext.getSharedInstance(LiveTvApplication.getAppContext());
+                    mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
+                }
+            }catch (Exception e){
+                Log.d("TAG","Can't Use Cast");
+            }
+        }
+
+
 
     }
     private void setupCastListener() {
@@ -312,6 +326,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume(){
         super.onResume();
+        if(mCastContext != null)
         mCastContext.getSessionManager().addSessionManagerListener(
                 mSessionManagerListener, CastSession.class);
         if((Util.SDK_INT<=23||player==null)){
@@ -321,24 +336,28 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         }
     }
    public void controlVolumn(@NonNull KeyEvent event){
+       if(mCastContext != null)
         mCastContext.onDispatchVolumeKeyEventBeforeJellyBean(event);
    }
     @Override
     public void onPause(){
         super.onPause();
+        if(mCastContext != null)
         mCastContext.getSessionManager().removeSessionManagerListener(
                 mSessionManagerListener, CastSession.class);
+        Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         if(Util.SDK_INT<=23){
             releasePlayer();
-            Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
+
         }
     }
     @Override
     public void onStop() {
         super.onStop();
+        Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         if (Util.SDK_INT > 23) {
             releasePlayer();
-            Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
+
         }
     }
     public void onNewIntent(Intent intent) {
@@ -571,7 +590,16 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         return ((LiveTvApplication) getActivity().getApplication())
                 .buildDataSourceFactory(useBandwidthMeter ? BANDWIDTH_METER : null);
     }
-
+    public boolean isAvailable()
+    {
+        GoogleApiAvailability availability = GoogleApiAvailability.getInstance();
+        int resultCode = availability.isGooglePlayServicesAvailable(LiveTvApplication.getAppContext());
+        if(resultCode == ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED){
+            return false;
+        }else{
+            return true;
+        }
+    }
     public boolean useExtensionRenderers() {
         return "withExtensions".equals(BuildConfig.FLAVOR);
     }

@@ -95,7 +95,6 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
         //remove 4K from the list
         MovieCategory movieCategory1=new MovieCategory();
         movieCategory1.setCatName("Favorite");
-        if(mainCategory.getId() != 7)
         movieCategories.add(0,movieCategory1);
 
         videoStreamManager.getMainCategory(mainCategory.getId()).setMovieCategories(movieCategories);

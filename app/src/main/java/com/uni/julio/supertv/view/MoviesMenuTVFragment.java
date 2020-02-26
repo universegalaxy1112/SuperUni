@@ -187,7 +187,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupUIElements() {
-
         setTitle("Movies");
         setHeadersState(1);
         setHeadersTransitionOnBackEnabled(true);
@@ -199,7 +198,10 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
         for (int i = 0; i < mCategoriesList.size(); i++) {
             //loadHeader(mCategoriesList.get(i));
-            load(i);
+            if(mainCategoryId == 7 && i == 0)
+                continue;
+            else
+                load(i);
         }
     }
     private void load(int row){
@@ -215,12 +217,13 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     @Override
     public void onResume() {
         super.onResume();
-        if(mCategoriesList.size()>0 && mCategoriesList.get(0).getCatName().equals("Favorite"))
+        if(mCategoriesList.size()>0 && mCategoriesList.get(0).getCatName().equals("Favorite") && mainCategoryId != 7)
             NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
         if(mCategoriesList.size()>1 && mCategoriesList.get(1).getCatName().equals("Vistas Recientes"))
             NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(1), this, 30);
     }
     private void loadRow(MovieCategory category) {
+
         HeaderItem header = new HeaderItem((long) category.getId(), category.getCatName());
         List<Movie> movieList = (List<Movie>) category.getMovieList();
         ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter((Presenter) new MoviesPresenter(getActivity()));

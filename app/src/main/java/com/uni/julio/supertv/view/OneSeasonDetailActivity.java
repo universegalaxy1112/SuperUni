@@ -47,23 +47,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
             finish();
             return;
         }
-       /* if(!Device.treatAsBox){
-            try {
-                if(isAvailable()){
-                    mCastContext = CastContext.getSharedInstance(this);
-                    mCastStateListener = new CastStateListener() {
-                        @Override
-                        public void onCastStateChanged(int newState) {
-                            if (newState != CastState.NO_DEVICES_AVAILABLE) {
-                                //showIntroductoryOverlay();
-                            }
-                        }
-                    };
-                }
-            }catch (Exception e){
-                Log.d("TAG","Can't Use Cast");
-            }
-        }*/
         movieDetailsViewModel = new MovieDetailsViewModel(getBaseContext(), mainCategoryId);
         activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
         activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
@@ -79,16 +62,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
 
         super.onPause();
     }
-    public boolean isAvailable()
-    {
-        GoogleApiAvailability availability = GoogleApiAvailability.getInstance();
-        int resultCode = availability.isGooglePlayServicesAvailable(this);
-        if(resultCode == ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED){
-            return false;
-        }else{
-            return true;
-        }
-    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

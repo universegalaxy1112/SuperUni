@@ -38,12 +38,12 @@ public class VideoPlayActivity extends AppCompatActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        Tracking.getInstance(this).onStop();
-
     }
     @Override
     public void onPause(){
         super.onPause();
+        Tracking.getInstance(this).track();
+        Tracking.getInstance(this).onStop();
         AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
         if(this.equals(appCompatActivity))
             LiveTvApplication.getInstance().setCurrentActivity(null);
@@ -53,11 +53,7 @@ public class VideoPlayActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         videoPlayFragment.onNewIntent(intent);
     }
-    @Override
-    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
 
-        return true;
-    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

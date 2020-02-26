@@ -78,7 +78,7 @@ boolean denyAll = false;
                                 DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
                             }
                             DataManager.getInstance().saveData("theUser", new Gson().toJson(user));
-                            startMain();
+                            Dialogs.showCustomDialog(this,R.string.attention,"Estimado "+user.getName()+", "+jsonObject.getString("device_num")+ " devices are being used.",this);
 
                             return;
                          }

@@ -143,5 +143,7 @@
     <string name="phone">Play on Phone</string>
     <string name="castDescription">Make sure your phone and cast device are connected to the same Wi-Fi</string>
     <string name="app_id">4F8B3483</string>
+    <string name="channel_Name">channel1</string>
+    <string name="channel_description">testChannel</string>
 
 </resources>

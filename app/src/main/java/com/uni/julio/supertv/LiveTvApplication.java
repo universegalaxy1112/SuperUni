@@ -176,7 +176,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                     Dialogs.showCustomDialog(appCompatActivity,appCompatActivity.getString(R.string.attention),"Dear "+user.getName()+", Your Membership is expired! Please extend your membership.",this);
                                      break;
                                 case "108": {
-
+                                    closeApp();
                                    break;
                                 }
                                 case "109": {

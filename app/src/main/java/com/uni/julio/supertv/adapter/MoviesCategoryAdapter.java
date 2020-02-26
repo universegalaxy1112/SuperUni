@@ -105,85 +105,90 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
 
         MovieCategory movieCategory=mMoviesList.get(position);
         List<Movie> movieList = (List<Movie>) movieCategory.getMovieList();
-        holder.getViewDataBinding().getRoot().setVisibility(View.VISIBLE);
-        holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.movieCategory,movieCategory);
-        holder.viewDataBinding.getRoot().findViewById(R.id.all_pane_btn).setTag(position);
-        boolean needsRedraw = true;
-        holder.getViewDataBinding().getRoot().findViewById(R.id.all_pane_btn).setTag(position);
-        holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.categoryAdapter,this);
-        if(movieCategory.hasErrorLoading()){
-            holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.VISIBLE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.VISIBLE);
-            ((TextView)holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt)).setText(mContext.getString(R.string.generic_loading_message));
-            holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setTag(position);//clicks
-            holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
+        if(mMainCategoryPosition == 7 && position ==0 ){
+            holder.getViewDataBinding().getRoot().setVisibility(View.GONE);
+            holder.getViewDataBinding().getRoot().setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    0));
+        }
+        else {
+            holder.getViewDataBinding().getRoot().setVisibility(View.VISIBLE);
+            holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.movieCategory, movieCategory);
+            holder.viewDataBinding.getRoot().findViewById(R.id.all_pane_btn).setTag(position);
+            boolean needsRedraw = true;
+            holder.getViewDataBinding().getRoot().findViewById(R.id.all_pane_btn).setTag(position);
+            holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.categoryAdapter, this);
+            if (movieCategory.hasErrorLoading()) {
+                holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.VISIBLE);
+                holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.VISIBLE);
+                ((TextView) holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt)).setText(mContext.getString(R.string.generic_loading_message));
+                holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.GONE);
+                holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setTag(position);//clicks
+                holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
+                holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
+                holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    v.setVisibility(View.GONE);
-                    timeOutPerRow[(Integer) v.getTag()] = timeOutPerRow[(Integer) v.getTag()] + 15;
-                    if(timeOutPerRow[(Integer) v.getTag()] >= maxTimeout) {
-                        timeOutPerRow[(Integer) v.getTag()] = maxTimeout;
+                    @Override
+                    public void onClick(View v) {
+                        v.setVisibility(View.GONE);
+                        timeOutPerRow[(Integer) v.getTag()] = timeOutPerRow[(Integer) v.getTag()] + 15;
+                        if (timeOutPerRow[(Integer) v.getTag()] >= maxTimeout) {
+                            timeOutPerRow[(Integer) v.getTag()] = maxTimeout;
+                        }
+                        mMoviesList.get((Integer) v.getTag()).setLoaded(false);
+                        mMoviesList.get((Integer) v.getTag()).setLoading(false);
+                        mMoviesList.get((Integer) v.getTag()).setErrorLoading(false);
+                        notifyItemChanged((Integer) v.getTag());
                     }
-                    mMoviesList.get((Integer) v.getTag()).setLoaded(false);
-                    mMoviesList.get((Integer) v.getTag()).setLoading(false);
-                    mMoviesList.get((Integer) v.getTag()).setErrorLoading(false);
-                    notifyItemChanged((Integer) v.getTag());
+                });
+            } else {
+                if (!movieCategory.isLoaded() && (movieList == null || movieList.size() == 0)) {
+                    if (!movieCategory.isLoading()) {
+                        needsRedraw = false;
+                        holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.VISIBLE);
+                        holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
+                        holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.GONE);
+                        holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
+                        holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.GONE);
+                        NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), movieCategory, this, timeOutPerRow[position]);
+                    }
                 }
-            });
-        }
-        else
-        {
-            if(!movieCategory.isLoaded()&& (movieList==null|| movieList.size()==0)){
-                if(!movieCategory.isLoading()){
-                     needsRedraw = false;
-                    holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.VISIBLE);
+
+                if (movieCategory.getCatName().contains("ecientes") && (movieList == null || movieList.size() == 0)) {
+                    holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
                     holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
-                    holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.GONE);
                     holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
+                    ((TextView) holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt)).setText("No Content");
+                    holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.VISIBLE);
+                    needsRedraw = false;
+                }
+                if (needsRedraw) {
+                    holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
+                    holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
+                    holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
+                    holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.VISIBLE);
                     holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.GONE);
-                    NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), movieCategory, this, timeOutPerRow[position]);
+
+                    TVRecyclerView rowsRecycler = holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view);
+                    GridLayoutManager rowslayoutmanger = new GridLayoutManager(mContext, 1);
+                    rowslayoutmanger.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+                    MoviesRecyclerAdapter moviesRecyclerAdapter = new MoviesRecyclerAdapter(mContext, rowsRecycler, movieList, position, mMovieSelectedListener);
+                    moviesRecyclerAdapter.setTreatAsBox(treatAsBox);
+                    rowsRecycler.setLayoutManager(rowslayoutmanger);
+                    rowsRecycler.setAdapter(moviesRecyclerAdapter);
+                    rowsRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+                        }
+                    });
+                    if (rowsRecycler.getItemDecorationCount() == 0) {
+                        rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(20, 16, 48, 16));
+                    }
                 }
             }
-
-        if(movieCategory.getCatName().contains("ecientes")&&(movieList==null||movieList.size()==0)){
-            holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.GONE);
-            ((TextView)holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt)).setText("No Content");
-            holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.VISIBLE);
-            needsRedraw=false;
+            holder.getViewDataBinding().executePendingBindings();
         }
-        if(needsRedraw) {
-            holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view).setVisibility(View.VISIBLE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.loadingBar).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.reload).setVisibility(View.GONE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.ic_more).setVisibility(View.VISIBLE);
-            holder.getViewDataBinding().getRoot().findViewById(R.id.error_txt).setVisibility(View.GONE);
-
-            TVRecyclerView rowsRecycler = holder.getViewDataBinding().getRoot().findViewById(R.id.recycler_view);
-            GridLayoutManager rowslayoutmanger = new GridLayoutManager(mContext, 1);
-            rowslayoutmanger.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-            MoviesRecyclerAdapter moviesRecyclerAdapter = new MoviesRecyclerAdapter(mContext, rowsRecycler,movieList, position, mMovieSelectedListener);
-            moviesRecyclerAdapter.setTreatAsBox(treatAsBox);
-            rowsRecycler.setLayoutManager(rowslayoutmanger);
-            rowsRecycler.setAdapter(moviesRecyclerAdapter);
-            rowsRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                }
-            });
-            if (rowsRecycler.getItemDecorationCount() == 0) {
-                rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(20,16,48,16));
-            }
-         }
-        }
-        holder.getViewDataBinding().executePendingBindings();
     }
     @Override
     protected void onDataBinding(MyViewHolder holder, int position) {
