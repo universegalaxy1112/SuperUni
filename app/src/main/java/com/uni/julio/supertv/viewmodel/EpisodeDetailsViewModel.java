@@ -6,12 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -207,6 +210,36 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
         addFavorite();
      }
+    public void play(View view){
+        if(!isSD.get()){
+            final MaterialDialog dialog=new MaterialDialog.Builder(mContext)
+                    .customView(R.layout.castasklayout,false)
+                    .contentLineSpacing(0)
+                    .theme(Theme.LIGHT)
+                    .backgroundColor(mContext.getResources().getColor(R.color.white))
+                    .show();
+            TextView hd= dialog.getCustomView().findViewById(R.id.playHD);
+            TextView sd= dialog.getCustomView().findViewById(R.id.playSD);
+            hd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    onPlay(0);
+                }
+            });
+            sd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    onPlay(1);
+                }
+            });
+        }else{
+            onPlay(0);
+        }
+
+    }
+
     private void addFavorite(){
         String serieType = "";
         if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
@@ -254,16 +287,9 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }
      return false;
     }
-    public void playSD(View view) {
-        onPlay(0);
-    }
-    public void playHD(View view){
-        onPlay(1);
-    }
     public void playTrailor(View view) {
         onPlay(2);
     }
-
 
     private void onPlay(int type) {
         if(!videoStreamManager.getSeenMovies().contains(String.valueOf(mMovie.getContentId()))) {
@@ -330,7 +356,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
          movieDetailsBinding.setMovieDetailItem(mMovie);
         movieDetailsBinding.setMovieDetailsVM(this);
         movieDetailsBinding.scrollview.fullScroll(ScrollView.FOCUS_UP);
-        movieDetailsBinding.playHD.requestFocus();
+        movieDetailsBinding.play.requestFocus();
         rowsRecycler.scrollToPosition(episodeposition);
 
     }
@@ -352,6 +378,5 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     public void onMovieSelected(int selectedRow, int selectedEpisode) {
         showEpisode(selectedEpisode);
     }
-
 
 }

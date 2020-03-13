@@ -1,15 +1,21 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uni.julio.supertv.R;
@@ -24,6 +30,7 @@ import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Dialogs;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -45,7 +52,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     public ObservableBoolean isHD;
     public ObservableBoolean isSD;
     public ObservableBoolean isTrailer;
-    ActivityOneseasonDetailBinding movieDetailsBinding;
+    private ActivityOneseasonDetailBinding movieDetailsBinding;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
@@ -127,11 +134,34 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         isFavorite.notifyChange();
         DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
     }
-    public void playSD(View view) {
-        onPlay(1);
-    }
-    public void playHD(View view){
-        onPlay(0);
+    public void play(View view){
+        if(!isSD.get()){
+            final MaterialDialog dialog=new MaterialDialog.Builder(mContext)
+                    .customView(R.layout.castasklayout,false)
+                    .contentLineSpacing(0)
+                    .theme(Theme.LIGHT)
+                    .backgroundColor(mContext.getResources().getColor(R.color.white))
+                    .show();
+            TextView hd= dialog.getCustomView().findViewById(R.id.playHD);
+            TextView sd= dialog.getCustomView().findViewById(R.id.playSD);
+            hd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    onPlay(0);
+                }
+            });
+            sd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    onPlay(1);
+                }
+            });
+        }else{
+            onPlay(0);
+        }
+
     }
     public void playTrailor(View view) {
         onPlay(2);
@@ -147,6 +177,12 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
             DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
         }
         viewCallback.onPlaySelected(mMovie, type);
+    }
+    public void like(View view){
+
+    }
+    public void dislike(View view){
+
     }
     private void addFavorite(Movie movie){
         String serieType = "";

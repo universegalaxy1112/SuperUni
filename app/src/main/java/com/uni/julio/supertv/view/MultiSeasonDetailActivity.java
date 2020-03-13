@@ -100,8 +100,22 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
          String title = serie.getTitle();
          long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
          String[] finalUris = uris;
-        playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
-
+        if(type == 2){
+            playTrailer(finalUris,extensions,subtitleUrl,title);
+        }else{
+            playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
+        }
+    }
+    private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
+        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("subsURL", subTitleUrl)
+                .putExtra("title", title)
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        startActivity(launchIntent);
+        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
  private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl, String title){
      Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);

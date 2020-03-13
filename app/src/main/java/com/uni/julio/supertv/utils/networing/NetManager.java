@@ -138,8 +138,6 @@ public class NetManager {
                     public void onNext(Boolean aBoolean) {
                     }
                 });
-
-
     }
 
     public void performLoginCode(String user,String code,String device_id, StringRequestListener stringRequestListener) {

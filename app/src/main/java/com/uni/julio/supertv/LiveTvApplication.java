@@ -1,8 +1,10 @@
 package com.uni.julio.supertv;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,15 +25,18 @@ import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.view.LoginActivity;
 import com.uni.julio.supertv.view.MainActivity;
 import com.uni.julio.supertv.view.OneSeasonDetailActivity;
+import com.uni.julio.supertv.view.SplashActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 import javax.net.ssl.HostnameVerifier;
@@ -41,32 +46,25 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+
 public class LiveTvApplication extends MultiDexApplication implements StringRequestListener, MessageCallbackListener {
     private static Context applicationContext;
-    private static LiveTvApplication mInstance;
     protected String userAgent;
     public Handler handler;
-    public User user;
-    String theUser = "";
-    protected String userName = "";
-    protected String password ="";
-    protected String id = "";
-    public AppCompatActivity appCompatActivity=null;
-    public static LiveTvApplication getInstance() {
-        if(mInstance == null) {
-            mInstance = new LiveTvApplication();
-        }
-        return mInstance;
-    }
-
+    public User user = null;
+    public static Context appContext=null;
     @Override
     public void onCreate() {
         super.onCreate();
         handler=new Handler();
         applicationContext = getApplicationContext();
-        if(mInstance == null) {
-            mInstance = new LiveTvApplication();
-        }
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                sendLocation();
+                handler.postDelayed(this, 600000);
+            }
+        }, 600000);
+
         handleSSLHandshake();
     }
     public  void handleSSLHandshake() {
@@ -97,26 +95,17 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
         } catch (Exception ignored) {
         }
     }
-    public void setCurrentActivity(AppCompatActivity activity){
-          appCompatActivity=activity;
-          sendLocation();
-    }
+
     public void sendLocation(){
-        if( appCompatActivity != null){
-            if(userName.equals("")){
-                theUser = DataManager.getInstance().getString("theUser","");
+        if( appContext != null && !(appContext instanceof SplashActivity)){
+            if(user == null){
+               String theUser = DataManager.getInstance().getString("theUser","");
                 if(!TextUtils.isEmpty(theUser)) {
                     user = new Gson().fromJson(theUser, User.class);
-                    userName = user.getName();
-                    password = user.getPassword();
-                    id = user.getDeviceId();
                 }
             }
-            NetManager.getInstance().performLoginCode(userName,password, id,this);
+                NetManager.getInstance().performLoginCode(user.getName(),user.getPassword(), user.getDeviceId(),this);
         }
-    }
-    public AppCompatActivity getActivity(){
-        return appCompatActivity;
     }
     public static Context getAppContext() {
         return applicationContext;
@@ -143,8 +132,8 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 
     @Override
     public void onCompleted(String response) {
-        try{
-            if(appCompatActivity !=null){
+       try{
+            if(appContext !=null){
                 if (!TextUtils.isEmpty(response)) {
 
                     try {
@@ -152,11 +141,12 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                         if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
                             return;
                         }else{
+                            Tracking.getInstance(appContext).onStop();
                             String errorFound = jsonObject.getString("error_found");
                             switch (errorFound) {
                                 case "103":
                                 case "104":
-                                    Dialogs.showOneButtonDialog(appCompatActivity, appCompatActivity.getString(R.string.attention), appCompatActivity.getString(R.string.login_error_change_device).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_change_device).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -165,7 +155,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 //
                                     break;
                                 case "105":
-                                    Dialogs.showOneButtonDialog(appCompatActivity, appCompatActivity.getString(R.string.attention), appCompatActivity.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -173,14 +163,14 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                     });
                                     break;
                                 case "107":
-                                    Dialogs.showCustomDialog(appCompatActivity,appCompatActivity.getString(R.string.attention),"Dear "+user.getName()+", Your Membership is expired! Please extend your membership.",this);
+                                    Dialogs.showCustomDialog(appContext,appContext.getString(R.string.attention),"Dear "+user.getName()+", Your Membership is expired! Please extend your membership.",this);
                                      break;
                                 case "108": {
                                     closeApp();
                                    break;
                                 }
                                 case "109": {
-                                    Dialogs.showOneButtonDialog(appCompatActivity, R.string.login_error_demo, new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, R.string.login_error_demo, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -189,7 +179,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                 }
                                 break;
                                 default:
-                                    Dialogs.showCustomDialog(appCompatActivity,appCompatActivity.getString(R.string.attention),"Dear "+user.getName()+", Your account is inactive due to some problems. Please contact the support.",this);
+                                    Dialogs.showCustomDialog(appContext,appContext.getString(R.string.attention),"Dear "+user.getName()+", Your account is inactive due to some problems. Please contact the support.",this);
                                     break;
                             }
                         }
@@ -205,16 +195,12 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
         }
     }
     public void closeApp(){
-        //Intent launchIntent = new Intent(appCompatActivity, LoginActivity.class);
-        /*appCompatActivity.startActivity(launchIntent);
-        appCompatActivity.finish();*/
+        ((Activity)appContext).finishAffinity();
         System.exit(0);
-       // appCompatActivity.overridePendingTransition(R.anim.right_in, R.anim.left_out);
-
     }
     public void showErrorMessage() {
-        if(appCompatActivity != null)
-            Dialogs.showOneButtonDialog(appCompatActivity, R.string.no_connection_title,  R.string.no_connection_message);
+        if(appContext != null)
+            Dialogs.showOneButtonDialog(appContext, R.string.no_connection_title,  R.string.no_connection_message);
     }
 
     @Override
@@ -224,7 +210,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 
     @Override
     public void onDismiss() {
-        closeApp();
+       closeApp();
     }
 
     @Override

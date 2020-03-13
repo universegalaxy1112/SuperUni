@@ -136,12 +136,8 @@ public class BindingAdapters {
 
     }
 
-    @BindingAdapter({"showSeenIcon"})
-    public static void bindShowSeenIcon(ImageView view, boolean seen) {
-/*
-        view.setImageResource(seen ? R.drawable.seen_icon : R.drawable.seen_icon_disabled);
-*/
-    }
+
+
 
     @BindingAdapter({"showFavoriteIcon"})
     public static void bindShowFavoriteIcon(ImageView view, boolean favorite) {

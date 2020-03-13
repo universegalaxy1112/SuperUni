@@ -243,13 +243,14 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
 
     }
 
-    class MyViewHolder extends TVRecyclerViewAdapter.ViewHolder{
+   public  class MyViewHolder extends TVRecyclerViewAdapter.ViewHolder{
         private ViewDataBinding viewDataBinding;
         public MyViewHolder(Context context,View itemView){
             super(context,itemView);
             viewDataBinding= DataBindingUtil.bind(itemView);
 
          }
+         public TVRecyclerView getRecycler(){return getViewDataBinding().getRoot().findViewById(R.id.moviecategoryrecycler);}
          public ViewDataBinding getViewDataBinding(){
             return viewDataBinding;
          }

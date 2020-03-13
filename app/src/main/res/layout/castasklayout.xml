@@ -2,42 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/dip_120"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:paddingTop="@dimen/dip_12"
+    android:padding="@dimen/dip_12"
     >
 
     <LinearLayout
-        android:id="@+id/playonphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/castoptionButton"
-        android:layout_marginEnd="@dimen/dip_12"
-        >
-        <net.steamcrafted.materialiconlib.MaterialIconView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:materialIcon="cellphone_wireless"
-        app:materialIconColor="@color/netflix_red"
-        app:materialIconSize="24dp"
-        android:scaleType="center"
-        android:id="@+id/icon"
-        />
+        android:layout_marginEnd="@dimen/dip_12">
+        <TextView
+            style="@style/castoptionButton"
+            android:id="@+id/playHD"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dip_8"
+            android:paddingRight="@dimen/dip_8"
+            android:text="HD"
+            android:textColor="@color/textview_selector"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/castoptionButton"
         android:layout_marginStart="@dimen/dip_12"
-        android:clickable="true"
         >
-        <androidx.mediarouter.app.MediaRouteButton
-            android:id="@+id/playOnCast"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:mediaRouteTypes="user"/>
+        <TextView
+            style="@style/castoptionButton"
+            android:id="@+id/playSD"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dip_8"
+            android:paddingRight="@dimen/dip_8"
+            android:text="SD"
+            android:textColor="@color/textview_selector"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
 </LinearLayout>

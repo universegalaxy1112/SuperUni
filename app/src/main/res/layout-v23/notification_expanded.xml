@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
+    android:padding="@dimen/dip_12"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:layout_marginStart="@dimen/dip_5"
-        android:layout_width="@dimen/dip_50"
-        android:layout_height="@dimen/dip_50">
+        android:layout_width="@dimen/dip_28"
+        android:layout_height="@dimen/dip_28">
         <ImageView
             android:id="@+id/profileImgViewer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             />
-        <ImageView
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_width="@dimen/dip_20"
-            android:layout_height="@dimen/dip_20"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center_vertical"
-            />
+
     </RelativeLayout>
     <LinearLayout
         android:layout_weight="1"
@@ -34,8 +27,8 @@
             android:id="@+id/titleViewer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor="#121329"
+            android:textSize="@dimen/sp_13"
             android:lines="1"
             />
         <TextView
@@ -47,7 +40,13 @@
             android:minLines="1"
             android:maxLines="2"
             />
-        <LinearLayout
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:scaleType="centerInside"/>
+        <!--<LinearLayout
             android:layout_marginTop="@dimen/dip_5"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -66,14 +65,14 @@
                 android:layout_weight="1"
                 />
             <TextView
-                android:id="@+id/btn_reply"
+                android:id="@+id/btn_open"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dip_30"
-                android:text="Reply"
+                android:text="OK"
                 android:gravity="center"
                 android:textColor="@color/dark_green"
                 />
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
     <ImageView
         android:id="@+id/postImgViewer"

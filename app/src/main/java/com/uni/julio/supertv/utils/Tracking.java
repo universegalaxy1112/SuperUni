@@ -1,5 +1,6 @@
 package com.uni.julio.supertv.utils;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.listeners.MessageCallbackListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.networing.NetManager;
@@ -17,7 +19,7 @@ import com.uni.julio.supertv.utils.networing.WebConfig;
 import org.json.JSONObject;
 
 public class Tracking implements StringRequestListener, OnClickListener {
-    private static AppCompatActivity mActivity = null;
+    private static Context mContext = null;
     private static Tracking mInstance = null;
     private String action = "IDLE";
     /* access modifiers changed from: private */
@@ -28,7 +30,7 @@ public class Tracking implements StringRequestListener, OnClickListener {
         public void run() {
             Tracking.this.track();
             if (Tracking.this.isTracking) {
-                Tracking.this.handler.postDelayed(this, 30000);
+                Tracking.this.handler.postDelayed(this, 36000);
                 return;
             }
             try {
@@ -40,20 +42,20 @@ public class Tracking implements StringRequestListener, OnClickListener {
     };
     private String usr = "";
 
-    public static Tracking getInstance(AppCompatActivity activity) {
+    public static Tracking getInstance(Context activity) {
         if (mInstance == null) {
             mInstance = new Tracking();
         }
-        mActivity = activity;
+        mContext = activity;
         return mInstance;
     }
 
     public void onStart() {
         String theUser = DataManager.getInstance().getString("theUser", "");
         if (!TextUtils.isEmpty(theUser)) {
-            this.usr = ((User) new Gson().fromJson(theUser, User.class)).getName();
-        }
+            this.usr = ( new Gson().fromJson(theUser, User.class)).getName();
         if (!this.isTracking) {
+        }
             this.isTracking = true;
             this.handler.post(this.trackingThread);
         }
@@ -66,7 +68,8 @@ public class Tracking implements StringRequestListener, OnClickListener {
     /* access modifiers changed from: private */
     public void track() {
         String ip =Device.ip;
-        String url = WebConfig.trackingURL.replace("{USER}", this.usr).replace("{MOVIE}", this.action).replace("{IP}",ip).replace("{DEVICE_ID}",Device.getIdentifier());
+        String istv = Device.treatAsBox ? "1":"0";
+        String url = WebConfig.trackingURL.replace("{USER}", this.usr).replace("{MOVIE}", this.action).replace("{IP}",ip).replace("{DEVICE_ID}",Device.getIdentifier()).replace("{ISTV}",istv);
         NetManager.getInstance().makeStringRequest(url, this);
     }
 
@@ -79,14 +82,29 @@ public class Tracking implements StringRequestListener, OnClickListener {
     }
 
     public void onCompleted(String response) {
-        Log.d("DNLS", "Tracking response: " + response);
         try {
-            JSONObject messageJson = new JSONObject(response);
-            if (!messageJson.isNull("message") && !TextUtils.isEmpty(messageJson.getString("message"))) {
-                Dialogs.showOneButtonDialog( mActivity, "Atención", messageJson.getString("message"),  this);
+            if(!response.contains("false") && Device.treatAsBox && !response.contains("Mantenimiento")) {
+                Dialogs.showCustomDialog(mContext, "Atencion", response, new MessageCallbackListener() {
+                    @Override
+                    public void onDismiss() {
+
+                    }
+
+                    @Override
+                    public void onAccept() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+
             }
         } catch (Exception e) {
         }
+
     }
 
     public void onClick(DialogInterface dialog, int which) {

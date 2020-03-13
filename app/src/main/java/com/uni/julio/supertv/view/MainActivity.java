@@ -3,6 +3,7 @@ package com.uni.julio.supertv.view;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,17 +28,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
-import com.uni.julio.supertv.adapter.CastAdapter;
-import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.listeners.MessageCallbackListener;
-import com.uni.julio.supertv.listeners.StringRequestListener;
+import com.uni.julio.supertv.listeners.NotificationListener;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.User;
+import com.uni.julio.supertv.service.NotificationReceiveService;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
@@ -54,7 +52,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class MainActivity extends BaseActivity implements MainCategoriesMenuViewModelContract.View, StringRequestListener, MessageCallbackListener {
+public class MainActivity extends BaseActivity implements MainCategoriesMenuViewModelContract.View, NotificationListener {
     private MainCategoriesMenuViewModel mainCategoriesMenuViewModel;
     private boolean requested=false;
     JSONArray videoArray = null;
@@ -79,17 +77,27 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
          this.requested=false;
         setContentView(R.layout.activity_main);
         getViewModel().onViewAttached(getLifecycleView());
+        NotificationReceiveService.setNotificationListener(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("SuperTV");
-        String theUser = DataManager.getInstance().getString("theUser","");
-        User user = new Gson().fromJson(theUser, User.class);
-        NetManager.getInstance().getMessages(user.getName(),this);
+        Tracking.getInstance(this).onStart();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showPopup();
+            }
+        },1000);
+        subscribeTopic("all");
         setSupportActionBar(toolbar);
         if(Device.treatAsBox){
             findViewById(R.id.Appbarlayout).setVisibility(View.GONE);
         }
         TVRecyclerView mainCategoryRecycler=findViewById(R.id.maincategory);
         mainCategoriesMenuViewModel.showMainCategories(mainCategoryRecycler);
+        /*Bundle extras = getIntent().getExtras();
+        int mainCategoryId = extras.getInt("mainCategoryId",-1);
+        if(mainCategoryId != -1)
+            startLoading(mainCategoryId);*/
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,15 +107,26 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onResume(){
          super.onResume();
-         LiveTvApplication.getInstance().setCurrentActivity(this);
          requested = false;
     }
     @Override
     public void onPause(){
         super.onPause();
-        AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
-        if(this.equals(appCompatActivity))
-            LiveTvApplication.getInstance().setCurrentActivity(null);
+
+    }
+    private void subscribeTopic(String topic){
+        FirebaseMessaging.getInstance().subscribeToTopic(topic)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.accept);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.cancel);
+                        }
+                        Log.d("tag", msg);
+                        //Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
     @Override
     public void onStop(){
@@ -116,10 +135,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onDestroy(){
         super.onDestroy();
-        AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
-        if(this.equals(appCompatActivity))
-            LiveTvApplication.getInstance().setCurrentActivity(null);
-        LiveTvApplication.getInstance().setCurrentActivity(null);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -158,11 +173,14 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             }
         }
         else {
-            Bundle extras = new Bundle();
-            extras.putSerializable("selectedType", ModelTypes.SelectedType.MAIN_CATEGORY);
-            extras.putInt("mainCategoryId", mainCategory.getId());
-            launchActivity(LoadingActivity.class, extras);
+           startLoading(mainCategory.getId());
         }
+    }
+    private void startLoading(int mainCategoryId){
+        Bundle extras = new Bundle();
+        extras.putSerializable("selectedType", ModelTypes.SelectedType.MAIN_CATEGORY);
+        extras.putInt("mainCategoryId", mainCategoryId);
+        launchActivity(LoadingActivity.class, extras);
     }
     private void openPasswordDialog(String pin) {
         new MaterialDialog.Builder(this)
@@ -210,48 +228,34 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         launchActivity(AccountActivity.class);
     }
 
-    @Override
-    public void onCompleted(String response) {
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            videoArray = jsonObject.getJSONArray("messages");
-            showPopup(index);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-    }
-    private void showPopup(final int index){
-        if(index == 0)
-        {
+    private void showPopup(){
             String theUser = DataManager.getInstance().getString("theUser","");
+            String device_num = DataManager.getInstance().getString("device_num","");
             User user = new Gson().fromJson(theUser, User.class);
-            Dialogs.showCustomDialog(this,R.string.attention,"Dear "+ user.getName()+", "+"Your membership expires on "+ user.getExpiration_date(),this);
-        }
-        if(index > videoArray.length()) return;
-        try{
-            if(!videoArray.getJSONObject(index - 1).getString("message").equals("") && !videoArray.getJSONObject(index - 1).getString("message").equals("null")) {
-                Dialogs.showCustomDialog(this,getString(R.string.attention),videoArray.getJSONObject(index-1).getString("message"),this);
+            subscribeTopic(user.getName());
+        final MaterialDialog dialog=new MaterialDialog.Builder(this)
+                .customView(R.layout.castloadingdialog,false)
+                .contentLineSpacing(0)
+                .theme(Theme.LIGHT)
+                .backgroundColor(getResources().getColor(R.color.white))
+                .show();
+        TextView titleView= dialog.getCustomView().findViewById(R.id.title);
+        TextView contentView= dialog.getCustomView().findViewById(R.id.content);
+        titleView.setText(R.string.attention);
+        contentView.setText("Dear " + user.getName() + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
+        TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
+        cancel.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
             }
-
-        }catch (JSONException e){
-
-        }
-
-    }
-    @Override
-    public void onError() {
-
+        }, 5000);
     }
 
     @Override
-    public void onDismiss() {
-        index++;
-        showPopup(index);
-    }
-
-    @Override
-    public void onAccept() {
-
+    public void notificationClicked(String action, int mainCategoryId) {
+        startLoading(mainCategoryId);
     }
 }

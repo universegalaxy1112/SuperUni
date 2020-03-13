@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/browse_fragment"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_general"
+    tools:context=".view.MoviesTvActivity"
+    tools:deviceIds="tv"
+    tools:ignore="MergeRootFrame">
+<fragment
+    android:id="@+id/main_browse_fragment"
+    android:name="com.uni.julio.supertv.view.MoviesMenuTVFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MoviesTvActivity"
+    tools:deviceIds="tv"
+    tools:ignore="MergeRootFrame" />
+</LinearLayout>
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/browse_fragment"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/bg_general"
     >
-</FrameLayout>
+</FrameLayout>-->

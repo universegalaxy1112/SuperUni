@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 
@@ -15,7 +14,7 @@ public class CastActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_play2);
+        setContentView(R.layout.activity_video_play);
         videoPlayFragment=new VideoPlayFragment();
 
         getSupportFragmentManager()

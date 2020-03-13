@@ -12,6 +12,6 @@ public interface AccountDetailsViewModelContract {
 
     //this will have methods that the activity/fragment will call from the ViewModel
     interface ViewModel extends Lifecycle.ViewModel {
-        void showAccountDetails(ActivityAccountBinding accountDetailsFragmentBinding);
+        void showAccountDetails();
     }
 }

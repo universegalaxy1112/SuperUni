@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -40,7 +41,10 @@ import androidx.leanback.widget.RowPresenter;
 import androidx.loader.app.LoaderManager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.exoplayer2.util.Util;
 import com.google.gson.Gson;
@@ -49,6 +53,7 @@ import com.uni.julio.supertv.adapter.CustomListRowPresenter;
 import com.uni.julio.supertv.adapter.MoviesPresenter;
 import com.uni.julio.supertv.adapter.SortedArrayObjectAdapter;
 import com.uni.julio.supertv.binding.BindingAdapters;
+import com.uni.julio.supertv.helper.PicassoBackgroundManagerTarget;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.listeners.LoadMoviesForCategoryResponseListener;
 import com.uni.julio.supertv.model.ListRowComparator;
@@ -89,6 +94,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     List<MovieCategory> mCategoriesList;
     private TextView title;
     private TextView release_date;
+    private ImageView image;
     private RatingBar ratingBar;
     private TextView length;
     private TextView description;
@@ -151,13 +157,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 launchActivity(MoreVideoActivity.class, extras);
             }
         });
-        View view=getActivity().findViewById(R.id.browse_fragment).findViewById(R.id.scale_frame);
-        title=view.findViewById(R.id.title);
-        release_date=view.findViewById(R.id.release_date);
-        ratingBar= view.findViewById(R.id.ratingBar);
-        length=view.findViewById(R.id.length);
-        description=view.findViewById(R.id.description_detail);
-        hd= view.findViewById(R.id.hd);
+
     }
 
 
@@ -176,6 +176,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
 
         setOnItemViewClickedListener(new ItemViewClickedListener());
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
+
 
     }
     private void prepareBackgroundManager() {
@@ -320,7 +321,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         @Override
         public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item,
                                    RowPresenter.ViewHolder rowViewHolder, Row row) {
-
             if (item instanceof Movie) {
                 try {
                     if (!(((Movie) item).getPosition() == -1 || ((Movie) item).getHDFondoUrl() == null)) {
@@ -332,6 +332,16 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                             BindingAdapters.setDuration(length,((Movie)item).getLength());
                             BindingAdapters.bindInvisibleVisibility(hd,!((Movie)item).isHDBranded());
                             BindingAdapters.setRating(ratingBar,(((Movie)item).getStarRating()));
+                        }else{
+                            View view=getActivity().findViewById(R.id.scale_frame);
+                            title=view.findViewById(R.id.title);
+                            release_date=view.findViewById(R.id.release_date);
+                            ratingBar= view.findViewById(R.id.ratingBar);
+                            length=view.findViewById(R.id.length);
+                            image = view.findViewById(R.id.testPicasso);
+                            description=view.findViewById(R.id.description_detail);
+                            hd= view.findViewById(R.id.hd);
+
                         }
 
                         MoviesMenuTVFragment.this.mBackgroundURI = new URI(((Movie) item).getHDFondoUrl());
@@ -368,16 +378,13 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         }
     }
     public void updateBackground(String uri) {
-
-        Glide.with(this)
+        Glide.with(getActivity())
                 .load(uri)
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                         mBackgroundManager.setDrawable(resource);
                     }
-
-
                 });
     }
     public void clearBackground() {

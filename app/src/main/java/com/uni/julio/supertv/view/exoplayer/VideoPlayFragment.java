@@ -68,7 +68,6 @@ import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaLoadRequestData;
-import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.SessionManagerListener;
@@ -155,6 +154,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         }
         Intent intent = getActivity().getIntent();
         title = intent.getStringExtra("title");
+        if(title == null ) title= "IDLE";
 
         if(!Device.treatAsBox){
             try {
@@ -268,12 +268,12 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         View rootPlayerView= inflater.inflate(R.layout.activity_video_play, container, false);
+         View rootPlayerView= inflater.inflate(R.layout.videofragment_normal, container, false);
         debugRootView =  rootPlayerView.findViewById(R.id.controls_root);
         debugTextView =  rootPlayerView.findViewById(R.id.debug_text_view);
         retryButton =  rootPlayerView.findViewById(R.id.retry_button);
-        mediaRouteButton = rootPlayerView.findViewById(R.id.media_route_button);
-        CastButtonFactory.setUpMediaRouteButton(LiveTvApplication.getAppContext(),mediaRouteButton);
+       // mediaRouteButton = rootPlayerView.findViewById(R.id.media_route_button);
+       // CastButtonFactory.setUpMediaRouteButton(LiveTvApplication.getAppContext(),mediaRouteButton);
 
         retryButton.setOnClickListener(this);
         retryButton.setBackgroundResource(R.drawable.primary_button_selector);
@@ -363,6 +363,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public void onNewIntent(Intent intent) {
         releasePlayer();
         isTimelineStatic = false;
+        this.title=intent.getStringExtra("title");
+        Tracking.getInstance((AppCompatActivity) getActivity()).setAction(this.title);
         getActivity().setIntent(intent);
     }
 
@@ -459,7 +461,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         //SuperTV add progressbar here
         movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
         playerPosition = C.TIME_UNSET;
-        playerPosition = intent.getLongExtra(SECONDS_TO_START_EXTRA, 0);
+        playerPosition =(Long) intent.getLongExtra(SECONDS_TO_START_EXTRA, 0);
         mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
         if(intent.getIntExtra("mainCategoryId", -1) == 4) {//eventso
             hideControls = true;
@@ -514,7 +516,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             player.setId3Output(eventLogger);
 
             simpleExoPlayerView.setPlayer(player);
-            if(intent.getIntExtra("mainCategoryId", -1) != 4&& intent.getIntExtra("type",1)!=2 && playerPosition!=0) {//eventso
+            if(intent.getIntExtra("mainCategoryId", -1) != 4 && intent.getIntExtra("type",1)!=2 && playerPosition!=0) {//eventso
                 Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
                     @TargetApi(Build.VERSION_CODES.M)
                     @Override
@@ -531,7 +533,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
                     }
                 });
-
             }
             player.setPlayWhenReady(shouldAutoPlay);
             debugViewHelper = new DebugTextViewHelper(player, debugTextView);
@@ -685,12 +686,14 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                     }
                     button.setText(label);
                     button.setTag(i);
+                    button.setFocusable(true);
                     button.setPadding(2,2,2,2);
                     button.setOnClickListener(this);
                     debugRootView.addView(button, debugRootView.getChildCount() - 1);
                 }
             }
         }
+
     }
     private HttpDataSource.Factory buildHttpDataSourceFactory(boolean useBandwidthMeter) {
         return ((LiveTvApplication) getActivity().getApplication())

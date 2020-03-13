@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.Gson;
@@ -11,21 +14,22 @@ import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
 import com.uni.julio.supertv.helper.VideoStreamManager;
+import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.model.CastDevice;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragmentForTrailer;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModelContract;
 
 
-public class OneSeasonDetailActivity extends BaseActivity implements MovieDetailsViewModelContract.View  {
+public class OneSeasonDetailActivity extends BaseActivity implements MovieDetailsViewModelContract.View, LiveTVToggleUIListener {
     MovieDetailsViewModel movieDetailsViewModel;
     ActivityOneseasonDetailBinding activityOneseaosnDetailBinding;
     Movie movie;
-
-
+    private VideoPlayFragmentForTrailer videoPlayFragment;
     @Override
     protected Lifecycle.ViewModel getViewModel() {
         return movieDetailsViewModel;
@@ -47,7 +51,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
             finish();
             return;
         }
-        movieDetailsViewModel = new MovieDetailsViewModel(getBaseContext(), mainCategoryId);
+        movieDetailsViewModel = new MovieDetailsViewModel(this, mainCategoryId);
         activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
         activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
         showMovieDetails(movie,mainCategoryId,movieCategoryId);
@@ -55,14 +59,23 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
     @Override
     public void onResume() {
         super.onResume();
-
     }
     @Override
     public void onPause() {
 
         super.onPause();
     }
-
+    private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
+        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("subsURL", subTitleUrl)
+                .putExtra("title", title)
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        startActivity(launchIntent);
+        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -107,7 +120,11 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
          String subtitleUrl= movie.getSubtitleUrl();
          String title= movie.getTitle();
          String[] finalUris = uris;
-        playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
+         if(type == 2){
+             playTrailer(finalUris,extensions,subtitleUrl,title);
+         }else{
+             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
+         }
     }
 
 
@@ -147,4 +164,8 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
+    @Override
+    public void onToggleUI(boolean show) {
+
+    }
 }

@@ -58,27 +58,12 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        subscribeTopic();
-
         Device.setHDMIStatus();
         HttpRequest.getInstance().trustAllHosts();//trust all HTTPS hosts
-        Device.getInstance().getIP();
         splashViewModel = new SplashViewModel(this);
+        Device.getInstance().getIP();
     }
-    private void subscribeTopic(){
-        FirebaseMessaging.getInstance().subscribeToTopic("weather")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = getString(R.string.accept);
-                        if (!task.isSuccessful()) {
-                            msg = getString(R.string.cancel);
-                        }
-                        Log.d("tag", msg);
-                        //Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -278,20 +263,22 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     public void onLoginCompleted(boolean success) {
         if(success){
             launchActivity(MainActivity.class);
-         }
+            finishActivity();
+        }
         else{
             if(Connectivity.isConnected()){
                 launchActivity(LoginActivity.class);
+                finishActivity();
             }
             else{
                 noInternetConnection(new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        finishActivity();
                     }
                 });
             }
          }
-        finishActivity();
     }
 
 }

@@ -90,6 +90,8 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
                         user.setVersion(Device.getVersion());
                         user.setDeviceId(Device.getIdentifier());
                         DataManager.getInstance().saveData("theUser",new Gson().toJson(user));
+                        DataManager.getInstance().saveData("device_num",jsonObject.getString("device_num"));
+
                         viewCallback.onLoginCompleted(true);
                         return;
                     }

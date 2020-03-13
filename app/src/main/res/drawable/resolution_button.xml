@@ -4,6 +4,6 @@
     <item android:state_pressed="true"
         android:drawable="@color/netflix_red"/>
     <item android:state_focused="true"
-        android:drawable="@color/netflix_red"/>
-    <item android:drawable="@color/bgButton"/>
+        android:drawable="@drawable/resolution_button_active"/>
+    <item android:drawable="@drawable/resolution_normal"/>
 </selector>

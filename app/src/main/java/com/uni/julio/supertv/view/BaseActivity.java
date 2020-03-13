@@ -2,6 +2,7 @@ package com.uni.julio.supertv.view;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.library.CustomProgressDialog;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 
@@ -30,26 +32,34 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LiveTvApplication.appContext = this;
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        return false;
-    }
+
     @Override
     public void onResume() {
         super.onResume();
-        getViewModel().onViewResumed();
+        Tracking.getInstance(this).onStart();
+        if(getViewModel() != null)
+            getViewModel().onViewResumed();
+        LiveTvApplication.appContext = this;
+
     }
     @Override
     public void onPause(){
         super.onPause();
+        Tracking.getInstance(this).setAction("IDLE");
+        Tracking.getInstance(this).track();
+        Tracking.getInstance(this).onStop();
+        Context appCompatActivity=LiveTvApplication.appContext;
+        if(this.equals(appCompatActivity))
+            LiveTvApplication.appContext = null;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        if(getViewModel() != null)
         getViewModel().onViewAttached(getLifecycleView());
     }
 

@@ -78,12 +78,11 @@ boolean denyAll = false;
                                 DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
                             }
                             DataManager.getInstance().saveData("theUser", new Gson().toJson(user));
-                            Dialogs.showCustomDialog(this,R.string.attention,"Estimado "+user.getName()+", "+jsonObject.getString("device_num")+ " devices are being used.",this);
-
+                            DataManager.getInstance().saveData("device_num", jsonObject.getString("device_num"));
+                            startMain();
                             return;
                          }
                     } else {
-
                         DataManager.getInstance().saveData("theUser", "");
                         String errorFound = jsonObject.getString("error_found");
                         switch (errorFound) {

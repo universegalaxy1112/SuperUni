@@ -68,11 +68,11 @@ public class MultiSeasonAdapter extends TVRecyclerViewAdapter<MultiSeasonAdapter
 
         if(orientation == Configuration.ORIENTATION_PORTRAIT){
             int width=(screenWidth-32-px);
-            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (int) (1*width/3));
+            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (int) (0.9*width/3));
             itemView.setLayoutParams(params);
         }else{
             int width=(3*screenWidth/8-32-px);
-            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (int) (1*width/3));
+            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (int) (width/3));
             itemView.setLayoutParams(params);
         }
 

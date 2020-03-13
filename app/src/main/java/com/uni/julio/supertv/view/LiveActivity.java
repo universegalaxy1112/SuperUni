@@ -85,6 +85,7 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
         launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
                 .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra("title",liveProgram.getTitle())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
          videoPlayFragment = (VideoPlayFragment)getSupportFragmentManager().findFragmentById(R.id.exo_player);
         videoPlayFragment.onNewIntent(launchIntent);

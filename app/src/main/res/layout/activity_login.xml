@@ -5,17 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.LoginActivity">
+  <!--  <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <hakobastvatsatryan.DropdownTextView
+            android:id="@+id/first_dropdown_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title_text="aaa0"
+            app:title_text_color="#FFFF00"
+            app:title_text_color_expanded="#FFFF00"
+            app:title_text_size="12sp"
+            app:content_padding="@dimen/dip_6"
+            app:content_text="aaa1"
+            app:content_text_color="#FF0000"
+            app:content_text_size="@dimen/sp_12"
+            app:link_text_color="#FF0000"
+            app:underline_link="true"
+            app:arrow_drawable="@drawable/ic_favorite_like"
+            comment="icon should be faced to the right"
+            app:bg_drawable_regular="@drawable/button_positive_background"
+            app:bg_drawable_expanded="@drawable/button_negative_background_ripple"
+            app:expand_duration="100"
+            app:panel_padding="@dimen/dip_6"/>
 
+    </LinearLayout>-->
     <LinearLayout
         android:id="@+id/test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dip_30"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="504dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +53,7 @@
         <EditText
             android:id="@+id/edit_username"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dip_56"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/netflix_red"
             android:nextFocusDown="@id/edit_password"
             android:textColorHint="@color/netflix_red"
@@ -52,7 +74,7 @@
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dip_56"
+            android:layout_height="wrap_content"
             android:imeActionId="@+id/login"
             android:nextFocusDown="@id/cv_loginScreen_login"
             android:backgroundTint="@color/netflix_red"
@@ -63,58 +85,28 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dip_42"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dip_16"
-            app:cardCornerRadius="@dimen/dip_5"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="@dimen/dip_12"
             app:cardUseCompatPadding="true"
-            app:cardElevation="@dimen/dip_2"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                >
                 <TextView
                     android:id="@+id/cv_loginScreen_login"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/login_screen_login"
-                    android:background="@drawable/login_background"
+                    android:layout_height="wrap_content"
                     android:focusable="true"
-                    android:textColor="@color/white"
-                    android:layout_centerInParent="true"
-                    android:textStyle="bold"
+                    style="@style/play_text"
+                    android:text="@string/login_screen_login"
                     />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-      <!--  <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dip_30"
-            android:layout_marginTop="@dimen/dip_20"
-            android:layout_marginBottom="@dimen/dip_24"
-            android:orientation="horizontal">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                />
-                <TextView
-                    android:id="@+id/s"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/login_screen_login"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_16"
-                    android:focusable="true"
-                    android:background="@drawable/login_background"
-                    android:textStyle="bold" />
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:background="@color/transparent" />
-        </LinearLayout>-->
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
 

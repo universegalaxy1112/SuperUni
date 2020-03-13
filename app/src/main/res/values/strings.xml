@@ -145,5 +145,6 @@
     <string name="app_id">4F8B3483</string>
     <string name="channel_Name">channel1</string>
     <string name="channel_description">testChannel</string>
-
+    <string name="title_story">Description</string>
+    <string name="transition_image">transition-image</string>
 </resources>

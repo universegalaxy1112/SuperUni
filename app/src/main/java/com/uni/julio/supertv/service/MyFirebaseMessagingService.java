@@ -1,33 +1,30 @@
 package com.uni.julio.supertv.service;
-
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Switch;
-
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.squareup.picasso.Picasso;
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.IntentUtil;
 import com.uni.julio.supertv.utils.ObjectUtils;
-import com.uni.julio.supertv.view.MainActivity;
-import com.uni.julio.supertv.view.MoviesActivity;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Map;
+import java.util.Random;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -39,56 +36,108 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         String from = remoteMessage.getFrom();
+        if(Device.treatAsBox) return;
         if(!ObjectUtils.isEmpty(from)){
             Map<String, String> dataMap= remoteMessage.getData();
                 if (dataMap.size() > 0) {
                     try {
-                        Log.d("asdf",dataMap.get("data"));
-                        JSONArray jsonArray = new JSONArray(dataMap.get("data"));
-                        String title = remoteMessage.getNotification().getTitle();
-                        String body = remoteMessage.getNotification().getBody();
-
-                        String content= "\r\n";
-                        for(int i=0; i<jsonArray.length();i++){
-                            int category = jsonArray.getJSONArray(i).getInt(16);
-                            String section = buildSecction(category);
-                            content += jsonArray.getJSONArray(i).getString(2)+" In"+section+" Section\r\n";
-                        }
-                        content += "Tap to check\r\n";
+                        String type = dataMap.get("type");
+                        //String title = remoteMessage.getNotification().getTitle();
+                        //String body = remoteMessage.getNotification().getBody();
+                        String titleNotification = "";
+                        String contentForTV = "";
                         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-                        createNotificationChannel();
-                        final int notificationID = notKey++;
-                        final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"channel_id");
+                        if(type.equals("new_contents")){
+                                JSONObject content = new JSONObject((dataMap.get("data")));
+                                JSONArray main = content.getJSONArray("main");
+                                JSONArray cap = content.getJSONArray("capital");
+                                for(int i = 0; i<main.length();i++){
+                                    titleNotification = "New content";
+                                    String contentNotification = main.getJSONArray(i).getString(2) + " In " + buildSecction(main.getJSONArray(i).getInt(16));
+                                    contentForTV += contentNotification + "\r\n";
+                                    String poster = "";
+                                    if(main.getJSONArray(i).getString(7).contains("https")){
+                                        poster = main.getJSONArray(i).getString(7);
+                                    }else{
+                                        poster = "https://supertvplus.com/eventos_posters/"+main.getJSONArray(i).getString(7);
+                                    }
+                                    showNotification(titleNotification, contentNotification,poster,type,main.getJSONArray(i).getInt(16));
+                                }
+                                for(int i =0 ; i< cap.length();i++){
+                                     titleNotification = "New content";
+                                    String contentNotification ="Episode "+ cap.getJSONArray(i).getString(2) + " In Season " + (cap.getJSONArray(i).getInt(4));
+                                    contentForTV += contentNotification + "\r\n";
+                                    String poster = "";
+                                    if(cap.getJSONArray(i).getString(7).contains("https")){
+                                        poster = cap.getJSONArray(i).getString(7);
+                                    }else{
+                                        poster = "https://supertvplus.com/eventos_posters/"+cap.getJSONArray(i).getString(7);
+                                    }
+                                        showNotification(titleNotification, contentNotification,poster,type,2);
+                                }
+                            }else{
+                                 titleNotification = "Message from the dealer";
+                                String  contentNotification =(dataMap.get("data"));
+                                contentForTV = contentNotification;
+                                showNotification(titleNotification, contentNotification,"https://",type,-1);
+                            }
 
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-                        mBuilder.setSmallIcon(R.drawable.ic_launcher)
-                                .setContentTitle("Following Contents Are newly added.")
-                                .setContentText(content)
-                                .setStyle(new NotificationCompat.BigTextStyle().bigText(content)).setContentText("Please check!")
-                                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
-                                .setAutoCancel(true)
-                                .setColor(0x00000000)
-                                .setContentIntent(pendingIntent)
-                                .setAutoCancel(true);
-                        mBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
-                        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-                        mNotificationManager.notify(notificationID, mBuilder.build());
-
-                    } catch (JSONException e) {
+                    } catch (JSONException | NullPointerException e) {
+                        JSONObject content = new JSONObject();
                         e.printStackTrace();
-                        return;
                     }
                 }
-
-
-            if (remoteMessage.getNotification() != null) {
-                Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            }
         }
+    }
+    private void showNotification(String title,String tickerText,final String posterImage,String type, int mainCategoryId){
+        final int notificationID = new Random().nextInt(60000);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            setupChannels();
+        }
+         RemoteViews customSmallView = new RemoteViews(getPackageName(), R.layout.notification_collapsed);
+        int profileImg =  R.drawable.ic_launcher;
+        customSmallView.setImageViewResource(R.id.profileImgViewer, profileImg);
+        customSmallView.setTextViewText(R.id.titleViewer, title);
+        customSmallView.setTextViewText(R.id.contentViewer,  tickerText );
+       final RemoteViews customLargeView = new RemoteViews(getPackageName(), R.layout.notification_expanded);
+        customLargeView.setImageViewResource(R.id.profileImgViewer, profileImg);
+        customLargeView.setTextViewText(R.id.titleViewer, title);
+        customLargeView.setTextViewText(R.id.contentViewer,   tickerText);
+        ComponentName notificationService = new ComponentName(this, NotificationReceiveService.class);
+        Intent cancelIntent = new Intent(NotificationReceiveService.NOTIFICATION_CANCEL);
+        cancelIntent.putExtra(IntentUtil.TAG_NOTIFICATION_ID, notificationID);
+        cancelIntent.setComponent(notificationService);
+        customLargeView.setOnClickPendingIntent(R.id.poster, PendingIntent.getService(this, 0, cancelIntent, 0));
+       final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"channel1");
+        mBuilder.setSmallIcon(R.drawable.ic_launcher).setContentTitle(getString(R.string.app_name));
+        mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+        mBuilder.setSubText("New Content");
+        mBuilder.setTicker(tickerText);
+        mBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+        mBuilder.setAutoCancel(true);
+        mBuilder.setColor(0x00000000);
+        Intent replyIntent = new Intent(NotificationReceiveService.NOTIFICATION_OPEN);
+        replyIntent.putExtra(IntentUtil.TAG_NOTIFICATION_ID, notificationID);
+        replyIntent.setComponent(notificationService);
+        replyIntent.putExtra("type",type);
+        replyIntent.putExtra("mainCategoryId",mainCategoryId-1);
+        customLargeView.setOnClickPendingIntent(R.id.poster, PendingIntent.getService(this, 0, replyIntent, 0));
+        PendingIntent contentIntent = PendingIntent.getService(this, 0, replyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(contentIntent);
+        mBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
+        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+        mBuilder.setCustomContentView(customSmallView);
+        mBuilder.setCustomBigContentView(customLargeView);
+        mNotificationManager.notify(notificationID, mBuilder.build());
+        new Handler(getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Picasso.get()
+                        .load(posterImage)
+                        .into(customLargeView, R.id.poster, notificationID, mBuilder.build());
 
+            }
+        });
     }
     private String buildSecction(int category){
         switch (category){
@@ -101,25 +150,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             case 4:
                 return "Eventos";
             case 5:
-                return "KaraOK";
+                return "Adultos";
+            case 6:
+                return "Live TV";
+            case 7:
+                return "Capitulo";
+            case 8:
+                return "Karaoke";
                 default:
                     return "Unknown";
         }
     }
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_Name);
-            String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("channel_id", name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            mNotificationManager.createNotificationChannel(channel);
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        private void setupChannels(){
+            CharSequence adminChannelName = getString(R.string.channel_Name);
+            String adminChannelDescription = getString(R.string.channel_description);
+            NotificationChannel adminChannel;
+            adminChannel = new NotificationChannel("channel1", adminChannelName, NotificationManager.IMPORTANCE_HIGH);
+            adminChannel.setDescription(adminChannelDescription);
+            adminChannel.enableLights(true);
+            adminChannel.setLightColor(Color.RED);
+            adminChannel.enableVibration(true);
+            adminChannel.setLockscreenVisibility(NotificationCompat.VISIBILITY_SECRET);
+            if (mNotificationManager != null) {
+                mNotificationManager.createNotificationChannel(adminChannel);
+            }
         }
-    }
+
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);

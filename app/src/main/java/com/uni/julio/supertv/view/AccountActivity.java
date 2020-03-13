@@ -28,9 +28,6 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     protected Lifecycle.ViewModel getViewModel() {
         return accountDetailsViewModel;
     }
-
-
-
     @Override
     protected Lifecycle.View getLifecycleView() {
         return this;
@@ -41,7 +38,7 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
         super.onCreate(savedInstanceState);
 
         activityAccountBinding= DataBindingUtil.setContentView(this, R.layout.activity_account);
-        accountDetailsViewModel = new AccountDetailsViewModel(getActivity());
+        accountDetailsViewModel = new AccountDetailsViewModel(getActivity(),activityAccountBinding);
         activityAccountBinding.setAccountDetailsVM(accountDetailsViewModel);
         Toolbar toolbar = activityAccountBinding.toolbar;
         toolbar.setTitle("Mi Cuenta");
@@ -51,9 +48,8 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
         if(Device.treatAsBox){
              (activityAccountBinding.Appbarlayout).setVisibility(View.GONE);
         }
-        accountDetailsViewModel.showAccountDetails(activityAccountBinding);
+        accountDetailsViewModel.showAccountDetails();
     }
-
     @Override
     public void onCloseSessionSelected() {
         DataManager.getInstance().saveData("theUser","");

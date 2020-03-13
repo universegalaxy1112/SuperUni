@@ -19,7 +19,7 @@
     <color name="more_btn_bg">#F3181818</color>
     <color name="detail_transparent">#58030303</color>
     <color name="card_bg">#F2161616</color>
-    <color name="detail_background">#F5141414</color>
+    <color name="detail_background">#E6141414</color>
     <color name="browse_background">#C8141414</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
@@ -65,7 +65,7 @@
     <color name="cardview_light_background">#ffffffff</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
-    <color name="bgButton">#F0303030</color>
+    <color name="bgButton">#F0888888</color>
     <color name="chromecast_blue">#33b5e5</color>
     <color name="common_action_bar_splitter">#d2d2d2</color>
     <color name="common_signin_btn_dark_text_default">@android:color/white</color>
@@ -253,13 +253,14 @@
     <color name="tooltip_background_color">#fff</color>
     <color name="tooltip_scrim_color">#b2000000</color>
     <color name="translucent_black">#80000000</color>
-    <color name="translucent_black_10">#1a000000</color>
+    <color name="translucent_black_10">#0D4B4B4B</color>
     <color name="translucent_black_24">#3c000000</color>
     <color name="translucent_black_25">#40000000</color>
     <color name="translucent_black_30">#4d000000</color>
     <color name="translucent_black_50">#7f000000</color>
     <color name="translucent_black_70">#b3000000</color>
     <color name="translucent_black_85">#d6000000</color>
+    <color name="translucent_white_10">#2B706E6E</color>
     <color name="translucent_white_18">#2fffffff</color>
     <color name="translucent_white_30">#4dffffff</color>
     <color name="translucent_white_70">#b3ffffff</color>
@@ -286,6 +287,6 @@
     <color name="wp_blue">#287fdf</color>
     <color name="wp_green">#3fc97b</color>
     <color name="wp_red">#E52623</color>
-    <color name="focused_button">#9C3636</color>
+    <color name="focused_button">#FB4646</color>
     <color name="wp_yellow">#ecd74d</color>
 </resources>

@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.gson.Gson;
@@ -140,8 +142,14 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
         extras.putInt("mainCategoryId", mainCategoryId);
         extras.putInt("movieCategoryId", selectedRow);
         Intent launchIntent = getLaunchIntent(OneSeasonDetailActivity.class, extras);
-        startActivity(launchIntent);
-        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+       // startActivity(launchIntent);
+       // getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this, activityMoviesBinding.moviecategoryrecycler, getResources().getString(R.string.transition_image));
+        ActivityCompat.startActivity(this, launchIntent,
+                options.toBundle());
     }
     @Override
     public void onShowAsGridSelected(Integer position) {
@@ -152,8 +160,8 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
             extras.putInt("movieCategoryId", position);
         }
         launchActivity(MoreVideoActivity.class, extras);
-
     }
+
     @Override
     public void onSerieAccepted(int selectedRow, Serie serie) {
         Bundle extras = new Bundle();

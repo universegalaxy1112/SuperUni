@@ -4,22 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
-import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
+import com.uni.julio.supertv.viewmodel.Lifecycle;
 
-public class VideoPlayActivity extends AppCompatActivity {
+public class VideoPlayActivity extends BaseActivity {
     VideoPlayFragment videoPlayFragment;
+
+    @Override
+    protected Lifecycle.ViewModel getViewModel() {
+        return null;
+    }
+
+    @Override
+    protected Lifecycle.View getLifecycleView() {
+        return null;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_play2);
+        setContentView(R.layout.activity_video_play);
         videoPlayFragment=new VideoPlayFragment();
-        Tracking.getInstance(this).onStart();
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.video_container,videoPlayFragment).commit();
@@ -32,8 +38,6 @@ public class VideoPlayActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        LiveTvApplication.getInstance().setCurrentActivity(this);
-
     }
     @Override
     public void onDestroy(){
@@ -42,11 +46,6 @@ public class VideoPlayActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
-        Tracking.getInstance(this).track();
-        Tracking.getInstance(this).onStop();
-        AppCompatActivity appCompatActivity=LiveTvApplication.getInstance().getActivity();
-        if(this.equals(appCompatActivity))
-            LiveTvApplication.getInstance().setCurrentActivity(null);
     }
     @Override
     public void onNewIntent(Intent intent) {
@@ -63,23 +62,30 @@ public class VideoPlayActivity extends AppCompatActivity {
 
         if(keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
             videoPlayFragment.dispatchKeyEvent();
+            return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_RIGHT){
             videoPlayFragment.dispatchKeyEvent();
+            return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_CENTER){
             videoPlayFragment.dispatchKeyEvent();
+            return false;
         }
         if(keyCode==KeyEvent.KEYCODE_MEDIA_FAST_FORWARD||keyCode==KeyEvent.KEYCODE_FORWARD||keyCode==272||keyCode==274||keyCode==KeyEvent.KEYCODE_BUTTON_R1||keyCode==KeyEvent.KEYCODE_BUTTON_R2||keyCode==KeyEvent.KEYCODE_RIGHT_BRACKET ){
             videoPlayFragment.doForwardVideo();
+            return true;
         }
         if(keyCode==KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE){
             videoPlayFragment.playPause();
+            return true;
         }
         if(keyCode==KeyEvent.KEYCODE_MEDIA_REWIND){
             videoPlayFragment.doRewindVideo();
+            return true;
         }
-        videoPlayFragment.controlVolumn(event);
-        return true;
+        /*videoPlayFragment.controlVolumn(event);
+        super.dispatchKeyEvent(event);*/
+        return false;
     }
 }
