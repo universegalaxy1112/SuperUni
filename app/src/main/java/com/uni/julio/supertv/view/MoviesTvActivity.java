@@ -9,22 +9,27 @@ import android.view.KeyEvent;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.utils.Tracking;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragmentForTrailer;
 
 
 public class MoviesTvActivity extends Activity {
     MoviesMenuTVFragment fragment;
+    VideoPlayFragmentForTrailer videoPlayFragmentForTrailer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_tv);
         LiveTvApplication.appContext = this;
 
-        /*fragment=new MoviesMenuTVFragment();
+        fragment=new MoviesMenuTVFragment();
+        videoPlayFragmentForTrailer=new VideoPlayFragmentForTrailer();
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.browse_fragment,fragment).commit();*/
+                .add(R.id.main_browse_fragment,fragment).commit();
+        /*getFragmentManager().beginTransaction().add(R.id.video_container,videoPlayFragmentForTrailer).commit();*/
     }
     @Override
+
     public void onResume(){
         super.onResume();
         Tracking.getInstance(this).onStart();

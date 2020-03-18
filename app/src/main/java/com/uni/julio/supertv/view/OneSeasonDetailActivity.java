@@ -2,6 +2,7 @@ package com.uni.julio.supertv.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
@@ -55,6 +56,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
         activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
         showMovieDetails(movie,mainCategoryId,movieCategoryId);
+
     }
     @Override
     public void onResume() {
@@ -120,13 +122,12 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
          String subtitleUrl= movie.getSubtitleUrl();
          String title= movie.getTitle();
          String[] finalUris = uris;
-         if(type == 2){
-             playTrailer(finalUris,extensions,subtitleUrl,title);
-         }else{
-             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
-         }
-    }
+         if(false)
+             playTrailer(finalUris,extensions, subtitleUrl,title);
+         else
+            playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
 
+    }
 
     private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl,String title){
         Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);

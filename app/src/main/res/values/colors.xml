@@ -9,6 +9,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bgBottomNavigation">#48F5FE</color>
     <color name="bg_general">#161616</color>
+    <color name="preview_background">#101010</color>
     <color name="title_bg">#212020</color>
     <color name="actionbar_bg_color">#F21A1A1A</color>
     <color name="dark_green">#007236</color>

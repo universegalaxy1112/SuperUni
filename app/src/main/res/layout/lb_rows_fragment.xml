@@ -21,8 +21,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/text.movie_detail_title"
-            />
+            style="@style/text.movie_detail_title" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,9 +45,9 @@
                 android:layout_marginEnd="@dimen/dip_8"
                 android:visibility="gone"
                 android:stepSize="0.2" /><ImageView
-                android:id="@+id/testPicasso"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
+            android:id="@+id/testPicasso"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
             <TextView
                 android:id="@+id/length"
                 android:layout_width="wrap_content"
@@ -84,14 +83,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-            android:id="@+id/description_detail"
-            style="@style/text.description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:maxLines="3"
-            android:paddingBottom="@dimen/dip_2"
-            android:layout_marginLeft="0dp" />
+                android:id="@+id/description_detail"
+                style="@style/text.description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:maxLines="3"
+                android:paddingBottom="@dimen/dip_2"
+                android:layout_marginLeft="0dp" />
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

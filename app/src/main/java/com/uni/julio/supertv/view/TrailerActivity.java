@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
+import com.uni.julio.supertv.listeners.PreviewSelectedListener;
 import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragmentForTrailer;
@@ -30,9 +31,9 @@ public class TrailerActivity extends BaseActivity implements LiveTVToggleUIListe
         setContentView(R.layout.activity_trailer);
         videoPlayFragment=new VideoPlayFragmentForTrailer();
         videoPlayFragment.hideControls(this);
-        getSupportFragmentManager()
+       /* getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.video_container,videoPlayFragment).commit();
+                .add(R.id.video_container,videoPlayFragment).commit();*/
     }
     @Override
     public void onStart(){

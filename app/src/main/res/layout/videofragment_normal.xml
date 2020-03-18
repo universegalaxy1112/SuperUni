@@ -18,10 +18,10 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:keepScreenOn="true"
     android:background="@android:color/black">
 
-    <com.google.android.exoplayer2.ui.SimpleExoPlayerView android:id="@+id/player_view"
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/player_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -36,21 +36,7 @@
         android:background="@color/transparent"
         android:visibility="gone"
         />
-   <!-- <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_120"
-        android:layout_marginTop="@dimen/dip_120"
-        android:background="#88000000">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:textSize="10sp"
-            android:textColor="@color/white"
-            android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            />
-    </LinearLayout>-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,6 +73,26 @@
                 android:visibility="gone"/>
 
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dip_6"
+        android:background="#88000000">
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style = "@style/text.movie_detail_title"
+            android:text="@string/channel_Name"
+            android:layout_marginStart="@dimen/dip_12"
+            android:layout_marginEnd="@dimen/dip_12"
+            android:layout_marginTop="@dimen/dip_4"
+            android:layout_marginBottom="@dimen/dip_4"
+            android:visibility="gone"
+            />
     </LinearLayout>
 
 </FrameLayout>

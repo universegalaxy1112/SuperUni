@@ -53,25 +53,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 JSONArray cap = content.getJSONArray("capital");
                                 for(int i = 0; i<main.length();i++){
                                     titleNotification = "New content";
-                                    String contentNotification = main.getJSONArray(i).getString(2) + " In " + buildSecction(main.getJSONArray(i).getInt(16));
+                                    String contentNotification = main.getJSONObject(i).getString("title") + " In " + buildSecction(main.getJSONObject(i).getInt("type"));
                                     contentForTV += contentNotification + "\r\n";
                                     String poster = "";
-                                    if(main.getJSONArray(i).getString(7).contains("https")){
-                                        poster = main.getJSONArray(i).getString(7);
+                                    if(main.getJSONObject(i).getString("poster").contains("https")){
+                                        poster = main.getJSONObject(i).getString("poster");
                                     }else{
-                                        poster = "https://supertvplus.com/eventos_posters/"+main.getJSONArray(i).getString(7);
+                                        poster = "https://supertvplus.com/eventos_posters/"+main.getJSONObject(i).getString("poster");
                                     }
-                                    showNotification(titleNotification, contentNotification,poster,type,main.getJSONArray(i).getInt(16));
+                                    showNotification(titleNotification, contentNotification,poster,type,main.getJSONObject(i).getInt("type"));
                                 }
                                 for(int i =0 ; i< cap.length();i++){
                                      titleNotification = "New content";
-                                    String contentNotification ="Episode "+ cap.getJSONArray(i).getString(2) + " In Season " + (cap.getJSONArray(i).getInt(4));
+                                    String contentNotification ="Episode "+ cap.getJSONObject(i).getString("title") + " In Season " + (cap.getJSONObject(i).getString("season")) + (cap.getJSONObject(i).getString("serie"));
                                     contentForTV += contentNotification + "\r\n";
                                     String poster = "";
-                                    if(cap.getJSONArray(i).getString(7).contains("https")){
-                                        poster = cap.getJSONArray(i).getString(7);
+                                    if(cap.getJSONObject(i).getString("poster").contains("https")){
+                                        poster = cap.getJSONObject(i).getString("poster");
                                     }else{
-                                        poster = "https://supertvplus.com/eventos_posters/"+cap.getJSONArray(i).getString(7);
+                                        poster = "https://supertvplus.com/eventos_posters/"+cap.getJSONObject(i).getString("poster");
                                     }
                                         showNotification(titleNotification, contentNotification,poster,type,2);
                                 }

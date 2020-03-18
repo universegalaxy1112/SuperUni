@@ -1,6 +1,7 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -288,9 +289,14 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
      return false;
     }
     public void playTrailor(View view) {
-        onPlay(2);
+            onPlay(2);
     }
-
+    public void playHD(View view){
+        onPlay(0);
+    }
+    public void playSD(View view){
+        onPlay(1);
+    }
     private void onPlay(int type) {
         if(!videoStreamManager.getSeenMovies().contains(String.valueOf(mMovie.getContentId()))) {
             videoStreamManager.setLocalSeen(String.valueOf(mMovie.getContentId()));

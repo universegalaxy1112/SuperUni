@@ -37,7 +37,7 @@ public class BindingAdapters {
     }
     @BindingAdapter({"invisible"})
     public static void bindInvisibleVisibility(View view, boolean invisible) {
-        view.setVisibility(invisible ? View.INVISIBLE : View.VISIBLE);
+        view.setVisibility(invisible ? View.GONE : View.VISIBLE);
     }
     @BindingAdapter({"setDescription"})
     public static void setDescription(TextView view, String text) {

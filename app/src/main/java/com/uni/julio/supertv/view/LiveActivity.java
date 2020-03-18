@@ -42,6 +42,7 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         setContentView(R.layout.activity_live);
         videoPlayFragment=new VideoPlayFragment();
         videoPlayFragment.hideControls(this);
+        videoPlayFragment.hideTitle();
         FragmentManager manager=getSupportFragmentManager();
          FragmentTransaction transaction=manager.beginTransaction();
          transaction.add(R.id.exo_player,videoPlayFragment,"Frag_top_tag");

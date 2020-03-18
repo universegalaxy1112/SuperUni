@@ -100,7 +100,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
          String title = serie.getTitle();
          long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
          String[] finalUris = uris;
-        if(type == 2){
+        if(false){
             playTrailer(finalUris,extensions,subtitleUrl,title);
         }else{
             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);

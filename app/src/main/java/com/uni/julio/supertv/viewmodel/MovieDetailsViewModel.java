@@ -2,6 +2,7 @@ package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -162,6 +163,12 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
             onPlay(0);
         }
 
+    }
+    public void playHD(View view){
+        onPlay(0);
+    }
+    public void playSD(View view){
+        onPlay(1);
     }
     public void playTrailor(View view) {
         onPlay(2);

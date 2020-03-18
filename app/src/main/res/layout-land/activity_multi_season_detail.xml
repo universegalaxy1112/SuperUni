@@ -82,21 +82,6 @@
                                 app:srcCompat="@drawable/ic_left_back"
                                 tools:ignore="VectorDrawableCompat"
                                 tools:targetApi="m" />
-                            <LinearLayout
-                                android:id="@+id/play"
-                                android:layout_width="@dimen/dip_36"
-                                android:layout_height="@dimen/dip_36"
-                                android:background="@drawable/backgroundplay"
-                                android:focusable="true"
-                                android:gravity="center"
-                                android:onClick="@{movieDetailsVM::play}"
-                                android:orientation="horizontal"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.72">
-                            </LinearLayout>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                         <FrameLayout
@@ -106,8 +91,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 app:fel_edge="top"
-                                app:fel_size_top="@dimen/dip_100"
-                                >
+                                app:fel_size_top="@dimen/dip_100">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -124,19 +108,18 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="center"
                                         android:orientation="horizontal">
-
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
-                                            android:layout_height="27dp"
-                                            android:layout_gravity="center"
-                                            android:focusable="false"
-                                            android:onClick="@{movieDetailsVM::playTrailor}"
-                                            app:invisible="@{movieDetailsVM.isTrailer}"
+                                            android:layout_height="wrap_content"
                                             app:cardBackgroundColor="@color/transparent"
+                                            android:layout_gravity="center"
                                             app:cardCornerRadius="@dimen/dip_12"
+                                            android:onClick="@{movieDetailsVM::playHD}"
+                                            app:invisible="@{movieDetailsVM.isHD}"
                                             app:cardUseCompatPadding="true">
 
                                             <LinearLayout
+                                                android:id="@+id/play"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:background="@drawable/play_background_trailer"
@@ -151,6 +134,7 @@
                                                     android:layout_gravity="center"
                                                     android:scaleType="center"
                                                     app:materialIcon="play"
+                                                    android:focusable="false"
                                                     app:materialIconColor="@color/white"
                                                     app:materialIconSize="@dimen/dip_20" />
 
@@ -159,12 +143,89 @@
                                                     android:layout_height="wrap_content"
                                                     android:gravity="center"
                                                     android:padding="@dimen/dip_6"
-                                                    android:text="PLAY TRAILER"
+                                                    android:text="Play HD"
                                                     android:textColor="@color/white"
                                                     android:textSize="@dimen/sp_12"
                                                     android:textStyle="bold" />
+
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            app:cardBackgroundColor="@color/transparent"
+                                            android:layout_gravity="center"
+                                            app:cardCornerRadius="@dimen/dip_12"
+                                            android:onClick="@{movieDetailsVM::playHD}"
+                                            app:invisible="@{movieDetailsVM.isSD}"
+                                            app:cardUseCompatPadding="true">
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/play_background_trailer"
+                                                android:focusable="true"
+                                                android:paddingRight="@dimen/dip_12"
+                                                android:paddingLeft="@dimen/dip_12"
+                                                android:orientation="horizontal">
+                                                <net.steamcrafted.materialiconlib.MaterialIconView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    app:materialIcon="play"
+                                                    android:focusable="false"
+                                                    app:materialIconColor="@color/white"
+                                                    app:materialIconSize="@dimen/dip_20"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="center" />
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="center"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="@dimen/sp_12"
+                                                    android:textStyle="bold"
+                                                    android:padding="@dimen/dip_6"
+                                                    android:text="Play SD"/>
+                                            </LinearLayout>
+                                        </androidx.cardview.widget.CardView>
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            app:cardBackgroundColor="@color/transparent"
+                                            android:layout_gravity="center"
+                                            android:focusable="false"
+                                            app:cardCornerRadius="@dimen/dip_12"
+                                            android:onClick="@{movieDetailsVM::playTrailor}"
+                                            app:invisible="@{movieDetailsVM.isTrailer}"
+                                            app:cardUseCompatPadding="true">
+                                            <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:background="@drawable/play_background_trailer"
+                                                android:focusable="true"
+                                                android:paddingRight="@dimen/dip_12"
+                                                android:paddingLeft="@dimen/dip_12"
+                                                android:orientation="horizontal">
+                                                <net.steamcrafted.materialiconlib.MaterialIconView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    app:materialIcon="play"
+                                                    android:focusable="false"
+                                                    app:materialIconColor="@color/white"
+                                                    app:materialIconSize="@dimen/dip_20"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="center" />
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:gravity="center"
+                                                    android:textColor="@color/white"
+                                                    android:textSize="@dimen/sp_12"
+                                                    android:textStyle="bold"
+                                                    android:padding="@dimen/dip_6"
+                                                    android:text="Play Trailer"/>
+                                            </LinearLayout>
+                                        </androidx.cardview.widget.CardView>
+
                                     </LinearLayout>
 
                                     <TextView

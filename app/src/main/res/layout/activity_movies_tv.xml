@@ -7,9 +7,8 @@
     tools:context=".view.MoviesTvActivity"
     tools:deviceIds="tv"
     tools:ignore="MergeRootFrame">
-<fragment
+<FrameLayout
     android:id="@+id/main_browse_fragment"
-    android:name="com.uni.julio.supertv.view.MoviesMenuTVFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MoviesTvActivity"

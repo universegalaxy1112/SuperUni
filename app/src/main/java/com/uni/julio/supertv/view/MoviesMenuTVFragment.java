@@ -338,10 +338,8 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                             release_date=view.findViewById(R.id.release_date);
                             ratingBar= view.findViewById(R.id.ratingBar);
                             length=view.findViewById(R.id.length);
-                            image = view.findViewById(R.id.testPicasso);
                             description=view.findViewById(R.id.description_detail);
                             hd= view.findViewById(R.id.hd);
-
                         }
 
                         MoviesMenuTVFragment.this.mBackgroundURI = new URI(((Movie) item).getHDFondoUrl());
@@ -355,11 +353,11 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         }
     }
     public void startBackgroundTimer() {
-        if (this.mBackgroundTimer != null) {
+       /* if (this.mBackgroundTimer != null) {
             this.mBackgroundTimer.cancel();
         }
         this.mBackgroundTimer = new Timer();
-        this.mBackgroundTimer.schedule(new UpdateBackgroundTask(), 300);
+        this.mBackgroundTimer.schedule(new UpdateBackgroundTask(), 300);*/
     }
     private class UpdateBackgroundTask extends TimerTask {
         private UpdateBackgroundTask() {
@@ -388,7 +386,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 });
     }
     public void clearBackground() {
-        this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.detail_background));
+        this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.bg_general));
         this.mBackgroundTimer.cancel();
     }
 }
