@@ -65,7 +65,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
             }
         }, 600000);
 
-        handleSSLHandshake();
+        //handleSSLHandshake();
     }
     public  void handleSSLHandshake() {
         try {
@@ -123,7 +123,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
             User user = new Gson().fromJson(theUser, User.class);
             userAgent = user.getUser_agent();
         }
-        return new DefaultHttpDataSourceFactory(userAgent,null, 10000, 10000, true);
+        return new DefaultHttpDataSourceFactory(userAgent,bandwidthMeter);
     }
 
     public boolean useExtensionRenderers() {

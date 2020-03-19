@@ -9,9 +9,10 @@
         <item name="android:splitMotionEvents">false</item>
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="colorPrimary">@color/app_color_accent</item>
-        <item name="colorPrimaryDark">@color/app_color_primary_dark</item>
+        <item name="colorPrimaryDark">@color/bg_general</item>
         <item name="colorAccent">@color/app_color_accent</item>
-      </style>
+
+    </style>
     <style name="VideoDetailTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/netflix_red</item>
         <item name="tabIndicatorHeight">2dp</item>

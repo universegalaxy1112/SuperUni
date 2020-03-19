@@ -51,6 +51,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     private int mMovieCategoryId;
     private Movie mMovie;
     private Season season;
+    private int seasonPosition = 0;
     private EpisodeDetailsViewModelContract.View viewCallback;
     private VideoStreamManager videoStreamManager;
     private Context mContext;
@@ -158,6 +159,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     }
     @Override
     public void showSeasonList(int seasonposition){
+        seasonPosition = seasonposition;
         season=serie.getSeason(seasonposition);
         List<Episode> episodeList=(List<Episode>)season.getEpisodeList();
         boolean needsRedraw=true;
@@ -307,7 +309,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         isSeen.notifyChange();
         addRecentSerie();
         DataManager.getInstance().saveData("seenMovies", videoStreamManager.getSeenMovies());
-        viewCallback.onPlaySelected(mMovie, type);
+        viewCallback.onPlaySelected(mMovie, type, seasonPosition);
     }
 
 

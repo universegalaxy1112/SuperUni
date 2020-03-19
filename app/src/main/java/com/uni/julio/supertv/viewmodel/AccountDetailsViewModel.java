@@ -78,6 +78,11 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
 
                 public void onCancel() {
                 }
+
+                @Override
+                public void onDismiss() {
+
+                }
             });
         } else {
             onCloseSession();

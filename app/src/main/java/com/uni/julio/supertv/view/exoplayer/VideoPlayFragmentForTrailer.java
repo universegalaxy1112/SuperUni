@@ -297,7 +297,7 @@ public   class VideoPlayFragmentForTrailer extends Fragment implements View.OnCl
         Intent intent = getActivity().getIntent();
         //SuperTV add progressbar here
         playerPosition = C.TIME_UNSET;
-        playerPosition =(Long) intent.getLongExtra(SECONDS_TO_START_EXTRA, 0);
+        playerPosition = intent.getLongExtra(SECONDS_TO_START_EXTRA, 0L);
         mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
         if(intent.getIntExtra("mainCategoryId", -1) == 4) {//eventso
             hideControls = true;

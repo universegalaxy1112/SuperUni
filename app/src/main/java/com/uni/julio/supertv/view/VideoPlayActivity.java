@@ -3,12 +3,14 @@ package com.uni.julio.supertv.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 
-public class VideoPlayActivity extends BaseActivity {
+public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUIListener {
     VideoPlayFragment videoPlayFragment;
 
     @Override
@@ -25,6 +27,8 @@ public class VideoPlayActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPlayFragment=new VideoPlayFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -69,6 +73,7 @@ public class VideoPlayActivity extends BaseActivity {
             return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_CENTER){
+            videoPlayFragment.toggleTitle();
             videoPlayFragment.dispatchKeyEvent();
             return false;
         }
@@ -87,5 +92,10 @@ public class VideoPlayActivity extends BaseActivity {
         /*videoPlayFragment.controlVolumn(event);
         super.dispatchKeyEvent(event);*/
         return false;
+    }
+
+    @Override
+    public void onToggleUI(boolean show) {
+        videoPlayFragment.toggleTitle();
     }
 }

@@ -78,12 +78,15 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         Bundle extras = new Bundle();
         extras.putSerializable("selectedType", ModelTypes.SelectedType.MAIN_CATEGORY);
         extras.putInt("mainCategoryId", mainCategoryId);
-        if(Device.treatAsBox){
-            launchActivity(MoviesTvActivity.class, extras);
-        }else{
-            launchActivity(MoviesActivity.class, extras);
+        if(LiveTvApplication.appContext instanceof LoadingActivity){
+            if(Device.treatAsBox){
+                launchActivity(MoviesTvActivity.class, extras);
+            }else{
+                launchActivity(MoviesActivity.class, extras);
+            }
+            getActivity().finish();
         }
-        getActivity().finish();
+
     }
 
     @Override

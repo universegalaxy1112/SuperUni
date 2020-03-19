@@ -153,13 +153,13 @@
                                             android:layout_gravity="center"
                                             android:focusable="false"
                                             app:cardCornerRadius="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM::playHD}"
                                             app:invisible="@{movieDetailsVM.isHD}"
                                             app:cardUseCompatPadding="true">
                                             <LinearLayout
                                                 android:id="@+id/play"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
+                                                android:onClick="@{movieDetailsVM::playHD}"
                                                 android:background="@drawable/play_background_trailer"
                                                 android:focusable="true"
                                                 android:paddingRight="@dimen/dip_12"
@@ -182,7 +182,7 @@
                                                     android:textSize="@dimen/sp_12"
                                                     android:textStyle="bold"
                                                     android:padding="@dimen/dip_6"
-                                                    android:text="Play HD"/>
+                                                    android:text="HD"/>
 
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
@@ -193,13 +193,13 @@
                                             android:layout_gravity="center"
                                             android:focusable="false"
                                             app:cardCornerRadius="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM::playHD}"
                                             app:invisible="@{movieDetailsVM.isSD}"
                                             app:cardUseCompatPadding="true">
                                             <LinearLayout
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:background="@drawable/play_background_trailer"
+                                                android:onClick="@{movieDetailsVM::playSD}"
                                                 android:focusable="true"
                                                 android:paddingRight="@dimen/dip_12"
                                                 android:paddingLeft="@dimen/dip_12"
@@ -222,7 +222,7 @@
                                                     android:focusable="false"
                                                     android:textStyle="bold"
                                                     android:padding="@dimen/dip_6"
-                                                    android:text="Play SD"/>
+                                                    android:text="SD"/>
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
                                         <androidx.cardview.widget.CardView
@@ -232,13 +232,13 @@
                                             android:layout_gravity="center"
                                             android:focusable="false"
                                             app:cardCornerRadius="@dimen/dip_12"
-                                            android:onClick="@{movieDetailsVM::playTrailor}"
                                             app:invisible="@{movieDetailsVM.isTrailer}"
                                             app:cardUseCompatPadding="true">
                                             <LinearLayout
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:background="@drawable/play_background_trailer"
+                                                android:onClick="@{movieDetailsVM::playTrailor}"
                                                 android:focusable="true"
                                                 android:paddingRight="@dimen/dip_12"
                                                 android:paddingLeft="@dimen/dip_12"
@@ -260,7 +260,7 @@
                                                     android:textSize="@dimen/sp_12"
                                                     android:textStyle="bold"
                                                     android:padding="@dimen/dip_6"
-                                                    android:text="Play Trailer"/>
+                                                    android:text="Trailer"/>
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
 

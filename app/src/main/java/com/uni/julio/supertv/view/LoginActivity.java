@@ -193,6 +193,11 @@ boolean denyAll = false;
             public void onCancel() {
                 LoginActivity.this.finish();
              }
+
+            @Override
+            public void onDismiss() {
+
+            }
         });
         return false;
     }
@@ -304,6 +309,11 @@ boolean denyAll = false;
             }
             public void onCancel() {
                 LoginActivity.this.finish();
+            }
+
+            @Override
+            public void onDismiss() {
+
             }
         });
         return false;

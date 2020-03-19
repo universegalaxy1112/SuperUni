@@ -92,22 +92,29 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
         this.updateLocation = location;
         if (hasNewVersion) {
             Resources res = getResources();
-            Dialogs.showTwoButtonsDialog((AppCompatActivity) getActivity(),R.string.download , R.string.cancel, R.string.new_version_available, (DialogListener) new DialogListener() {
-                public void onAccept() {
-                    if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
-                        requestStoragePermission();
-                    } else if (Connectivity.isConnected()) {
-                         downloadUpdate(updateLocation);
-                    } else {
-                        goToNoConnectionError();
+            try{
+                Dialogs.showTwoButtonsDialog((AppCompatActivity) getActivity(),R.string.download , R.string.cancel, R.string.new_version_available, (DialogListener) new DialogListener() {
+                    public void onAccept() {
+                        if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+                            requestStoragePermission();
+                        } else if (Connectivity.isConnected()) {
+                            downloadUpdate(updateLocation);
+                        } else {
+                            goToNoConnectionError();
+                        }
                     }
-                }
+                    public void onCancel() {
+                        splashViewModel.login();
+                    }
 
-                public void onCancel() {
-                    splashViewModel.login();
-                }
-            });
-            return;
+                    @Override
+                    public void onDismiss() {
+                        splashViewModel.login();
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }else {
             splashViewModel.login();
         }
@@ -175,6 +182,11 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
 
             public void onCancel() {
                 splashViewModel.login();
+            }
+
+            @Override
+            public void onDismiss() {
+                
             }
         });
         return false;

@@ -92,7 +92,7 @@ public class SplashForTV extends BaseActivity implements SplashViewModelContract
         this.updateLocation = location;
         if (hasNewVersion) {
             Resources res = getResources();
-            Dialogs.showTwoButtonsDialog((AppCompatActivity) getActivity(),R.string.download , R.string.cancel, R.string.new_version_available, (DialogListener) new DialogListener() {
+            Dialogs.showTwoButtonsDialog(this,R.string.download , R.string.cancel, R.string.new_version_available, (DialogListener) new DialogListener() {
                 public void onAccept() {
                     if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                         requestStoragePermission();
@@ -105,6 +105,12 @@ public class SplashForTV extends BaseActivity implements SplashViewModelContract
 
                 public void onCancel() {
                     splashViewModel.login();
+                }
+
+                @Override
+                public void onDismiss() {
+                    splashViewModel.login();
+
                 }
             });
             return;
@@ -175,6 +181,11 @@ public class SplashForTV extends BaseActivity implements SplashViewModelContract
 
             public void onCancel() {
                 splashViewModel.login();
+            }
+
+            @Override
+            public void onDismiss() {
+
             }
         });
         return false;

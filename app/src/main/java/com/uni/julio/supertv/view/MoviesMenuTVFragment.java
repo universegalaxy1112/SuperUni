@@ -1,6 +1,7 @@
 package com.uni.julio.supertv.view;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -62,6 +63,7 @@ import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.MovieCategory;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
 
@@ -136,27 +138,40 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setupUIElements();
-        setupEventListeners();
-        prepareEntranceTransition();
-        prepareBackgroundManager();
-        this.mRowsAdapter = new SortedArrayObjectAdapter((Comparator) new ListRowComparator(), (Presenter) new CustomListRowPresenter());
-        setAdapter(this.mRowsAdapter);
-        loadData();
-        getHeadersFragment().setOnHeaderClickedListener(new HeadersFragment.OnHeaderClickedListener() {
+        try{
+            setupUIElements();
+            setupEventListeners();
+            prepareEntranceTransition();
+            prepareBackgroundManager();
+            this.mRowsAdapter = new SortedArrayObjectAdapter((Comparator) new ListRowComparator(), (Presenter) new CustomListRowPresenter());
+            setAdapter(this.mRowsAdapter);
+            loadData();
+            getHeadersFragment().setOnHeaderClickedListener(new HeadersFragment.OnHeaderClickedListener() {
 
-            @Override
-            public void onHeaderClicked(RowHeaderPresenter.ViewHolder viewHolder, Row row) {
-                ListRow listRow = (ListRow)row;
-                Bundle extras = new Bundle();
-                if (serieId == -1) {
-                    extras.putSerializable("selectedType", selectedType);
-                    extras.putInt("mainCategoryId", mainCategoryId);
-                    extras.putInt("movieCategoryId", (int) listRow.getId());
+                @Override
+                public void onHeaderClicked(RowHeaderPresenter.ViewHolder viewHolder, Row row) {
+                    ListRow listRow = (ListRow)row;
+                    Bundle extras = new Bundle();
+                    if (serieId == -1) {
+                        extras.putSerializable("selectedType", selectedType);
+                        extras.putInt("mainCategoryId", mainCategoryId);
+                        extras.putInt("movieCategoryId", (int) listRow.getId());
+                    }
+                    launchActivity(MoreVideoActivity.class, extras);
                 }
-                launchActivity(MoreVideoActivity.class, extras);
-            }
-        });
+            });
+         }catch (Exception e){
+            e.printStackTrace();
+            Dialogs.showOneButtonDialog(getActivity(), R.string.generic_error_title, R.string.generic_loading_message, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    VideoStreamManager.getInstance().FillMainCategories();
+                    getActivity().finish();
+                }
+            });
+    }
+
 
     }
 
@@ -195,15 +210,16 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         //setSearchAffordanceColor(ContextCompat.getColor(getActivity(), R.color.search_opaque));
     }
     public void loadData() {
-        mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
-        setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
-        for (int i = 0; i < mCategoriesList.size(); i++) {
-            //loadHeader(mCategoriesList.get(i));
-            if(mainCategoryId == 7 && i == 0)
-                continue;
-            else
-                load(i);
-        }
+            mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
+            setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
+            for (int i = 0; i < mCategoriesList.size(); i++) {
+                //loadHeader(mCategoriesList.get(i));
+                if(mainCategoryId == 7 && i == 0)
+                    continue;
+                else
+                    load(i);
+            }
+
     }
     private void load(int row){
         if(mCategoriesList.get(row).hasErrorLoading()){
@@ -218,10 +234,16 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     @Override
     public void onResume() {
         super.onResume();
-        if(mCategoriesList.size()>0 && mCategoriesList.get(0).getCatName().equals("Favorite") && mainCategoryId != 7)
-            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
-        if(mCategoriesList.size()>1 && mCategoriesList.get(1).getCatName().equals("Vistas Recientes"))
-            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(1), this, 30);
+        try{
+
+        }catch (Exception e){
+            mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
+            if(mCategoriesList.size()>0 && mCategoriesList.get(0).getCatName().equals("Favorite") && mainCategoryId != 7)
+                NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
+            if(mCategoriesList.size()>1 && mCategoriesList.get(1).getCatName().equals("Vistas Recientes"))
+                NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(1), this, 30);
+        }
+
     }
     private void loadRow(MovieCategory category) {
 
@@ -353,11 +375,11 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         }
     }
     public void startBackgroundTimer() {
-       /* if (this.mBackgroundTimer != null) {
+        if (this.mBackgroundTimer != null) {
             this.mBackgroundTimer.cancel();
         }
         this.mBackgroundTimer = new Timer();
-        this.mBackgroundTimer.schedule(new UpdateBackgroundTask(), 300);*/
+        this.mBackgroundTimer.schedule(new UpdateBackgroundTask(), 300);
     }
     private class UpdateBackgroundTask extends TimerTask {
         private UpdateBackgroundTask() {
@@ -376,14 +398,20 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         }
     }
     public void updateBackground(String uri) {
-        Glide.with(getActivity())
-                .load(uri)
-                .into(new SimpleTarget<Drawable>() {
-                    @Override
-                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        mBackgroundManager.setDrawable(resource);
-                    }
-                });
+        try {
+            Glide.with(getActivity())
+                    .load(uri)
+                    .error(R.drawable.placeholder)
+                    .into(new SimpleTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            mBackgroundManager.setDrawable(resource);
+                        }
+                    });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
     public void clearBackground() {
         this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.bg_general));

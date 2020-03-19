@@ -65,8 +65,9 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         }
         return false;
     }
-    public void onPlaySelected(Movie movie, final int type) {
+    public void onPlaySelected(Movie movie, final int type, int seasonPosition) {
         final int movieId = movie.getContentId();
+
         String[] uris={};
         switch (type){
             case 0:
@@ -98,12 +99,12 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
          String[] extensions = new String[] {extension};
          String subtitleUrl= movie.getSubtitleUrl();
          String title = serie.getTitle();
-         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
+         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
          String[] finalUris = uris;
         if(false){
             playTrailer(finalUris,extensions,subtitleUrl,title);
         }else{
-            playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
+            playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
         }
     }
     private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
@@ -117,7 +118,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         startActivity(launchIntent);
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
- private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl, String title){
+ private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl, String title,  int seasonPosition, int episodePosition){
      Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
      launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
              .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
@@ -126,6 +127,8 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
              .putExtra("mainCategoryId", mainCategoryId)
              .putExtra("type", type)
              .putExtra("title", title)
+             .putExtra("seasonPosition", seasonPosition)
+             .putExtra("episodePosition", episodePosition)
              .putExtra("subsURL", subTitleUrl)
              .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
      hideProgressDialog();

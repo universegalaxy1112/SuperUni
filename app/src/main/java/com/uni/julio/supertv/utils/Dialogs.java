@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.material.resources.CancelableFontCallback;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
@@ -153,6 +155,7 @@ public class Dialogs {
                         dialogListener.onAccept();
                     }
                 })
+                .canceledOnTouchOutside(false)
                 .theme(Theme.LIGHT)
                 .negativeText(cancel)
                 .onNegative(new MaterialDialog.SingleButtonCallback() {

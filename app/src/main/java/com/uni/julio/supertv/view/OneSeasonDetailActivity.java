@@ -95,7 +95,11 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         launchIntent.putExtra("uri_list", uris).putExtra("extension_list", extensions)
                 .putExtra("movie_id_extra", movieId)
                 .putExtra("title", movie.getTitle())
-                .putExtra("seconds_to_start", 0).putExtra("mainCategoryId", mainCategoryId).putExtra("subsURL", movie.getSubtitleUrl()).setAction("com.google.android.exoplayer.demo.action.VIEW_LIST");
+                .putExtra("seconds_to_start", 0)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("subsURL", movie.getSubtitleUrl())
+                .putExtra("title", movie.getTitle())
+                .setAction("com.google.android.exoplayer.demo.action.VIEW_LIST");
         startActivity(launchIntent);
     }
 
@@ -118,7 +122,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         uris[0]=movieUrl;
         String extension = uris[0].substring(movieUrl.lastIndexOf(".") + 1);
          String[] extensions = new String[] {extension};
-         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0);
+         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
          String subtitleUrl= movie.getSubtitleUrl();
          String title= movie.getTitle();
          String[] finalUris = uris;

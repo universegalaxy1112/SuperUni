@@ -112,6 +112,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onPause(){
         super.onPause();
+        requested = false;
 
     }
     private void subscribeTopic(String topic){
@@ -157,7 +158,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onMainCategorySelected(MainCategory mainCategory) {
          if(requested) return;
-         requested = true;
         int mainCategoryId = mainCategory.getId();
         if(mainCategoryId==8){
             onAccountPressed();
@@ -183,10 +183,17 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         launchActivity(LoadingActivity.class, extras);
     }
     private void openPasswordDialog(String pin) {
+        requested = true;
         new MaterialDialog.Builder(this)
                 .title(R.string.prompt_password)
                 .content(R.string.adults_password_message)
-                .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                .inputType(InputType.TYPE_CLASS_NUMBER)
+                .onNeutral(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                    }
+                })
                 .input("", "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
@@ -198,6 +205,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
                         }
                         else {
                             dialog.dismiss();
+                            requested = false;
                             Toast.makeText(getBaseContext(), R.string.error_invalid_password, Toast.LENGTH_SHORT).show();
                         }
                      }
@@ -208,13 +216,14 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        requested = false;
 
                     }
                 })
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
+                        requested = true;
                     }
                 })
                 .contentColorRes(R.color.bg_general)
@@ -225,6 +234,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
 
     @Override
     public void onAccountPressed() {
+        requested = true;
         launchActivity(AccountActivity.class);
     }
 

@@ -8,7 +8,7 @@ import com.uni.julio.supertv.model.Serie;
 public interface EpisodeDetailsViewModelContract {
     interface View extends Lifecycle.View {
 
-        void onPlaySelected(Movie movie, int fromStart);
+        void onPlaySelected(Movie movie, int fromStart, int seasonPosition);
         void finishActivity();
         void showMovieDetails(Serie movie , int maincategory, int moviecategory);
 
