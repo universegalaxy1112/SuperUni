@@ -16,8 +16,10 @@ import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityMultiSeasonDetailBinding;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.listeners.EpisodeLoadListener;
+import com.uni.julio.supertv.model.Episode;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
+import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
@@ -26,6 +28,8 @@ import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.EpisodeDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.EpisodeDetailsViewModelContract;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
+
+import java.util.List;
 
 public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDetailsViewModelContract.View, EpisodeLoadListener {
     EpisodeDetailsViewModel movieDetailsViewModel;
@@ -69,6 +73,11 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         final int movieId = movie.getContentId();
 
         String[] uris={};
+     /*   List<? extends VideoStream> episodeList;
+        episodeList = serie.getSeason(seasonPosition).getEpisodeList();
+        for(VideoStream episode: episodeList){
+
+        }*/
         switch (type){
             case 0:
                 uris = new String[] {movie.getStreamUrl()};
@@ -95,7 +104,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             uris = new String[] {movie.getStreamUrl()};
         }
          String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
-        String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
+            String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
          String[] extensions = new String[] {extension};
          String subtitleUrl= movie.getSubtitleUrl();
          String title = serie.getTitle();

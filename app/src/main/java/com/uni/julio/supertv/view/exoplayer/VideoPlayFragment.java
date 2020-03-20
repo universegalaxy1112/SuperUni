@@ -164,9 +164,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         int seasonPosition = intent.getIntExtra("seasonPosition", -1);
         int episodePosition = intent.getIntExtra("episodePosition" , -1);
         this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((episodePosition == -1? "":" E"+ episodePosition +1));
-        if(title == null ) title= "IDLE";
-
-        if(!Device.treatAsBox){
+      /*  if(!Device.treatAsBox){
             try {
                 if(isAvailable()){
                     setupCastListener();
@@ -176,8 +174,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             }catch (Exception e){
                 Log.d("TAG","Can't Use Cast");
             }
-        }
+        }*/
     }
+/*
     private void setupCastListener() {
         mSessionManagerListener = new SessionManagerListener<CastSession>() {
 
@@ -248,6 +247,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             }
         };
     }
+*/
+/*
     private void loadRemoteMedia(int position, boolean autoPlay) {
         if (mCastSession == null) {
             return;
@@ -269,6 +270,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                 .setAutoplay(autoPlay)
                 .setCurrentTime(position).build());
     }
+*/
     private boolean hideControls = false;
     private boolean isLiveTV = false;
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -299,7 +301,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             }
         });
         simpleExoPlayerView =  rootPlayerView.findViewById(R.id.player_view);
-
         progressBarView =  rootPlayerView.findViewById(R.id.player_view_progress_bar);
         simpleExoPlayerView.setControllerVisibilityListener(this);
         simpleExoPlayerView.requestFocus();
@@ -362,25 +363,21 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume(){
         super.onResume();
-        if(mCastContext != null)
+        /*if(mCastContext != null)
         mCastContext.getSessionManager().addSessionManagerListener(
-                mSessionManagerListener, CastSession.class);
+                mSessionManagerListener, CastSession.class);*/
         if((Util.SDK_INT<=23||player==null)){
             initializePlayer();
-
             Tracking.getInstance((AppCompatActivity) getActivity()).setAction((this.title));
         }
     }
-   public void controlVolumn(@NonNull KeyEvent event){
-       if(mCastContext != null)
-        mCastContext.onDispatchVolumeKeyEventBeforeJellyBean(event);
-   }
+
     @Override
     public void onPause(){
         super.onPause();
-        if(mCastContext != null)
+        /*if(mCastContext != null)
         mCastContext.getSessionManager().removeSessionManagerListener(
-                mSessionManagerListener, CastSession.class);
+                mSessionManagerListener, CastSession.class);*/
         Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         if(Util.SDK_INT<=23){
             releasePlayer();
@@ -456,7 +453,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         if (player == null) {
             return;
         }
-        Long pos = player.getCurrentPosition();
+        long pos = player.getCurrentPosition();
         pos += 15000; // milliseconds
         player.seekTo(pos);
      }
@@ -467,7 +464,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             return;
         }
 
-        Long pos = player.getCurrentPosition();
+        long pos = player.getCurrentPosition();
         pos -= 5000; // milliseconds
         player.seekTo(pos);
      }
@@ -505,7 +502,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         mainCategory = intent.getIntExtra("mainCategoryId",-1);
         playerPosition = C.TIME_UNSET;
         playerPosition =mainCategory == 4 ? 0L : intent.getLongExtra(SECONDS_TO_START_EXTRA,0L);
-        mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
+        //mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
 
         if (player == null) {
             boolean preferExtensionDecoders = intent.getBooleanExtra(PREFER_EXTENSION_DECODERS, false);
@@ -557,29 +554,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             player.setId3Output(eventLogger);
 
             simpleExoPlayerView.setPlayer(player);
-            if(intent.getIntExtra("mainCategoryId", -1) != 4 && intent.getIntExtra("type",1)!=2 && playerPosition!=0) {//eventso
-                Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
-                    @TargetApi(Build.VERSION_CODES.M)
-                    @Override
-                    public void onAccept() {
-                        if (playerPosition == C.TIME_UNSET) {
-                            player.seekToDefaultPosition(playerWindow);
-                        } else {
-                            player.seekTo(playerWindow, playerPosition);
-                        }
-                    }
 
-                    @Override
-                    public void onCancel() {
-
-                    }
-
-                    @Override
-                    public void onDismiss() {
-
-                    }
-                });
-            }
             player.setPlayWhenReady(shouldAutoPlay);
             debugViewHelper = new DebugTextViewHelper(player, debugTextView);
             debugViewHelper.start();
@@ -627,6 +602,29 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             }
             else {
                 player.prepare(mediaSource, !isTimelineStatic, !isTimelineStatic);
+            }
+            if(intent.getIntExtra("type",1) !=2 && playerPosition != 0L) {//eventso
+                Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
+                    @TargetApi(Build.VERSION_CODES.M)
+                    @Override
+                    public void onAccept() {
+                        if (playerPosition == C.TIME_UNSET) {
+                            player.seekToDefaultPosition(playerWindow);
+                        } else {
+                            player.seekTo(playerWindow, playerPosition);
+                        }
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+
+                    @Override
+                    public void onDismiss() {
+
+                    }
+                });
             }
             playerNeedsSource = false;
             updateButtonVisibilities();

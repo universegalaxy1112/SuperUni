@@ -186,7 +186,7 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
 
             @Override
             public void onDismiss() {
-                
+
             }
         });
         return false;

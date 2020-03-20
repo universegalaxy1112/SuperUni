@@ -95,7 +95,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         launchIntent.putExtra("uri_list", uris).putExtra("extension_list", extensions)
                 .putExtra("movie_id_extra", movieId)
                 .putExtra("title", movie.getTitle())
-                .putExtra("seconds_to_start", 0)
+                .putExtra("seconds_to_start", 0L)
                 .putExtra("mainCategoryId", mainCategoryId)
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .putExtra("title", movie.getTitle())
