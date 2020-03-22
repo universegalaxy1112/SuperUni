@@ -26,18 +26,24 @@ import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
+import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.networing.NetManager;
+import com.uni.julio.supertv.utils.networing.WebConfig;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MovieDetailsViewModel implements MovieDetailsViewModelContract.ViewModel, MovieSelectedListener {
+public class MovieDetailsViewModel implements MovieDetailsViewModelContract.ViewModel, MovieSelectedListener, StringRequestListener {
 
     private int mMainCategoryId = 0;
     private MovieDetailsViewModelContract.View viewCallback;
@@ -54,6 +60,10 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     public ObservableBoolean isSD;
     public ObservableBoolean isTrailer;
     private ActivityOneseasonDetailBinding movieDetailsBinding;
+    private int likes = 0;
+    private int dislikes = 0;
+    private boolean liked = false;
+    private boolean disliked = false;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
@@ -105,18 +115,12 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         isTrailer.notifyChange();
         mMovie = movie;
         movieDetailsBinding.setMovieDetailItem(movie);
-        /*TVRecyclerView rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
-        GridLayoutManager rowslayoutmanger = new GridLayoutManager(mContext, 1);
-        rowslayoutmanger.setOrientation(LinearLayoutManager.HORIZONTAL);
-        movieList= videoStreamManager.getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovieList();
-        OneSeasonAdapter moviesRecyclerAdapter = new OneSeasonAdapter(mContext, rowsRecycler,movieList, movieCategoryId, this);
-        rowsRecycler.setLayoutManager(rowslayoutmanger);
-        rowsRecycler.setAdapter(moviesRecyclerAdapter);
-        if (rowsRecycler.getItemDecorationCount() == 0) {
-            rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(24,12,24,12));
-        }*/
-    }
+        movieDetailsBinding.play.requestFocus();
 
+    }
+    private void getLike(){
+        NetManager.getInstance().makeStringRequest(WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(mMovie.getContentId())), this);
+    }
      public void finishActivity(View view) {
         viewCallback.finishActivity();
      }
@@ -271,6 +275,27 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     @Override
     public void onMovieSelected(int selectedRow, int selectedMovie) {
        viewCallback.onMovieSelected(selectedRow,selectedMovie);
+
+    }
+
+    @Override
+    public void onCompleted(String response) {
+        try{
+            if(!TextUtils.isEmpty(response)){
+                JSONObject jsonObject = new JSONObject(response);
+                boolean status = jsonObject.getBoolean("status");
+                int likes = jsonObject.getInt("likes");
+                int dislikes = jsonObject.getInt("dislikes");
+
+            }
+
+        }catch (JSONException e){
+
+        }
+    }
+
+    @Override
+    public void onError() {
 
     }
 }

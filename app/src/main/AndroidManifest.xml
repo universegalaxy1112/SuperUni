@@ -136,7 +136,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service
+        <!--<service
             android:name=".service.MyFirebaseMessagingService"
             android:permission="com.google.android.c2dm.permission.SEND"
             android:enabled="true"
@@ -168,7 +168,7 @@
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <receiver android:name=".service.MyFirebaseInstanceIDService" />
+        <receiver android:name=".service.MyFirebaseInstanceIDService" />-->
     </application>
 
 </manifest>

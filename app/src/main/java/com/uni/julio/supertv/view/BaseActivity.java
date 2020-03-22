@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        Tracking.getInstance(this).onStart();
+        Tracking.getInstance(this).enableTrack(true);
+        Tracking.getInstance(this).enableSleep(false);
+        Tracking.getInstance(this).setAction(getClass().getSimpleName());
+        Tracking.getInstance(this).track();
         if(getViewModel() != null)
             getViewModel().onViewResumed();
         LiveTvApplication.appContext = this;
@@ -48,9 +52,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
-        Tracking.getInstance(this).setAction("IDLE");
-        Tracking.getInstance(this).track();
-        Tracking.getInstance(this).onStop();
+        Tracking.getInstance(this).enableTrack(true);
+        Tracking.getInstance(this).enableSleep(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(Tracking.getInstance(LiveTvApplication.appContext).getSleep()){
+                    Tracking.getInstance(LiveTvApplication.appContext).setAction("Sleeping");
+                    Tracking.getInstance(LiveTvApplication.appContext).track();
+                    Tracking.getInstance(LiveTvApplication.appContext).enableSleep(false);
+                    Tracking.getInstance(LiveTvApplication.appContext).enableTrack(false);
+                }
+            }
+        },1000);
         Context appCompatActivity=LiveTvApplication.appContext;
         if(this.equals(appCompatActivity))
             LiveTvApplication.appContext = null;
@@ -61,6 +75,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onStart();
         if(getViewModel() != null)
         getViewModel().onViewAttached(getLifecycleView());
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     @Override

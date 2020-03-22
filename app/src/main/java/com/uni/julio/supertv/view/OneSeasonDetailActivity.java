@@ -20,7 +20,6 @@ import com.uni.julio.supertv.model.CastDevice;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
-import com.uni.julio.supertv.view.exoplayer.VideoPlayFragmentForTrailer;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModelContract;
@@ -30,7 +29,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
     MovieDetailsViewModel movieDetailsViewModel;
     ActivityOneseasonDetailBinding activityOneseaosnDetailBinding;
     Movie movie;
-    private VideoPlayFragmentForTrailer videoPlayFragment;
     @Override
     protected Lifecycle.ViewModel getViewModel() {
         return movieDetailsViewModel;
@@ -92,14 +90,15 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         String[] uris = {movie.getStreamUrl()};
         String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
         Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
-        launchIntent.putExtra("uri_list", uris).putExtra("extension_list", extensions)
-                .putExtra("movie_id_extra", movieId)
-                .putExtra("title", movie.getTitle())
-                .putExtra("seconds_to_start", 0L)
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
+                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
                 .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", 0)
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .putExtra("title", movie.getTitle())
-                .setAction("com.google.android.exoplayer.demo.action.VIEW_LIST");
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
         startActivity(launchIntent);
     }
 
@@ -126,9 +125,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
          String subtitleUrl= movie.getSubtitleUrl();
          String title= movie.getTitle();
          String[] finalUris = uris;
-         if(false)
-             playTrailer(finalUris,extensions, subtitleUrl,title);
-         else
             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
 
     }

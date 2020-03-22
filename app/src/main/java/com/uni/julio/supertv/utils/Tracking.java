@@ -15,8 +15,12 @@ import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
+import com.uni.julio.supertv.view.SplashActivity;
 
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class Tracking implements StringRequestListener, OnClickListener {
     private static Context mContext = null;
@@ -25,23 +29,24 @@ public class Tracking implements StringRequestListener, OnClickListener {
     /* access modifiers changed from: private */
     public Handler handler = new Handler();
     /* access modifiers changed from: private */
-    public boolean isTracking = false;
+    private boolean isTracking = false;
+    private boolean sleeping = false;
     private Runnable trackingThread = new Runnable() {
         public void run() {
             Tracking.this.track();
-            if (Tracking.this.isTracking) {
-                Tracking.this.handler.postDelayed(this, 36000);
-                return;
-            }
-            try {
-                finalize();
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
+            Tracking.this.handler.postDelayed(this, 30000);
         }
     };
     private String usr = "";
-
+    public void enableTrack(boolean isTracking){
+        this.isTracking = isTracking;
+    }
+    public void enableSleep(boolean isSleeping){
+        this.sleeping = isSleeping;
+    }
+    public boolean getSleep(){
+        return sleeping;
+    }
     public static Tracking getInstance(Context activity) {
         if (mInstance == null) {
             mInstance = new Tracking();
@@ -52,25 +57,26 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     public void onStart() {
         String theUser = DataManager.getInstance().getString("theUser", "");
-        if (!TextUtils.isEmpty(theUser)) {
+        if (!TextUtils.isEmpty(theUser))
             this.usr = ( new Gson().fromJson(theUser, User.class)).getName();
-        if (!this.isTracking) {
-        }
-            this.isTracking = true;
-            this.handler.post(this.trackingThread);
-        }
-    }
-
-    public void onStop() {
-        this.isTracking = false;
+        this.isTracking = true;
+        this.handler.removeCallbacks(trackingThread);
+        this.handler.postDelayed(trackingThread,0);
     }
 
     /* access modifiers changed from: private */
     public void track() {
-        String ip =Device.ip;
-        String istv = Device.treatAsBox ? "1":"0";
-        String url = WebConfig.trackingURL.replace("{USER}", this.usr).replace("{MOVIE}", this.action).replace("{IP}",ip).replace("{DEVICE_ID}",Device.getIdentifier()).replace("{ISTV}",istv);
-        NetManager.getInstance().makeStringRequest(url, this);
+        if(this.isTracking && !(mContext instanceof SplashActivity)){
+            try{
+                String ip =Device.ip;
+                String istv = "1"; //Device.treatAsBox ? "1":"0";
+                String url = WebConfig.trackingURL.replace("{USER}", this.usr).replace("{MOVIE}", URLEncoder.encode(this.action,"UTF-8")).replace("{IP}",ip).replace("{DEVICE_ID}",Device.getIdentifier()).replace("{ISTV}",istv);
+                NetManager.getInstance().makeStringRequest(url, this);
+            }catch (UnsupportedEncodingException e){
+                e.printStackTrace();
+            }
+
+        }
     }
 
     public void setAction(String action2) {
@@ -83,7 +89,7 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     public void onCompleted(String response) {
         try {
-            if(!response.contains("false") && Device.treatAsBox && !response.contains("Mantenimiento")) {
+            if(!response.contains("false") && !response.contains("Mantenimiento")) {
                 Dialogs.showCustomDialog(mContext, "Atencion", response, new MessageCallbackListener() {
                     @Override
                     public void onDismiss() {

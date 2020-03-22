@@ -166,7 +166,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-                    VideoStreamManager.getInstance().FillMainCategories();
                     getActivity().finish();
                 }
             });

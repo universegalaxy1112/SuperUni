@@ -187,6 +187,7 @@ public class FetchJSonFileSync {
         try {
             tmpURL += "?t=" + URLEncoder.encode(mainCategory.getModelType(), "utf-8");
         } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
         return WebConfig.baseURL + tmpURL;
     }

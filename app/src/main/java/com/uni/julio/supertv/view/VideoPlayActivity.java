@@ -27,12 +27,6 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        videoPlayFragment=new VideoPlayFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.video_container,videoPlayFragment).commit();
 
     }
     @Override
@@ -42,6 +36,12 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onResume(){
         super.onResume();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        videoPlayFragment=new VideoPlayFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.video_container,videoPlayFragment).commit();
     }
     @Override
     public void onDestroy(){

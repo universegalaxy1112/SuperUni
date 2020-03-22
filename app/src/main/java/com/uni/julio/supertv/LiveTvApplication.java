@@ -141,7 +141,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                         if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
                             return;
                         }else{
-                            Tracking.getInstance(appContext).onStop();
+                            Tracking.getInstance(appContext).enableTrack(false);
                             String errorFound = jsonObject.getString("error_found");
                             switch (errorFound) {
                                 case "103":
@@ -200,6 +200,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     }
     public void showErrorMessage() {
         if(appContext != null)
+            Tracking.getInstance(appContext).enableTrack(true);
             Dialogs.showOneButtonDialog(appContext, R.string.no_connection_title,  R.string.no_connection_message);
     }
 

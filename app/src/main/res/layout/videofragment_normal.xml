@@ -29,13 +29,15 @@
         android:layout_height="wrap_content"
         android:background="#88000000"
         android:orientation="horizontal">
-       <!-- <androidx.mediarouter.app.MediaRouteButton
-            android:id="@+id/media_route_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:mediaRouteTypes="user"
-            android:visibility="gone"
-            />-->
+
+
+        <!-- <androidx.mediarouter.app.MediaRouteButton
+             android:id="@+id/media_route_button"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:mediaRouteTypes="user"
+             android:visibility="gone"
+             />-->
         <TextView android:id="@+id/debug_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,16 +67,16 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginEnd="@dimen/dip_56"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:visibility="gone">
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             style = "@style/text.movie_detail_title"
             android:textSize="@dimen/sp_16"
-            android:text="@string/channel_Name"
             android:layout_marginStart="@dimen/dip_12"
             android:layout_marginEnd="@dimen/dip_12"
             android:layout_marginTop="@dimen/dip_6"
@@ -87,6 +89,7 @@
         android:id="@+id/textClock1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_gravity="right"
@@ -94,5 +97,6 @@
         android:textColor="@color/netflix_red"
         android:textSize="@dimen/sp_12"
         android:textStyle="bold"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded"
+        android:visibility="gone"/>
 </FrameLayout>

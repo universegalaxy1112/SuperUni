@@ -198,6 +198,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         isHD.notifyChange();
         isSD.notifyChange();
         isTrailer.notifyChange();
+        movieDetailsBinding.play.requestFocus();
     }
     public void onClickFavorite(View view) {
         if(isFavorite.get()) {

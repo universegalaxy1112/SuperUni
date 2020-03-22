@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.listeners.MessageCallbackListener;
@@ -80,14 +81,13 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         NotificationReceiveService.setNotificationListener(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("SuperTV");
-        Tracking.getInstance(this).onStart();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 showPopup();
             }
         },1000);
-        subscribeTopic("all");
+        //subscribeTopic("all");
         setSupportActionBar(toolbar);
         if(Device.treatAsBox){
             findViewById(R.id.Appbarlayout).setVisibility(View.GONE);
@@ -140,7 +140,15 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            android.os.Process.killProcess(android.os.Process.myPid());
+            Tracking.getInstance(this).setAction("Sleeping");
+            Tracking.getInstance(this).track();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    android.os.Process.killProcess(android.os.Process.myPid());
+
+                }
+            },1000);
             return true;
         }
         return false;
@@ -243,7 +251,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             String theUser = DataManager.getInstance().getString("theUser","");
             String device_num = DataManager.getInstance().getString("device_num","");
             User user = new Gson().fromJson(theUser, User.class);
-            subscribeTopic(user.getName());
+            //subscribeTopic(user.getName());
         final MaterialDialog dialog=new MaterialDialog.Builder(this)
                 .customView(R.layout.castloadingdialog,false)
                 .contentLineSpacing(0)
@@ -259,6 +267,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                Tracking.getInstance(LiveTvApplication.appContext).onStart();
                 dialog.dismiss();
             }
         }, 5000);

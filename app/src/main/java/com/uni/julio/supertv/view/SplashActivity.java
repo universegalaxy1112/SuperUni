@@ -32,6 +32,7 @@ import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.networing.HttpRequest;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.SplashViewModel;

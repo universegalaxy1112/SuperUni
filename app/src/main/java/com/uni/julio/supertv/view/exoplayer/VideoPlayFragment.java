@@ -163,7 +163,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         Intent intent = getActivity().getIntent();
         int seasonPosition = intent.getIntExtra("seasonPosition", -1);
         int episodePosition = intent.getIntExtra("episodePosition" , -1);
-        this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((episodePosition == -1? "":" E"+ episodePosition +1));
+        this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + (seasonPosition+1)) + ((episodePosition == -1? "":" E"+ (episodePosition +1)));
       /*  if(!Device.treatAsBox){
             try {
                 if(isAvailable()){
@@ -357,7 +357,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         super.onStart();
         if(Util.SDK_INT>23){
             initializePlayer();
-            Tracking.getInstance((AppCompatActivity) getActivity()).setAction((this.title));
         }
     }
     @Override
@@ -368,7 +367,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                 mSessionManagerListener, CastSession.class);*/
         if((Util.SDK_INT<=23||player==null)){
             initializePlayer();
-            Tracking.getInstance((AppCompatActivity) getActivity()).setAction((this.title));
         }
     }
 
@@ -378,7 +376,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         /*if(mCastContext != null)
         mCastContext.getSessionManager().removeSessionManagerListener(
                 mSessionManagerListener, CastSession.class);*/
-        Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         if(Util.SDK_INT<=23){
             releasePlayer();
 
@@ -387,10 +384,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public void onStop() {
         super.onStop();
-        Tracking.getInstance((AppCompatActivity) getActivity()).setAction("IDLE");
         if (Util.SDK_INT > 23) {
             releasePlayer();
-
         }
     }
     public void onNewIntent(Intent intent) {
@@ -399,7 +394,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         int seasonPosition = intent.getIntExtra("seasonPosition", -1);
         int episodePosition = intent.getIntExtra("episodePosition" , -1);
         this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((episodePosition == -1? "":" E"+ episodePosition +1));
-        Tracking.getInstance((AppCompatActivity) getActivity()).setAction(this.title);
         getActivity().setIntent(intent);
     }
 
@@ -603,7 +597,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             else {
                 player.prepare(mediaSource, !isTimelineStatic, !isTimelineStatic);
             }
-            if(intent.getIntExtra("type",1) !=2 && playerPosition != 0L) {//eventso
+            if(mainCategory != 4 && intent.getIntExtra("type",1) !=2 && playerPosition != 0L) {//eventso
                 Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
                     @TargetApi(Build.VERSION_CODES.M)
                     @Override
@@ -628,6 +622,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             }
             playerNeedsSource = false;
             updateButtonVisibilities();
+            Tracking.getInstance( getActivity()).setAction((this.title));
+            Tracking.getInstance( getActivity()).track();
         }
 
     }
@@ -686,8 +682,12 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     }
     private void updateButtonVisibilities() {
         titleText.setText(this.title);
-        titleView.setVisibility(View.VISIBLE);
-        textClock.setVisibility(View.VISIBLE);
+        if(!isLiveTV)
+        {
+            titleView.setVisibility(View.VISIBLE);
+            textClock.setVisibility(View.VISIBLE);
+        }
+
         if(hideControls) {
             debugRootView.setVisibility(View.GONE);
             return;

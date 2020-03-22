@@ -118,7 +118,6 @@ public class ParserJSonFile {
 
     public static List<? extends VideoStream> getParsedMovies(String mainCategory, String movieCategory, String data) throws JSONException,NullPointerException {
 
-
         String JSON_ARRAY_VAR = "";
         List<VideoStream> dataArray = new ArrayList<>();
             JSONObject videosJson = new JSONObject(data);

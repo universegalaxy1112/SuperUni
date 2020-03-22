@@ -34,6 +34,7 @@ import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.library.CustomProgressDialog;
 import com.uni.julio.supertv.utils.networing.NetManager;
 
@@ -51,6 +52,14 @@ public static final int GRANTED = 0;
 private static final int REQUEST_READ_PHONE_STATE = 0;
 private static final int REQUEST_STORAGE = 1;
 boolean denyAll = false;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Tracking.getInstance(this).enableSleep(false);
+        Tracking.getInstance(this).enableTrack(false);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

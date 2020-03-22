@@ -110,11 +110,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
          String title = serie.getTitle();
          long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
          String[] finalUris = uris;
-        if(false){
-            playTrailer(finalUris,extensions,subtitleUrl,title);
-        }else{
-            playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
-        }
+         playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
     }
     private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
         Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);

@@ -36,8 +36,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         String from = remoteMessage.getFrom();
-        if(Device.treatAsBox) return;
-        if(!ObjectUtils.isEmpty(from)){
+         return;
+        /*if(!ObjectUtils.isEmpty(from)){
             Map<String, String> dataMap= remoteMessage.getData();
                 if (dataMap.size() > 0) {
                     try {
@@ -87,7 +87,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         e.printStackTrace();
                     }
                 }
-        }
+        }*/
     }
     private void showNotification(String title,String tickerText,final String posterImage,String type, int mainCategoryId){
         final int notificationID = new Random().nextInt(60000);
