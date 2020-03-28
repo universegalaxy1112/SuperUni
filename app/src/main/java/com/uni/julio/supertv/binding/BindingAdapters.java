@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
 import com.squareup.picasso.Picasso;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 
 public class BindingAdapters {
@@ -133,16 +135,20 @@ public class BindingAdapters {
     @BindingAdapter({"showHDIcon"})
     public static void bindShowHDIcon(TextView view, boolean isHD) {
         view.setVisibility(isHD? View.VISIBLE:View.GONE);
-
+    }
+    @BindingAdapter({"showLike"})
+    public static void bindLikeButton(LinearLayout linearLayout,boolean liked){
+        linearLayout.setBackground(LiveTvApplication.getAppContext().getResources().getDrawable(liked ? R.drawable.button_like_active : R.drawable.button_like_normal));
     }
 
-
-
+    @BindingAdapter({"showDislike"})
+    public static void bindDislikeButton(LinearLayout linearLayout,boolean disliked){
+        linearLayout.setBackground(LiveTvApplication.getAppContext().getResources().getDrawable(disliked ? R.drawable.button_dislike_active : R.drawable.button_dislike_normal));
+    }
 
     @BindingAdapter({"showFavoriteIcon"})
     public static void bindShowFavoriteIcon(ImageView view, boolean favorite) {
         view.setImageResource(favorite ? R.drawable.ic_favorite_like : R.drawable.ic_favorite_normal);
-
     }
 
     @BindingAdapter({"setDate"})

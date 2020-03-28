@@ -49,6 +49,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.exoplayer2.util.Util;
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.CustomListRowPresenter;
 import com.uni.julio.supertv.adapter.MoviesPresenter;
@@ -65,6 +66,7 @@ import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.NetManager;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
 
 import java.net.URI;
@@ -162,7 +164,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             });
          }catch (Exception e){
             e.printStackTrace();
-            Dialogs.showOneButtonDialog(getActivity(), R.string.generic_error_title, R.string.generic_loading_message, new DialogInterface.OnClickListener() {
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
@@ -178,6 +180,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
 
     private void setupEventListeners() {
         setSearchAffordanceColor(ContextCompat.getColor(getActivity(), R.color.wp_yellow));
+        if(mainCategoryId != 4 && mainCategoryId != 7 && mainCategoryId != 8 )
         setOnSearchClickedListener(new OnClickListener() {
             public void onClick(android.view.View v) {
                 Bundle extras = new Bundle();
@@ -213,7 +216,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
             for (int i = 0; i < mCategoriesList.size(); i++) {
                 //loadHeader(mCategoriesList.get(i));
-                if(mainCategoryId == 7 && i == 0)
+                if((mainCategoryId == 7|| mainCategoryId ==8 || mainCategoryId ==4) && i == 0)
                     continue;
                 else
                     load(i);
@@ -234,13 +237,20 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     public void onResume() {
         super.onResume();
         try{
-
-        }catch (Exception e){
             mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
-            if(mCategoriesList.size()>0 && mCategoriesList.get(0).getCatName().equals("Favorite") && mainCategoryId != 7)
+            if(mCategoriesList.size()>0 && mCategoriesList.get(0).getCatName().equals("Favorite") && mainCategoryId != 7 && mainCategoryId != 4 && mainCategoryId != 8)
                 NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(0), this, 30);
             if(mCategoriesList.size()>1 && mCategoriesList.get(1).getCatName().equals("Vistas Recientes"))
                 NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId), mCategoriesList.get(1), this, 30);
+        }catch (Exception e){
+            e.printStackTrace();
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
         }
 
     }
@@ -320,17 +330,35 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 Movie movie = (Movie) item;
                 Bundle extras2 = new Bundle();
                 if (((Movie) item).getPosition() != -1) {
-                    extras2.putString("movie", new Gson().toJson( movie));
-                    extras2.putInt("mainCategoryId", MoviesMenuTVFragment.this.mainCategoryId);
-                    extras2.putInt("movieCategoryId",movie.getMovieCategoryIdOwner());
-                    MoviesMenuTVFragment.this.startActivity(MoviesMenuTVFragment.this.getLaunchIntent(OneSeasonDetailActivity.class, extras2));
-                    MoviesMenuTVFragment.this.getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                    return;
+                    if(mainCategoryId == 4  || mainCategoryId == 7){
+                        onPlaySelectedDirect(movie, mainCategoryId);
+                    }else{
+                        extras2.putString("movie", new Gson().toJson( movie));
+                        extras2.putInt("mainCategoryId", MoviesMenuTVFragment.this.mainCategoryId);
+                        extras2.putInt("movieCategoryId",movie.getMovieCategoryIdOwner());
+                        MoviesMenuTVFragment.this.startActivity(MoviesMenuTVFragment.this.getLaunchIntent(OneSeasonDetailActivity.class, extras2));
+                        MoviesMenuTVFragment.this.getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                        return;
+                    }
                 }
-
             }
         }
-
+    }
+    public void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
+        int movieId = movie.getContentId();
+        String[] uris = {movie.getStreamUrl()};
+        String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
+        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
+                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", 0)
+                .putExtra("subsURL", movie.getSubtitleUrl())
+                .putExtra("title", movie.getTitle())
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        startActivity(launchIntent);
     }
     public Intent getLaunchIntent(Class classToLaunch, Bundle extras) {
         Intent launchIntent = new Intent(getActivity(), classToLaunch);

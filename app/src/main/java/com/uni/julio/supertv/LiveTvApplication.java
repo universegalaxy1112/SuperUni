@@ -51,7 +51,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     private static Context applicationContext;
     protected String userAgent;
     public Handler handler;
-    public User user = null;
+    public static User user = null;
     public static Context appContext=null;
     @Override
     public void onCreate() {

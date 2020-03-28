@@ -281,7 +281,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
          View rootPlayerView= inflater.inflate(R.layout.videofragment_normal, container, false);
         debugRootView =  rootPlayerView.findViewById(R.id.controls_root);
         titleView =  rootPlayerView.findViewById(R.id.title);
-        titleText =  rootPlayerView.findViewById(R.id.titleText);
+        progressBarView =rootPlayerView.findViewById(R.id.player_view_progress_bar);
+
+                titleText =  rootPlayerView.findViewById(R.id.titleText);
         textClock = rootPlayerView.findViewById(R.id.textClock1);
         debugTextView =  rootPlayerView.findViewById(R.id.debug_text_view);
         retryButton =  rootPlayerView.findViewById(R.id.retry_button);
@@ -322,6 +324,27 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
          return rootPlayerView;
     }
+    public  void hideController(){
+        debugRootView.setVisibility(View.GONE);
+        titleView.setVisibility(View.GONE);
+        textClock.setVisibility(View.GONE);
+        progressBarView.setVisibility(View.GONE);
+        simpleExoPlayerView.setUseController(false);
+        isLiveTV = true;
+    }
+    public  void useController(){
+        debugRootView.setVisibility(View.VISIBLE);
+        titleView.setVisibility(View.VISIBLE);
+        textClock.setVisibility(View.VISIBLE);
+        simpleExoPlayerView.setUseController(true);
+        isLiveTV = false;
+    }
+    public void unMute(){
+        player.setVolume(10f);
+    }
+    public  void mute(){
+        player.setVolume(0f);
+    }
     public void toggleTitle(){
         if(isLiveTV){
             titleView.setVisibility(View.GONE);
@@ -340,7 +363,10 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         }
 
     }
-
+    private void hideWhenForward(){
+            titleView.setVisibility(View.GONE);
+            textClock.setVisibility(View.GONE);
+    }
     public void hideControls(LiveTVToggleUIListener listener) {
         hideControls = true;
         liveTVToggleListener = listener;
@@ -365,9 +391,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         /*if(mCastContext != null)
         mCastContext.getSessionManager().addSessionManagerListener(
                 mSessionManagerListener, CastSession.class);*/
-        if((Util.SDK_INT<=23||player==null)){
-            initializePlayer();
-        }
     }
 
     @Override
@@ -421,13 +444,14 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public void onVisibilityChange(int visibility) {
         if(hideControls) {
             debugRootView.setVisibility(View.GONE);
+            titleView.setVisibility(View.GONE);
+            textClock.setVisibility(View.GONE);
             return;
         }else{
             debugRootView.setVisibility(visibility);
             titleView.setVisibility(visibility);
             textClock.setVisibility(visibility);
         }
-
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -450,6 +474,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         long pos = player.getCurrentPosition();
         pos += 15000; // milliseconds
         player.seekTo(pos);
+        hideWhenForward();
      }
 
     public void doRewindVideo()
@@ -461,7 +486,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         long pos = player.getCurrentPosition();
         pos -= 5000; // milliseconds
         player.seekTo(pos);
-     }
+        hideWhenForward();
+    }
      public void playPause(){
          if(player.getPlayWhenReady()){
              player.setPlayWhenReady(false);
@@ -680,16 +706,13 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             }
         }
     }
+
     private void updateButtonVisibilities() {
         titleText.setText(this.title);
-        if(!isLiveTV)
-        {
-            titleView.setVisibility(View.VISIBLE);
-            textClock.setVisibility(View.VISIBLE);
-        }
-
         if(hideControls) {
             debugRootView.setVisibility(View.GONE);
+            titleView.setVisibility(View.GONE);
+            textClock.setVisibility(View.GONE);
             return;
         }
         debugRootView.removeAllViews();
@@ -755,7 +778,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         ;//Log.d("liveTV","onPlayerStateChanged "+playWhenReady+"  state "+playbackState);
         if (playbackState == ExoPlayer.STATE_ENDED) {
-            showControls();
+            getActivity().finishAndRemoveTask();
         }
         if (playbackState == ExoPlayer.STATE_BUFFERING) {
             progressBarView.setVisibility(View.VISIBLE);
@@ -835,11 +858,14 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private void showControls() {
         if(hideControls) {
             debugRootView.setVisibility(View.GONE);
+            titleView.setVisibility(View.GONE);
+            textClock.setVisibility(View.GONE);
         }else{
             debugRootView.setVisibility(View.VISIBLE);
+            titleView.setVisibility(View.VISIBLE);
+            textClock.setVisibility(View.VISIBLE);
         }
-        titleView.setVisibility(View.VISIBLE);
-        textClock.setVisibility(View.VISIBLE);
+
     }
 
     private void showToastError() {

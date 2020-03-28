@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             public void run() {
                 showPopup();
             }
-        },1000);
+        },500);
         //subscribeTopic("all");
         setSupportActionBar(toolbar);
         if(Device.treatAsBox){
@@ -167,7 +167,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     public void onMainCategorySelected(MainCategory mainCategory) {
          if(requested) return;
         int mainCategoryId = mainCategory.getId();
-        if(mainCategoryId==8){
+        if(mainCategoryId==9){
             onAccountPressed();
             return;
         }

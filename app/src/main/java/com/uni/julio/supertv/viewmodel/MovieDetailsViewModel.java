@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
@@ -19,6 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.OneSeasonAdapter;
 import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
@@ -52,7 +54,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     List<? extends VideoStream>  movieList;
     private Movie mMovie;
      public ObservableBoolean isFavorite;
-    public ObservableBoolean isSeen;
+    private ObservableBoolean isSeen;
     private boolean isMovies = false;
     private boolean isSerie=false;
     private boolean hidePlayFromStart = false;
@@ -62,8 +64,9 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     private ActivityOneseasonDetailBinding movieDetailsBinding;
     private int likes = 0;
     private int dislikes = 0;
-    private boolean liked = false;
-    private boolean disliked = false;
+    public ObservableBoolean liked = new ObservableBoolean(false);
+    public ObservableBoolean disliked = new ObservableBoolean(false);
+    private boolean isRequested = false;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
@@ -116,29 +119,76 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         mMovie = movie;
         movieDetailsBinding.setMovieDetailItem(movie);
         movieDetailsBinding.play.requestFocus();
-
+        getLike();
     }
     private void getLike(){
-        NetManager.getInstance().makeStringRequest(WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(mMovie.getContentId())), this);
+        if(isRequested){
+            Toast.makeText(mContext, R.string.processing, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        isRequested = true;
+        String url = WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
+                .replace("{USERID}", LiveTvApplication.user.getName());
+        NetManager.getInstance().makeStringRequest(url, this);
+    }
+    public void like(View view){
+        if(isRequested)
+        {
+            Toast.makeText(mContext, R.string.processing, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!liked.get()){
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
+                            .replace("{LIKE}","1")
+                            .replace("{DISLIKE}","0")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.like.setText(Integer.toString(++this.likes));
+        }
+        else{
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
+                            .replace("{LIKE}","-1")
+                            .replace("{DISLIKE}","0")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.like.setText(Integer.toString(--this.likes));
+        }
+        liked.set(!liked.get());
+        disliked.notifyChange();
+    }
+    public void dislike(View view){
+        if(isRequested){
+            Toast.makeText(mContext, R.string.processing, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!disliked.get()){
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
+                            .replace("{LIKE}","0")
+                            .replace("{DISLIKE}","1")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.dislike.setText(Integer.toString(++this.dislikes));
+        }
+        else{
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
+                            .replace("{LIKE}","0")
+                            .replace("{DISLIKE}","-1")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.dislike.setText(Integer.toString(--this.dislikes));
+        }
+        disliked.set(!disliked.get());
+        disliked.notifyChange();
+
     }
      public void finishActivity(View view) {
         viewCallback.finishActivity();
      }
 
-    public void onClickFavorite(View view) {
-        if(isFavorite.get()) {
-             videoStreamManager.removeLocalFavorite(String.valueOf(mMovie.getContentId()));
-             isFavorite.set(false);
-             removeFavorite(mMovie);
-        }
-        else {
-             videoStreamManager.setLocalFavorite(String.valueOf(mMovie.getContentId()));
-             isFavorite.set(true);
-             addFavorite(mMovie);
-        }
-        isFavorite.notifyChange();
-        DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
-    }
     public void play(View view){
         if(!isSD.get()){
             final MaterialDialog dialog=new MaterialDialog.Builder(mContext)
@@ -189,11 +239,19 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         }
         viewCallback.onPlaySelected(mMovie, type);
     }
-    public void like(View view){
-
-    }
-    public void dislike(View view){
-
+    public void onClickFavorite(View view) {
+        if(isFavorite.get()) {
+            videoStreamManager.removeLocalFavorite(String.valueOf(mMovie.getContentId()));
+            isFavorite.set(false);
+            removeFavorite(mMovie);
+        }
+        else {
+            videoStreamManager.setLocalFavorite(String.valueOf(mMovie.getContentId()));
+            isFavorite.set(true);
+            addFavorite(mMovie);
+        }
+        isFavorite.notifyChange();
+        DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
     }
     private void addFavorite(Movie movie){
         String serieType = "";
@@ -212,7 +270,6 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
            List<Movie> movieList=new Gson().fromJson(favoriteMovies,new TypeToken<List<Movie>>(){}.getType());
            movieList.add(0,movie);
            DataManager.getInstance().saveData(serieType,new Gson().toJson(movieList));
-
        }
     }
     private void removeFavorite(Movie movie){
@@ -270,8 +327,6 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         }
     }
 
-
-
     @Override
     public void onMovieSelected(int selectedRow, int selectedMovie) {
        viewCallback.onMovieSelected(selectedRow,selectedMovie);
@@ -280,22 +335,30 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
 
     @Override
     public void onCompleted(String response) {
+        isRequested = false;
         try{
             if(!TextUtils.isEmpty(response)){
                 JSONObject jsonObject = new JSONObject(response);
                 boolean status = jsonObject.getBoolean("status");
-                int likes = jsonObject.getInt("likes");
-                int dislikes = jsonObject.getInt("dislikes");
-
+                if(status && !jsonObject.isNull("likes")){
+                    this.likes = jsonObject.getInt("likes");
+                    this.dislikes = jsonObject.getInt("dislikes");
+                    this.liked.set(jsonObject.getBoolean("liked"));
+                    this.disliked.set(jsonObject.getBoolean("disliked"));
+                    liked.notifyChange();
+                    disliked.notifyChange();
+                    movieDetailsBinding.like.setText(Integer.toString(this.likes));
+                    movieDetailsBinding.dislike.setText(Integer.toString(this.dislikes));
+                }
             }
 
-        }catch (JSONException e){
-
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     @Override
     public void onError() {
-
+        isRequested = false;
     }
 }

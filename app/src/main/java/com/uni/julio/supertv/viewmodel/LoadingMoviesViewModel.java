@@ -54,7 +54,7 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
              netManager.retrieveLiveTVPrograms(videoStreamManager.getMainCategory(mainCategoryPosition), (LoadProgramsForLiveTVCategoryResponseListener)this);
         }
         else {
-            if(videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().size() > 0 ) {
+            if(videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().size() > 0 && mainCategoryPosition != 8 ) {
                 viewCallback.onSubCategoriesForMainCategoryLoaded();
             }
             else {

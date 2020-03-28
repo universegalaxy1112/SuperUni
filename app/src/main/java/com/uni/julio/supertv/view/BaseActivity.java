@@ -27,9 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ModelTypes.SelectedType selectedType;
     protected int mainCategoryId;
     protected int movieCategoryId;
-    private CustomProgressDialog customProgressDialog;
-    private ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -77,6 +77,8 @@
     <string name="no_connection_message">Por favor verifique su conexión a internet.</string>
 
     <string name="generic_error_title">Error</string>
+    <string name="exception_title">Please check the internet Connection and Try again.</string>
+    <string name="exception_content">Sorry. There was some issues in internet Connection.</string>
     <string name="generic_loading_message">Hubo un error cargando las películas, por favor intenta de nuevo.</string>
     <string name="generic_video_loading_message">Hubo un error cargando el video que deseas, por favor intenta de nuevo.</string>
 
@@ -147,4 +149,5 @@
     <string name="channel_description">testChannel</string>
     <string name="title_story">Description</string>
     <string name="transition_image">transition-image</string>
+    <string name="processing">Please Wait...</string>
 </resources>

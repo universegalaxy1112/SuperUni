@@ -87,6 +87,7 @@ boolean denyAll = false;
                                 DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
                             }
                             DataManager.getInstance().saveData("theUser", new Gson().toJson(user));
+                            LiveTvApplication.user = user;
                             DataManager.getInstance().saveData("device_num", jsonObject.getString("device_num"));
                             startMain();
                             return;

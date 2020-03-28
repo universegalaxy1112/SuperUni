@@ -145,6 +145,10 @@ public class ParserJSonFile {
                         break;
                     //case ModelTypes.LIVE_TV_CATEGORIES:
                 }
+                if(ModelTypes.TOP_MOVIES.equals("top") && movieCategory.contains("Movies"))
+                    movie = new Movie();
+                else if(ModelTypes.TOP_MOVIES.equals("top") && movieCategory.contains("Series"))
+                    movie = new Serie();
                 movie.setPosition(i);
                 fillObject(movie, videoArray.getJSONObject(i));
                 dataArray.add(movie);

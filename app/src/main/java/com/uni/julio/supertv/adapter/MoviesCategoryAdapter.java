@@ -105,7 +105,7 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
 
         MovieCategory movieCategory=mMoviesList.get(position);
         List<Movie> movieList = (List<Movie>) movieCategory.getMovieList();
-        if(mMainCategoryPosition == 7 && position ==0 ){
+        if((mMainCategoryPosition == 7|| mMainCategoryPosition == 8 || mMainCategoryPosition == 4) && position ==0 ){
             holder.getViewDataBinding().getRoot().setVisibility(View.GONE);
             holder.getViewDataBinding().getRoot().setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     0));

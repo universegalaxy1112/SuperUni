@@ -245,11 +245,18 @@ public class FetchJSonFileSync {
                     tmpURL = "/entertainment.php?cat="+mainCategoryEncoded;
                     break;
             }
+            if(ModelTypes.TOP_MOVIES.equals(mainCategory) && movieCategory.contains("Movies"))
+                tmpURL = "/getTopMovies.php?";
+            else if(ModelTypes.TOP_MOVIES.equals(mainCategory) && movieCategory.contains("Series"))
+                tmpURL = "/getTopSeries.php?";
         } catch (UnsupportedEncodingException e) { }
         String theUser = DataManager.getInstance().getString("theUser","");
         User user = new Gson().fromJson(theUser, User.class);
         String password = user.getPassword();
-        return WebConfig.baseURL + tmpURL + "&s=" + password;
+        if(ModelTypes.TOP_MOVIES.equals(mainCategory))
+            return WebConfig.baseURL + tmpURL + "s=" + password;
+        else
+            return WebConfig.baseURL + tmpURL + "&s=" + password;
     }
 
     private String getMoviesForSerieUrl(Serie serie, int season) {

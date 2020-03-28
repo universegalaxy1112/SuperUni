@@ -178,7 +178,7 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
                 }
                 Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                 intent.setData(Uri.fromParts("package", getPackageName(), null));
-               startActivityForResult(intent, 4168);
+                startActivityForResult(intent, 4168);
             }
 
             public void onCancel() {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
@@ -21,6 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.MultiSeasonAdapter;
 import com.uni.julio.supertv.databinding.ActivityMultiSeasonDetailBinding;
@@ -31,6 +33,7 @@ import com.uni.julio.supertv.listeners.EpisodeLoadListener;
 import com.uni.julio.supertv.listeners.LoadEpisodesForSerieResponseListener;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.listeners.SeasonSelectListener;
+import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.Episode;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
@@ -39,6 +42,9 @@ import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.networing.NetManager;
+import com.uni.julio.supertv.utils.networing.WebConfig;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +52,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.ViewModel, LoadEpisodesForSerieResponseListener, SeasonSelectListener,MovieSelectedListener {
+public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.ViewModel, LoadEpisodesForSerieResponseListener, SeasonSelectListener,MovieSelectedListener, StringRequestListener {
     private int mMainCategoryId ;
     private int mMovieCategoryId;
     private Movie mMovie;
@@ -71,6 +77,11 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     Serie serie;
     TabLayout tabLayout;
     EpisodeLoadListener episodeLoadListener;
+    private int likes = 0;
+    private int dislikes = 0;
+    public ObservableBoolean liked = new ObservableBoolean(false);
+    public ObservableBoolean disliked = new ObservableBoolean(false);
+    private boolean isRequested = false;
     public EpisodeDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         this.mContext = context;
@@ -313,7 +324,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         viewCallback.onPlaySelected(mMovie, type, seasonPosition);
     }
 
-
     private void addRecentSerie() {
         try {
             String lastSelectedSerie = DataManager.getInstance().getString("lastSerieSelected", null);
@@ -360,14 +370,14 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     }
 
     public void showEpisode(int episodeposition){
-         mMovie=(Movie)season.getEpisode(episodeposition);
-         setProperty();
-         movieDetailsBinding.setMovieDetailItem(mMovie);
+        mMovie=(Movie)season.getEpisode(episodeposition);
+        setProperty();
+        movieDetailsBinding.setMovieDetailItem(mMovie);
         movieDetailsBinding.setMovieDetailsVM(this);
         movieDetailsBinding.scrollview.fullScroll(ScrollView.FOCUS_UP);
         movieDetailsBinding.play.requestFocus();
         rowsRecycler.scrollToPosition(episodeposition);
-
+        getLike();
     }
     @Override
     public void onEpisodesForSerieCompleted(Season mseason) {
@@ -379,6 +389,68 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         this.episodeLoadListener.onLoaded();
 
     }
+    private void getLike(){
+        if(isRequested){
+            Toast.makeText(mContext, R.string.processing, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        isRequested = true;
+        String url = WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(serie.getContentId()))
+                .replace("{USERID}",LiveTvApplication.user.getName());
+        NetManager.getInstance().makeStringRequest(url, this);
+    }
+    public void like(View view){
+        if(isRequested)
+        {
+            Toast.makeText(mContext, R.string.processing, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!liked.get()){
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
+                            .replace("{LIKE}","1")
+                            .replace("{DISLIKE}","0")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.like.setText(Integer.toString(++this.likes));
+        }
+        else{
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
+                            .replace("{LIKE}","-1")
+                            .replace("{DISLIKE}","0")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.like.setText(Integer.toString(--this.likes));
+        }
+        liked.set(!liked.get());
+        disliked.notifyChange();    }
+    public void dislike(View view){
+        if(isRequested){
+            Toast.makeText(mContext, R.string.processing, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!disliked.get()){
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
+                            .replace("{LIKE}","0")
+                            .replace("{DISLIKE}","1")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.dislike.setText(Integer.toString(++this.dislikes));
+        }
+        else{
+            NetManager.getInstance().makeStringRequest(
+                    WebConfig.likeURL
+                            .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
+                            .replace("{LIKE}","0")
+                            .replace("{DISLIKE}","-1")
+                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+            movieDetailsBinding.dislike.setText(Integer.toString(--this.dislikes));
+        }
+        disliked.set(!disliked.get());
+        disliked.notifyChange();
+    }
     @Override
     public void onError() {
         this.episodeLoadListener.onError();
@@ -388,4 +460,26 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         showEpisode(selectedEpisode);
     }
 
+    @Override
+    public void onCompleted(String response) {
+        isRequested = false;
+        try{
+            if(!TextUtils.isEmpty(response)){
+                JSONObject jsonObject = new JSONObject(response);
+                boolean status = jsonObject.getBoolean("status");
+                if(status && !jsonObject.isNull("likes")){
+                    this.likes = jsonObject.getInt("likes");
+                    this.dislikes = jsonObject.getInt("dislikes");
+                    this.liked.set(jsonObject.getBoolean("liked"));
+                    this.disliked.set(jsonObject.getBoolean("disliked"));
+                    liked.notifyChange();
+                    disliked.notifyChange();
+                    movieDetailsBinding.like.setText(Integer.toString(this.likes));
+                    movieDetailsBinding.dislike.setText(Integer.toString(this.dislikes));
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
