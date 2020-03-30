@@ -391,9 +391,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public void onStart(){
         super.onStart();
-        if(Util.SDK_INT>23){
             initializePlayer();
-        }
     }
     @Override
     public void onResume(){
@@ -409,17 +407,12 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         /*if(mCastContext != null)
         mCastContext.getSessionManager().removeSessionManagerListener(
                 mSessionManagerListener, CastSession.class);*/
-        if(Util.SDK_INT<=23){
             releasePlayer();
-
-        }
     }
     @Override
     public void onStop() {
         super.onStop();
-        if (Util.SDK_INT > 23) {
             releasePlayer();
-        }
     }
     public void onNewIntent(Intent intent) {
         releasePlayer();
@@ -431,23 +424,28 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     }
 
     private void releasePlayer() {
-        if (player != null) {
-            debugViewHelper.stop();
-            debugViewHelper = null;
-            shouldAutoPlay = player.getPlayWhenReady();
-            playerWindow = player.getCurrentWindowIndex();
-            playerPosition = C.TIME_UNSET;
-            Timeline timeline = player.getCurrentTimeline();
-            if (!timeline.isEmpty() && timeline.getWindow(playerWindow, window).isSeekable) {
-                playerPosition = player.getCurrentPosition();
-                 DataManager.getInstance().saveDataLong("seconds"+movieId,playerPosition);
+        try{
+            if (player != null) {
+                debugViewHelper.stop();
+                debugViewHelper = null;
+                shouldAutoPlay = player.getPlayWhenReady();
+                playerWindow = player.getCurrentWindowIndex();
+                playerPosition = C.TIME_UNSET;
+                Timeline timeline = player.getCurrentTimeline();
+                if (!timeline.isEmpty() && timeline.getWindow(playerWindow, window).isSeekable) {
+                    playerPosition = player.getCurrentPosition();
+                    DataManager.getInstance().saveDataLong("seconds"+movieId,playerPosition);
+                }
+                player.release();
+                player = null;
+                trackSelector = null;
+                trackSelectionHelper = null;
+                eventLogger = null;
             }
-            player.release();
-            player = null;
-            trackSelector = null;
-            trackSelectionHelper = null;
-            eventLogger = null;
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
     }
 
     @Override
@@ -526,142 +524,146 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
     }
     private void initializePlayer(){
+        try{
+            Intent intent = getActivity().getIntent();
+            //SuperTV add progressbar here
+            movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
+            mainCategory = intent.getIntExtra("mainCategoryId",-1);
+            playerPosition = C.TIME_UNSET;
+            playerPosition =mainCategory == 4 ? 0L : intent.getLongExtra(SECONDS_TO_START_EXTRA,0L);
+            //mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
 
-        Intent intent = getActivity().getIntent();
-        //SuperTV add progressbar here
-        movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
-        mainCategory = intent.getIntExtra("mainCategoryId",-1);
-        playerPosition = C.TIME_UNSET;
-        playerPosition =mainCategory == 4 ? 0L : intent.getLongExtra(SECONDS_TO_START_EXTRA,0L);
-        //mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
-
-        if (player == null) {
-            boolean preferExtensionDecoders = intent.getBooleanExtra(PREFER_EXTENSION_DECODERS, false);
-            UUID drmSchemeUuid = intent.hasExtra(DRM_SCHEME_UUID_EXTRA)
-                    ? UUID.fromString(intent.getStringExtra(DRM_SCHEME_UUID_EXTRA)) : null;
-            DrmSessionManager<FrameworkMediaCrypto> drmSessionManager = null;
-            if (drmSchemeUuid != null) {
-                String drmLicenseUrl = intent.getStringExtra(DRM_LICENSE_URL);
-                String[] keyRequestPropertiesArray = intent.getStringArrayExtra(DRM_KEY_REQUEST_PROPERTIES);
-                Map<String, String> keyRequestProperties;
-                if (keyRequestPropertiesArray == null || keyRequestPropertiesArray.length < 2) {
-                    keyRequestProperties = null;
-                } else {
-                    keyRequestProperties = new HashMap<>();
-                    for (int i = 0; i < keyRequestPropertiesArray.length - 1; i += 2) {
-                        keyRequestProperties.put(keyRequestPropertiesArray[i],
-                                keyRequestPropertiesArray[i + 1]);
-                    }
-                }
-                try {
-                    drmSessionManager = buildDrmSessionManager(drmSchemeUuid, drmLicenseUrl,
-                            keyRequestProperties);
-                } catch (UnsupportedDrmException e) {
-                    int errorStringId = Util.SDK_INT < 18 ? R.string.error_drm_not_supported
-                            : (e.reason == UnsupportedDrmException.REASON_UNSUPPORTED_SCHEME
-                            ? R.string.error_drm_unsupported_scheme : R.string.error_drm_unknown);
-                    showToast(errorStringId);
-                    return;
-                }
-            }
-
-            @SimpleExoPlayer.ExtensionRendererMode int extensionRendererMode =
-                    ((LiveTvApplication) getActivity().getApplication()).useExtensionRenderers()
-                            ? (preferExtensionDecoders ? SimpleExoPlayer.EXTENSION_RENDERER_MODE_PREFER
-                            : SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON)
-                            : SimpleExoPlayer.EXTENSION_RENDERER_MODE_OFF;
-            TrackSelection.Factory videoTrackSelectionFactory =
-                    new AdaptiveVideoTrackSelection.Factory(BANDWIDTH_METER);
-            trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
-            trackSelectionHelper = new TrackSelectionHelper(trackSelector, videoTrackSelectionFactory);
-            player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, new DefaultLoadControl(),
-                    drmSessionManager, extensionRendererMode);
-            player.addListener(this);
-
-            eventLogger = new EventLogger(trackSelector);
-            player.addListener(eventLogger);
-            player.setAudioDebugListener(eventLogger);
-            player.setVideoDebugListener(eventLogger);
-            player.setId3Output(eventLogger);
-
-            simpleExoPlayerView.setPlayer(player);
-
-            player.setPlayWhenReady(shouldAutoPlay);
-            debugViewHelper = new DebugTextViewHelper(player, debugTextView);
-            debugViewHelper.start();
-            playerNeedsSource = true;
-        }
-        if (playerNeedsSource) {
-            String action = intent.getAction();
-            Uri[] uris;
-            String[] extensions;
-            if (ACTION_VIEW.equals(action)) {
-                uris = new Uri[] {intent.getData()};
-                extensions = new String[] {intent.getStringExtra(EXTENSION_EXTRA)};
-            } else if (ACTION_VIEW_LIST.equals(action)) {
-                String[] uriStrings = intent.getStringArrayExtra(URI_LIST_EXTRA);
-                uris = new Uri[uriStrings.length];
-                for (int i = 0; i < uriStrings.length; i++) {
-                    uris[i] = Uri.parse(uriStrings[i]);
-                }
-                extensions = intent.getStringArrayExtra(EXTENSION_LIST_EXTRA);
-                if (extensions == null) {
-                    extensions = new String[uriStrings.length];
-                }
-            } else {
-                showToast(getString(R.string.unexpected_intent_action));
-                return;
-            }
-            if (Util.maybeRequestReadExternalStoragePermission(getActivity(), uris)) {
-                // The player will be reinitialized if the permission is granted.
-                return;
-            }
-            MediaSource[] mediaSources = new MediaSource[uris.length];
-            for (int i = 0; i < uris.length; i++) {
-                mediaSources[i] = buildMediaSource(uris[i], extensions[i]);
-            }
-            MediaSource mediaSource = mediaSources.length == 1 ? mediaSources[0] : new ConcatenatingMediaSource(mediaSources);
-
-            //SuperTV add subtitles from SRT file
-            String subsURL = intent.getStringExtra("subsURL");
-            if(!TextUtils.isEmpty(subsURL)) {
-                Format textFormat = Format.createTextSampleFormat(null, MimeTypes.APPLICATION_SUBRIP, null, Format.NO_VALUE, Format.NO_VALUE, getString(R.string.tag_esp_srt), null);
-                MediaSource textMediaSource = new SingleSampleMediaSource(Uri.parse(subsURL), mediaDataSourceFactory, textFormat, C.TIME_UNSET);
-                MediaSource mediaSourceWithText = new MergingMediaSource(mediaSource, textMediaSource);
-
-                player.prepare(mediaSourceWithText, !isTimelineStatic, !isTimelineStatic);
-            }
-            else {
-                player.prepare(mediaSource, !isTimelineStatic, !isTimelineStatic);
-            }
-            if(mainCategory != 4 && intent.getIntExtra("type",1) !=2 && playerPosition != 0L) {//eventso
-                Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
-                    @TargetApi(Build.VERSION_CODES.M)
-                    @Override
-                    public void onAccept() {
-                        if (playerPosition == C.TIME_UNSET) {
-                            player.seekToDefaultPosition(playerWindow);
-                        } else {
-                            player.seekTo(playerWindow, playerPosition);
+            if (player == null) {
+                boolean preferExtensionDecoders = intent.getBooleanExtra(PREFER_EXTENSION_DECODERS, false);
+                UUID drmSchemeUuid = intent.hasExtra(DRM_SCHEME_UUID_EXTRA)
+                        ? UUID.fromString(intent.getStringExtra(DRM_SCHEME_UUID_EXTRA)) : null;
+                DrmSessionManager<FrameworkMediaCrypto> drmSessionManager = null;
+                if (drmSchemeUuid != null) {
+                    String drmLicenseUrl = intent.getStringExtra(DRM_LICENSE_URL);
+                    String[] keyRequestPropertiesArray = intent.getStringArrayExtra(DRM_KEY_REQUEST_PROPERTIES);
+                    Map<String, String> keyRequestProperties;
+                    if (keyRequestPropertiesArray == null || keyRequestPropertiesArray.length < 2) {
+                        keyRequestProperties = null;
+                    } else {
+                        keyRequestProperties = new HashMap<>();
+                        for (int i = 0; i < keyRequestPropertiesArray.length - 1; i += 2) {
+                            keyRequestProperties.put(keyRequestPropertiesArray[i],
+                                    keyRequestPropertiesArray[i + 1]);
                         }
                     }
-
-                    @Override
-                    public void onCancel() {
-
+                    try {
+                        drmSessionManager = buildDrmSessionManager(drmSchemeUuid, drmLicenseUrl,
+                                keyRequestProperties);
+                    } catch (UnsupportedDrmException e) {
+                        int errorStringId = Util.SDK_INT < 18 ? R.string.error_drm_not_supported
+                                : (e.reason == UnsupportedDrmException.REASON_UNSUPPORTED_SCHEME
+                                ? R.string.error_drm_unsupported_scheme : R.string.error_drm_unknown);
+                        showToast(errorStringId);
+                        return;
                     }
+                }
 
-                    @Override
-                    public void onDismiss() {
+                @SimpleExoPlayer.ExtensionRendererMode int extensionRendererMode =
+                        ((LiveTvApplication) getActivity().getApplication()).useExtensionRenderers()
+                                ? (preferExtensionDecoders ? SimpleExoPlayer.EXTENSION_RENDERER_MODE_PREFER
+                                : SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON)
+                                : SimpleExoPlayer.EXTENSION_RENDERER_MODE_OFF;
+                TrackSelection.Factory videoTrackSelectionFactory =
+                        new AdaptiveVideoTrackSelection.Factory(BANDWIDTH_METER);
+                trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
+                trackSelectionHelper = new TrackSelectionHelper(trackSelector, videoTrackSelectionFactory);
+                player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, new DefaultLoadControl(),
+                        drmSessionManager, extensionRendererMode);
+                player.addListener(this);
 
-                    }
-                });
+                eventLogger = new EventLogger(trackSelector);
+                player.addListener(eventLogger);
+                player.setAudioDebugListener(eventLogger);
+                player.setVideoDebugListener(eventLogger);
+                player.setId3Output(eventLogger);
+
+                simpleExoPlayerView.setPlayer(player);
+
+                player.setPlayWhenReady(shouldAutoPlay);
+                debugViewHelper = new DebugTextViewHelper(player, debugTextView);
+                debugViewHelper.start();
+                playerNeedsSource = true;
             }
-            playerNeedsSource = false;
-            updateButtonVisibilities();
-            Tracking.getInstance( getActivity()).setAction((this.title));
-            Tracking.getInstance( getActivity()).track();
+            if (playerNeedsSource) {
+                String action = intent.getAction();
+                Uri[] uris;
+                String[] extensions;
+                if (ACTION_VIEW.equals(action)) {
+                    uris = new Uri[] {intent.getData()};
+                    extensions = new String[] {intent.getStringExtra(EXTENSION_EXTRA)};
+                } else if (ACTION_VIEW_LIST.equals(action)) {
+                    String[] uriStrings = intent.getStringArrayExtra(URI_LIST_EXTRA);
+                    uris = new Uri[uriStrings.length];
+                    for (int i = 0; i < uriStrings.length; i++) {
+                        uris[i] = Uri.parse(uriStrings[i]);
+                    }
+                    extensions = intent.getStringArrayExtra(EXTENSION_LIST_EXTRA);
+                    if (extensions == null) {
+                        extensions = new String[uriStrings.length];
+                    }
+                } else {
+                    showToast(getString(R.string.unexpected_intent_action));
+                    return;
+                }
+                if (Util.maybeRequestReadExternalStoragePermission(getActivity(), uris)) {
+                    // The player will be reinitialized if the permission is granted.
+                    return;
+                }
+                MediaSource[] mediaSources = new MediaSource[uris.length];
+                for (int i = 0; i < uris.length; i++) {
+                    mediaSources[i] = buildMediaSource(uris[i], extensions[i]);
+                }
+                MediaSource mediaSource = mediaSources.length == 1 ? mediaSources[0] : new ConcatenatingMediaSource(mediaSources);
+
+                //SuperTV add subtitles from SRT file
+                String subsURL = intent.getStringExtra("subsURL");
+                if(!TextUtils.isEmpty(subsURL)) {
+                    Format textFormat = Format.createTextSampleFormat(null, MimeTypes.APPLICATION_SUBRIP, null, Format.NO_VALUE, Format.NO_VALUE, getString(R.string.tag_esp_srt), null);
+                    MediaSource textMediaSource = new SingleSampleMediaSource(Uri.parse(subsURL), mediaDataSourceFactory, textFormat, C.TIME_UNSET);
+                    MediaSource mediaSourceWithText = new MergingMediaSource(mediaSource, textMediaSource);
+
+                    player.prepare(mediaSourceWithText, !isTimelineStatic, !isTimelineStatic);
+                }
+                else {
+                    player.prepare(mediaSource, !isTimelineStatic, !isTimelineStatic);
+                }
+                if(mainCategory != 4 && intent.getIntExtra("type",1) !=2 && playerPosition != 0L) {//eventso
+                    Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
+                        @TargetApi(Build.VERSION_CODES.M)
+                        @Override
+                        public void onAccept() {
+                            if (playerPosition == C.TIME_UNSET) {
+                                player.seekToDefaultPosition(playerWindow);
+                            } else {
+                                player.seekTo(playerWindow, playerPosition);
+                            }
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onDismiss() {
+
+                        }
+                    });
+                }
+                playerNeedsSource = false;
+                updateButtonVisibilities();
+                Tracking.getInstance( getActivity()).setAction((this.title));
+                Tracking.getInstance( getActivity()).track();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
 
     }
 
