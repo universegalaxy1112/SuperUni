@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.leanback.app.BackgroundManager;
@@ -358,7 +359,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .putExtra("title", movie.getTitle())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        startActivity(launchIntent);
+        ActivityCompat.startActivityForResult(getActivity(), launchIntent,100,null);
     }
     public Intent getLaunchIntent(Class classToLaunch, Bundle extras) {
         Intent launchIntent = new Intent(getActivity(), classToLaunch);
