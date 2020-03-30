@@ -340,10 +340,20 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         isLiveTV = false;
     }
     public void unMute(){
-        player.setVolume(10f);
+        if(player != null)
+        player.setVolume(1000f);
     }
     public  void mute(){
-        player.setVolume(0f);
+        if(player != null)
+            player.setVolume(0f);
+    }
+    public void toggleMute(){
+        if(player != null && player.getVolume() == 0L)
+        {
+            unMute();
+        }else{
+            mute();
+        }
     }
     public void toggleTitle(){
         if(isLiveTV){
@@ -468,6 +478,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
      }
     public void doForwardVideo()
     {
+
         if (player == null) {
             return;
         }
@@ -708,6 +719,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     }
 
     private void updateButtonVisibilities() {
+        float currentVolumn = player.getVolume();
+
         titleText.setText(this.title);
         if(hideControls) {
             debugRootView.setVisibility(View.GONE);

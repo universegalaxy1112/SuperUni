@@ -27,7 +27,7 @@ import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 
 public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUIListener {
-    BroadcastReceiver receiver = new BroadcastReceiver() {
+    BroadcastReceiver mute = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             //Stop Sound
@@ -35,8 +35,25 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             fragment.mute();
         }
     };
+    BroadcastReceiver unMute = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Toggle Sound
+            VideoPlayFragment fragment = getVideoPlayFragment();
+            fragment.unMute();
+        }
+    };
+    BroadcastReceiver toggle = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Toggle Sound
+            VideoPlayFragment fragment = getVideoPlayFragment();
+            fragment.toggleMute();
+        }
+    };
 
     private  boolean isReceiverRegistered = false;
+    private  boolean isPipMode = false;
     private VideoPlayFragment videoPlayFragment;
     private FrameLayout frameLayout;
     @Override
@@ -62,11 +79,11 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPlayFragment=new VideoPlayFragment();
+        videoPlayFragment.setLiveTVToggleListener(this);
         frameLayout = findViewById(R.id.video_container);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.video_container,videoPlayFragment).commit();
-        sendBroadcast(new Intent("PauseSound"));
     }
 
     public VideoPlayFragment getVideoPlayFragment()
@@ -82,11 +99,16 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onResume(){
         super.onResume();
-        if(isReceiverRegistered)
+        if(isPipMode)
         {
-            unregisterReceiver(receiver);
+            unregisterReceiver(mute);
+            unregisterReceiver(unMute);
+            unregisterReceiver(toggle);
+            isPipMode = false;
             isReceiverRegistered = false;
-            getVideoPlayFragment().unMute();
+            videoPlayFragment.unMute();
+        }else{
+            sendBroadcast(new Intent("mute"));
         }
         videoPlayFragment.useController();
     }
@@ -95,7 +117,9 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         super.onDestroy();
         if(isReceiverRegistered)
         {
-            unregisterReceiver(receiver);
+            unregisterReceiver(mute);
+            unregisterReceiver(unMute);
+            unregisterReceiver(toggle);
             isReceiverRegistered = false;
         }
     }
@@ -105,7 +129,9 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         super.onStop();
         if(isReceiverRegistered)
         {
-            unregisterReceiver(receiver);
+            unregisterReceiver(mute);
+            unregisterReceiver(unMute);
+            unregisterReceiver(toggle);
             isReceiverRegistered = false;
         }
         PackageManager packageManager = getPackageManager();
@@ -117,6 +143,10 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onPause(){
         super.onPause();
+        if(!isPipMode){
+            videoPlayFragment.mute();
+            sendBroadcast(new Intent("unMute"));
+        }
     }
     @Override
     public void onNewIntent(Intent intent) {
@@ -125,8 +155,11 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void enterPIPMode(){
-        registerReceiver(receiver, new IntentFilter("PauseSound"));
+        registerReceiver(mute, new IntentFilter("mute"));
+        registerReceiver(unMute, new IntentFilter("unMute"));
+        registerReceiver(toggle, new IntentFilter("toggle"));
         isReceiverRegistered = true;
+        isPipMode = true;
         videoPlayFragment.hideController();
         Rational aspectRatio = new Rational(frameLayout.getWidth()+100, frameLayout.getHeight()+100);
         PictureInPictureParams.Builder mPictureInPictureParamsBuilder =
@@ -173,6 +206,12 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             videoPlayFragment.dispatchKeyEvent();
             return false;
         }
+        if(keyCode==KeyEvent.KEYCODE_DPAD_UP){
+            videoPlayFragment.toggleMute();
+            sendBroadcast(new Intent("toggle"));
+            videoPlayFragment.dispatchKeyEvent();
+            return false;
+        }
         if(keyCode==KeyEvent.KEYCODE_DPAD_RIGHT){
             videoPlayFragment.dispatchKeyEvent();
             return false;
@@ -198,9 +237,13 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         super.dispatchKeyEvent(event);*/
         return false;
     }
-
     @Override
     public void onToggleUI(boolean show) {
-        videoPlayFragment.toggleTitle();
+        videoPlayFragment.toggleMute();
+        try {
+            sendBroadcast(new Intent("toggle"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
