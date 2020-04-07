@@ -62,7 +62,6 @@
         <activity
             android:name=".view.VideoPlayActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
-            android:launchMode="singleTask"
             android:screenOrientation="landscape"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"

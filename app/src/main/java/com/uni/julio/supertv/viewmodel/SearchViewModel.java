@@ -2,9 +2,12 @@ package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +16,7 @@ import com.google.gson.Gson;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.GridViewAdapter;
 import com.uni.julio.supertv.adapter.MoviesRecyclerAdapter;
+import com.uni.julio.supertv.databinding.ActivitySearchBinding;
 import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
@@ -53,6 +57,7 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     private Pattern pattern;
     GridViewAdapter moreVideoAdapter;
     public ObservableBoolean isLoading;
+    public EditText editText;
     public SearchViewModel(Context context, MainCategory mainCategory) {
         ;//Log.d("liveTV","SearchViewModel from "+mainCategory.getModelType());
         isConnected = new ObservableBoolean(Connectivity.isConnected());
@@ -95,11 +100,12 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     }
 
     @Override
-    public void showMovieList(TVRecyclerView moviesGridRV, String query,final boolean searchSerie) {
+    public void showMovieList(EditText editText,TVRecyclerView moviesGridRV, String query, final boolean searchSerie) {
         isLoading.set(true);
         columns = 3;
         movies = new ArrayList();
-          moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,0,this);
+        this.editText = editText;
+        moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,0,this);
         mLayoutManager=new GridLayoutManager(mContext,Integer.parseInt(mContext.getString(R.string.more_video)));
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         moviesGridRV.setLayoutManager(mLayoutManager);
@@ -118,6 +124,7 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
                     public void onError(Throwable e) {
                         Log.d("error","error");
                         isLoading.set(false);
+                        hideKeyboard();
                     }
 
                     @Override
@@ -134,10 +141,13 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
                         SearchViewModel.this.mMainCategory.getMovieCategory(moviecatId).setMovieList(movies);
                         moreVideoAdapter.updateMovies(movies);
                         moreVideoAdapter.notifyDataSetChanged();
-
+                        hideKeyboard();
                     }
                 });
 
+    }
+    private void hideKeyboard(){
+        editText.clearFocus();
     }
     @Override
     public void onConfigurationChanged() {

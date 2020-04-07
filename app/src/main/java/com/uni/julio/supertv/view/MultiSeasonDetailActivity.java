@@ -51,14 +51,25 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extra=getIntent().getExtras();
-        mainCategoryId=extra.getInt("mainCategoryId",-1);
-        movieCategoryId=extra.getInt("movieCategoryId",-1);
-        serieId=extra.getInt("serieId",-1);
-        serie=(Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
-        movieDetailsViewModel=new EpisodeDetailsViewModel(getBaseContext(),mainCategoryId);
-        activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
-        showMovieDetails(serie,mainCategoryId,movieCategoryId);
+        try{
+            Bundle extra=getIntent().getExtras();
+            mainCategoryId=extra.getInt("mainCategoryId",-1);
+            movieCategoryId=extra.getInt("movieCategoryId",-1);
+            serieId=extra.getInt("serieId",-1);
+            serie=(Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
+            movieDetailsViewModel=new EpisodeDetailsViewModel(getBaseContext(),mainCategoryId);
+            activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
+            showMovieDetails(serie,mainCategoryId,movieCategoryId);
+        }catch (Exception e){
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
+        }
+
      }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

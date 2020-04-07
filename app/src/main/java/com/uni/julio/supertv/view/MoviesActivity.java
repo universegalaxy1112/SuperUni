@@ -1,5 +1,6 @@
 package com.uni.julio.supertv.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
@@ -87,6 +89,13 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
                 moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
             }
         }catch (Exception e){
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
             e.printStackTrace();
         }
 

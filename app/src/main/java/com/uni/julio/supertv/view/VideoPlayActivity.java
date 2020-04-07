@@ -11,18 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.leanback.app.VideoFragment;
-
-import com.google.android.exoplayer2.video.VideoFrameReleaseTimeHelper;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
-import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 
@@ -49,6 +43,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             //Toggle Sound
             VideoPlayFragment fragment = getVideoPlayFragment();
             fragment.toggleMute();
+
         }
     };
 
@@ -79,6 +74,8 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPlayFragment=new VideoPlayFragment();
+        if(mainCategoryId == 4 )
+        videoPlayFragment.hidePlayBack();
         videoPlayFragment.setLiveTVToggleListener(this);
         frameLayout = findViewById(R.id.video_container);
         getSupportFragmentManager()
@@ -106,10 +103,13 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             unregisterReceiver(toggle);
             isPipMode = false;
             isReceiverRegistered = false;
+
             videoPlayFragment.unMute();
         }else{
             sendBroadcast(new Intent("mute"));
+
         }
+        if(mainCategoryId != 4)
         videoPlayFragment.useController();
     }
     @Override
@@ -171,13 +171,13 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onUserLeaveHint() {
-        if (!isInPictureInPictureMode()) {
+        /*if (!isInPictureInPictureMode()) {
             Rational aspectRatio = new Rational(frameLayout.getWidth(), frameLayout.getHeight());
             PictureInPictureParams.Builder mPictureInPictureParamsBuilder =
                     new PictureInPictureParams.Builder();
             mPictureInPictureParamsBuilder.setAspectRatio(aspectRatio).build();
             enterPictureInPictureMode(mPictureInPictureParamsBuilder.build());
-        }
+        }*/
     }
 
     @Override
@@ -209,6 +209,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         if(keyCode==KeyEvent.KEYCODE_DPAD_UP){
             videoPlayFragment.toggleMute();
             sendBroadcast(new Intent("toggle"));
+
             videoPlayFragment.dispatchKeyEvent();
             return false;
         }
@@ -240,6 +241,8 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onToggleUI(boolean show) {
         videoPlayFragment.toggleMute();
+        if(mainCategoryId == 4)
+        videoPlayFragment.toggleTitle();
         try {
             sendBroadcast(new Intent("toggle"));
         }catch (Exception e){

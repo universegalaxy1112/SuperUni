@@ -1,5 +1,6 @@
 package com.uni.julio.supertv.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.model.CastDevice;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModel;
@@ -43,15 +45,24 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras=getIntent().getExtras();
-        mainCategoryId= extras.getInt("mainCategoryId",0);
-        movieCategoryId= extras.getInt("movieCategoryId",0);
-        movie=(Movie) new Gson().fromJson(extras.getString("movie"), Movie.class);
-        movieDetailsViewModel = new MovieDetailsViewModel(this, mainCategoryId);
-        activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
-        activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
-        showMovieDetails(movie,mainCategoryId,movieCategoryId);
-
+        try {
+            Bundle extras=getIntent().getExtras();
+            mainCategoryId= extras.getInt("mainCategoryId",0);
+            movieCategoryId= extras.getInt("movieCategoryId",0);
+            movie=(Movie) new Gson().fromJson(extras.getString("movie"), Movie.class);
+            movieDetailsViewModel = new MovieDetailsViewModel(this, mainCategoryId);
+            activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
+            activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
+            showMovieDetails(movie,mainCategoryId,movieCategoryId);
+        }catch (Exception e){
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
+        }
     }
     @Override
     public void onResume() {

@@ -273,6 +273,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 */
     private boolean hideControls = false;
     private boolean isLiveTV = false;
+    private boolean hidePlayback = false;
     @RequiresApi(api = Build.VERSION_CODES.P)
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -282,8 +283,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         debugRootView =  rootPlayerView.findViewById(R.id.controls_root);
         titleView =  rootPlayerView.findViewById(R.id.title);
         progressBarView =rootPlayerView.findViewById(R.id.player_view_progress_bar);
-
-                titleText =  rootPlayerView.findViewById(R.id.titleText);
+        titleText =  rootPlayerView.findViewById(R.id.titleText);
         textClock = rootPlayerView.findViewById(R.id.textClock1);
         debugTextView =  rootPlayerView.findViewById(R.id.debug_text_view);
         retryButton =  rootPlayerView.findViewById(R.id.retry_button);
@@ -313,6 +313,11 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             textClock.setVisibility(View.GONE);
             simpleExoPlayerView.setUseController(false);
         }
+        if(hidePlayback){
+            progressBarView.setVisibility(View.GONE);
+            simpleExoPlayerView.setUseController(false);
+        }
+
         simpleExoPlayerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -332,7 +337,10 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         simpleExoPlayerView.setUseController(false);
         isLiveTV = true;
     }
-    public  void useController(){
+    public void hidePlayBack(){
+        this.hidePlayback = true;
+    }
+    public void useController(){
         debugRootView.setVisibility(View.VISIBLE);
         titleView.setVisibility(View.VISIBLE);
         textClock.setVisibility(View.VISIBLE);
@@ -388,6 +396,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public void setLiveTVToggleListener(LiveTVToggleUIListener liveTVToggleListener){
         this.liveTVToggleListener = liveTVToggleListener;
     }
+
     @Override
     public void onStart(){
         super.onStart();

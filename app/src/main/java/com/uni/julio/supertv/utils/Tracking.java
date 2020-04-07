@@ -37,7 +37,7 @@ public class Tracking implements StringRequestListener, OnClickListener {
             Tracking.this.handler.postDelayed(this, 30000);
         }
     };
-    private String usr = "";
+    private User usr = null;
     public void enableTrack(boolean isTracking){
         this.isTracking = isTracking;
     }
@@ -58,7 +58,7 @@ public class Tracking implements StringRequestListener, OnClickListener {
     public void onStart() {
         String theUser = DataManager.getInstance().getString("theUser", "");
         if (!TextUtils.isEmpty(theUser))
-            this.usr = ( new Gson().fromJson(theUser, User.class)).getName();
+            this.usr = ( new Gson().fromJson(theUser, User.class));
         this.isTracking = true;
         this.handler.removeCallbacks(trackingThread);
         this.handler.postDelayed(trackingThread,0);
@@ -70,9 +70,9 @@ public class Tracking implements StringRequestListener, OnClickListener {
             try{
                 String ip =Device.ip;
                 String istv = "1"; //Device.treatAsBox ? "1":"0";
-                String url = WebConfig.trackingURL.replace("{USER}", this.usr).replace("{MOVIE}", URLEncoder.encode(this.action,"UTF-8")).replace("{IP}",ip).replace("{DEVICE_ID}",Device.getIdentifier()).replace("{ISTV}",istv);
+                String url = WebConfig.trackingURL.replace("{USER}", this.usr.getName()).replace("{MOVIE}", URLEncoder.encode(this.action,"UTF-8")).replace("{IP}",ip).replace("{DEVICE_ID}",this.usr.getDeviceId()).replace("{ISTV}",istv);
                 NetManager.getInstance().makeStringRequest(url, this);
-            }catch (UnsupportedEncodingException e){
+            }catch (Exception e){
                 e.printStackTrace();
             }
 

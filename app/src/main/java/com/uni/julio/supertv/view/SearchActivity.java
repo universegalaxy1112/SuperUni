@@ -70,6 +70,7 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
                 searchSerie = true;
             }
             if(query.equals("")&& Device.treatAsBox){
+
                 (activitySearchBinding.editPassword).setOnEditorActionListener(new EditText.OnEditorActionListener(){
 
                     @Override
@@ -80,17 +81,18 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
                                         event.getAction() == KeyEvent.ACTION_DOWN &&
                                         event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                             if (event == null || !event.isShiftPressed()) {
-                                searchViewModel.showMovieList(activitySearchBinding.searchRecycler,v.getText().toString(),true);
+                                searchViewModel.showMovieList(activitySearchBinding.editPassword,activitySearchBinding.searchRecycler,v.getText().toString(),true);
                                 return true;
                             }
                         }
                         return false;
                     }
                 });
+                activitySearchBinding.editPassword.requestFocus();
             }
             else{
                 activitySearchBinding.editPassword.setVisibility(View.GONE);
-                searchViewModel.showMovieList(activitySearchBinding.searchRecycler,query,searchSerie);
+                searchViewModel.showMovieList(activitySearchBinding.editPassword,activitySearchBinding.searchRecycler,query,searchSerie);
 
             }
         }catch (Exception e){
