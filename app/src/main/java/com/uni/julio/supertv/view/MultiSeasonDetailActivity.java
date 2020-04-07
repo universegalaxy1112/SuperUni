@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -148,7 +149,8 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
              .putExtra("subsURL", subTitleUrl)
              .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
      hideProgressDialog();
-     startActivity(launchIntent);
+     ActivityCompat.startActivityForResult(this, launchIntent,100
+             ,null);
      getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
  }
     @Override
