@@ -52,6 +52,7 @@ import com.google.android.exoplayer2.util.Util;
 import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.adapter.CustomListRow;
 import com.uni.julio.supertv.adapter.CustomListRowPresenter;
 import com.uni.julio.supertv.adapter.MoviesPresenter;
 import com.uni.julio.supertv.adapter.SortedArrayObjectAdapter;
@@ -69,10 +70,8 @@ import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
-
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -82,14 +81,10 @@ import java.util.TimerTask;
 public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesForCategoryResponseListener {
 
     private SortedArrayObjectAdapter mRowsAdapter;
-    private MoviesMenuViewModel moviesModelViewModel;
     private ModelTypes.SelectedType selectedType;
     private int serieId;
     public int mainCategoryId;
     public  int movieCategoryId;
-    private Map<Integer, CursorObjectAdapter> mVideoCursorAdapters;
-    private LoaderManager mLoaderManager;
-    private static final int CATEGORY_LOADER = 123; // Unique ID for Category Loader.
     public BackgroundManager mBackgroundManager;
     private Timer mBackgroundTimer;
     public URI mBackgroundURI;
@@ -104,32 +99,21 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     private TextView length;
     private TextView description;
     private CardView hd;
-    private BrowseFrameLayout mFrameLayout;
     @SuppressLint("CutPasteId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.moviesModelViewModel = new MoviesMenuViewModel(getActivity());
         Bundle extras = getActivity().getIntent().getExtras();
         this.selectedType = (ModelTypes.SelectedType) extras.get("selectedType");
         this.mainCategoryId = extras.getInt("mainCategoryId", -1);
         this.movieCategoryId = extras.getInt("movieCategoryId", -1);
         this.serieId = extras.getInt("serieId", -1);
-
     }
 
     @Override
     public void onStop() {
         super.onStop();
         //VideoStreamManager.getInstance().getMainCategory(mainCategoryId).setMovieCategories(new ArrayList<MovieCategory>());
-    }
-
-
-
-    public void launchActivity(Class classToLaunch) {
-        Intent launchIntent = new Intent(getActivity(), classToLaunch);
-        startActivity(launchIntent);
-        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     public void launchActivity(Class classToLaunch, Bundle extras) {
@@ -191,11 +175,8 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 MoviesMenuTVFragment.this.launchActivity(SearchActivity.class, extras);
             }
         });
-
         setOnItemViewClickedListener(new ItemViewClickedListener());
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
-
-
     }
     private void prepareBackgroundManager() {
         this.mBackgroundManager = BackgroundManager.getInstance(getActivity());
@@ -217,16 +198,13 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             setTitle(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getCatName());
             for (int i = 0; i < mCategoriesList.size(); i++) {
                 //loadHeader(mCategoriesList.get(i));
-                if((mainCategoryId == 7|| mainCategoryId ==8 || mainCategoryId ==4) && i == 0)
-                    continue;
-                else
-                    load(i);
+                if(!((mainCategoryId == 7|| mainCategoryId ==8 || mainCategoryId ==4) && i == 0))
+                  load(i);
             }
-
     }
     private void load(int row){
         if(mCategoriesList.get(row).hasErrorLoading()){
-            //
+            // Displaying Error Message
         }
         if(!mCategoriesList.get(row).isLoaded() && !mCategoriesList.get(row).isLoading()) {
             NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId),  mCategoriesList.get(row), this, 30);
@@ -253,15 +231,13 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 }
             });
         }
-
     }
     private void loadRow(MovieCategory category) {
-
         HeaderItem header = new HeaderItem((long) category.getId(), category.getCatName());
         List<Movie> movieList = (List<Movie>) category.getMovieList();
-        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter((Presenter) new MoviesPresenter(getActivity()));
+        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter( new MoviesPresenter(getActivity()));
         listRowAdapter.addAll(0, movieList);
-        ListRow r = new ListRow(header, listRowAdapter);
+        CustomListRow r = new CustomListRow(header, listRowAdapter);
         r.setId((long) category.getId());
         //this.mRowsAdapter.removeItems(category.getId(),1);
             for(int i=0; i<mRowsAdapter.size();i++){

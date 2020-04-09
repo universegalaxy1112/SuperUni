@@ -99,6 +99,12 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     @Override
     public void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding , int mainCategoryId,int movieCategoryId) {
         mMainCategoryId=mainCategoryId;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                playTrailor();
+            }
+        },1500);
         this.movieDetailsBinding=movieDetailsBinding;
         if(mainCategoryId == 4) { //eventos
             hidePlayFromStart = true;
@@ -224,8 +230,9 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     public void playSD(View view){
         onPlay(1);
     }
-    public void playTrailor(View view) {
-        onPlay(2);
+    public void playTrailor() {
+        if(!isTrailer.get())
+            onPlay(2);
     }
     private void onPlay(int type) {
         if(!videoStreamManager.getSeenMovies().contains(String.valueOf(mMovie.getContentId()))) {

@@ -117,7 +117,10 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
          String subtitleUrl= movie.getSubtitleUrl();
          String title= movie.getTitle();
          String[] finalUris = uris;
+         if(type !=2)
             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
+         else
+             playTrailer(finalUris,extensions,subtitleUrl,title);
 
     }
 

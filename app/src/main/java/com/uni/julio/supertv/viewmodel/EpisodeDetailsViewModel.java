@@ -302,7 +302,8 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }
      return false;
     }
-    public void playTrailor(View view) {
+    public void playTrailor() {
+        if(!isTrailer.get())
             onPlay(2);
     }
     public void playHD(View view){
@@ -378,6 +379,12 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         movieDetailsBinding.play.requestFocus();
         rowsRecycler.scrollToPosition(episodeposition);
         getLike();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                playTrailor();
+            }
+        },1500);
     }
     @Override
     public void onEpisodesForSerieCompleted(Season mseason) {

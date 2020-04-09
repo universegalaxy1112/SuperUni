@@ -68,7 +68,8 @@
             android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.TrailerActivity"
-            android:theme="@style/Theme.Transparent" />
+            android:screenOrientation="landscape"
+            android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.SearchActivity"
             android:theme="@style/SuperTvDefault.NoActionBar" />

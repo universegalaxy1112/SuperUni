@@ -51,9 +51,7 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     private GridLayoutManager mLayoutManager;
     private EditText mEditText;
     private List<? extends VideoStream> movies;
-    private int selectedId = -1;//-1 = search
     private int columns = 3;//default for portrait
-    private TVRecyclerView mMoviesGridRV;
     private Pattern pattern;
     GridViewAdapter moreVideoAdapter;
     public ObservableBoolean isLoading;
@@ -66,7 +64,6 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
         mMainCategory = mainCategory;
         pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         isLoading = new ObservableBoolean(false);
-
     }
 
     public String removeSpecialChars(String s) {
@@ -141,7 +138,7 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
                         SearchViewModel.this.mMainCategory.getMovieCategory(moviecatId).setMovieList(movies);
                         moreVideoAdapter.updateMovies(movies);
                         moreVideoAdapter.notifyDataSetChanged();
-                        hideKeyboard();
+                       // hideKeyboard();
                     }
                 });
 
