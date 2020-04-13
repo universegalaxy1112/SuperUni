@@ -379,12 +379,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         movieDetailsBinding.play.requestFocus();
         rowsRecycler.scrollToPosition(episodeposition);
         getLike();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                playTrailor();
-            }
-        },1500);
     }
     @Override
     public void onEpisodesForSerieCompleted(Season mseason) {

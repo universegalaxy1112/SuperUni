@@ -17,6 +17,7 @@ buildscript {
             url("$rootDir/../node_modules/react-native/android")
         }
 
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'

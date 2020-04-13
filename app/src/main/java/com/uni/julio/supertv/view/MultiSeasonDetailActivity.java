@@ -3,6 +3,7 @@ package com.uni.julio.supertv.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -61,6 +62,12 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             movieDetailsViewModel=new EpisodeDetailsViewModel(getBaseContext(),mainCategoryId);
             activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
             showMovieDetails(serie,mainCategoryId,movieCategoryId);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    movieDetailsViewModel.playTrailor();
+                }
+            },3000);
         }catch (Exception e){
             Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
                 @Override
@@ -81,15 +88,17 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         }
         return false;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+    }
     public void onPlaySelected(Movie movie, final int type, int seasonPosition) {
         final int movieId = movie.getContentId();
 
         String[] uris={};
-     /*   List<? extends VideoStream> episodeList;
-        episodeList = serie.getSeason(seasonPosition).getEpisodeList();
-        for(VideoStream episode: episodeList){
-
-        }*/
         switch (type){
             case 0:
                 uris = new String[] {movie.getStreamUrl()};

@@ -54,6 +54,12 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
             activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
             activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
             showMovieDetails(movie,mainCategoryId,movieCategoryId);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    movieDetailsViewModel.playTrailor();
+                }
+            },3000);
         }catch (Exception e){
             Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
                 @Override
@@ -68,6 +74,13 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
     public void onResume() {
         super.onResume();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
     @Override
     public void onPause() {
 

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -29,27 +31,20 @@ import androidx.leanback.app.BackgroundManager;
 import androidx.leanback.app.BrowseFragment;
 import androidx.leanback.app.HeadersFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
-import androidx.leanback.widget.BrowseFrameLayout;
-import androidx.leanback.widget.CursorObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
 import androidx.leanback.widget.ListRow;
-import androidx.leanback.widget.ListRowPresenter;
 import androidx.leanback.widget.OnItemViewClickedListener;
 import androidx.leanback.widget.OnItemViewSelectedListener;
 import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowHeaderPresenter;
 import androidx.leanback.widget.RowPresenter;
-import androidx.loader.app.LoaderManager;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.android.exoplayer2.util.Util;
 import com.google.gson.Gson;
+import com.tooltip.Tooltip;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.CustomListRow;
@@ -57,7 +52,6 @@ import com.uni.julio.supertv.adapter.CustomListRowPresenter;
 import com.uni.julio.supertv.adapter.MoviesPresenter;
 import com.uni.julio.supertv.adapter.SortedArrayObjectAdapter;
 import com.uni.julio.supertv.binding.BindingAdapters;
-import com.uni.julio.supertv.helper.PicassoBackgroundManagerTarget;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.listeners.LoadMoviesForCategoryResponseListener;
 import com.uni.julio.supertv.model.ListRowComparator;
@@ -69,12 +63,10 @@ import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
-import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -99,6 +91,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     private TextView length;
     private TextView description;
     private CardView hd;
+    private Tooltip tooltip;
     @SuppressLint("CutPasteId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -134,7 +127,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             setAdapter(this.mRowsAdapter);
             loadData();
             getHeadersFragment().setOnHeaderClickedListener(new HeadersFragment.OnHeaderClickedListener() {
-
                 @Override
                 public void onHeaderClicked(RowHeaderPresenter.ViewHolder viewHolder, Row row) {
                     ListRow listRow = (ListRow)row;
@@ -144,10 +136,10 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                         extras.putInt("mainCategoryId", mainCategoryId);
                         extras.putInt("movieCategoryId", (int) listRow.getId());
                     }
-                    launchActivity(MoreVideoActivity.class, extras);
+            launchActivity(MoreVideoActivity.class, extras);
                 }
             });
-         }catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
             Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
                 @Override
@@ -156,12 +148,8 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                     getActivity().finish();
                 }
             });
+        }
     }
-
-
-    }
-
-
 
     private void setupEventListeners() {
         setSearchAffordanceColor(ContextCompat.getColor(getActivity(), R.color.wp_yellow));
@@ -348,6 +336,15 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item,
                                    RowPresenter.ViewHolder rowViewHolder, Row row) {
             if (item instanceof Movie) {
+                /*if(tooltip != null)
+                    tooltip.dismiss();
+                    Tooltip.Builder builder= new Tooltip.Builder(itemViewHolder.view).setText(((CustomListRow)row).getAdapter().size()+"/"+(((Movie) item).getPosition()+1));
+                    builder.setGravity(Gravity.BOTTOM);
+                    builder.setBackgroundColor(getActivity().getResources().getColor(R.color.tooltip));
+                    builder.setTextColor(getActivity().getResources().getColor(R.color.netflix_red));
+                    builder.setCornerRadius(10L);
+                    tooltip = builder.build();
+                    tooltip.show();*/
                 try {
                     if (!(((Movie) item).getPosition() == -1 || ((Movie) item).getHDFondoUrl() == null)) {
                         if(title!=null){

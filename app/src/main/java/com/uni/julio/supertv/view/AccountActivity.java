@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
@@ -49,6 +50,13 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
              (activityAccountBinding.Appbarlayout).setVisibility(View.GONE);
         }
         accountDetailsViewModel.showAccountDetails();
+        TextView textView = activityAccountBinding.testspeed;
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchActivity(SpeedTestActivity.class);
+            }
+        });
     }
     @Override
     public void onCloseSessionSelected() {

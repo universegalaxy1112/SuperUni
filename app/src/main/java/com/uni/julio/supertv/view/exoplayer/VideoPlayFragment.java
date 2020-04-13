@@ -2,6 +2,7 @@ package com.uni.julio.supertv.view.exoplayer;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -65,6 +66,7 @@ import com.google.android.exoplayer2.ui.DebugTextViewHelper;
 import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
@@ -82,12 +84,14 @@ import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
+import com.uni.julio.supertv.listeners.MessageCallbackListener;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.VideoProvider;
 import com.uni.julio.supertv.view.ExpandedControlsActivity;
+import com.uni.julio.supertv.view.SpeedTestActivity;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -730,7 +734,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     }
 
     private void updateButtonVisibilities() {
-        float currentVolumn = player.getVolume();
 
         titleText.setText(this.title);
         if(hideControls) {
@@ -895,6 +898,23 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private void showToastError() {
          if(liveTVToggleListener != null)
             liveTVToggleListener.onToggleUI(true);
-        Dialogs.showOneButtonDialog((AppCompatActivity) getActivity(), R.string.generic_error_message_title, R.string.generic_video_loading_message);
+        Dialogs.showTwoButtonsDialog(getActivity(),R.string.ok_dialog,R.string.cancel,R.string.generic_video_loading_message, new DialogListener() {
+
+            @Override
+            public void onAccept() {
+                startActivity(new Intent(getActivity(),SpeedTestActivity.class));
+                getActivity().finish();
+            }
+
+            @Override
+            public void onCancel() {
+                getActivity().finish();
+            }
+
+            @Override
+            public void onDismiss() {
+                getActivity().finish();
+            }
+        });
      }
 }

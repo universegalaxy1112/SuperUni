@@ -3,6 +3,7 @@ package com.uni.julio.supertv.viewmodel;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -169,6 +170,7 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     @Override
     public void showAccountDetails() {
         String theUser = DataManager.getInstance().getString("theUser","");
+
         if(!TextUtils.isEmpty(theUser)) {
             User user = new Gson().fromJson(theUser, User.class);
             this.activityAccountBinding.setUser(user);

@@ -100,9 +100,16 @@
             android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.OneSeasonDetailActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.MoreVideoActivity"
+            android:theme="@style/SuperTvDefault.NoActionBar" />
+        <activity
+            android:name=".view.MoreVideoActivity"
+            android:theme="@style/SuperTvDefault.NoActionBar" />
+        <activity
+            android:name=".view.SpeedTestActivity"
             android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.MainActivity"

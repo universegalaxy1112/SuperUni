@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="bottom">
+    buildConfigField "String", "GITHUB_ISSUE_BOT_API_KEY", "\"$GITHUB_ISSUE_BOT_API_KEY\""
 
     <LinearLayout
         android:id="@+id/preview"

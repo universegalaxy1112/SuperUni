@@ -25,24 +25,21 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         @Override
         public void onReceive(Context context, Intent intent) {
             //Stop Sound
-            VideoPlayFragment fragment = getVideoPlayFragment();
-            fragment.mute();
+            videoPlayFragment.mute();
         }
     };
     BroadcastReceiver unMute = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             //Toggle Sound
-            VideoPlayFragment fragment = getVideoPlayFragment();
-            fragment.unMute();
+            videoPlayFragment.unMute();
         }
     };
     BroadcastReceiver toggle = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             //Toggle Sound
-            VideoPlayFragment fragment = getVideoPlayFragment();
-            fragment.toggleMute();
+            videoPlayFragment.toggleMute();
 
         }
     };
@@ -96,7 +93,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onResume(){
         super.onResume();
-        if(isPipMode)
+       /* if(isPipMode)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
@@ -108,45 +105,42 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         }else{
             sendBroadcast(new Intent("mute"));
 
-        }
+        }*/
         if(mainCategoryId != 4)
         videoPlayFragment.useController();
     }
     @Override
     public void onDestroy(){
         super.onDestroy();
-        if(isReceiverRegistered)
+      /*  if(isReceiverRegistered)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
             unregisterReceiver(toggle);
             isReceiverRegistered = false;
-        }
+        }*/
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if(isReceiverRegistered)
+       /* if(isReceiverRegistered)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
             unregisterReceiver(toggle);
             isReceiverRegistered = false;
-        }
-        PackageManager packageManager = getPackageManager();
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O && packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)){
-            finishAndRemoveTask();
-        }
+        }*/
+
     }
 
     @Override
     public void onPause(){
         super.onPause();
-        if(!isPipMode){
+       /* if(!isPipMode){
             videoPlayFragment.mute();
             sendBroadcast(new Intent("unMute"));
-        }
+        }*/
     }
     @Override
     public void onNewIntent(Intent intent) {
@@ -194,12 +188,13 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            PackageManager packageManager = getPackageManager();
+           /* PackageManager packageManager = getPackageManager();
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O && packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)){
                 enterPIPMode();
             }else{
-                finishAndRemoveTask();
-            }
+                finish();
+            }*/
+           finishActivity();
             return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
@@ -208,7 +203,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_UP){
             videoPlayFragment.toggleMute();
-            sendBroadcast(new Intent("toggle"));
+            //sendBroadcast(new Intent("toggle"));
 
             videoPlayFragment.dispatchKeyEvent();
             return false;
@@ -244,7 +239,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         if(mainCategoryId == 4)
         videoPlayFragment.toggleTitle();
         try {
-            sendBroadcast(new Intent("toggle"));
+            //sendBroadcast(new Intent("toggle"));
         }catch (Exception e){
             e.printStackTrace();
         }

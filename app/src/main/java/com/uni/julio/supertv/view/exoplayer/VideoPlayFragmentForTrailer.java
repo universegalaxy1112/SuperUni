@@ -895,6 +895,10 @@ public   class VideoPlayFragmentForTrailer extends Fragment implements View.OnCl
     private void showToastError() {
         if(liveTVToggleListener != null)
             liveTVToggleListener.onToggleUI(true);
-        Dialogs.showOneButtonDialog((AppCompatActivity) getActivity(), R.string.generic_error_message_title, R.string.generic_video_loading_message);
+        try{
+            Dialogs.showOneButtonDialog((AppCompatActivity) getActivity(), R.string.generic_error_message_title, R.string.generic_video_loading_message);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

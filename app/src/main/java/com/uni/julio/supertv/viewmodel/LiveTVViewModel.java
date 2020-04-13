@@ -134,12 +134,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
             viewCallback.onProgramAccepted(liveProgram);
         }
         lastContentIdSelected=liveProgram.getContentId();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideChannels();
-            }
-        },hideTimeout);
+
 
     }
 

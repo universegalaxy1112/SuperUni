@@ -65,7 +65,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
             }
         }, 600000);
 
-        //handleSSLHandshake();
+        handleSSLHandshake();
     }
     public  void handleSSLHandshake() {
         try {

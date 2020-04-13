@@ -290,4 +290,5 @@
     <color name="wp_red">#E52623</color>
     <color name="focused_button">#FB4646</color>
     <color name="wp_yellow">#ecd74d</color>
+    <color name="tooltip">#88000000</color>
 </resources>

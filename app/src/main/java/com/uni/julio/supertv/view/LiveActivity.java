@@ -98,7 +98,6 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
     }
     @Override
     public void onToggleUI(boolean show) {
-
         liveTVViewModel.toggleChannels();
         videoPlayFragment.toggleTitle();
     }

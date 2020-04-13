@@ -15,6 +15,7 @@ import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
+import com.uni.julio.supertv.view.MainActivity;
 import com.uni.julio.supertv.view.SplashActivity;
 
 import org.json.JSONObject;
@@ -70,6 +71,9 @@ public class Tracking implements StringRequestListener, OnClickListener {
             try{
                 String ip =Device.ip;
                 String istv = "1"; //Device.treatAsBox ? "1":"0";
+                String theUser = DataManager.getInstance().getString("theUser", "");
+                if (!TextUtils.isEmpty(theUser))
+                    this.usr = ( new Gson().fromJson(theUser, User.class));
                 String url = WebConfig.trackingURL.replace("{USER}", this.usr.getName()).replace("{MOVIE}", URLEncoder.encode(this.action,"UTF-8")).replace("{IP}",ip).replace("{DEVICE_ID}",this.usr.getDeviceId()).replace("{ISTV}",istv);
                 NetManager.getInstance().makeStringRequest(url, this);
             }catch (Exception e){
@@ -89,7 +93,7 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     public void onCompleted(String response) {
         try {
-            if(!response.contains("false") && !response.contains("Mantenimiento")) {
+            if(!response.contains("false") && !response.contains("Mantenimiento") && !(mContext instanceof MainActivity)) {
                 Dialogs.showCustomDialog(mContext, "Atencion", response, new MessageCallbackListener() {
                     @Override
                     public void onDismiss() {

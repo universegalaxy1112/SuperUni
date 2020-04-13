@@ -58,11 +58,12 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
         Device.setHDMIStatus();
         HttpRequest.getInstance().trustAllHosts();//trust all HTTPS hosts
         splashViewModel = new SplashViewModel(this);
         Device.getInstance().getIP();
+        setContentView(R.layout.activity_splash);
+
     }
 
 

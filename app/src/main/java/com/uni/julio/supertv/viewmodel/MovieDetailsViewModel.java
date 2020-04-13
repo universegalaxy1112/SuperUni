@@ -99,12 +99,6 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     @Override
     public void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding , int mainCategoryId,int movieCategoryId) {
         mMainCategoryId=mainCategoryId;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                playTrailor();
-            }
-        },1500);
         this.movieDetailsBinding=movieDetailsBinding;
         if(mainCategoryId == 4) { //eventos
             hidePlayFromStart = true;
