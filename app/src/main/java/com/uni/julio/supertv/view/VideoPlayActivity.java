@@ -93,7 +93,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onResume(){
         super.onResume();
-       /* if(isPipMode)
+        if(isPipMode)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
@@ -105,42 +105,42 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         }else{
             sendBroadcast(new Intent("mute"));
 
-        }*/
+        }
         if(mainCategoryId != 4)
         videoPlayFragment.useController();
     }
     @Override
     public void onDestroy(){
         super.onDestroy();
-      /*  if(isReceiverRegistered)
+        if(isReceiverRegistered)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
             unregisterReceiver(toggle);
             isReceiverRegistered = false;
-        }*/
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-       /* if(isReceiverRegistered)
+        if(isReceiverRegistered)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
             unregisterReceiver(toggle);
             isReceiverRegistered = false;
-        }*/
+        }
 
     }
 
     @Override
     public void onPause(){
         super.onPause();
-       /* if(!isPipMode){
+        if(!isPipMode){
             videoPlayFragment.mute();
             sendBroadcast(new Intent("unMute"));
-        }*/
+        }
     }
     @Override
     public void onNewIntent(Intent intent) {
@@ -165,35 +165,35 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onUserLeaveHint() {
-        /*if (!isInPictureInPictureMode()) {
+        if (!isInPictureInPictureMode()) {
             Rational aspectRatio = new Rational(frameLayout.getWidth(), frameLayout.getHeight());
             PictureInPictureParams.Builder mPictureInPictureParamsBuilder =
                     new PictureInPictureParams.Builder();
             mPictureInPictureParamsBuilder.setAspectRatio(aspectRatio).build();
             enterPictureInPictureMode(mPictureInPictureParamsBuilder.build());
-        }*/
+        }
     }
 
     @Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode,
                                               Configuration newConfig) {
-       /* if (isInPictureInPictureMode) {
+        if (isInPictureInPictureMode) {
 
         } else {
 
         }
-        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);*/
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-           /* PackageManager packageManager = getPackageManager();
+            PackageManager packageManager = getPackageManager();
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O && packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)){
                 enterPIPMode();
             }else{
                 finish();
-            }*/
+            }
            finishActivity();
             return false;
         }
@@ -202,8 +202,8 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_UP){
-            //videoPlayFragment.toggleMute();
-            //sendBroadcast(new Intent("toggle"));
+            videoPlayFragment.toggleMute();
+            sendBroadcast(new Intent("toggle"));
 
             videoPlayFragment.dispatchKeyEvent();
             return false;
@@ -235,13 +235,13 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     }
     @Override
     public void onToggleUI(boolean show) {
-        //videoPlayFragment.toggleMute();
+        videoPlayFragment.toggleMute();
         if(mainCategoryId == 4)
             videoPlayFragment.toggleTitle();
-       /* try {
+        try {
             //sendBroadcast(new Intent("toggle"));
         }catch (Exception e){
             e.printStackTrace();
-        }*/
+        }
     }
 }
