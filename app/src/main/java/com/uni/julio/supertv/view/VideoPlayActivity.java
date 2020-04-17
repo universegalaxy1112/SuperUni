@@ -177,12 +177,12 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode,
                                               Configuration newConfig) {
-        if (isInPictureInPictureMode) {
+       /* if (isInPictureInPictureMode) {
 
         } else {
 
         }
-        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);*/
     }
 
     @Override
@@ -202,7 +202,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_UP){
-            videoPlayFragment.toggleMute();
+            //videoPlayFragment.toggleMute();
             //sendBroadcast(new Intent("toggle"));
 
             videoPlayFragment.dispatchKeyEvent();
@@ -235,13 +235,13 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     }
     @Override
     public void onToggleUI(boolean show) {
-        videoPlayFragment.toggleMute();
+        //videoPlayFragment.toggleMute();
         if(mainCategoryId == 4)
-        videoPlayFragment.toggleTitle();
-        try {
+            videoPlayFragment.toggleTitle();
+       /* try {
             //sendBroadcast(new Intent("toggle"));
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 }

@@ -805,9 +805,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         ;//Log.d("liveTV","onPlayerStateChanged "+playWhenReady+"  state "+playbackState);
         if (playbackState == ExoPlayer.STATE_ENDED) {
-            getActivity().finishAndRemoveTask();
+            getActivity().finish();
         }
-        if (playbackState == ExoPlayer.STATE_BUFFERING) {
+        else if (playbackState == ExoPlayer.STATE_BUFFERING) {
             progressBarView.setVisibility(View.VISIBLE);
         }
         else {

@@ -67,7 +67,6 @@ public class TrailerActivity extends BaseActivity implements LiveTVToggleUIListe
         }
         return false;
     }
-
     @Override
     public void onToggleUI(boolean show) {
         finishActivity();
