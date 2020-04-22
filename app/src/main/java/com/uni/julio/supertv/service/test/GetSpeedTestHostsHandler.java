@@ -1,9 +1,11 @@
-package com.uni.julio.supertv.service;
+package com.uni.julio.supertv.service.test;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.HttpURLConnection;
+import java.net.URLConnection;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -11,10 +13,10 @@ import java.util.List;
 
 public class GetSpeedTestHostsHandler extends Thread {
 
-    HashMap<Integer, String> mapKey = new HashMap<>();
-    HashMap<Integer, List<String>> mapValue = new HashMap<>();
-    double selfLat = 0.0;
-    double selfLon = 0.0;
+    public static HashMap<Integer, String> mapKey = new HashMap<>();
+    public static HashMap<Integer, List<String>> mapValue = new HashMap<>();
+    public static double selfLat = 0.0;
+    public static double selfLon = 0.0;
     boolean finished = false;
 
 
@@ -102,11 +104,12 @@ public class GetSpeedTestHostsHandler extends Thread {
                         cc = line.split("cc=\"")[1].split("\"")[0];
                         sponsor = line.split("sponsor=\"")[1].split("\"")[0];
                         host = line.split("host=\"")[1].split("\"")[0];
-
-                        List<String> ls = Arrays.asList(lat, lon, name, country, cc, sponsor, host);
-                        mapKey.put(count, uploadAddress);
-                        mapValue.put(count, ls);
-                        count++;
+                        if(count < 30){
+                            List<String> ls = Arrays.asList(lat, lon, name, country, cc, sponsor, host);
+                            mapKey.put(count, uploadAddress);
+                            mapValue.put(count, ls);
+                            count++;
+                        }
                     }
                 }
 

@@ -51,8 +51,5 @@ public class DialogActivity extends BaseActivity  {
 
             }
         });
-
-
     }
-
 }

@@ -39,11 +39,9 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
     private VideoStreamManager videoStreamManager;
     private Context mContext;
     private GridLayoutManager mLayoutManager;
-     private TVRecyclerView mProgramRV;
-     private LivetvAdapter rowsRecyclerAdapter;
-     private int currentCategory=0;
+    private TVRecyclerView mProgramRV;
+    private LivetvAdapter rowsRecyclerAdapter;
     public static int lastContentIdSelected = -1;
-    private int lastProgramPosition;
     private ActivityLiveBinding activityLiveBinding;
     TabLayout tabLayout;
     public LiveTVViewModel(Context context ) {
@@ -51,14 +49,12 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
         lastContentIdSelected = -1;
-        lastProgramPosition = 0;
     }
 
     @Override
     public void onViewResumed() {
 
     }
-
     @Override
     public void onViewAttached(@NonNull Lifecycle.View viewCallback) {
         //set the callback to the fragment (using the BaseFragment class)
@@ -74,7 +70,6 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
     @Override
     public void showProgramList(ActivityLiveBinding activityLiveBinding){
         this.activityLiveBinding=activityLiveBinding;
-
         mProgramRV = activityLiveBinding.getRoot().findViewById(R.id.programming_recycler);
         List<LiveProgram> liveProgramList = videoStreamManager.getAllLivePrograms();
 
@@ -90,7 +85,6 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         LiveTVCategory allCat = new LiveTVCategory();
         allCat.setCatName("Todos");
         allCat.setPosition(-1);
-
         categoryList.add(allCat);
         categoryList.addAll(videoStreamManager.getLiveTVCategoriesList());
         tabLayout=activityLiveBinding.categoryTab;
@@ -103,7 +97,6 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                currentCategory = tab.getPosition();
                 onLiveTVCategorySelected(categoryList.get(tab.getPosition()));
             }
 
@@ -127,12 +120,10 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
     @Override
     public void onLiveProgramSelected(LiveProgram liveProgram, int programPosition) {
         int hideTimeout=3000;
-        if(liveProgram.getContentId()==lastContentIdSelected){
+        if(liveProgram.getContentId()==lastContentIdSelected)
             hideTimeout=1;
-        }else
-            {
+        else
             viewCallback.onProgramAccepted(liveProgram);
-        }
         lastContentIdSelected=liveProgram.getContentId();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -145,12 +136,10 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
 
     @Override
     public void onLiveTVCategorySelected(LiveTVCategory category) {
-         if(category.getPosition() == -1) {
+         if(category.getPosition() == -1)
             rowsRecyclerAdapter.updateChannels(videoStreamManager.getAllLivePrograms());
-        }
-        else {
+        else
             rowsRecyclerAdapter.updateChannels(videoStreamManager.getLiveTVCategory(category.getPosition()).getLivePrograms());
-        }
     }
 
     public void showChannels() {
@@ -160,8 +149,6 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         activityLiveBinding.getRoot().findViewById(R.id.live_programs).startAnimation(upbottom);
         activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).setVisibility(View.VISIBLE);
         activityLiveBinding.getRoot().findViewById(R.id.live_programs).setVisibility(View.VISIBLE);
-
-
     }
 
     public void hideChannels() {
@@ -174,20 +161,12 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
      }
 
     public void toggleChannels() {
-        if(activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).getVisibility()== View.VISIBLE){
-             hideChannels();
-        }
-        else{
+        if ((activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).getVisibility() == View.VISIBLE))
+            hideChannels();
+         else
             showChannels();
-        }
     }
-
     public void toggleCategoryOption() {
 
     }
-
-
-
-
-
 }

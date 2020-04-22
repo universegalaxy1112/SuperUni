@@ -64,8 +64,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         return mainCategoriesMenuViewModel;
     }
 
-
-
     @Override
     protected Lifecycle.View getLifecycleView() {
         return this;
@@ -264,13 +262,13 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         contentView.setText("Dear " + user.getName() + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
         TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
         cancel.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
+        /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Tracking.getInstance(LiveTvApplication.appContext).onStart();
                 dialog.dismiss();
             }
-        }, 5000);
+        }, 5000);*/
     }
 
     @Override

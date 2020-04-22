@@ -32,6 +32,7 @@ import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
+import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
@@ -128,8 +129,15 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         }
         isRequested = true;
         String url = WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
-                .replace("{USERID}", LiveTvApplication.user.getName());
+                .replace("{USERID}", getUser());
         NetManager.getInstance().makeStringRequest(url, this);
+    }
+    private String getUser(){
+        String theUser = DataManager.getInstance().getString("theUser","");
+        if(!TextUtils.isEmpty(theUser)) {
+            return new Gson().fromJson(theUser, User.class).getName();
+        }
+        return "";
     }
     public void like(View view){
         if(isRequested)
@@ -143,7 +151,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.like.setText(Integer.toString(++this.likes));
         }
         else{
@@ -152,7 +160,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","-1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.like.setText(Integer.toString(--this.likes));
         }
         liked.set(!liked.get());
@@ -169,7 +177,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","1")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(++this.dislikes));
         }
         else{
@@ -178,7 +186,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","-1")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(--this.dislikes));
         }
         disliked.set(!disliked.get());
@@ -224,7 +232,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     public void playSD(View view){
         onPlay(1);
     }
-    public void playTrailor() {
+    public void playTrailor(View view) {
         if(!isTrailer.get())
             onPlay(2);
     }

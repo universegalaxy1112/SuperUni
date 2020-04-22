@@ -79,11 +79,10 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         extras.putSerializable("selectedType", ModelTypes.SelectedType.MAIN_CATEGORY);
         extras.putInt("mainCategoryId", mainCategoryId);
         if(LiveTvApplication.appContext instanceof LoadingActivity){
-            if(Device.treatAsBox){
+            if(Device.treatAsBox)
                 launchActivity(MoviesTvActivity.class, extras);
-            }else{
+            else
                 launchActivity(MoviesActivity.class, extras);
-            }
             getActivity().finish();
         }
 
@@ -116,7 +115,6 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
             }
         }catch (IllegalStateException e){
             finishActivity();
-
         }
 
     }
@@ -138,8 +136,6 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
 
     @Override
     public void onProgramsForLiveTVCategoriesLoaded() {
-        List<LiveTVCategory> liveTVCategoryList = VideoStreamManager.getInstance().getLiveTVCategoriesList();
-        liveTVCategoryList = VideoStreamManager.getInstance().getLiveTVCategoriesList();
         launchActivity(LiveActivity.class);
         getActivity().finish();
 

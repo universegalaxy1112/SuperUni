@@ -80,7 +80,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
     public BackgroundManager mBackgroundManager;
     private Timer mBackgroundTimer;
     public URI mBackgroundURI;
-    /* access modifiers changed from: private */
     public final Handler mHandler = new Handler();
     private DisplayMetrics mMetrics;
     List<MovieCategory> mCategoriesList;
@@ -241,14 +240,6 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
         }
 
     }
-    private void loadHeader(MovieCategory category){
-        HeaderItem header = new HeaderItem((long) category.getId(), category.getCatName());
-        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter((Presenter) new MoviesPresenter(getActivity()));
-        ListRow r = new ListRow(header, listRowAdapter);
-        r.setId((long) category.getId());
-        this.mRowsAdapter.add(r);
-        this.mRowsAdapter.notify();
-    }
 
     public void onMoviesForCategoryCompleted(MovieCategory movieCategory) {
 
@@ -347,24 +338,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                     tooltip.show();*/
                 try {
                     if (!(((Movie) item).getPosition() == -1 || ((Movie) item).getHDFondoUrl() == null)) {
-                        if(title!=null){
-                            title.setText(((Movie)item).getTitle());
-                            release_date.setText(((Movie)item).getReleaseDate());
-                            description.setText(((Movie)item).getDescription());
-                            BindingAdapters.visibleInt(ratingBar,((Movie)item).getStarRating());
-                            BindingAdapters.setDuration(length,((Movie)item).getLength());
-                            BindingAdapters.bindInvisibleVisibility(hd,!((Movie)item).isHDBranded());
-                            BindingAdapters.setRating(ratingBar,(((Movie)item).getStarRating()));
-                        }else{
-                            View view=getActivity().findViewById(R.id.scale_frame);
-                            title=view.findViewById(R.id.title);
-                            release_date=view.findViewById(R.id.release_date);
-                            ratingBar= view.findViewById(R.id.ratingBar);
-                            length=view.findViewById(R.id.length);
-                            description=view.findViewById(R.id.description_detail);
-                            hd= view.findViewById(R.id.hd);
-                        }
-
+                        setPreviewDetails(item);
                         MoviesMenuTVFragment.this.mBackgroundURI = new URI(((Movie) item).getHDFondoUrl());
                     }
 
@@ -373,6 +347,25 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                 }
             }
 
+        }
+    }
+    private void setPreviewDetails(Object item){
+        if(title!=null){
+            title.setText(((Movie)item).getTitle());
+            release_date.setText(((Movie)item).getReleaseDate());
+            description.setText(((Movie)item).getDescription());
+            BindingAdapters.visibleInt(ratingBar,((Movie)item).getStarRating());
+            BindingAdapters.setDuration(length,((Movie)item).getLength());
+            BindingAdapters.bindInvisibleVisibility(hd,!((Movie)item).isHDBranded());
+            BindingAdapters.setRating(ratingBar,(((Movie)item).getStarRating()));
+        }else{
+            View view=getActivity().findViewById(R.id.scale_frame);
+            title=view.findViewById(R.id.title);
+            release_date=view.findViewById(R.id.release_date);
+            ratingBar= view.findViewById(R.id.ratingBar);
+            length=view.findViewById(R.id.length);
+            description=view.findViewById(R.id.description_detail);
+            hd= view.findViewById(R.id.hd);
         }
     }
     public void startBackgroundTimer() {

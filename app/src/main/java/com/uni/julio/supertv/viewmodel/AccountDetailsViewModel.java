@@ -32,22 +32,17 @@ import java.util.List;
 public class AccountDetailsViewModel implements AccountDetailsViewModelContract.ViewModel {
 
     private final AppCompatActivity mActivity;
-    //    private int mMainCategoryId = 0;
     private AccountDetailsViewModelContract.View viewCallback;
     public ObservableBoolean isLoading;
-    public ObservableBoolean isTV;
-    public List<String> modelList = new ArrayList<>();
-    public ActivityAccountBinding activityAccountBinding;
-//    private VideoStreamManager videoStreamManager;
-//    private Context mContext;
+    private ObservableBoolean isTV;
+    private List<String> modelList = new ArrayList<>();
+    private ActivityAccountBinding activityAccountBinding;
 
     public AccountDetailsViewModel(AppCompatActivity activity,ActivityAccountBinding activityAccountBinding) {
         this.activityAccountBinding = activityAccountBinding;
         isLoading = new ObservableBoolean(false);
 
         getModels();
-        isTV = new ObservableBoolean(Device.canTreatAsBox());
-//        videoStreamManager = VideoStreamManager.getInstance();
         mActivity = activity;
     }
 
@@ -67,9 +62,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
         this.viewCallback = null;
     }
 
-    public void onGoToMenu(View view) {
-        viewCallback.onError();
-    }
    public void onCloseSession(View view) {
         if (Device.canTreatAsBox()) {
             Dialogs.showTwoButtonsDialog(this.mActivity,R.string.accept ,  (R.string.cancel),  R.string.end_session_message,  new DialogListener() {
@@ -105,7 +97,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
                                 case 1:
                                     modelList.add("Not Registered");
                                     modelList.add("Not Registered");
-
                                     break;
                                 case 2:
                                     modelList.add(user.getDevice().contains(jsonArray.getString(0))? jsonArray.getString(1):jsonArray.getString(0));
@@ -140,8 +131,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
         }
         this.viewCallback.onCloseSessionNoInternet();
     }
-            return;
-
     }
     public void onCloseSession() {
         if (Connectivity.isConnected()) {

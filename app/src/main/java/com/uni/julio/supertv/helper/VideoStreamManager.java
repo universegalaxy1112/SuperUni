@@ -42,6 +42,7 @@ public class VideoStreamManager {
     }
 
     public void FillMainCategories() {
+        mainCategoriesList.clear();
         mainCategoriesList.add(createMainCategory("Peliculas", R.drawable.movies, ModelTypes.MOVIE_CATEGORIES, 0));
         mainCategoriesList.add(createMainCategory("Series", R.drawable.series, ModelTypes.SERIES_CATEGORIES, 1));
         mainCategoriesList.add(createMainCategory("Infantiles", R.drawable.kids, ModelTypes.SERIES_KIDS_CATEGORIES, 2));
@@ -69,7 +70,14 @@ public class VideoStreamManager {
     public List<MainCategory> getMainCategoriesList() {
         return mainCategoriesList;
     }
-    public MainCategory getMainCategory(int id) { return mainCategoriesList.get(id); }
+    public MainCategory getMainCategory(int id) {
+        try{
+            return mainCategoriesList.get(id);
+        }catch (Exception e){
+            VideoStreamManager.getInstance().FillMainCategories();
+            return mainCategoriesList.get(id);
+        }
+    }
 
 /*    public List<VideoStream> searchForMovies(MainCategory mainCategory, String searchString,boolean searchForSeries ) {
         Set<VideoStream> searchList = new HashSet<>();

@@ -146,7 +146,6 @@ boolean denyAll = false;
 //                e.printStackTrace();
                 }
             }
-
         DataManager.getInstance().saveData("theUser", "");
     }
     private void startMain(){

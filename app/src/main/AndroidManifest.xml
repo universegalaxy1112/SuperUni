@@ -66,6 +66,7 @@
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
             android:theme="@style/SuperTvDefault.NoActionBar" />
+
         <activity
             android:name=".view.TrailerActivity"
             android:screenOrientation="landscape"
@@ -110,6 +111,12 @@
             android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.SpeedTestActivity"
+            android:theme="@style/SuperTvDefault.NoActionBar" />
+        <activity
+            android:name=".view.Test"
+            android:theme="@style/SuperTvDefault.NoActionBar" />
+        <activity
+            android:name=".view.SelectServerActivity"
             android:theme="@style/SuperTvDefault.NoActionBar" />
         <activity
             android:name=".view.MainActivity"

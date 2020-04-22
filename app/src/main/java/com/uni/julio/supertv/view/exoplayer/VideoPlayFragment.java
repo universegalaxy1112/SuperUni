@@ -84,21 +84,15 @@ import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
-import com.uni.julio.supertv.listeners.MessageCallbackListener;
 import com.uni.julio.supertv.utils.DataManager;
-import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
-import com.uni.julio.supertv.utils.VideoProvider;
-import com.uni.julio.supertv.view.ExpandedControlsActivity;
 import com.uni.julio.supertv.view.SpeedTestActivity;
-
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.UUID;
 
 public   class VideoPlayFragment extends Fragment implements View.OnClickListener, ExoPlayer.EventListener, PlaybackControlView.VisibilityListener{
@@ -148,11 +142,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     private int type=0;
     private LiveTVToggleUIListener liveTVToggleListener;
     private ProgressBar progressBarView;
-    MediaRouteButton mediaRouteButton;
-    private MediaInfo mSelectedMedia;
-    private CastContext mCastContext;
-    private CastSession mCastSession;
-    private SessionManagerListener<CastSession> mSessionManagerListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -166,115 +155,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         }
         Intent intent = getActivity().getIntent();
         int seasonPosition = intent.getIntExtra("seasonPosition", -1);
-        int episodePosition = intent.getIntExtra("episodePosition" , -1);
-        this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + (seasonPosition+1)) + ((episodePosition == -1? "":" E"+ (episodePosition +1)));
-      /*  if(!Device.treatAsBox){
-            try {
-                if(isAvailable()){
-                    setupCastListener();
-                    mCastContext = CastContext.getSharedInstance(LiveTvApplication.getAppContext());
-                    mCastSession = mCastContext.getSessionManager().getCurrentCastSession();
-                }
-            }catch (Exception e){
-                Log.d("TAG","Can't Use Cast");
-            }
-        }*/
+        int episodePosition = intent.getIntExtra("episodePosition", -1);
+        this.title = intent.getStringExtra("title") + ((seasonPosition == -1) ? "" : " S" + (seasonPosition + 1)) + ((episodePosition == -1 ? "" : " E" + (episodePosition + 1)));
     }
-/*
-    private void setupCastListener() {
-        mSessionManagerListener = new SessionManagerListener<CastSession>() {
-
-            @Override
-            public void onSessionEnded(CastSession session, int error) {
-                onApplicationDisconnected();
-            }
-
-            @Override
-            public void onSessionResumed(CastSession session, boolean wasSuspended) {
-                onApplicationConnected(session);
-            }
-
-            @Override
-            public void onSessionResumeFailed(CastSession session, int error) {
-                onApplicationDisconnected();
-            }
-
-            @Override
-            public void onSessionStarted(CastSession session, String sessionId) {
-                onApplicationConnected(session);
-            }
-
-            @Override
-            public void onSessionStartFailed(CastSession session, int error) {
-                onApplicationDisconnected();
-            }
-
-            @Override
-            public void onSessionStarting(CastSession session) {
-            }
-
-            @Override
-            public void onSessionEnding(CastSession session) {
-            }
-
-            @Override
-            public void onSessionResuming(CastSession session, String sessionId) {
-            }
-
-            @Override
-            public void onSessionSuspended(CastSession session, int reason) {
-            }
-
-            private void onApplicationConnected(CastSession castSession) {
-                mCastSession = castSession;
-                if (null != mSelectedMedia) {
-
-                    if (true) {
-                       // mVideoView.pause();
-                        loadRemoteMedia(0, true);
-                        return;
-                    } else {
-                        //mPlaybackState = PlaybackState.IDLE;
-                        //updatePlaybackLocation(PlaybackLocation.REMOTE);
-                    }
-                }
-                //updatePlayButton(mPlaybackState);
-                getActivity().invalidateOptionsMenu();
-            }
-
-            private void onApplicationDisconnected() {
-                //updatePlaybackLocation(PlaybackLocation.LOCAL);
-                //mPlaybackState = PlaybackState.IDLE;
-                //mLocation = PlaybackLocation.LOCAL;
-                //updatePlayButton(mPlaybackState);
-                getActivity().invalidateOptionsMenu();
-            }
-        };
-    }
-*/
-/*
-    private void loadRemoteMedia(int position, boolean autoPlay) {
-        if (mCastSession == null) {
-            return;
-        }
-        final RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
-        if (remoteMediaClient == null) {
-            return;
-        }
-        remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
-            @Override
-            public void onStatusUpdated() {
-                Intent intent = new Intent(getActivity(), ExpandedControlsActivity.class);
-                startActivity(intent);
-                remoteMediaClient.unregisterCallback(this);
-            }
-        });
-        remoteMediaClient.load(new MediaLoadRequestData.Builder()
-                .setMediaInfo(mSelectedMedia)
-                .setAutoplay(autoPlay)
-                .setCurrentTime(position).build());
-    }
-*/
     private boolean hideControls = false;
     private boolean isLiveTV = false;
     private boolean hidePlayback = false;
@@ -378,7 +261,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             titleView.setVisibility(View.GONE);
             textClock.setVisibility(View.GONE);
         }
-
         else{
             titleView.setVisibility(View.VISIBLE);
             textClock.setVisibility(View.VISIBLE);
@@ -409,18 +291,12 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     @Override
     public void onResume(){
         super.onResume();
-        /*if(mCastContext != null)
-        mCastContext.getSessionManager().addSessionManagerListener(
-                mSessionManagerListener, CastSession.class);*/
     }
 
     @Override
     public void onPause(){
         super.onPause();
-        /*if(mCastContext != null)
-        mCastContext.getSessionManager().removeSessionManagerListener(
-                mSessionManagerListener, CastSession.class);*/
-            releasePlayer();
+        releasePlayer();
     }
     @Override
     public void onStop() {
@@ -467,7 +343,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             debugRootView.setVisibility(View.GONE);
             titleView.setVisibility(View.GONE);
             textClock.setVisibility(View.GONE);
-            return;
         }else{
             debugRootView.setVisibility(visibility);
             titleView.setVisibility(visibility);
@@ -490,9 +365,8 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
     public void doForwardVideo()
     {
 
-        if (player == null) {
+        if (player == null)
             return;
-        }
         long pos = player.getCurrentPosition();
         pos += 15000; // milliseconds
         player.seekTo(pos);
@@ -501,22 +375,18 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
     public void doRewindVideo()
     {
-        if (player == null) {
+        if (player == null)
             return;
-        }
-
         long pos = player.getCurrentPosition();
         pos -= 5000; // milliseconds
         player.seekTo(pos);
         hideWhenForward();
     }
      public void playPause(){
-         if(player.getPlayWhenReady()){
+         if(player.getPlayWhenReady())
              player.setPlayWhenReady(false);
-         }
-         else{
+         else
              player.setPlayWhenReady(true);
-         }
      }
     @Override
     public void onClick(View view) {
@@ -543,7 +413,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             movieId = intent.getIntExtra(MOVIE_ID_EXTRA, -1);
             mainCategory = intent.getIntExtra("mainCategoryId",-1);
             playerPosition = C.TIME_UNSET;
-            playerPosition =mainCategory == 4 ? 0L : intent.getLongExtra(SECONDS_TO_START_EXTRA,0L);
+            playerPosition = mainCategory == 4 ? 0L : intent.getLongExtra(SECONDS_TO_START_EXTRA,0L);
             //mSelectedMedia = VideoProvider.buildMediaInfo(title,"","",1200,"https://trello-attachments.s3.amazonaws.com/5e188d3aaab92475f769e8bf/5e4fe9fd0281836fa8c971c8/1ca6d33f2542e096e990bb1678b9da57/video_not_request.mp4","video/mp4","","",null);
 
             if (player == null) {
@@ -659,7 +529,6 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
                         @Override
                         public void onCancel() {
-
                         }
 
                         @Override
@@ -902,18 +771,23 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
             @Override
             public void onAccept() {
-                startActivity(new Intent(getActivity(),SpeedTestActivity.class));
-                getActivity().finish();
+                try{
+                    this.onDismiss();
+                    startActivity(new Intent(getActivity(), SpeedTestActivity.class));
+                    getActivity().finish();
+                }catch (Exception e){
+
+                }
             }
 
             @Override
             public void onCancel() {
-                getActivity().finish();
+
             }
 
             @Override
             public void onDismiss() {
-                getActivity().finish();
+
             }
         });
      }

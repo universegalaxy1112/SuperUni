@@ -54,12 +54,12 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
             activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
             activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
             showMovieDetails(movie,mainCategoryId,movieCategoryId);
-            new Handler().postDelayed(new Runnable() {
+            /*new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     movieDetailsViewModel.playTrailor();
                 }
-            },3000);
+            },3000);*/
         }catch (Exception e){
             Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
                 @Override
@@ -134,7 +134,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
          else
              playTrailer(finalUris,extensions,subtitleUrl,title);
-
     }
 
     private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl,String title){

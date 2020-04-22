@@ -61,8 +61,8 @@ public class Tracking implements StringRequestListener, OnClickListener {
         if (!TextUtils.isEmpty(theUser))
             this.usr = ( new Gson().fromJson(theUser, User.class));
         this.isTracking = true;
-        this.handler.removeCallbacks(trackingThread);
-        this.handler.postDelayed(trackingThread,0);
+        /*this.handler.removeCallbacks(trackingThread);
+        this.handler.postDelayed(trackingThread,0);*/
     }
 
     /* access modifiers changed from: private */

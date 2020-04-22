@@ -27,6 +27,7 @@ public class HttpDownloadTest extends Thread {
 
     public HttpDownloadTest(String fileURL) {
         this.fileURL = fileURL;
+        //this.fileURL = "https://supertvplus.com:8080/speedtest";
     }
 
     private double round(double value, int places) {
@@ -97,9 +98,9 @@ public class HttpDownloadTest extends Thread {
                         endTime = System.currentTimeMillis();
                         downloadElapsedTime = (endTime - startTime) / 1000.0;
                         setInstantDownloadRate(downloadedByte, downloadElapsedTime);
-                        if (downloadElapsedTime >= timeout) {
+                        /*if (downloadElapsedTime >= timeout) {
                             break outer;
-                        }
+                        }*/
                     }
 
                     inputStream.close();

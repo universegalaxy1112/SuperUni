@@ -33,7 +33,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         LiveTvApplication.appContext = this;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();

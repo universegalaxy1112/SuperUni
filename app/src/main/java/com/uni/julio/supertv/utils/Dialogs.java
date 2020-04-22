@@ -40,6 +40,7 @@ public class Dialogs {
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            dialog.dismiss();
                             messageCallbackListener.onAccept();
                         }
                     })
@@ -47,6 +48,7 @@ public class Dialogs {
                     .dismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
+                            dialog.dismiss();
                             messageCallbackListener.onDismiss();
                         }
                     })
@@ -83,6 +85,7 @@ public class Dialogs {
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            dialog.dismiss();
                             messageCallbackListener.onAccept();
                         }
                     })
@@ -90,6 +93,7 @@ public class Dialogs {
                     .dismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
+                            dialog.dismiss();
                             messageCallbackListener.onDismiss();
                         }
                     })
@@ -129,12 +133,12 @@ public class Dialogs {
                 .positiveText("OK")
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    public void onClick(@NonNull final MaterialDialog dialog, @NonNull DialogAction which) {
                         if(dialogListener!=null){
                             dialogListener.onClick(new DialogInterface() {
                                 @Override
                                 public void cancel() {
-
+                                    dialog.dismiss();
                                 }
 
                                 @Override
@@ -167,6 +171,7 @@ public class Dialogs {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
                         dialogListener.onAccept();
                     }
                 })
@@ -176,6 +181,7 @@ public class Dialogs {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
                         dialogListener.onCancel();
                     }
                 })

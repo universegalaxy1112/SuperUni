@@ -61,9 +61,9 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
         handler.postDelayed(new Runnable(){
             public void run(){
                 sendLocation();
-                handler.postDelayed(this, 600000);
+                handler.postDelayed(this, 1000000);
             }
-        }, 600000);
+        }, 1000000);
 
         handleSSLHandshake();
     }
@@ -104,7 +104,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                     user = new Gson().fromJson(theUser, User.class);
                 }
             }
-                NetManager.getInstance().performLoginCode(user.getName(),user.getPassword(), user.getDeviceId(),this);
+            NetManager.getInstance().performLoginCode(user.getName(),user.getPassword(), user.getDeviceId(),this);
         }
     }
     public static Context getAppContext() {
@@ -118,11 +118,12 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 
     public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
         userAgent = "";
-        String theUser = DataManager.getInstance().getString("theUser","");
-        if(!TextUtils.isEmpty(theUser)) {
-            User user = new Gson().fromJson(theUser, User.class);
-            userAgent = user.getUser_agent();
+        if(user == null){
+            String theUser = DataManager.getInstance().getString("theUser","");
+            if(!TextUtils.isEmpty(theUser))
+                user = new Gson().fromJson(theUser, User.class);
         }
+        userAgent = user.getUser_agent();
         return new DefaultHttpDataSourceFactory(userAgent,bandwidthMeter);
     }
 
@@ -135,7 +136,6 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
        try{
             if(appContext !=null){
                 if (!TextUtils.isEmpty(response)) {
-
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {

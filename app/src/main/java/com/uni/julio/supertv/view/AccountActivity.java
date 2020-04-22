@@ -37,7 +37,6 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         activityAccountBinding= DataBindingUtil.setContentView(this, R.layout.activity_account);
         accountDetailsViewModel = new AccountDetailsViewModel(getActivity(),activityAccountBinding);
         activityAccountBinding.setAccountDetailsVM(accountDetailsViewModel);
@@ -61,7 +60,6 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     @Override
     public void onCloseSessionSelected() {
         DataManager.getInstance().saveData("theUser","");
-
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

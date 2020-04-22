@@ -79,17 +79,6 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
                 .beginTransaction()
                 .add(R.id.video_container,videoPlayFragment).commit();
     }
-
-    public VideoPlayFragment getVideoPlayFragment()
-    {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.video_container);
-        if(fragment instanceof VideoPlayFragment)
-        {
-            return (VideoPlayFragment) fragment;
-        }
-        else
-            return null;
-    }
     @Override
     public void onResume(){
         super.onResume();
@@ -124,7 +113,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onStop() {
         super.onStop();
-        if(isReceiverRegistered)
+       if(isReceiverRegistered)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
@@ -177,7 +166,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode,
                                               Configuration newConfig) {
-        if (isInPictureInPictureMode) {
+      if (isInPictureInPictureMode) {
 
         } else {
 
@@ -239,7 +228,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         if(mainCategoryId == 4)
             videoPlayFragment.toggleTitle();
         try {
-            //sendBroadcast(new Intent("toggle"));
+            sendBroadcast(new Intent("toggle"));
         }catch (Exception e){
             e.printStackTrace();
         }

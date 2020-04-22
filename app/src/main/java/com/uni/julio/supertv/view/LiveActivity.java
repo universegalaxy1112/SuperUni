@@ -47,14 +47,14 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         videoPlayFragment.hideControls(this);
         videoPlayFragment.hideTitle();
         FragmentManager manager=getSupportFragmentManager();
-         FragmentTransaction transaction=manager.beginTransaction();
-         transaction.add(R.id.exo_player,videoPlayFragment,"Frag_top_tag");
-         transaction.commit();
-         liveProgramSelectedListener=this;
-         liveTVViewModel=new LiveTVViewModel(this);
-         activityLiveBinding= DataBindingUtil.setContentView(this,R.layout.activity_live);
-         activityLiveBinding.setLiveTVFragmentVM(liveTVViewModel);
-         liveTVViewModel.showProgramList(activityLiveBinding);
+        FragmentTransaction transaction=manager.beginTransaction();
+        transaction.add(R.id.exo_player,videoPlayFragment,"Frag_top_tag");
+        transaction.commit();
+        liveProgramSelectedListener=this;
+        liveTVViewModel=new LiveTVViewModel(this);
+        activityLiveBinding= DataBindingUtil.setContentView(this,R.layout.activity_live);
+        activityLiveBinding.setLiveTVFragmentVM(liveTVViewModel);
+        liveTVViewModel.showProgramList(activityLiveBinding);
      }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.general, menu);
@@ -69,7 +69,6 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         if(keyCode==KeyEvent.KEYCODE_DPAD_CENTER){
             liveTVViewModel.toggleChannels();
         }
-
         return false;
     }
     @Override

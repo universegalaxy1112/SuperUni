@@ -39,6 +39,7 @@ import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Season;
 import com.uni.julio.supertv.model.Serie;
+import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.networing.NetManager;
@@ -86,13 +87,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         videoStreamManager = VideoStreamManager.getInstance();
         this.mContext = context;
         mMainCategoryId=mainCategoryId;
-        if(mainCategoryId == 0) { //is the position for the movies
-            isMovies = true;
-        }
-        else if(mainCategoryId == 1 || mainCategoryId == 2 || mainCategoryId == 6) { //is the position for the series or series jids
-            isSerie = true;
-            mMainCategoryId = mainCategoryId;
-        }
     }
 
     @Override
@@ -126,7 +120,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }catch (IllegalArgumentException e){
 
         }
-
         rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
         rowslayoutmanger = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.episode)));
         rowslayoutmanger.setOrientation(LinearLayoutManager.VERTICAL);
@@ -193,15 +186,12 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         viewCallback.finishActivity();
     }
     public void setProperty(){
-        if(mMainCategoryId == 4) { //eventos
+        if(mMainCategoryId == 4)  //eventos
             hidePlayFromStart = true;
-        }
-        if(hidePlayFromStart) {
+        if(hidePlayFromStart)
             isSeen = new ObservableBoolean(false);
-        }
-        else  {
+        else
             isSeen = new ObservableBoolean(videoStreamManager.isLocalSeen(String.valueOf(mMovie.getContentId())));
-        }
         isFavorite = new ObservableBoolean(videoStreamManager.isLocalFavorite(String.valueOf(mMovie.getContentId())));
         isHD=mMovie.getStreamUrl()==null||mMovie.getStreamUrl().equals("null")||mMovie.getStreamUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
         isSD=mMovie.getSDUrl()==null||mMovie.getSDUrl().equals("null")||mMovie.getSDUrl().equals("")?new ObservableBoolean(true):new ObservableBoolean(false);
@@ -219,7 +209,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         else {
             videoStreamManager.setLocalFavorite(String.valueOf(mMovie.getContentId()));
             isFavorite.set(true);
-
         }
         isFavorite.notifyChange();
         DataManager.getInstance().saveData("favoriteMoviesTotal", videoStreamManager.getFavoriteMovies());
@@ -302,7 +291,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }
      return false;
     }
-    public void playTrailor() {
+    public void playTrailor(View view) {
         if(!isTrailer.get())
             onPlay(2);
     }
@@ -397,7 +386,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }
         isRequested = true;
         String url = WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(serie.getContentId()))
-                .replace("{USERID}",LiveTvApplication.user.getName());
+                .replace("{USERID}",getUser());
         NetManager.getInstance().makeStringRequest(url, this);
     }
     public void like(View view){
@@ -412,7 +401,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.like.setText(Integer.toString(++this.likes));
         }
         else{
@@ -421,7 +410,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","-1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.like.setText(Integer.toString(--this.likes));
         }
         liked.set(!liked.get());
@@ -437,7 +426,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","1")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(++this.dislikes));
         }
         else{
@@ -446,11 +435,18 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","-1")
-                            .replace("{USERID}",LiveTvApplication.user.getName()), this);
+                            .replace("{USERID}",getUser()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(--this.dislikes));
         }
         disliked.set(!disliked.get());
         disliked.notifyChange();
+    }
+    private String getUser(){
+        String theUser = DataManager.getInstance().getString("theUser","");
+        if(!TextUtils.isEmpty(theUser)) {
+            return new Gson().fromJson(theUser, User.class).getName();
+        }
+        return "";
     }
     @Override
     public void onError() {

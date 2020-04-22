@@ -73,7 +73,6 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
                 searchSerie = true;
             }
             if(query.equals("")&& Device.treatAsBox){
-
                 (activitySearchBinding.editPassword).setOnEditorActionListener(new EditText.OnEditorActionListener(){
 
                     @Override
@@ -85,7 +84,7 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
                                         event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                             if (event == null || !event.isShiftPressed()) {
                                 hideKeyboard();
-                                searchViewModel.showMovieList(activitySearchBinding.editPassword,activitySearchBinding.searchRecycler,v.getText().toString(),true);
+                                searchViewModel.showMovieList(activitySearchBinding,activitySearchBinding.searchRecycler,v.getText().toString(),true);
                                 return true;
                             }
                         }
@@ -96,8 +95,7 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
             }
             else{
                 activitySearchBinding.editPassword.setVisibility(View.GONE);
-                searchViewModel.showMovieList(activitySearchBinding.editPassword,activitySearchBinding.searchRecycler,query,searchSerie);
-
+                searchViewModel.showMovieList(activitySearchBinding,activitySearchBinding.searchRecycler,query,searchSerie);
             }
         }catch (Exception e){
             e.printStackTrace();

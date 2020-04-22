@@ -62,13 +62,13 @@ public class TrailerActivity extends BaseActivity implements LiveTVToggleUIListe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            return true;
+            finishActivity();
+            return false;
         }
         return false;
     }
     @Override
     public void onToggleUI(boolean show) {
-        finishActivity();
+        //finishActivity();
     }
 }
