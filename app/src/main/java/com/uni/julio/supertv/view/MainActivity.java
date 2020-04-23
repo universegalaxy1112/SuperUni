@@ -259,7 +259,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         TextView titleView= dialog.getCustomView().findViewById(R.id.title);
         TextView contentView= dialog.getCustomView().findViewById(R.id.content);
         titleView.setText(R.string.attention);
-        contentView.setText("Dear " + user.getName() + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
+        contentView.setText("Dear " + user ==  null ? "Sir" : user.getName() + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
         TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
         cancel.setVisibility(View.GONE);
         new Handler().postDelayed(new Runnable() {
