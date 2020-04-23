@@ -86,19 +86,24 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
 
     }
     public void onResume() {
-        if(
-                VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.MOVIE_CATEGORIES ||
-                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.SERIES_CATEGORIES ||
-                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES ||
-                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES ||
-                        VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.KARAOKE_CATEGORIES
-        ) {
-            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), mMoviesList.get(0), this, timeOutPerRow[0]);
-            NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), mMoviesList.get(1), this, timeOutPerRow[0]);
-            mMoviesList = VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getMovieCategories();
-            this.notifyItemChanged(0);
-            this.notifyItemChanged(1);
+        try{
+            if(
+                    VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.MOVIE_CATEGORIES ||
+                            VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.SERIES_CATEGORIES ||
+                            VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES ||
+                            VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES ||
+                            VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getModelType() == ModelTypes.KARAOKE_CATEGORIES
+            ) {
+                NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), mMoviesList.get(0), this, timeOutPerRow[0]);
+                NetManager.getInstance().retrieveMoviesForSubCategory(VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition), mMoviesList.get(1), this, timeOutPerRow[0]);
+                mMoviesList = VideoStreamManager.getInstance().getMainCategory(mMainCategoryPosition).getMovieCategories();
+                this.notifyItemChanged(0);
+                this.notifyItemChanged(1);
+            }
+        }catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
         }
+
     }
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position){

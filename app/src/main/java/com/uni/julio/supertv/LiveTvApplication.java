@@ -97,6 +97,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     }
 
     public void sendLocation(){
+
         if( appContext != null && !(appContext instanceof SplashActivity)){
             if(user == null){
                String theUser = DataManager.getInstance().getString("theUser","");

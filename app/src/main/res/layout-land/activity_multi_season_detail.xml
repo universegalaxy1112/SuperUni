@@ -382,7 +382,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         style="@style/text.additional_info"
-                                        android:layout_marginEnd="@dimen/dip_16"
+                                        android:layout_marginEnd="@dimen/dip_12"
                                         android:text="0" />
                                     <LinearLayout
                                         android:layout_width="@dimen/dip_18"
@@ -407,6 +407,20 @@
                                         android:layout_marginRight="@dimen/dip_8"
                                         android:text="0"
                                         />
+                                    <LinearLayout
+                                        android:layout_width="@dimen/dip_22"
+                                        android:layout_height="@dimen/dip_24"
+                                        android:background="@drawable/icon_report"
+                                        android:focusable="true"
+                                        android:onClick="@{movieDetailsVM::report}"
+                                        android:orientation="horizontal"
+                                        android:layout_marginEnd="@dimen/dip_4"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.72">
+                                    </LinearLayout>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"

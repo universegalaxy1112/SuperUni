@@ -1,11 +1,20 @@
 package com.uni.julio.supertv.viewmodel;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,34 +64,32 @@ import java.util.Set;
 
 public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.ViewModel, LoadEpisodesForSerieResponseListener, SeasonSelectListener,MovieSelectedListener, StringRequestListener {
     private int mMainCategoryId ;
-    private int mMovieCategoryId;
     private Movie mMovie;
     private Season season;
     private int seasonPosition = 0;
     private EpisodeDetailsViewModelContract.View viewCallback;
     private VideoStreamManager videoStreamManager;
     private Context mContext;
-    List<? extends VideoStream>  movieList;
+    private List<? extends VideoStream>  movieList;
     public ObservableBoolean isFavorite;
-    public ObservableBoolean isSeen;
+    private ObservableBoolean isSeen;
     private boolean isMovies = false;
     private boolean isSerie = false;
     public ObservableBoolean isHD;
     public ObservableBoolean isSD;
     public ObservableBoolean isTrailer;
     private boolean hidePlayFromStart = false;
-    ActivityMultiSeasonDetailBinding movieDetailsBinding;
-    MultiSeasonAdapter moviesRecyclerAdapter;
-    TVRecyclerView rowsRecycler;
-    GridLayoutManager rowslayoutmanger;
-    Serie serie;
-    TabLayout tabLayout;
-    EpisodeLoadListener episodeLoadListener;
+    private ActivityMultiSeasonDetailBinding movieDetailsBinding;
+    private MultiSeasonAdapter moviesRecyclerAdapter;
+    private TVRecyclerView rowsRecycler;
+    private Serie serie;
+    private EpisodeLoadListener episodeLoadListener;
     private int likes = 0;
     private int dislikes = 0;
     public ObservableBoolean liked = new ObservableBoolean(false);
     public ObservableBoolean disliked = new ObservableBoolean(false);
     private boolean isRequested = false;
+    private int reportType = -1;
     public EpisodeDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         this.mContext = context;
@@ -108,7 +115,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     @Override
     public void showMovieDetails(Serie serie, ActivityMultiSeasonDetailBinding movieDetailsBinding , int mainCategoryId, int movieCategoryId, EpisodeLoadListener episodeLoadListener) {
         this.mMainCategoryId=mainCategoryId;
-        this.mMovieCategoryId=movieCategoryId;
         this.movieDetailsBinding=movieDetailsBinding;
         this.episodeLoadListener=episodeLoadListener;
         this.serie=serie;
@@ -121,7 +127,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
 
         }
         rowsRecycler = movieDetailsBinding.getRoot().findViewById(R.id.recycler_view);
-        rowslayoutmanger = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.episode)));
+        GridLayoutManager rowslayoutmanger = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.episode)));
         rowslayoutmanger.setOrientation(LinearLayoutManager.VERTICAL);
         rowsRecycler.setLayoutManager(rowslayoutmanger);
         if (rowsRecycler.getItemDecorationCount() == 0) {
@@ -133,7 +139,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }
     }
     private void addSeasonButtons(){
-          tabLayout=movieDetailsBinding.detailTab;
+        TabLayout tabLayout = movieDetailsBinding.detailTab;
         for(int i=0;i<serie.getSeasons().size();i++){
 
             TabItem tabItem=new TabItem(mContext);
@@ -185,6 +191,72 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     public void finishActivity(View view) {
         viewCallback.finishActivity();
     }
+
+    public void report(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext,R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(R.string.reportTitle)
+                .setView(buildView())
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String reportUrl = WebConfig.reportUrl.replace("{USER}", getUser())
+                                .replace("{TIPO}", Integer.toString(mMainCategoryId))
+                                .replace("{CVE}", Integer.toString(serie.getContentId()))
+                                .replace("{ACT}", Integer.toString(reportType));
+                        NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
+                            @Override
+                            public void onCompleted(String response) {
+                                Toast.makeText(mContext, "Thanks for your feedback!", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onError() {
+                                Toast.makeText(mContext, "Failed To report! Please check your network connection.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null);
+        AlertDialog dialog=builder.create();
+        dialog.show();
+        Button ne=dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        Button po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        ne.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
+        po.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
+        ne.setPadding(16,4,16,4);
+        po.setPadding(16,4,16,4);
+    }
+
+    @SuppressLint("InflateParams")
+    private View buildView(){
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        final View view = inflater.inflate(R.layout.reportlayout, null);
+        RadioGroup radioGroup = view.findViewById(R.id.RGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case (R.id.report_audio):
+                        reportType = 0;
+                        break;
+                    case (R.id.report_video):
+                        reportType = 1;
+                        break;
+                    case R.id.report_subtitle:
+                        reportType = 2;
+                        break;
+                    case R.id.report_content:
+                        reportType = 3;
+                        break;
+                    default:
+                        reportType = -1;
+                        break;
+                }
+
+            }
+        });
+        return view;
+    }
+
     public void setProperty(){
         if(mMainCategoryId == 4)  //eventos
             hidePlayFromStart = true;

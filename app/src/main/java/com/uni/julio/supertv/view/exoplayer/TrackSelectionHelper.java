@@ -119,8 +119,6 @@ import java.util.Locale;
     disableView.setFocusable(true);
     disableView.setOnClickListener(this);
     root.addView(disableView);
-
-
     boolean haveSupportedTracks = false;
     boolean haveAdaptiveTracks = false;
     trackViews = new CheckedTextView[trackGroups.length][];

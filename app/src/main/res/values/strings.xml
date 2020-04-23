@@ -141,6 +141,7 @@
     <string name="castTitle">Cast or Phone?</string>
     <string name="castingTitle">Cast to</string>
     <string name="cast">Cast</string>
+    <string name="reportTitle">Reportar Falla</string>
     <string name="castLoading">Searching for devices...</string>
     <string name="phone">Play on Phone</string>
     <string name="castDescription">Make sure your phone and cast device are connected to the same Wi-Fi</string>
@@ -171,4 +172,8 @@
     <string name="testFail_retry">Try again</string>
     <string name="privacy_open"><u>Privacy</u></string>
     <string name="privacy_close"><u>Back</u></string>
+    <string name="report_audio">Relacionado al audio</string>
+    <string name="report_video">Relacionado al video</string>
+    <string name="report_subtitle">Relacionado a subtitulos</string>
+    <string name="report_content">Contenido no relacionado</string>
 </resources>

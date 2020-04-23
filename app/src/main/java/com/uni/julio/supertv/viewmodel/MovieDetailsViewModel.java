@@ -1,12 +1,21 @@
 package com.uni.julio.supertv.viewmodel;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +27,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.google.android.exoplayer2.RendererCapabilities;
+import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uni.julio.supertv.LiveTvApplication;
@@ -56,8 +67,6 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     private Movie mMovie;
      public ObservableBoolean isFavorite;
     private ObservableBoolean isSeen;
-    private boolean isMovies = false;
-    private boolean isSerie=false;
     private boolean hidePlayFromStart = false;
     public ObservableBoolean isHD;
     public ObservableBoolean isSD;
@@ -68,17 +77,11 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     public ObservableBoolean liked = new ObservableBoolean(false);
     public ObservableBoolean disliked = new ObservableBoolean(false);
     private boolean isRequested = false;
+    private int reportType = -1;
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
         mMainCategoryId=mainCategoryId;
-        if(mainCategoryId == 0) { //is the position for the movies
-            isMovies = true;
-        }
-        else if(mainCategoryId == 1 || mainCategoryId == 2 || mainCategoryId == 6) { //is the position for the series or series jids
-            isSerie = true;
-            mMainCategoryId = mainCategoryId;
-        }
     }
 
     @Override
@@ -97,6 +100,71 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         this.viewCallback = null;
     }
 
+    public void report(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext,R.style.AppCompatAlertDialogStyle);
+        builder.setTitle(R.string.reportTitle)
+                .setView(buildView())
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String reportUrl = WebConfig.reportUrl.replace("{USER}", getUser())
+                                .replace("{TIPO}", Integer.toString(mMainCategoryId))
+                                .replace("{CVE}", Integer.toString(mMovie.getContentId()))
+                                .replace("{ACT}", Integer.toString(reportType));
+                        NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
+                            @Override
+                            public void onCompleted(String response) {
+                                Toast.makeText(mContext, "Thanks for your feedback!", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onError() {
+                                Toast.makeText(mContext, "Failed To report! Please check your network connection.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null);
+        AlertDialog dialog=builder.create();
+        dialog.show();
+        Button ne=dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        Button po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        ne.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
+        po.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
+        ne.setPadding(16,4,16,4);
+        po.setPadding(16,4,16,4);
+    }
+
+    @SuppressLint("InflateParams")
+    private View buildView(){
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View view = inflater.inflate(R.layout.reportlayout, null);
+        RadioGroup radioGroup = view.findViewById(R.id.RGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case (R.id.report_audio):
+                        reportType = 0;
+                        break;
+                    case (R.id.report_video):
+                        reportType = 1;
+                        break;
+                    case R.id.report_subtitle:
+                        reportType = 2;
+                        break;
+                    case R.id.report_content:
+                        reportType = 3;
+                        break;
+                    default:
+                        reportType = -1;
+                        break;
+                }
+
+            }
+        });
+        return view;
+    }
     @Override
     public void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding , int mainCategoryId,int movieCategoryId) {
         mMainCategoryId=mainCategoryId;

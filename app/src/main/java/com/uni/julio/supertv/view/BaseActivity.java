@@ -38,7 +38,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onResume();
         Tracking.getInstance(this).enableTrack(true);
         Tracking.getInstance(this).enableSleep(false);
-        Tracking.getInstance(this).setAction(getClass().getSimpleName());
+        if(!(this instanceof VideoPlayActivity)){
+            Tracking.getInstance(this).setAction(getClass().getSimpleName());
+        }
         Tracking.getInstance(this).track();
         if(getViewModel() != null)
             getViewModel().onViewResumed();

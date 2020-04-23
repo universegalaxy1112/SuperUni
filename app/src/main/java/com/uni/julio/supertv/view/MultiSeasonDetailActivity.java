@@ -59,7 +59,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             movieCategoryId=extra.getInt("movieCategoryId",-1);
             serieId=extra.getInt("serieId",-1);
             serie=(Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
-            movieDetailsViewModel=new EpisodeDetailsViewModel(getBaseContext(),mainCategoryId);
+            movieDetailsViewModel=new EpisodeDetailsViewModel(this,mainCategoryId);
             activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
             showMovieDetails(serie,mainCategoryId,movieCategoryId);
            /* new Handler().postDelayed(new Runnable() {
@@ -93,48 +93,50 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
     public void onStart() {
         super.onStart();
 
-
     }
     public void onPlaySelected(Movie movie, final int type, int seasonPosition) {
         final int movieId = movie.getContentId();
+        List<?extends VideoStream> episodes = serie.getSeason(seasonPosition).getEpisodeList();
+        String[] uris= new String[episodes.size()];
+        String[] extensions = new String[episodes.size()];
+        String subtitleUrl = null;
+        String title = null;
+        long secondsToPlay = 0;
+        String movieUrl = movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
+        String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
+        for(int i = 0 ; i < episodes.size(); i++  ){
+            extensions[i] = extension;
+            switch (type){
+                case 0:
+                    uris[i] = episodes.get(i).getStreamUrl();
+                    break;
+                case 1:
+                    if(episodes.get(i).getSDUrl()==null){
+                        uris[i] = episodes.get(i).getStreamUrl();
+                    }
+                    else{
+                        uris[i] = episodes.get(i).getSDUrl();
+                    }
+                    break;
+                case 2:
+                    if(episodes.get(i).getSDUrl()==null){
+                        uris[i] = episodes.get(i).getStreamUrl();
+                    }
+                    else{
+                        uris[i] = episodes.get(i).getTrailerUrl();
+                    }
+                    break;
+                default:
+            }
+            subtitleUrl= movie.getSubtitleUrl();
+            title = serie.getTitle();
+            secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
+        }
 
-        String[] uris={};
-        switch (type){
-            case 0:
-                uris = new String[] {movie.getStreamUrl()};
-                break;
-            case 1:
-                if(movie.getSDUrl()==null){
-                    uris = new String[] {movie.getStreamUrl()};
-                }
-                else{
-                    uris = new String[] {movie.getSDUrl()};
-                }
-                break;
-            case 2:
-                if(movie.getTrailerUrl()==null){
-                    uris = new String[] {movie.getStreamUrl()};
-                }
-                else{
-                    uris = new String[] {movie.getTrailerUrl()};
-                }
-                break;
-            default:
-        }
-        if(uris[0]==null){
-            uris = new String[] {movie.getStreamUrl()};
-        }
-         String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
-            String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
-         String[] extensions = new String[] {extension};
-         String subtitleUrl= movie.getSubtitleUrl();
-         String title = serie.getTitle();
-         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
-         String[] finalUris = uris;
         if(type !=2)
-             playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
+         playVideo(uris,extensions, movieId,    secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
         else
-            playTrailer(finalUris,extensions,subtitleUrl,title);
+            playTrailer(uris,extensions,subtitleUrl,title);
     }
     private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
         Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);
@@ -153,7 +155,9 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
              .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
              .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
              .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, secondsToPlay)
+             .putExtra("serieId", serieId)
              .putExtra("mainCategoryId", mainCategoryId)
+             .putExtra("movieCategoryId", movieCategoryId)
              .putExtra("type", type)
              .putExtra("title", title)
              .putExtra("seasonPosition", seasonPosition)

@@ -15,8 +15,10 @@ import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
+import com.uni.julio.supertv.view.LoadingActivity;
 import com.uni.julio.supertv.view.MainActivity;
 import com.uni.julio.supertv.view.SplashActivity;
+import com.uni.julio.supertv.view.VideoPlayActivity;
 
 import org.json.JSONObject;
 
@@ -35,7 +37,7 @@ public class Tracking implements StringRequestListener, OnClickListener {
     private Runnable trackingThread = new Runnable() {
         public void run() {
             Tracking.this.track();
-            Tracking.this.handler.postDelayed(this, 30000);
+            Tracking.this.handler.postDelayed(this, 60000);
         }
     };
     private User usr = null;
@@ -61,20 +63,20 @@ public class Tracking implements StringRequestListener, OnClickListener {
         if (!TextUtils.isEmpty(theUser))
             this.usr = ( new Gson().fromJson(theUser, User.class));
         this.isTracking = true;
-        /*this.handler.removeCallbacks(trackingThread);
-        this.handler.postDelayed(trackingThread,0);*/
+        this.handler.removeCallbacks(trackingThread);
+        this.handler.postDelayed(trackingThread,0);
     }
 
     /* access modifiers changed from: private */
     public void track() {
-        if(this.isTracking && !(mContext instanceof SplashActivity)){
+        if(this.isTracking && !(mContext instanceof LoadingActivity || mContext instanceof MainActivity  || mContext instanceof SplashActivity)){
             try{
                 String ip =Device.ip;
                 String istv = "1"; //Device.treatAsBox ? "1":"0";
                 String theUser = DataManager.getInstance().getString("theUser", "");
                 if (!TextUtils.isEmpty(theUser))
                     this.usr = ( new Gson().fromJson(theUser, User.class));
-                String url = WebConfig.trackingURL.replace("{USER}", this.usr.getName()).replace("{MOVIE}", URLEncoder.encode(this.action,"UTF-8")).replace("{IP}",ip).replace("{DEVICE_ID}",this.usr.getDeviceId()).replace("{ISTV}",istv);
+                String url = WebConfig.trackingURL.replace("{USER}", (this.usr.getName())).replace("{MOVIE}", (URLEncoder.encode(this.action, "UTF-8")).replace("+", "%20")).replace("{IP}",(ip)).replace("{DEVICE_ID}",(this.usr.getDeviceId())).replace("{ISTV}",istv);
                 NetManager.getInstance().makeStringRequest(url, this);
             }catch (Exception e){
                 e.printStackTrace();
