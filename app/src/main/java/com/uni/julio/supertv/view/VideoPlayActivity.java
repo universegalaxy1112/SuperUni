@@ -72,7 +72,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPlayFragment=new VideoPlayFragment();
         if(mainCategoryId == 4 )
-        videoPlayFragment.hidePlayBack();
+            videoPlayFragment.hidePlayBack();
         videoPlayFragment.setLiveTVToggleListener(this);
         frameLayout = findViewById(R.id.video_container);
         getSupportFragmentManager()
@@ -96,7 +96,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
 
         }
         if(mainCategoryId != 4)
-        videoPlayFragment.useController();
+            videoPlayFragment.useController();
     }
     @Override
     public void onDestroy(){
@@ -113,7 +113,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onStop() {
         super.onStop();
-       if(isReceiverRegistered)
+        if(isReceiverRegistered)
         {
             unregisterReceiver(mute);
             unregisterReceiver(unMute);
@@ -149,9 +149,8 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
                 new PictureInPictureParams.Builder();
         mPictureInPictureParamsBuilder.setAspectRatio(aspectRatio).build();
         enterPictureInPictureMode(mPictureInPictureParamsBuilder.build());
-
     }
-   @RequiresApi(api = Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onUserLeaveHint() {
         if (!isInPictureInPictureMode()) {
@@ -166,7 +165,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode,
                                               Configuration newConfig) {
-       if (isInPictureInPictureMode) {
+        if (isInPictureInPictureMode) {
 
         } else {
 
@@ -183,7 +182,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             }else{
                 finish();
             }
-           finishActivity();
+            finishActivity();
             return false;
         }
         if(keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
@@ -218,7 +217,8 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
             videoPlayFragment.doRewindVideo();
             return true;
         }
-
+        /*videoPlayFragment.controlVolumn(event);
+        super.dispatchKeyEvent(event);*/
         return false;
     }
     @Override

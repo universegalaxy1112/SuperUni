@@ -108,7 +108,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String reportUrl = WebConfig.reportUrl.replace("{USER}", getUser())
-                                .replace("{TIPO}", Integer.toString(mMainCategoryId))
+                                .replace("{TIPO}", Integer.toString(mMainCategoryId+1))
                                 .replace("{CVE}", Integer.toString(mMovie.getContentId()))
                                 .replace("{ACT}", Integer.toString(reportType));
                         NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {

@@ -141,13 +141,11 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     private void addSeasonButtons(){
         TabLayout tabLayout = movieDetailsBinding.detailTab;
         for(int i=0;i<serie.getSeasons().size();i++){
-
             TabItem tabItem=new TabItem(mContext);
             tabLayout.addView(tabItem);
             tabLayout.getTabAt(i).setText(serie.getSeason(i).getName());
             tabItem.setBackgroundColor(mContext.getResources().getColor(R.color.white));
             tabItem.setPadding(2,0,2,0);
-
          }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -200,7 +198,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String reportUrl = WebConfig.reportUrl.replace("{USER}", getUser())
-                                .replace("{TIPO}", Integer.toString(mMainCategoryId))
+                                .replace("{TIPO}", Integer.toString(mMainCategoryId+1))
                                 .replace("{CVE}", Integer.toString(serie.getContentId()))
                                 .replace("{ACT}", Integer.toString(reportType));
                         NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
