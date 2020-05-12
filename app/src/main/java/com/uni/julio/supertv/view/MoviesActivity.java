@@ -24,6 +24,7 @@ import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
+import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
@@ -39,7 +40,6 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
     private int serieId;
     SearchView searchView;
     private boolean isPip = false;
-    private int EVENT_REQUEST_CODE = 100;
     private WaveSwipeRefreshLayout waveSwipeRefreshLayout;
     @Override
     protected Lifecycle.ViewModel getViewModel() {
@@ -64,7 +64,8 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
             movieCategoryId = extras.getInt("movieCategoryId",-1);
             serieId = extras.getInt("serieId",-1);
             Toolbar toolbar = activityMoviesBinding.toolbar;
-            toolbar.setTitle(VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getCatName());
+            if(VideoStreamManager.getInstance().getMainCategoriesList().size() > mainCategoryId)
+                toolbar.setTitle(VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getCatName());
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -192,7 +193,8 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .putExtra("title", movie.getTitle())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        ActivityCompat.startActivityForResult(this, launchIntent,EVENT_REQUEST_CODE
+        int EVENT_REQUEST_CODE = 100;
+        ActivityCompat.startActivityForResult(this, launchIntent, EVENT_REQUEST_CODE
                 ,null);
        // startActivityForResult(launchIntent,EVENT_REQUEST_CODE);
     }

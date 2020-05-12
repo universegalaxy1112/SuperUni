@@ -35,6 +35,8 @@ public class Movie extends VideoStream {
     public void setMovieCategoryIdOwner(int movieCategoryIdOwner) {
         this.movieCategoryIdOwner = movieCategoryIdOwner;
     }
+
+
     public String getSearchActors() {
         return searchActors;
     }

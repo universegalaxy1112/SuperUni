@@ -23,9 +23,6 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
     private NetManager netManager;
     private LoadingMoviesViewModelContract.View viewCallback;
     private VideoStreamManager videoStreamManager;
-
-    //mainView is the LoadingMoviesActivity Activity
-    //context provided in LoadingMoviesActivity using getContext() from the MVContract.MainView interface
     public LoadingMoviesViewModel() {
         netManager = NetManager.getInstance();
         videoStreamManager = VideoStreamManager.getInstance();
@@ -66,7 +63,6 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
     @Override
     public void loadSeasons(int mainCategoryId, int movieCategoryId, int serieId) {
         Serie serie = (Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
-        //karaoke
         if(mainCategoryId == 6) {
             serie.addSeason(0, new Season());
             viewCallback.onSeasonsForSerieLoaded();
@@ -74,12 +70,10 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
         }
 
         if(serie.getSeasonCount() > 0) {
-            //Log.d("liveTV","DONE");
             viewCallback.onSeasonsForSerieLoaded();
         }
         else {
-            //Log.d("liveTV","Get seasons");
-            netManager.retrieveSeasons(serie, (LoadSeasonsForSerieResponseListener) this);
+            netManager.retrieveSeasons(serie,  this);
         }
     }
 
@@ -92,14 +86,12 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
     @Override
     public void onSubCategoriesLoaded(MainCategory mainCategory, List<MovieCategory> movieCategories) {
 
-        //remove 4K from the list
         MovieCategory movieCategory1=new MovieCategory();
         movieCategory1.setCatName("Favorite");
-        movieCategories.add(0,movieCategory1);
-
+        int mainCategoryId = mainCategory.getId();
+        if(!(mainCategoryId == 7 || mainCategoryId ==8 || mainCategoryId ==4 || mainCategoryId == 9))
+            movieCategories.add(0, movieCategory1);
         videoStreamManager.getMainCategory(mainCategory.getId()).setMovieCategories(movieCategories);
-
-//        mainCategory.setMovieCategories(movieCategories);
         viewCallback.onSubCategoriesForMainCategoryLoaded();
     }
 
@@ -110,17 +102,10 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
 
     @Override
     public void onSeasonsLoaded(Serie serie, int seasonCount) {
-        //Log.d("liveTV","onSeasonsLoaded "+seasonCount);
-       //fill serie with empty seasons
-        ;//Log.d("liveTV" , "onSeasonsLoaded "+serie.getSeasonCount());
         for(int i = 0; i < seasonCount; i ++) {
             serie.addSeason(i, new Season());
         }
-
-        ;//Log.d("liveTV" , "Added "+serie.getSeasonCount());
         viewCallback.onSeasonsForSerieLoaded();
-//        videoStreamManager.addMoviesForSerie(serie, moviesForSerieMap);
-//        viewCallback.onAllMoviesForSerieLoaded();
     }
 
     @Override

@@ -58,7 +58,9 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             mainCategoryId=extra.getInt("mainCategoryId",-1);
             movieCategoryId=extra.getInt("movieCategoryId",-1);
             serieId=extra.getInt("serieId",-1);
-            serie=(Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
+            if(VideoStreamManager.getInstance().getMainCategoriesList().size() > mainCategoryId && VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategories().size() > movieCategoryId){
+                serie=(Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
+            }
             movieDetailsViewModel=new EpisodeDetailsViewModel(this,mainCategoryId);
             activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
             showMovieDetails(serie,mainCategoryId,movieCategoryId);

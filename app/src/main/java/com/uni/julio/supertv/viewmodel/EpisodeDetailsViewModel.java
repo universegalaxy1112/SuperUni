@@ -1,18 +1,12 @@
 package com.uni.julio.supertv.viewmodel;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.TypedArray;
-import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -55,12 +49,8 @@ import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
 
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.ViewModel, LoadEpisodesForSerieResponseListener, SeasonSelectListener,MovieSelectedListener, StringRequestListener {
     private int mMainCategoryId ;
@@ -73,8 +63,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     private List<? extends VideoStream>  movieList;
     public ObservableBoolean isFavorite;
     private ObservableBoolean isSeen;
-    private boolean isMovies = false;
-    private boolean isSerie = false;
     public ObservableBoolean isHD;
     public ObservableBoolean isSD;
     public ObservableBoolean isTrailer;
@@ -90,6 +78,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     public ObservableBoolean disliked = new ObservableBoolean(false);
     private boolean isRequested = false;
     private int reportType = -1;
+    private Button po;
     public EpisodeDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         this.mContext = context;
@@ -197,8 +186,8 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                 .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String reportUrl = WebConfig.reportUrl.replace("{USER}", getUser())
-                                .replace("{TIPO}", Integer.toString(mMainCategoryId+1))
+                        String reportUrl = WebConfig.reportUrl.replace("{USER}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName())
+                                .replace("{TIPO}", Integer.toString(serie.getCategoryType()))
                                 .replace("{CVE}", Integer.toString(serie.getContentId()))
                                 .replace("{ACT}", Integer.toString(reportType));
                         NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
@@ -217,14 +206,13 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         AlertDialog dialog=builder.create();
         dialog.show();
         Button ne=dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        Button po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         ne.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
         po.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
         ne.setPadding(16,4,16,4);
         po.setPadding(16,4,16,4);
     }
 
-    @SuppressLint("InflateParams")
     private View buildView(){
         LayoutInflater inflater = LayoutInflater.from(mContext);
         final View view = inflater.inflate(R.layout.reportlayout, null);
@@ -249,13 +237,14 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                         reportType = -1;
                         break;
                 }
+                if(po != null) po.requestFocus();
 
             }
         });
         return view;
     }
 
-    public void setProperty(){
+    private void setProperty(){
         if(mMainCategoryId == 4)  //eventos
             hidePlayFromStart = true;
         if(hidePlayFromStart)
@@ -315,10 +304,10 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
     }
 
     private void addFavorite(){
-        String serieType = "";
-        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
+        String serieType;
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.SERIES_CATEGORIES)) {
             serieType = "favoriteSerie";
-        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES) {
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.SERIES_KIDS_CATEGORIES)) {
             serieType = "favoriteKids";
         }else{
             serieType = "favoriteKara";
@@ -342,7 +331,6 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                 }
                 series.add(0,newserie);
             }else{
-                if(series.contains(newserie))
                 series.remove(newserie);
             }
             DataManager.getInstance().saveData(serieType, new Gson().toJson(series));
@@ -390,9 +378,9 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             if (lastSelectedSerie != null) {
                 Serie serie = new Gson().fromJson(lastSelectedSerie, Serie.class);
 
-                String recentSeries = "";
+                String recentSeries;
 
-                String serieType = "";
+                String serieType;
                 if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_CATEGORIES) {
                     serieType = "recentSeries";
                 } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES) {
@@ -426,10 +414,12 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                     }
                 }
             }
-        }catch(Exception e) {}
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void showEpisode(int episodeposition){
+    private void showEpisode(int episodeposition){
         mMovie=(Movie)season.getEpisode(episodeposition);
         setProperty();
         movieDetailsBinding.setMovieDetailItem(mMovie);
@@ -456,7 +446,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
         }
         isRequested = true;
         String url = WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(serie.getContentId()))
-                .replace("{USERID}",getUser());
+                .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName());
         NetManager.getInstance().makeStringRequest(url, this);
     }
     public void like(View view){
@@ -471,7 +461,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.like.setText(Integer.toString(++this.likes));
         }
         else{
@@ -480,7 +470,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","-1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.like.setText(Integer.toString(--this.likes));
         }
         liked.set(!liked.get());
@@ -496,7 +486,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","1")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(++this.dislikes));
         }
         else{
@@ -505,19 +495,13 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","-1")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(--this.dislikes));
         }
         disliked.set(!disliked.get());
         disliked.notifyChange();
     }
-    private String getUser(){
-        String theUser = DataManager.getInstance().getString("theUser","");
-        if(!TextUtils.isEmpty(theUser)) {
-            return new Gson().fromJson(theUser, User.class).getName();
-        }
-        return "";
-    }
+
     @Override
     public void onError() {
         this.episodeLoadListener.onError();

@@ -39,26 +39,13 @@ import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.service.NotificationReceiveService;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
-import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
-import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModel;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-
 public class MainActivity extends BaseActivity implements MainCategoriesMenuViewModelContract.View, NotificationListener {
     private MainCategoriesMenuViewModel mainCategoriesMenuViewModel;
     private boolean requested=false;
-    JSONArray videoArray = null;
-    int index=0;
-
     @Override
     protected Lifecycle.ViewModel getViewModel() {
         return mainCategoriesMenuViewModel;
@@ -138,8 +125,8 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Tracking.getInstance(this).setAction("Sleeping");
-            Tracking.getInstance(this).track();
+            Tracking.getInstance().setAction("Sleeping");
+            Tracking.getInstance().track();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -165,18 +152,13 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     public void onMainCategorySelected(MainCategory mainCategory) {
          if(requested) return;
         int mainCategoryId = mainCategory.getId();
-        if(mainCategoryId==9){
+        if(mainCategoryId==10){
             onAccountPressed();
             return;
         }
         if(mainCategoryId == 7) {
             String pin=DataManager.getInstance().getString("adultsPassword", "");
-            if(TextUtils.isEmpty(pin)) {
-                //openSetPasswordDialog();
-             }
-            else{
-                openPasswordDialog(pin);
-            }
+            openPasswordDialog(pin);
         }
         else {
            startLoading(mainCategory.getId());
@@ -246,9 +228,8 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
 
 
     private void showPopup(){
-            String theUser = DataManager.getInstance().getString("theUser","");
             String device_num = DataManager.getInstance().getString("device_num","");
-            User user = new Gson().fromJson(theUser, User.class);
+            User user = LiveTvApplication.getUser();
             //subscribeTopic(user.getName());
         final MaterialDialog dialog=new MaterialDialog.Builder(this)
                 .customView(R.layout.castloadingdialog,false)
@@ -259,13 +240,13 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         TextView titleView= dialog.getCustomView().findViewById(R.id.title);
         TextView contentView= dialog.getCustomView().findViewById(R.id.content);
         titleView.setText(R.string.attention);
-        contentView.setText("Dear " + user ==  null ? "Sir" : user.getName() + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
+        contentView.setText("Dear " + ((user ==  null) ? "Sir" : user.getName()) + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
         TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
         cancel.setVisibility(View.GONE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Tracking.getInstance(LiveTvApplication.appContext).onStart();
+                Tracking.getInstance().onStart();
                 dialog.dismiss();
             }
         }, 5000);

@@ -25,8 +25,7 @@ import com.uni.julio.supertv.viewmodel.LiveTVViewModelContract;
 public class LiveActivity extends BaseActivity  implements LiveProgramSelectedListener , LiveTVToggleUIListener, LiveTVViewModelContract.View{
     private VideoPlayFragment videoPlayFragment;
     private LiveTVViewModel liveTVViewModel;
-    private LiveProgramSelectedListener liveProgramSelectedListener;
-    private ActivityLiveBinding activityLiveBinding;
+
     @Override
     protected Lifecycle.ViewModel getViewModel() {
         return liveTVViewModel;
@@ -50,9 +49,8 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         FragmentTransaction transaction=manager.beginTransaction();
         transaction.add(R.id.exo_player,videoPlayFragment,"Frag_top_tag");
         transaction.commit();
-        liveProgramSelectedListener=this;
         liveTVViewModel=new LiveTVViewModel(this);
-        activityLiveBinding= DataBindingUtil.setContentView(this,R.layout.activity_live);
+        ActivityLiveBinding activityLiveBinding = DataBindingUtil.setContentView(this, R.layout.activity_live);
         activityLiveBinding.setLiveTVFragmentVM(liveTVViewModel);
         liveTVViewModel.showProgramList(activityLiveBinding);
      }
@@ -90,7 +88,7 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
                 .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
                 .putExtra("title",liveProgram.getTitle())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-         videoPlayFragment = (VideoPlayFragment)getSupportFragmentManager().findFragmentById(R.id.exo_player);
+        videoPlayFragment = (VideoPlayFragment)getSupportFragmentManager().findFragmentById(R.id.exo_player);
         videoPlayFragment.onNewIntent(launchIntent);
         videoPlayFragment.onStart();
         videoPlayFragment.onResume();

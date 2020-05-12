@@ -1,10 +1,12 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.GridViewAdapter;
 import com.uni.julio.supertv.adapter.MoviesRecyclerAdapter;
@@ -20,7 +23,9 @@ import com.uni.julio.supertv.databinding.ActivitySearchBinding;
 import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
+import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
+import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
@@ -28,8 +33,11 @@ import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.LiveTVServicesManual;
 import com.uni.julio.supertv.utils.networing.NetManager;
+import com.uni.julio.supertv.utils.networing.WebConfig;
+import com.uni.julio.supertv.view.SpeedTestActivity;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -53,9 +61,9 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     private List<? extends VideoStream> movies;
     private int columns = 3;//default for portrait
     private Pattern pattern;
-    GridViewAdapter moreVideoAdapter;
+    private GridViewAdapter moreVideoAdapter;
     public ObservableBoolean isLoading;
-    public EditText editText;
+    private EditText editText;
     public SearchViewModel(Context context, MainCategory mainCategory) {
         ;//Log.d("liveTV","SearchViewModel from "+mainCategory.getModelType());
         isConnected = new ObservableBoolean(Connectivity.isConnected());
@@ -97,7 +105,7 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     }
 
     @Override
-    public void showMovieList(final ActivitySearchBinding activitySearchBinding, TVRecyclerView moviesGridRV, String query, final boolean searchSerie) {
+    public void showMovieList(final ActivitySearchBinding activitySearchBinding, TVRecyclerView moviesGridRV, final String query, final boolean searchSerie) {
         isLoading.set(true);
         columns = 3;
         movies = new ArrayList();
@@ -130,12 +138,34 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
                     public void onNext(List<? extends VideoStream> videos) {
                         isLoading.set(false);
                         movies = videos;
-                        if(movies.size() < 1)
+                        if(movies.size() < 1){
                             activitySearchBinding.noResult.setVisibility(View.VISIBLE);
+                            Dialogs.showTwoButtonsDialog(mContext,R.string.ok_dialog,R.string.cancel,R.string.title_order_message, new DialogListener() {
+
+                                @Override
+                                public void onAccept() {
+                                    sendOrder(query);
+                                }
+
+                                @Override
+                                public void onCancel() {
+
+                                }
+
+                                @Override
+                                public void onDismiss() {
+
+                                }
+                            });
+                            return;
+                        }
+
                         int moviecatId = mMainCategory.getMovieCategories().size() - 1;
                         for (VideoStream vs : movies) {
                             if (vs instanceof Serie) {
                                 ((Serie) vs).setMovieCategoryIdOwner(moviecatId);
+                            } else if(vs instanceof Movie){
+                                ((Movie) vs).setMovieCategoryIdOwner(moviecatId);
                             }
                         }
                         SearchViewModel.this.mMainCategory.getMovieCategory(moviecatId).setMovieList(movies);
@@ -172,6 +202,22 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     private void addRecentSerie(Serie serie) {
         //just save the Serie in localPreferences, for future use
         DataManager.getInstance().saveData("lastSerieSelected",new Gson().toJson(serie));
+    }
+
+    private void sendOrder(String query){
+        String reportUrl = WebConfig.orderUrl.replace("{USER}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName())
+                .replace("{TIPO}", Integer.toString(mMainCategory.getId()))
+                .replace("{TITLE}", query);
+        NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
+            @Override
+            public void onCompleted(String response) {
+                Toast.makeText(mContext, "Thanks for requesting. We will add it as soon as possible!", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onError() {
+                Toast.makeText(mContext, "Failed to send request! Please check your network connection.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

@@ -22,7 +22,6 @@ import com.uni.julio.supertv.viewmodel.Lifecycle;
 public abstract class BaseActivity extends AppCompatActivity {
     protected abstract Lifecycle.ViewModel getViewModel();
 
-    //force sub-fragments to implement the getFragmentInstance to pass to onViewAttached
     protected abstract Lifecycle.View getLifecycleView();
     protected ModelTypes.SelectedType selectedType;
     protected int mainCategoryId;
@@ -36,12 +35,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        Tracking.getInstance(this).enableTrack(true);
-        Tracking.getInstance(this).enableSleep(false);
+        Tracking.getInstance().enableTrack(true);
+        Tracking.getInstance().enableSleep(false);
         if(!(this instanceof VideoPlayActivity)){
-            Tracking.getInstance(this).setAction(getClass().getSimpleName());
+            Tracking.getInstance().setAction(getClass().getSimpleName());
         }
-        Tracking.getInstance(this).track();
+        Tracking.getInstance().track();
         if(getViewModel() != null)
             getViewModel().onViewResumed();
         LiveTvApplication.appContext = this;
@@ -50,16 +49,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
-        Tracking.getInstance(this).enableTrack(true);
-        Tracking.getInstance(this).enableSleep(true);
+        Tracking.getInstance().enableTrack(true);
+        Tracking.getInstance().enableSleep(true);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(Tracking.getInstance(LiveTvApplication.appContext).getSleep()){
-                    Tracking.getInstance(LiveTvApplication.appContext).setAction("Sleeping");
-                    Tracking.getInstance(LiveTvApplication.appContext).track();
-                    Tracking.getInstance(LiveTvApplication.appContext).enableSleep(false);
-                    Tracking.getInstance(LiveTvApplication.appContext).enableTrack(false);
+                if(Tracking.getInstance().getSleep()){
+                    Tracking.getInstance().setAction("Sleeping");
+                    Tracking.getInstance().track();
+                    Tracking.getInstance().enableSleep(false);
+                    Tracking.getInstance().enableTrack(false);
                 }
             }
         },1000);

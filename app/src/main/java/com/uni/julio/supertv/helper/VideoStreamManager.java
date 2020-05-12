@@ -52,11 +52,11 @@ public class VideoStreamManager {
         mainCategoriesList.add(createMainCategory("Karaoke", R.drawable.karaoke, ModelTypes.KARAOKE_CATEGORIES, 6));
         mainCategoriesList.add(createMainCategory("Adultos", R.drawable.adults, ModelTypes.ADULTS_CATEGORIES, 7));
         mainCategoriesList.add(createMainCategory("Top", R.drawable.top, ModelTypes.TOP_MOVIES, 8));
+        mainCategoriesList.add(createMainCategory("Year", R.drawable.moviesyear, ModelTypes.MOVIES_YEAR, 9));
         if(Device.canTreatAsBox()) {
-            mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.setting, ModelTypes.SETTINGS, 9));
+            mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.setting, ModelTypes.SETTINGS, 10));
         }
     }
-
 
     private MainCategory createMainCategory(String name, int imageId, String modelType, int id) {
         MainCategory cat = new MainCategory();

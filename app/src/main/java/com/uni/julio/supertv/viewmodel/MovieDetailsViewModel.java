@@ -4,53 +4,32 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.TypedArray;
-import android.os.Handler;
+
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckedTextView;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableBoolean;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
-import com.uni.julio.supertv.adapter.OneSeasonAdapter;
 import com.uni.julio.supertv.databinding.ActivityOneseasonDetailBinding;
-import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
-import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
-import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.User;
-import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
-import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -59,11 +38,10 @@ import java.util.List;
 
 public class MovieDetailsViewModel implements MovieDetailsViewModelContract.ViewModel, MovieSelectedListener, StringRequestListener {
 
-    private int mMainCategoryId = 0;
+    private int mMainCategoryId;
     private MovieDetailsViewModelContract.View viewCallback;
     private VideoStreamManager videoStreamManager;
     private Context mContext;
-    List<? extends VideoStream>  movieList;
     private Movie mMovie;
      public ObservableBoolean isFavorite;
     private ObservableBoolean isSeen;
@@ -78,6 +56,8 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     public ObservableBoolean disliked = new ObservableBoolean(false);
     private boolean isRequested = false;
     private int reportType = -1;
+    private Button po;
+    private Integer[] reportList = new Integer[]{1,2,3,10,4,6,8,5};
     public MovieDetailsViewModel(Context context, int mainCategoryId) {
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
@@ -107,8 +87,8 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                 .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String reportUrl = WebConfig.reportUrl.replace("{USER}", getUser())
-                                .replace("{TIPO}", Integer.toString(mMainCategoryId+1))
+                        String reportUrl = WebConfig.reportUrl.replace("{USER}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName())
+                                .replace("{TIPO}", Integer.toString(mMovie.getCategoryType()))
                                 .replace("{CVE}", Integer.toString(mMovie.getContentId()))
                                 .replace("{ACT}", Integer.toString(reportType));
                         NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
@@ -128,14 +108,13 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         AlertDialog dialog=builder.create();
         dialog.show();
         Button ne=dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-        Button po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        po=dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         ne.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
         po.setBackground(mContext.getResources().getDrawable(R.drawable.dialog_btn_background));
         ne.setPadding(16,4,16,4);
         po.setPadding(16,4,16,4);
     }
 
-    @SuppressLint("InflateParams")
     private View buildView(){
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.reportlayout, null);
@@ -144,9 +123,6 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
-                    case (R.id.report_audio):
-                        reportType = 0;
-                        break;
                     case (R.id.report_video):
                         reportType = 1;
                         break;
@@ -157,9 +133,10 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                         reportType = 3;
                         break;
                     default:
-                        reportType = -1;
+                        reportType = 0;
                         break;
                 }
+            po.requestFocus();
 
             }
         });
@@ -197,16 +174,10 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
         }
         isRequested = true;
         String url = WebConfig.getLikeURL.replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
-                .replace("{USERID}", getUser());
+                .replace("{USERID}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName() == null ? "" : LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName());
         NetManager.getInstance().makeStringRequest(url, this);
     }
-    private String getUser(){
-        String theUser = DataManager.getInstance().getString("theUser","");
-        if(!TextUtils.isEmpty(theUser)) {
-            return new Gson().fromJson(theUser, User.class).getName();
-        }
-        return "";
-    }
+   
     public void like(View view){
         if(isRequested)
         {
@@ -219,7 +190,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName() == null ? "" : LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.like.setText(Integer.toString(++this.likes));
         }
         else{
@@ -228,7 +199,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","-1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.like.setText(Integer.toString(--this.likes));
         }
         liked.set(!liked.get());
@@ -245,7 +216,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","1")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(++this.dislikes));
         }
         else{
@@ -254,7 +225,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                             .replace("{MOVIEID}",Integer.toString(mMovie.getContentId()))
                             .replace("{LIKE}","0")
                             .replace("{DISLIKE}","-1")
-                            .replace("{USERID}",getUser()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.dislike.setText(Integer.toString(--this.dislikes));
         }
         disliked.set(!disliked.get());
@@ -332,9 +303,9 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     }
     private void addFavorite(Movie movie){
         String serieType = "";
-        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.MOVIE_CATEGORIES) {
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.MOVIE_CATEGORIES)) {
             serieType = "favoriteMovies";
-        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES){
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.ENTERTAINMENT_CATEGORIES)){
             serieType = "favoriteEntertainment";
         }
        String favoriteMovies=DataManager.getInstance().getString(serieType,"");
@@ -351,9 +322,9 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     }
     private void removeFavorite(Movie movie){
         String serieType = "";
-        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.MOVIE_CATEGORIES) {
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.MOVIE_CATEGORIES)) {
             serieType = "favoriteMovies";
-        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES){
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.ENTERTAINMENT_CATEGORIES)){
             serieType = "favoriteEntertainment";
         }
         String favoriteMovies=DataManager.getInstance().getString(serieType,"");
@@ -370,9 +341,9 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
     }
     private void addRecentMovies(Movie movie) {
         String serieType = "";
-        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.MOVIE_CATEGORIES) {
+        if (videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.MOVIE_CATEGORIES)) {
             serieType = "recentMovies";
-        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.ENTERTAINMENT_CATEGORIES){
+        } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.ENTERTAINMENT_CATEGORIES)){
             serieType = "recentEntertainment";
         }
         String recentMovies = DataManager.getInstance().getString(serieType,"");
@@ -399,7 +370,7 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
                     movieList.remove(9);
                 }
                 movieList.add(0, movie);
-                DataManager.getInstance().saveData(serieType, new Gson().toJson((Object) movieList));
+                DataManager.getInstance().saveData(serieType, new Gson().toJson( movieList));
             }
         }
     }

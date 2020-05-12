@@ -168,7 +168,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         Intent intent = getActivity().getIntent();
         seasonPosition = intent.getIntExtra("seasonPosition", -1);
         episodePosition = intent.getIntExtra("episodePosition", -1);
-        this.title = intent.getStringExtra("title") + ((seasonPosition == -1) ? "" : " S" + (seasonPosition + 1)) + ((episodePosition == -1 ? "" : " E" + (episodePosition + 1)));
+        this.title = intent.getStringExtra("title") + ((seasonPosition == -1) ? "" : " S" + (seasonPosition + 1)) + ((seasonPosition == -1 || episodePosition == -1 ? "" : " E" + (episodePosition + 1)));
     }
     private boolean hideControls = false;
     private boolean isLiveTV = false;
@@ -320,9 +320,9 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
         isTimelineStatic = false;
         seasonPosition = intent.getIntExtra("seasonPosition", -1);
         episodePosition = intent.getIntExtra("episodePosition" , -1);
-        this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((episodePosition == -1? "":" E"+ episodePosition +1));
-        Tracking.getInstance(getActivity()).setAction(this.title);
-        Tracking.getInstance(getActivity()).track();
+        this.title=intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ episodePosition +1));
+        Tracking.getInstance().setAction(this.title);
+        Tracking.getInstance().track();
         getActivity().setIntent(intent);
     }
 
@@ -383,7 +383,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             return;
         long pos = player.getCurrentPosition();
         pos += 15000; // milliseconds
-        player.seekTo(pos);
+        player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0:episodePosition, pos);
         hideWhenForward();
     }
 
@@ -393,7 +393,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
             return;
         long pos = player.getCurrentPosition();
         pos -= 5000; // milliseconds
-        player.seekTo(pos);
+        player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0:episodePosition, pos);
         hideWhenForward();
     }
     public void playPause(){
@@ -531,40 +531,35 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
                 else {
                     player.prepare(mediaSource, !isTimelineStatic, !isTimelineStatic);
                 }
-                if(mainCategory != 4 && intent.getIntExtra("type",1) !=2 && playerPosition != 0L) {//eventso
+                player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0:episodePosition, 0);
+                if(mainCategory != 4 && intent.getIntExtra("type",1) != 2 && playerPosition != 0L) {//eventso
                     Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
                         @TargetApi(Build.VERSION_CODES.M)
                         @Override
                         public void onAccept() {
-                            if (playerPosition == C.TIME_UNSET) {
-                                player.seekToDefaultPosition(episodePosition == -1 ? 0:episodePosition);
-                            } else {
-                                player.seekTo(episodePosition == -1 ? 0:episodePosition, playerPosition);
+                            if (playerPosition != C.TIME_UNSET) {
+                                player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0 : episodePosition, playerPosition);
                             }
                         }
 
                         @Override
                         public void onCancel() {
-                            player.seekTo(episodePosition == -1 ? 0:episodePosition, 0);
+                            player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0:episodePosition, 0);
                         }
 
                         @Override
                         public void onDismiss() {
-                            player.seekTo(episodePosition == -1 ? 0:episodePosition, 0);
+                            player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0:episodePosition, 0);
                         }
                     });
                 }
                 playerNeedsSource = false;
                 updateButtonVisibilities();
-
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-
-
     }
-
     private DataSource.Factory buildDataSourceFactory(boolean useBandwidthMeter) {
         return ((LiveTvApplication) getActivity().getApplication())
                 .buildDataSourceFactory(useBandwidthMeter ? BANDWIDTH_METER : null);
@@ -699,7 +694,7 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 //        if (playbackState == ExoPlayer.STATE_READY) {
             progressBarView.setVisibility(View.GONE);
         }
-        Tracking.getInstance( getActivity()).setAction((this.title));
+        Tracking.getInstance().setAction((this.title));
         updateButtonVisibilities();
     }
 
@@ -739,10 +734,13 @@ public   class VideoPlayFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onPositionDiscontinuity() {
-        episodePosition = player.getCurrentWindowIndex();
-        Intent intent = getActivity().getIntent();
-        this.title = intent.getStringExtra("title") + ((seasonPosition == -1) ? "" : " S" + (seasonPosition + 1)) + ((episodePosition == -1 ? "" : " E" + (episodePosition + 1)));
-        Tracking.getInstance(getActivity()).track();
+        if(player != null){
+            episodePosition = player.getCurrentWindowIndex();
+            Intent intent = getActivity().getIntent();
+            this.title = intent.getStringExtra("title") + ((seasonPosition == -1) ? "" : " S" + (seasonPosition + 1)) + ((seasonPosition == -1 || episodePosition == -1 ? "" : " E" + (episodePosition + 1)));
+            Tracking.getInstance().track();
+        }
+
     }
 
     @Override

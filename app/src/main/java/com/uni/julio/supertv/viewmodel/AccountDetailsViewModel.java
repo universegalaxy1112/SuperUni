@@ -84,10 +84,9 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     private void getModels(){
         if (Connectivity.isConnected()) {
             this.isLoading.set(true);
-            String theUser = DataManager.getInstance().getString("theUser", "");
-            final User user = new Gson().fromJson(theUser,User.class);
-            if (!TextUtils.isEmpty(theUser)) {
-                String url=WebConfig.getMessage.replace("{USER}", ((User) new Gson().fromJson(theUser, User.class)).getName());
+            final User user = LiveTvApplication.getUser();
+            if (user != null) {
+                String url=WebConfig.getMessage.replace("{USER}", user.getName());
                 NetManager.getInstance().makeStringRequest(url, new StringRequestListener() {
                     public void onCompleted(String response) {
                         AccountDetailsViewModel.this.isLoading.set(false);
@@ -104,8 +103,8 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
                                     break;
                                 case 3:
                                     int flag = 0;
-                                    for(int i=0;i<3;i++){
-                                        if(jsonArray.length()>i){
+                                    for(int i=0;i < 3;i++){
+                                        if(jsonArray.length() > i){
                                             if(!(user.getDevice().contains(jsonArray.getString(i))) || flag == 1)
                                             {
                                                 flag = 1;
@@ -116,7 +115,9 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
                                     break;
                                 default:
                             }
+                            if(modelList.size() > 0)
                             activityAccountBinding.device1.setText(modelList.get(0));
+                            if(modelList.size() > 1)
                             activityAccountBinding.device2.setText(modelList.get(1));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -135,9 +136,8 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     public void onCloseSession() {
         if (Connectivity.isConnected()) {
             this.isLoading.set(true);
-            String theUser = DataManager.getInstance().getString("theUser", "");
-            if (!TextUtils.isEmpty(theUser)) {
-                String url=WebConfig.removeUserURL.replace("{USER}", ((User) new Gson().fromJson(theUser, User.class)).getName()).replace("{DEVICE_ID}",new Gson().fromJson(theUser,User.class).getDeviceId());
+            if (LiveTvApplication.getUser() != null) {
+                String url=WebConfig.removeUserURL.replace("{USER}", LiveTvApplication.getUser().getName()).replace("{DEVICE_ID}",LiveTvApplication.getUser().getDeviceId());
                 NetManager.getInstance().makeStringRequest(url, new StringRequestListener() {
                     public void onCompleted(String response) {
                         if (response.toLowerCase().contains("success")) {
@@ -158,11 +158,8 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     }
     @Override
     public void showAccountDetails() {
-        String theUser = DataManager.getInstance().getString("theUser","");
-
-        if(!TextUtils.isEmpty(theUser)) {
-            User user = new Gson().fromJson(theUser, User.class);
-            this.activityAccountBinding.setUser(user);
+        if(LiveTvApplication.getUser() != null) {
+            this.activityAccountBinding.setUser(LiveTvApplication.getUser());
         }
         else {
             viewCallback.onError();

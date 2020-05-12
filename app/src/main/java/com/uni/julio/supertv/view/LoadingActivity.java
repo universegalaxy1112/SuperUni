@@ -85,7 +85,6 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
                 launchActivity(MoviesActivity.class, extras);
             getActivity().finish();
         }
-
     }
 
     @Override

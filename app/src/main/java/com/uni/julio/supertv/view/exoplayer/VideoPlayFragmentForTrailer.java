@@ -545,8 +545,8 @@ public   class VideoPlayFragmentForTrailer extends Fragment implements View.OnCl
                 }
                 playerNeedsSource = false;
                 updateButtonVisibilities();
-                Tracking.getInstance( getActivity()).setAction((this.title));
-                Tracking.getInstance( getActivity()).track();
+                Tracking.getInstance().setAction((this.title));
+                Tracking.getInstance().track();
             }
         }catch(Exception e){
             e.printStackTrace();

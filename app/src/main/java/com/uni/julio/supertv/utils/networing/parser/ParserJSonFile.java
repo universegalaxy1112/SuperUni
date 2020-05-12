@@ -31,7 +31,7 @@ public class ParserJSonFile {
 //    private static Set<String> favoriteMovies;
 
 
-    public static List<MovieCategory> getParsedSubCategories(String data) throws JSONException {
+    public static List<MovieCategory> getParsedSubCategories(String data, int mainCategoryId) throws JSONException {
 
         List<MovieCategory> dataArray = new ArrayList<>();
 
@@ -41,7 +41,12 @@ public class ParserJSonFile {
             if(!videoArray.getString(i).toLowerCase().contains("4_k")) {
                 movieCat = new MovieCategory();
                 movieCat.setCatName(videoArray.getString(i));
-                movieCat.setId(i+1);
+                if ((mainCategoryId == 7 || mainCategoryId == 8 || mainCategoryId == 4 || mainCategoryId == 9)) {
+                    movieCat.setId(i);
+                } else {
+                    movieCat.setId(i + 1);
+                }
+
                 dataArray.add(movieCat);
             }
         }
@@ -143,11 +148,14 @@ public class ParserJSonFile {
                     case ModelTypes.KARAOKE_CATEGORIES:
                         movie = new Serie();
                         break;
+                    default:
+                        movie = new Movie();
+                        break;
                     //case ModelTypes.LIVE_TV_CATEGORIES:
                 }
-                if(ModelTypes.TOP_MOVIES.equals("top") && movieCategory.contains("Movies"))
+                if(movieCategory.contains("Movies"))
                     movie = new Movie();
-                else if(ModelTypes.TOP_MOVIES.equals("top") && movieCategory.contains("Series"))
+                else if(movieCategory.contains("Series"))
                     movie = new Serie();
                 movie.setPosition(i);
                 fillObject(movie, videoArray.getJSONObject(i));
@@ -188,6 +196,8 @@ public class ParserJSonFile {
                 obj.setSDUrl(json_obj.getString("StreamUrl2"));
             if(json_obj.has("Trailerurl"))
                 obj.setTrailerUrl(json_obj.getString("Trailerurl"));
+            if(json_obj.has("tipo"))
+                obj.setCategoryType(json_obj.getInt("tipo"));
 
             if(VideoStreamManager.getInstance().getSeenMovies().contains(String.valueOf(obj.getContentId())))
                 obj.setSeen(true);

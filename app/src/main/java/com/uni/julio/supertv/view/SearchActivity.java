@@ -57,7 +57,7 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
             mainCategoryId = extras.getInt("mainCategoryId",0);
             movieCategoryId = extras.getInt("movieCategoryId",0);
             String query=extras.getString("query","");
-            searchViewModel=new SearchViewModel(getBaseContext(), VideoStreamManager.getInstance().getMainCategory(mainCategoryId));
+            searchViewModel=new SearchViewModel(this, VideoStreamManager.getInstance().getMainCategory(mainCategoryId));
             activitySearchBinding= DataBindingUtil.setContentView(this, R.layout.activity_search);
             activitySearchBinding.setSearchFM(searchViewModel);
             Toolbar toolbar=activitySearchBinding.toolbar;

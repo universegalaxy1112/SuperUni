@@ -81,7 +81,7 @@
     <string name="exception_content">Sorry. There was some issues in internet Connection.</string>
     <string name="generic_loading_message">Hubo un error cargando las películas, por favor intenta de nuevo.</string>
     <string name="generic_video_loading_message">Hubo un error cargando el video que deseas, por favor intenta de nuevo. Check NetSpeed?</string>
-
+    <string name="title_order_message">There is no search result. Do you want to order this title? </string>
     <string name="title_activity_movies_menu">MoviesMenuActivity</string>
     <string name="title_activity_loading_movies">LoadingMoviesActivity</string>
 

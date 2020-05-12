@@ -220,12 +220,12 @@ public class SpeedTestActivity extends AppCompatActivity {
                             final List<Double> pingRateList = new ArrayList<>();
                             final List<Double> downloadRateList = new ArrayList<>();
                             final List<Double> uploadRateList = new ArrayList<>();
-                            Boolean pingTestStarted = false;
-                            Boolean pingTestFinished = false;
-                            Boolean downloadTestStarted = false;
-                            Boolean downloadTestFinished = false;
-                            Boolean uploadTestStarted = false;
-                            Boolean uploadTestFinished = false;
+                            boolean pingTestStarted = false;
+                            boolean pingTestFinished = false;
+                            boolean downloadTestStarted = false;
+                            boolean downloadTestFinished = false;
+                            boolean uploadTestStarted = false;
+                            boolean uploadTestFinished = false;
 
                             //Init Test
                             final PingTest pingTest = new PingTest(info.get(6).replace(":8080", ""), 6);
@@ -480,6 +480,7 @@ public class SpeedTestActivity extends AppCompatActivity {
         source.setLongitude(selfLon);
         List<String> ls = GetSpeedTestHostsHandler.mapValue.get(findServerIndex);
         Location dest = new Location("Dest");
+        if(ls == null ||  ls.size() < 1) return;
         dest.setLatitude(Double.parseDouble(ls.get(0)));
         dest.setLongitude(Double.parseDouble(ls.get(1)));
         final List<String> info = GetSpeedTestHostsHandler.mapValue.get(findServerIndex);

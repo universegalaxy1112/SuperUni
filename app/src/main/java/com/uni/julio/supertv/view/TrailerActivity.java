@@ -7,9 +7,6 @@ import android.view.WindowManager;
 
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
-import com.uni.julio.supertv.listeners.PreviewSelectedListener;
-import com.uni.julio.supertv.utils.Tracking;
-import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragmentForTrailer;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 

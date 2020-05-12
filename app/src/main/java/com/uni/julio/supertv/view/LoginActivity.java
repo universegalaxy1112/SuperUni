@@ -45,19 +45,13 @@ public class LoginActivity extends AppCompatActivity implements StringRequestLis
 private EditText mUsernameView;
 private EditText mPassView;
 private CustomProgressDialog customProgressDialog;
-public static final int BLOCKED_OR_NEVER_ASKED = 2;
-public static final int DENIED = 1;
-private static final String[] DUMMY_CREDENTIALS = {"foo@example.com:hello", "bar@example.com:world"};
-public static final int GRANTED = 0;
-private static final int REQUEST_READ_PHONE_STATE = 0;
-private static final int REQUEST_STORAGE = 1;
 boolean denyAll = false;
 
     @Override
     protected void onResume() {
         super.onResume();
-        Tracking.getInstance(this).enableSleep(false);
-        Tracking.getInstance(this).enableTrack(false);
+        Tracking.getInstance().enableSleep(false);
+        Tracking.getInstance().enableTrack(false);
     }
 
     @Override
@@ -221,9 +215,8 @@ boolean denyAll = false;
         if(mPassView != null) {
             password = mPassView.getText().toString();
         }
-
-        mUsernameView = (EditText) findViewById(R.id.edit_username);
-        mPassView = (EditText) findViewById(R.id.edit_password);
+        mUsernameView =  findViewById(R.id.edit_username);
+        mPassView =  findViewById(R.id.edit_password);
 
         mPassView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -403,11 +396,6 @@ boolean denyAll = false;
     }
     public void showCustomProgressDialog(){
         if(customProgressDialog == null) customProgressDialog = new CustomProgressDialog(this, getString(R.string.wait));
-        customProgressDialog.show();
-    }
-    public void showCustomProgressDialog(String message){
-        customProgressDialog = new CustomProgressDialog(this, message);
-        customProgressDialog.setCancelable(false);
         customProgressDialog.show();
     }
     public void hideProgressDialog(){

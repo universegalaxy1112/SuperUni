@@ -25,14 +25,15 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
         </com.google.android.material.appbar.AppBarLayout>
         <EditText
-            android:id="@+id/edit_password"
+            android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_40"
             android:imeActionId="@+id/login"
             android:layout_margin="@dimen/dip_20"
             android:nextFocusDown="@id/cv_loginScreen_login"
             android:backgroundTint="@color/netflix_red"
-            android:textColorHint="@color/netflix_red"            android:inputType="textAutoComplete"
+            android:textColorHint="@color/netflix_red"
+            android:inputType="textAutoComplete"
             android:tooltipText="Search"
             tools:ignore="InvalidImeActionId"
             android:imeOptions="actionDone"/>

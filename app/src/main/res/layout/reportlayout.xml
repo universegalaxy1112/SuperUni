@@ -37,6 +37,7 @@
                 android:focusable="true"
                 android:background="@drawable/dialog_btn_background"
                 android:buttonTint="@color/netflix_red"
+                android:textColor="@drawable/radio_background"
                 android:id="@+id/report_audio"/>
             <RadioButton
                 android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                 android:focusable="true"
                 android:background="@drawable/dialog_btn_background"
                 android:text="@string/report_video"
+                android:textColor="@drawable/radio_background"
                 android:buttonTint="@color/netflix_red"
                 android:id="@+id/report_video"/>
             <RadioButton
@@ -52,6 +54,7 @@
                 android:focusable="true"
                 android:background="@drawable/dialog_btn_background"
                 android:text="@string/report_subtitle"
+                android:textColor="@drawable/radio_background"
                 android:buttonTint="@color/netflix_red"
                 android:id="@+id/report_subtitle" />
             <RadioButton
@@ -60,6 +63,7 @@
                 android:focusable="true"
                 android:background="@drawable/dialog_btn_background"
                 android:buttonTint="@color/netflix_red"
+                android:textColor="@drawable/radio_background"
                 android:text="@string/report_content"
                 android:id="@+id/report_content"/>
 

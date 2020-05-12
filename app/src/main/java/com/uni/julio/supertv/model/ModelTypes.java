@@ -20,6 +20,7 @@ public interface ModelTypes {
     String MUSIC_CATEGORIES             = "musica";
     String ENTERTAINMENT_CATEGORIES     = "entertainment";
     String TOP_MOVIES     = "top";
+    String MOVIES_YEAR     = "movies_year";
     String SETTINGS                     = "settings";
     //end of main categories
 

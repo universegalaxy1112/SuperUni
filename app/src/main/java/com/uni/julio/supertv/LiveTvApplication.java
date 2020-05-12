@@ -99,14 +99,18 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     public void sendLocation(){
 
         if( appContext != null && !(appContext instanceof SplashActivity)){
-            if(user == null){
-               String theUser = DataManager.getInstance().getString("theUser","");
-                if(!TextUtils.isEmpty(theUser)) {
-                    user = new Gson().fromJson(theUser, User.class);
-                }
-            }
-            NetManager.getInstance().performLoginCode(user.getName(),user.getPassword(), user.getDeviceId(),this);
+            NetManager.getInstance().performLoginCode(LiveTvApplication.getUser().getName(),user.getPassword(), user.getDeviceId(),this);
         }
+    }
+
+    public static User getUser(){
+        if(LiveTvApplication.user == null){
+            String theUser = DataManager.getInstance().getString("theUser","");
+            if(!TextUtils.isEmpty(theUser)) {
+                LiveTvApplication.user = new Gson().fromJson(theUser, User.class);
+            }
+        }
+        return LiveTvApplication.user;
     }
     public static Context getAppContext() {
         return applicationContext;
@@ -119,12 +123,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 
     public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
         userAgent = "";
-        if(user == null){
-            String theUser = DataManager.getInstance().getString("theUser","");
-            if(!TextUtils.isEmpty(theUser))
-                user = new Gson().fromJson(theUser, User.class);
-        }
-        userAgent = user.getUser_agent();
+        userAgent = LiveTvApplication.getUser().getUser_agent();
         return new DefaultHttpDataSourceFactory(userAgent,bandwidthMeter);
     }
 
@@ -142,7 +141,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                         if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
                             return;
                         }else{
-                            Tracking.getInstance(appContext).enableTrack(false);
+                            Tracking.getInstance().enableTrack(false);
                             String errorFound = jsonObject.getString("error_found");
                             switch (errorFound) {
                                 case "103":
@@ -201,7 +200,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     }
     public void showErrorMessage() {
         if(appContext != null)
-            Tracking.getInstance(appContext).enableTrack(true);
+            Tracking.getInstance().enableTrack(true);
             Dialogs.showOneButtonDialog(appContext, R.string.no_connection_title,  R.string.no_connection_message);
     }
 
