@@ -243,7 +243,7 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
             }
             this.mRowsAdapter.add(r);
             synchronized (mRowsAdapter){
-                this.mRowsAdapter.notify();
+                this.mRowsAdapter.notifyItemRangeChanged(mRowsAdapter.size(), 1);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -338,7 +338,8 @@ public class MoviesMenuTVFragment extends BrowseFragment implements LoadMoviesFo
                         int target = Math.min(mCategoriesList.size(),(int) row.getId() + 10);
                         if(row.getId() < (mCategoriesList.size() - 1) && (mCategoriesList.get((int)row.getId() + 1).hasErrorLoading() || (!mCategoriesList.get((int)row.getId() + 1).isLoading() && !mCategoriesList.get((int)row.getId() + 1).isLoaded()))){
                                 for(int i = (int) row.getId() + 1; i < target; i++ ) {
-                                    load(i);
+                                    if(mCategoriesList.size() > i)
+                                        load(i);
                                 }
                         }
                         setPreviewDetails(item);

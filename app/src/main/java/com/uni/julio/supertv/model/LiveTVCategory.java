@@ -15,8 +15,8 @@ public class LiveTVCategory extends BaseCategory {
         livePrograms = new ArrayList<>();
     }
 
-    public int getTotalChannels() {
-        return totalChannels;
+    public String getTotalChannels() {
+        return "Channels(" + totalChannels + ")";
     }
 
     public void setTotalChannels(int totalChannels) {

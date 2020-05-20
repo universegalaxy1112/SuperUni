@@ -7,6 +7,8 @@ import java.net.URL;
 class HandlerUpload extends Thread {
 
     URL url;
+    private int retryCount = 0;
+
 
     public HandlerUpload(URL url) {
         this.url = url;
@@ -18,7 +20,7 @@ class HandlerUpload extends Thread {
         int timeout = 10;
 
         while (true) {
-
+            if(retryCount > 100) break;
             try {
                 HttpURLConnection conn = null;
                 conn = (HttpURLConnection) url.openConnection();
@@ -27,8 +29,6 @@ class HandlerUpload extends Thread {
                 conn.setRequestProperty("Connection", "Keep-Alive");
 
                 DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
-
-
                 dos.write(buffer, 0, buffer.length);
                 dos.flush();
 
@@ -40,10 +40,10 @@ class HandlerUpload extends Thread {
                 if (uploadElapsedTime >= timeout) {
                     break;
                 }
-
                 dos.close();
                 conn.disconnect();
             } catch (Exception ex) {
+                retryCount++;
                 ex.printStackTrace();
             }
         }

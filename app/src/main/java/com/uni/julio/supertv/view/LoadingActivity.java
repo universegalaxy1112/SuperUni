@@ -65,12 +65,10 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-
         if (keyCode == KeyEvent.KEYCODE_BACK) {
              finishActivity();
             return true;
         }
-
          return false;
     }
     @Override
@@ -135,7 +133,7 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
 
     @Override
     public void onProgramsForLiveTVCategoriesLoaded() {
-        launchActivity(LiveActivity.class);
+        launchActivity(LiveTvNewActivity.class);
         getActivity().finish();
 
     }

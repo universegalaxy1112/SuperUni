@@ -63,10 +63,9 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPlayFragment=new VideoPlayFragment();
-        if(mainCategoryId == 4 )
+        if(mainCategoryId == 4 || intent.getIntExtra("type", 0) == 2 )
             videoPlayFragment.hidePlayBack();
         videoPlayFragment.setLiveTVToggleListener(this);
-        frameLayout = findViewById(R.id.video_container);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.video_container,videoPlayFragment).commit();
@@ -217,7 +216,7 @@ public class VideoPlayActivity extends BaseActivity implements LiveTVToggleUILis
     @Override
     public void onToggleUI(boolean show) {
         //videoPlayFragment.toggleMute();
-        if(mainCategoryId == 4)
+        if(mainCategoryId == 4 || getIntent().getIntExtra("type", 0) == 2)
             videoPlayFragment.toggleTitle();
         try {
             //sendBroadcast(new Intent("toggle"));

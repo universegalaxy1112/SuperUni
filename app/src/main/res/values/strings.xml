@@ -81,7 +81,7 @@
     <string name="exception_content">Sorry. There was some issues in internet Connection.</string>
     <string name="generic_loading_message">Hubo un error cargando las películas, por favor intenta de nuevo.</string>
     <string name="generic_video_loading_message">Hubo un error cargando el video que deseas, por favor intenta de nuevo. Check NetSpeed?</string>
-    <string name="title_order_message">There is no search result. Do you want to order this title? </string>
+    <string name="title_order_message">No se encontró Ningún Resultado, Quieres ordenar esta Película? </string>
     <string name="title_activity_movies_menu">MoviesMenuActivity</string>
     <string name="title_activity_loading_movies">LoadingMoviesActivity</string>
 
@@ -120,6 +120,7 @@
     <string name="login_error_nosession">No se pudo iniciar sesión.</string>
 
     <string name="login_error_demo">Las cuentas de demostración no pueden ser usadas en Android. Por favor comunícate con el Administrador para solicitar una cuenta real.</string>
+    <string name="ip_limitation">You have to use the same ip.</string>
     <!--<string name="login_error_change_account">Este dispositivo está ligado a otra cuenta, desea usar una cuenta nueva?</string>-->
     <string name="login_error_change_account">Este dispositivo está ligado a otra cuenta. \nPor favor comunícate con tu Administrador con el siguiente identificador:\n{ID}</string>
     <!--<string name="login_error_change_device">Esta cuenta está ligada con otro dispositivo, desea cambiar a éste?</string>-->
@@ -176,4 +177,6 @@
     <string name="report_video">Relacionado al video</string>
     <string name="report_subtitle">Relacionado a subtitulos</string>
     <string name="report_content">Contenido no relacionado</string>
+    <string name="no_channel">No hay Canal Seleccionado.</string>
+    <string name="exit_confirm">Are you sure?</string>
 </resources>

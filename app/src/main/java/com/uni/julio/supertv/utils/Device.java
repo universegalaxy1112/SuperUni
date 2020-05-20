@@ -26,7 +26,6 @@ public class Device {
 
     public static boolean treatAsBox = false;
     private static Device m_Device;
-    public static String ip="";
     public static boolean canTreatAsBox() {
         return treatAsBox;
     }
@@ -72,25 +71,6 @@ public class Device {
 
     public static String getFW() {
         return android.os.Build.VERSION.RELEASE;
-    }
-    public  void getIP(){
-        NetManager.getInstance().makeStringRequest("https://api.ipify.org/?format=json", new StringRequestListener() {
-            @Override
-            public void onCompleted(String response) {
-                try {
-                    JSONObject jsonObject=new JSONObject(response);
-                    ip =jsonObject.getString("ip");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
     }
     public static String getModel() {
         return android.os.Build.MODEL;

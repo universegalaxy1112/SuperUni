@@ -187,8 +187,6 @@
     <color name="mini_player_post_play_bg">#1d1d1d</color>
     <color name="netflix_blue">#0071eb</color>
     <color name="netflix_red">#e50914</color>
-    <color name="notification_icon_bg_color">#ff9e9e9e</color>
-    <color name="notification_material_background_media_default_color">#ff424242</color>
     <color name="offline_tutorial_divider">#1a000000</color>
     <color name="old_sliding_menu_selected_text">#ffffff</color>
     <color name="old_sliding_menu_unselected_text">#b3b3b3</color>
@@ -197,22 +195,12 @@
     <color name="postplay_episode_black_overlay">#ff000000</color>
     <color name="postplay_text_next_episode_color">#ffffff</color>
     <color name="postplay_text_playnow_color">#ffffff</color>
-    <color name="postplay_text_recommended_color">#e50914</color>
     <color name="postplay_text_synopsis_color">#d9d9d9</color>
     <color name="postplay_text_timer_color">#e50914</color>
     <color name="postplay_text_title_color">#e5e5e5</color>
     <color name="postplay_title_metadata_color">#999999</color>
     <color name="postplay_video_window_border_color">#66666666</color>
     <color name="preapp_border">#bb000000</color>
-    <color name="primary_dark_material_dark">@android:color/black</color>
-    <color name="primary_dark_material_light">@color/material_grey_600</color>
-    <color name="primary_material_dark">@color/material_grey_900</color>
-    <color name="primary_material_light">@color/material_grey_100</color>
-    <color name="primary_text_color">@color/text_primary_dark</color>
-    <color name="primary_text_default_material_dark">#ffffffff</color>
-    <color name="primary_text_default_material_light">#de000000</color>
-    <color name="primary_text_disabled_material_dark">#4dffffff</color>
-    <color name="primary_text_disabled_material_light">#39000000</color>
     <color name="profile_delete_section_background">#282828</color>
     <color name="profile_delete_section_highlight">#363636</color>
     <color name="profile_details_tablet_background">#212121</color>
@@ -261,6 +249,7 @@
     <color name="translucent_black_50">#7f000000</color>
     <color name="translucent_black_70">#b3000000</color>
     <color name="translucent_black_85">#d6000000</color>
+    <color name="translucent_white_5">#10706E6E</color>
     <color name="translucent_white_10">#2B706E6E</color>
     <color name="translucent_white_18">#2fffffff</color>
     <color name="translucent_white_30">#4dffffff</color>
@@ -314,4 +303,5 @@
     <color name="restartButton_background">#6060AA</color>
     <color name="restartButton_text">#FFFFFF</color>
     <color name="privacyLinks">#808080</color>
+    <color name="live_category_text">#1F1F1F</color>
 </resources>

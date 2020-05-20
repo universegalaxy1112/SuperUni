@@ -87,17 +87,15 @@ public class BindingAdapters {
     @BindingAdapter("imageUrl")
     public static void loadImage(final ImageView imageView, String url) {
         if(TextUtils.isEmpty(url)) {
-            return;
         }
         else {
 //            retrieveImage(url, imageView);
 //            Picasso.with(imageView.getContext()).load(R.drawable.imageview_placeholder).placeholder(R.drawable.imageview_placeholder).into(imageView);
-            if(imageView.getId()==R.id.mark_img){
+            if(imageView.getId() == R.id.mark_img || imageView.getId() == R.id.channel_icon){
                 Picasso.get().load(url).placeholder(R.drawable.channel).into(imageView);
             }
             else{
                 Picasso.get().load(url).placeholder(R.drawable.placeholder).into(imageView);
-
             }
         }
     }

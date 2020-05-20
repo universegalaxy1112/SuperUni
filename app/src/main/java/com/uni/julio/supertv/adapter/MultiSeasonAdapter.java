@@ -44,7 +44,6 @@ public class MultiSeasonAdapter extends TVRecyclerViewAdapter<MultiSeasonAdapter
     private MovieSelectedListener movieSelectedListener;
     private MovieAcceptedListener movieAcceptedListener;
     private boolean mShowTitle=false;
-    private boolean mTreatAsBox=false;
     private Map<Integer, Bitmap> loadedImages=new HashMap<>();
     private Handler handler=new Handler();
     private TVRecyclerView recyclerView;
@@ -104,7 +103,6 @@ public class MultiSeasonAdapter extends TVRecyclerViewAdapter<MultiSeasonAdapter
 
 
     public void setTreatAsBox(boolean treatAsBox) {
-        mTreatAsBox = treatAsBox;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

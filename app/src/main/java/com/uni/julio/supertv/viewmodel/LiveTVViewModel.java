@@ -3,23 +3,22 @@ package com.uni.julio.supertv.viewmodel;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
-import com.uni.julio.supertv.LiveTvApplication;
+import com.uni.julio.supertv.BR;
 import com.uni.julio.supertv.R;
-import com.uni.julio.supertv.adapter.LivetvAdapter;
-import com.uni.julio.supertv.databinding.ActivityLiveBinding;
-import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
+import com.uni.julio.supertv.adapter.LiveCategoryAdapter;
+import com.uni.julio.supertv.adapter.LivetvAdapterNew;
+import com.uni.julio.supertv.databinding.ActivityLivetvnewBinding;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.listeners.LiveProgramSelectedListener;
@@ -30,7 +29,6 @@ import com.uni.julio.supertv.utils.Connectivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveProgramSelectedListener, LiveTVCategorySelectedListener  {
 
@@ -38,17 +36,15 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
     private LiveTVViewModelContract.View viewCallback;
     private VideoStreamManager videoStreamManager;
     private Context mContext;
-    private GridLayoutManager mLayoutManager;
-    private TVRecyclerView mProgramRV;
-    private LivetvAdapter rowsRecyclerAdapter;
-    public static int lastContentIdSelected = -1;
-    private ActivityLiveBinding activityLiveBinding;
-    TabLayout tabLayout;
+    private LivetvAdapterNew rowsRecyclerAdapter;
+    private ActivityLivetvnewBinding activityLiveBinding;
+    private int mProgramPosition = 0;
+    private int mCategoryPosition = 0;
+    private boolean isFullscreen = false;
     public LiveTVViewModel(Context context ) {
         isConnected = new ObservableBoolean(Connectivity.isConnected());
         videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
-        lastContentIdSelected = -1;
     }
 
     @Override
@@ -68,105 +64,100 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
 
     @SuppressLint("ResourceType")
     @Override
-    public void showProgramList(ActivityLiveBinding activityLiveBinding){
+    public void showProgramList(ActivityLivetvnewBinding activityLiveBinding){
         this.activityLiveBinding=activityLiveBinding;
-        mProgramRV = activityLiveBinding.getRoot().findViewById(R.id.programming_recycler);
         List<LiveProgram> liveProgramList = videoStreamManager.getAllLivePrograms();
-
-        rowsRecyclerAdapter =new LivetvAdapter(mContext,liveProgramList,mProgramRV,this);
-        mLayoutManager = new GridLayoutManager(mContext,1);
-        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mProgramRV.setLayoutManager(mLayoutManager);
-        mProgramRV.setAdapter(rowsRecyclerAdapter);
-        if (mProgramRV.getItemDecorationCount() == 0) {
-            mProgramRV.addItemDecoration(new RecyclerViewItemDecoration(8,32,16,0));
-        }
+        rowsRecyclerAdapter =new LivetvAdapterNew(mContext,liveProgramList,activityLiveBinding.programmingRecycler,this);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        activityLiveBinding.programmingRecycler.setLayoutManager(mLayoutManager);
+        activityLiveBinding.programmingRecycler.setAdapter(rowsRecyclerAdapter);
         final List<LiveTVCategory> categoryList = new ArrayList<>();
         LiveTVCategory allCat = new LiveTVCategory();
         allCat.setCatName("Todos");
         allCat.setPosition(-1);
         categoryList.add(allCat);
         categoryList.addAll(videoStreamManager.getLiveTVCategoriesList());
-        tabLayout=activityLiveBinding.categoryTab;
-        for(int i=0;i<categoryList.size();i++){
-
-            TabItem tabItem=new TabItem(mContext);
-            tabLayout.addView(tabItem);
-            tabLayout.getTabAt(i).setText(categoryList.get(i).getCatName());
-         }
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                onLiveTVCategorySelected(categoryList.get(tab.getPosition()));
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }
-
-    @Override
-    public void onConfigurationChanged() {
+        LiveCategoryAdapter liveCategoryAdapter = new LiveCategoryAdapter(mContext, categoryList, activityLiveBinding.liveCategoryRecycler, this);
+        GridLayoutManager mCategoryLayOutManager = new GridLayoutManager(mContext,1);
+        mCategoryLayOutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        activityLiveBinding.liveCategoryRecycler.setLayoutManager(mCategoryLayOutManager);
+        activityLiveBinding.liveCategoryRecycler.setAdapter(liveCategoryAdapter);
+        activityLiveBinding.setVariable(BR.currentCategory,categoryList.get(0));
 
     }
 
-    @Override
-    public void onLiveProgramSelected(LiveProgram liveProgram, int programPosition) {
-        int hideTimeout=3000;
-        if(liveProgram.getContentId()==lastContentIdSelected)
-            hideTimeout=1;
-        else
-            viewCallback.onProgramAccepted(liveProgram);
-        lastContentIdSelected=liveProgram.getContentId();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideChannels();
-            }
-        },hideTimeout);
+    public void toggleFullscreen(View view) {
+        if(isFullscreen) {
+            minimize(null);
+        }else{
+            fullScreen(null);
+        }
+    }
+    public void minimize(View view){
+        if(!isFullscreen) return;
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(activityLiveBinding.exoPlayerVirtual.getMeasuredWidth(), activityLiveBinding.exoPlayerVirtual.getMeasuredHeight());
+        int margin = (int)(mContext.getResources().getDisplayMetrics().density*16);
+        layoutParams.setMargins(margin,margin,20,20);
+        activityLiveBinding.exoPlayer.setLayoutParams(layoutParams);
+        activityLiveBinding.exoPlayer.findViewById(R.id.top_bar).setVisibility(View.GONE);
+        isFullscreen = false;
+        requestFocusToProgramRV();
+    }
 
+    public void fullScreen(View view){
+        if(isFullscreen) return;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((AppCompatActivity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        layoutParams.setMargins(0,0,0,0);
+        activityLiveBinding.exoPlayer.setLayoutParams(layoutParams);
+        activityLiveBinding.programmingRecycler.setVisibility(View.GONE);
+        activityLiveBinding.liveCategoryRecycler.setVisibility(View.GONE);
+        isFullscreen = true;
+    }
+
+    private void requestFocusToProgramRV() {
+        activityLiveBinding.programmingRecycler.setVisibility(View.VISIBLE);
+        activityLiveBinding.programmingRecycler.requestFocus();
+        activityLiveBinding.programmingRecycler.scrollToPosition(mProgramPosition);
+    }
+
+    public void showCategories(View view) {
+        if(isFullscreen) return;
+        activityLiveBinding.programmingRecycler.setVisibility(View.GONE);
+        activityLiveBinding.liveCategoryRecycler.setVisibility(View.VISIBLE);
+        activityLiveBinding.programmingRecycler.clearFocus();
+        activityLiveBinding.liveCategoryRecycler.requestFocus();
+        activityLiveBinding.liveCategoryRecycler.scrollToPosition(mCategoryPosition);
+
+    }
+
+    private void showPrograms() {
+        activityLiveBinding.programmingRecycler.setVisibility(View.VISIBLE);
+        activityLiveBinding.liveCategoryRecycler.setVisibility(View.GONE);
+        activityLiveBinding.liveCategoryRecycler.clearFocus();
+        activityLiveBinding.programmingRecycler.requestFocus();
     }
 
     @Override
     public void onLiveTVCategorySelected(LiveTVCategory category) {
-         if(category.getPosition() == -1)
+        if(category.getPosition() == -1)
             rowsRecyclerAdapter.updateChannels(videoStreamManager.getAllLivePrograms());
         else
             rowsRecyclerAdapter.updateChannels(videoStreamManager.getLiveTVCategory(category.getPosition()).getLivePrograms());
+        activityLiveBinding.setVariable(BR.currentCategory,category);
+        this.mCategoryPosition = category.getPosition() + 1;
+        this.mProgramPosition = 0;
+        showPrograms();
     }
 
-    public void showChannels() {
-        Animation bottomUp = AnimationUtils.loadAnimation(LiveTvApplication.getAppContext(), R.anim.show_to_bottom);
-        Animation upbottom = AnimationUtils.loadAnimation(LiveTvApplication.getAppContext(), R.anim.show_from_bottom);
-        //activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).startAnimation(bottomUp);
-        activityLiveBinding.getRoot().findViewById(R.id.live_programs).startAnimation(upbottom);
-        activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).setVisibility(View.VISIBLE);
-        activityLiveBinding.getRoot().findViewById(R.id.live_programs).setVisibility(View.VISIBLE);
-    }
-
-    public void hideChannels() {
-        Animation bottomUp = AnimationUtils.loadAnimation(LiveTvApplication.getAppContext(), R.anim.show_from_bottom);
-        Animation upbottom = AnimationUtils.loadAnimation(LiveTvApplication.getAppContext(), R.anim.show_to_bottom);
-        //activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).startAnimation(bottomUp);
-        activityLiveBinding.getRoot().findViewById(R.id.live_programs).startAnimation(upbottom);
-        activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).setVisibility(View.GONE);
-        activityLiveBinding.getRoot().findViewById(R.id.live_programs).setVisibility(View.GONE);
-     }
-
-    public void toggleChannels() {
-        if ((activityLiveBinding.getRoot().findViewById(R.id.live_category_tab).getVisibility() == View.VISIBLE))
-            hideChannels();
-         else
-            showChannels();
-    }
-    public void toggleCategoryOption() {
+    @Override
+    public void onLiveProgramSelected(LiveProgram liveProgram, int programPosition) {
+        viewCallback.onProgramAccepted(liveProgram);
+        activityLiveBinding.setVariable(BR.currentProgram,liveProgram);
+        this.mProgramPosition = programPosition;
 
     }
+
 }

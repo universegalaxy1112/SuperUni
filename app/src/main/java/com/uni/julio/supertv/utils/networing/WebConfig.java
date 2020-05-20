@@ -11,7 +11,7 @@ public class WebConfig {
     public static final String trackingURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/tracking.php?username={USER}&movie={MOVIE}&ip={IP}&device_id={DEVICE_ID}&isTV={ISTV}";
     public static final String likeURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/like.php?movieId={MOVIEID}&like={LIKE}&dislike={DISLIKE}&userId={USERID}";
     public static final String getLikeURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/getLike.php?movieId={MOVIEID}&userId={USERID}";
-    public static final String loginURL             = domain + "/GsZzwW3PqfXm268C/Connect/login.php?user={USER}&pass={PASS}&device_id={DEVICE_ID}&model={MODEL}&fw={FW}&country={COUNTRY}";
+    public static final String loginURL             = domain + "/GsZzwW3PqfXm268C/Connect/login.php?user={USER}&pass={PASS}&device_id={DEVICE_ID}&model={MODEL}&fw={FW}&country={COUNTRY}&istv={ISTV}";
     public static final String liveTVCategoriesURL          = domain + "GsZzwW3PqfXm268C/Connect/live_categorias.php";
     public static final String liveTVChannelsURL            = domain + "/GsZzwW3PqfXm268C/Connect/live_canales.php?cve={CAT_ID}";
     public static final String updateURL = "https://supertvplus.com/GsZzwW3PqfXm268C/Connect/upgrade_version.php?new_version";

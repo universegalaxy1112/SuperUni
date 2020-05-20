@@ -1,45 +1,27 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromDegrees="0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toDegrees="360" >
 
-    <item android:id="@android:id/background">
-        <shape>
-            <corners android:radius="5dip" />
-            <gradient
-                android:startColor="#ff9d9e9d"
-                android:centerColor="#ff5a5d5a"
-                android:centerY="0.75"
-                android:endColor="#ff747674"
-                android:angle="270"
-                />
-        </shape>
-    </item>
+    <shape
+        android:innerRadiusRatio="3"
+        android:shape="ring"
+        android:thicknessRatio="8"
+        android:useLevel="false" >
 
-    <item android:id="@android:id/secondaryProgress">
-        <clip>
-            <shape>
-                <corners android:radius="5dip" />
-                <gradient
-                    android:startColor="#80ffd300"
-                    android:centerColor="#80ffb600"
-                    android:centerY="0.75"
-                    android:endColor="#a0ffcb00"
-                    android:angle="270"
-                    />
-            </shape>
-        </clip>
-    </item>
+        <size
+            android:height="76dip"
+            android:width="76dip" />
 
-    <item android:id="@android:id/progress">
-        <clip>
-            <shape>
-                <corners
-                    android:radius="5dip" />
-                <gradient
-                    android:startColor="@color/netflix_red"
-                    android:endColor="@color/white"
-                    android:angle="270"
-                    />
-            </shape>
-        </clip>
-    </item>
+        <gradient
+            android:angle="0"
+            android:endColor="@color/netflix_red"
+            android:startColor="@android:color/transparent"
+            android:type="sweep"
+            android:useLevel="false" />
 
-</layer-list>
+    </shape>
+
+</rotate>

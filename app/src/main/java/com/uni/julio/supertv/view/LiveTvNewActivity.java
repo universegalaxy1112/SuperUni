@@ -1,11 +1,15 @@
 package com.uni.julio.supertv.view;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
@@ -14,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityLiveBinding;
+import com.uni.julio.supertv.databinding.ActivityLivetvnewBinding;
 import com.uni.julio.supertv.listeners.LiveProgramSelectedListener;
 import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.model.LiveProgram;
@@ -22,9 +27,10 @@ import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.LiveTVViewModel;
 import com.uni.julio.supertv.viewmodel.LiveTVViewModelContract;
 
-public class LiveActivity extends BaseActivity  implements LiveProgramSelectedListener , LiveTVToggleUIListener, LiveTVViewModelContract.View{
+public class LiveTvNewActivity extends BaseActivity  implements LiveProgramSelectedListener , LiveTVViewModelContract.View{
     private VideoPlayFragment videoPlayFragment;
     private LiveTVViewModel liveTVViewModel;
+    ActivityLivetvnewBinding activityLiveBinding;
 
     @Override
     protected Lifecycle.ViewModel getViewModel() {
@@ -39,21 +45,54 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_live);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoPlayFragment=new VideoPlayFragment();
-        videoPlayFragment.hideControls(this);
-        videoPlayFragment.hideTitle();
+        videoPlayFragment.hidePlayBack();
+        videoPlayFragment.showNoChannel();
         FragmentManager manager=getSupportFragmentManager();
         FragmentTransaction transaction=manager.beginTransaction();
         transaction.add(R.id.exo_player,videoPlayFragment,"Frag_top_tag");
         transaction.commit();
         liveTVViewModel=new LiveTVViewModel(this);
-        ActivityLiveBinding activityLiveBinding = DataBindingUtil.setContentView(this, R.layout.activity_live);
+        activityLiveBinding = DataBindingUtil.setContentView(this, R.layout.activity_livetvnew);
         activityLiveBinding.setLiveTVFragmentVM(liveTVViewModel);
+        final LinearLayout exo_player_virtual = activityLiveBinding.exoPlayerVirtual;
+        ViewTreeObserver vto = exo_player_virtual.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                    exo_player_virtual.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                } else {
+                    exo_player_virtual.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+                int height = exo_player_virtual.getMeasuredHeight();
+                ViewGroup.LayoutParams params = exo_player_virtual.getLayoutParams();
+                params.width = height * 16/9;
+                exo_player_virtual.setLayoutParams(params);
+                initExoplayerSize(height * 16/9, height);
+            }
+        });
         liveTVViewModel.showProgramList(activityLiveBinding);
-     }
+
+    }
+
+    private void initExoplayerSize(final int width, final int height) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
+        int margin = (int)(getResources().getDisplayMetrics().density*16);
+        layoutParams.setMargins(margin,margin,20,20);
+        activityLiveBinding.exoPlayer.setLayoutParams(layoutParams);
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.general, menu);
         return true;
@@ -64,9 +103,23 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
             finishActivity();
             return true;
         }
-        if(keyCode==KeyEvent.KEYCODE_DPAD_CENTER){
-            liveTVViewModel.toggleChannels();
+
+        if(keyCode==KeyEvent.KEYCODE_DPAD_RIGHT){
+            liveTVViewModel.fullScreen(null);
+            return false;
         }
+
+        if(keyCode==KeyEvent.KEYCODE_DPAD_CENTER){
+            videoPlayFragment.toggleTitle();
+            return false;
+        }
+
+        if(keyCode==KeyEvent.KEYCODE_DPAD_LEFT){
+            liveTVViewModel.showCategories(null);
+            liveTVViewModel.minimize(null);
+            return false;
+        }
+
         return false;
     }
     @Override
@@ -87,16 +140,13 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
                 .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
                 .putExtra("title",liveProgram.getTitle())
+                .putExtra("icon_url", liveProgram.getIconUrl())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
         videoPlayFragment = (VideoPlayFragment)getSupportFragmentManager().findFragmentById(R.id.exo_player);
         videoPlayFragment.onNewIntent(launchIntent);
         videoPlayFragment.onStart();
         videoPlayFragment.onResume();
-    }
-    @Override
-    public void onToggleUI(boolean show) {
-        liveTVViewModel.toggleChannels();
-        videoPlayFragment.toggleTitle();
+        videoPlayFragment.hideNoChannel();
     }
 
     @Override
@@ -104,13 +154,4 @@ public class LiveActivity extends BaseActivity  implements LiveProgramSelectedLi
         onLiveProgramSelected(liveProgram,0);
     }
 
-    @Override
-    public void showActionBar() {
-
-    }
-
-    @Override
-    public void hideActionBar() {
-
-    }
 }

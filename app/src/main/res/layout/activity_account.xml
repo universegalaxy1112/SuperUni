@@ -299,8 +299,7 @@
                         app:cardBackgroundColor="@color/transparent"
                         android:layout_gravity="center"
                         app:cardCornerRadius="@dimen/dip_12"
-                        app:cardUseCompatPadding="true"
-                        >
+                        app:cardUseCompatPadding="true">
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">

@@ -64,12 +64,6 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             movieDetailsViewModel=new EpisodeDetailsViewModel(this,mainCategoryId);
             activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
             showMovieDetails(serie,mainCategoryId,movieCategoryId);
-           /* new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    movieDetailsViewModel.playTrailor();
-                }
-            },3000);*/
         }catch (Exception e){
             Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
                 @Override
@@ -135,21 +129,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
         }
 
-        if(type !=2)
-         playVideo(uris,extensions, movieId,    secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
-        else
-            playTrailer(uris,extensions,subtitleUrl,title);
-    }
-    private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
-        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);
-        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
-                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
-                .putExtra("mainCategoryId", mainCategoryId)
-                .putExtra("subsURL", subTitleUrl)
-                .putExtra("title", title)
-                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        startActivity(launchIntent);
-        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+         playVideo(uris,extensions, movieId, secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
     }
  private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl, String title,  int seasonPosition, int episodePosition){
      Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);

@@ -61,9 +61,8 @@ public class Tracking implements StringRequestListener, OnClickListener {
     public void track() {
         if(this.isTracking && !(LiveTvApplication.appContext instanceof LoadingActivity || LiveTvApplication.appContext instanceof MainActivity  || LiveTvApplication.appContext instanceof SplashActivity)){
             try{
-                String ip =Device.ip;
                 String istv = "1"; //Device.treatAsBox ? "1":"0";
-                String url = WebConfig.trackingURL.replace("{USER}", (LiveTvApplication.getUser().getName())).replace("{MOVIE}", (URLEncoder.encode(this.action, "UTF-8")).replace("+", "%20")).replace("{IP}",(ip)).replace("{DEVICE_ID}",(LiveTvApplication.getUser().getDeviceId())).replace("{ISTV}",istv);
+                String url = WebConfig.trackingURL.replace("{USER}", (LiveTvApplication.getUser().getName())).replace("{MOVIE}", (URLEncoder.encode(this.action, "UTF-8")).replace("+", "%20")).replace("{DEVICE_ID}",(LiveTvApplication.getUser().getDeviceId())).replace("{ISTV}",istv);
                 NetManager.getInstance().makeStringRequest(url, this);
             }catch (Exception e){
                 e.printStackTrace();

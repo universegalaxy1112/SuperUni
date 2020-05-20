@@ -2,6 +2,7 @@ package com.uni.julio.supertv.view;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -31,6 +32,7 @@ import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.helper.TVRecyclerView;
+import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.MessageCallbackListener;
 import com.uni.julio.supertv.listeners.NotificationListener;
 import com.uni.julio.supertv.model.MainCategory;
@@ -39,6 +41,7 @@ import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.service.NotificationReceiveService;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModel;
@@ -56,11 +59,14 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         return this;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
-         this.requested=false;
+        mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
+        this.requested=false;
+
         setContentView(R.layout.activity_main);
         getViewModel().onViewAttached(getLifecycleView());
         NotificationReceiveService.setNotificationListener(this);
@@ -79,11 +85,13 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         }
         TVRecyclerView mainCategoryRecycler=findViewById(R.id.maincategory);
         mainCategoriesMenuViewModel.showMainCategories(mainCategoryRecycler);
-        /*Bundle extras = getIntent().getExtras();
-        int mainCategoryId = extras.getInt("mainCategoryId",-1);
-        if(mainCategoryId != -1)
-            startLoading(mainCategoryId);*/
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -130,8 +138,24 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    android.os.Process.killProcess(android.os.Process.myPid());
 
+                    Dialogs.showTwoButtonsDialog(getActivity(),R.string.ok_dialog,R.string.cancel,R.string.exit_confirm, new DialogListener() {
+
+                        @Override
+                        public void onAccept() {
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onDismiss() {
+
+                        }
+                    });
                 }
             },1000);
             return true;
@@ -240,16 +264,22 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         TextView titleView= dialog.getCustomView().findViewById(R.id.title);
         TextView contentView= dialog.getCustomView().findViewById(R.id.content);
         titleView.setText(R.string.attention);
-        contentView.setText("Dear " + ((user ==  null) ? "Sir" : user.getName()) + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
+        contentView.setText("Estimado " + ((user ==  null) ? "" : user.getName()) + ", " + " Tu fecha de Vencimiento es: " + user.getExpiration_date()+" Y tienes "+ device_num+" Dispositivos Conectados.");
         TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
         cancel.setVisibility(View.GONE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Tracking.getInstance().onStart();
-                dialog.dismiss();
+                try {
+                    if(dialog.isShowing())
+                        dialog.dismiss();
+                }catch (IllegalArgumentException e){
+                    e.printStackTrace();
+                }
+
             }
-        }, 5000);
+        }, 3000);
     }
 
     @Override

@@ -130,6 +130,16 @@ boolean denyAll = false;
                                 });
                             }
                             break;
+                            case "110": {
+                                Dialogs.showOneButtonDialog(this, R.string.ip_limitation, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        android.os.Process.killProcess(android.os.Process.myPid());
+                                    }
+                                });
+                            }
+                            break;
                             default:
                                 showErrorMessage(getString(R.string.login_error_generic).replace("CODE", errorFound));
                                 break;
