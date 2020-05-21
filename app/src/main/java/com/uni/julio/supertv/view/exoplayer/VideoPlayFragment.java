@@ -589,7 +589,7 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
             TrackGroupArray trackGroups = mappedTrackInfo.getTrackGroups(i);
             if (trackGroups.length != 0) {
                 if(player.getRendererType(i) != C.TRACK_TYPE_VIDEO) {//SuperTV
-                    Button button = new Button(getContext());
+                    Button button = new Button(getActivity());
                     button.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                         @Override
                         public void onFocusChange(View v, boolean hasFocus) {
