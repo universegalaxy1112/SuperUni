@@ -10,6 +10,8 @@ public class LiveProgram extends VideoStream {
     private String epg_ahora;
     private String epg_despues;
     private String iconUrl;
+    private String description = "";
+    private String sub_title = "";
 
     public String getIconUrl() {
         return iconUrl;
@@ -33,5 +35,21 @@ public class LiveProgram extends VideoStream {
 
     public void setEpg_despues(String epg_despues) {
         this.epg_despues = epg_despues;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setSub_title(String sub_title) {
+        this.sub_title = sub_title;
+    }
+
+    public String getSub_title() {
+        return sub_title;
     }
 }

@@ -10,19 +10,14 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.Theme;
 import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
@@ -45,19 +40,13 @@ public class LoginActivity extends AppCompatActivity implements StringRequestLis
 private EditText mUsernameView;
 private EditText mPassView;
 private CustomProgressDialog customProgressDialog;
-public static final int BLOCKED_OR_NEVER_ASKED = 2;
-public static final int DENIED = 1;
-private static final String[] DUMMY_CREDENTIALS = {"foo@example.com:hello", "bar@example.com:world"};
-public static final int GRANTED = 0;
-private static final int REQUEST_READ_PHONE_STATE = 0;
-private static final int REQUEST_STORAGE = 1;
 boolean denyAll = false;
 
     @Override
     protected void onResume() {
         super.onResume();
-        Tracking.getInstance(this).enableSleep(false);
-        Tracking.getInstance(this).enableTrack(false);
+        Tracking.getInstance().enableSleep(false);
+        Tracking.getInstance().enableTrack(false);
     }
 
     @Override
@@ -83,10 +72,12 @@ boolean denyAll = false;
                             user.setDevice(Device.getModel() + " - " + Device.getFW());
                             user.setVersion(Device.getVersion());
                             user.setDeviceId(Device.getIdentifier());
+                            user.setAdultos(jsonObject.getInt("adultos"));
                             if (!jsonObject.isNull("pin")) {
                                 DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
                             }
                             DataManager.getInstance().saveData("theUser", new Gson().toJson(user));
+                            LiveTvApplication.user = user;
                             DataManager.getInstance().saveData("device_num", jsonObject.getString("device_num"));
                             startMain();
                             return;
@@ -135,6 +126,16 @@ boolean denyAll = false;
                                 });
                             }
                             break;
+                            case "110": {
+                                Dialogs.showOneButtonDialog(this, R.string.ip_limitation, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        android.os.Process.killProcess(android.os.Process.myPid());
+                                    }
+                                });
+                            }
+                            break;
                             default:
                                 showErrorMessage(getString(R.string.login_error_generic).replace("CODE", errorFound));
                                 break;
@@ -145,7 +146,6 @@ boolean denyAll = false;
 //                e.printStackTrace();
                 }
             }
-
         DataManager.getInstance().saveData("theUser", "");
     }
     private void startMain(){
@@ -174,9 +174,9 @@ boolean denyAll = false;
         }
     }
 
-    public boolean requestStoragePermission() {
+    public void requestStoragePermission() {
         if (Build.VERSION.SDK_INT < 23 || getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
-            return true;
+            return;
         }
         this.denyAll = false;
         int accept = R.string.accept;
@@ -186,11 +186,11 @@ boolean denyAll = false;
             accept = R.string.config;
             message = R.string.permission_storage_config;
         }
-        Dialogs.showTwoButtonsDialog( this, accept, (int) R.string.cancel, message, (DialogListener) new DialogListener() {
+        Dialogs.showTwoButtonsDialog( this, accept,  R.string.cancel, message,  new DialogListener() {
             @TargetApi(23)
             public void onAccept() {
                 if (!LoginActivity.this.denyAll) {
-                    DataManager.getInstance().saveData("storagePermissionRequested", Boolean.valueOf(true));
+                    DataManager.getInstance().saveData("storagePermissionRequested", Boolean.TRUE);
                     LoginActivity.this.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                     return;
                 }
@@ -208,23 +208,12 @@ boolean denyAll = false;
 
             }
         });
-        return false;
     }
 
     private void setupUI() {
         setContentView(R.layout.activity_login);
-        String user = "";
-        String password = "";
-        if(mUsernameView != null) {
-            user = mUsernameView.getText().toString();
-        }
-        if(mPassView != null) {
-            password = mPassView.getText().toString();
-        }
-
-        mUsernameView = (EditText) findViewById(R.id.edit_username);
-        mPassView = (EditText) findViewById(R.id.edit_password);
-
+        mUsernameView =  findViewById(R.id.edit_username);
+        mPassView =  findViewById(R.id.edit_password);
         mPassView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -304,11 +293,11 @@ boolean denyAll = false;
             accept = R.string.config;
             message = R.string.permission_rationale_config;
         }
-        Dialogs.showTwoButtonsDialog(  this, accept, (int) R.string.cancel, message, (DialogListener) new DialogListener() {
+        Dialogs.showTwoButtonsDialog(  this, accept,  R.string.cancel, message,  new DialogListener() {
             @TargetApi(23)
             public void onAccept() {
                 if (!LoginActivity.this.denyAll) {
-                    DataManager.getInstance().saveData("permissionRequested", Boolean.valueOf(true));
+                    DataManager.getInstance().saveData("permissionRequested", Boolean.TRUE);
                     LoginActivity.this.requestPermissions(new String[]{"android.permission.READ_PHONE_STATE"}, 0);
                     return;
                 }
@@ -375,7 +364,7 @@ boolean denyAll = false;
             return;
         }
         if (grantResults.length != 1 || grantResults[0] == 0) {
-
+            //Doing something
         } else {
             requestStoragePermission();
         }
@@ -403,11 +392,6 @@ boolean denyAll = false;
     }
     public void showCustomProgressDialog(){
         if(customProgressDialog == null) customProgressDialog = new CustomProgressDialog(this, getString(R.string.wait));
-        customProgressDialog.show();
-    }
-    public void showCustomProgressDialog(String message){
-        customProgressDialog = new CustomProgressDialog(this, message);
-        customProgressDialog.setCancelable(false);
         customProgressDialog.show();
     }
     public void hideProgressDialog(){

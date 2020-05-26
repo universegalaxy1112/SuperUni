@@ -50,8 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
-                android:textSize="@dimen/sp_14"
-                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/sp_11"
+                android:textColor="@color/translucent_black_85"
                 android:text="@string/castDescription"/>
         </LinearLayout>
 

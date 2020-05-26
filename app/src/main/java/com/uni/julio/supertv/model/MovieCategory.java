@@ -12,6 +12,7 @@ public class MovieCategory extends BaseCategory {
     private boolean isLoading = false;
     private boolean isLoaded = false;
     private boolean hasErrorLoading = false;
+    private boolean categoryDisplayed = false;
 
     public MovieCategory() {
         movieList = new ArrayList<>();
@@ -29,4 +30,10 @@ public class MovieCategory extends BaseCategory {
 
     public boolean hasErrorLoading() { return hasErrorLoading; }
     public void setErrorLoading(boolean errorLoading) { hasErrorLoading = errorLoading; }
+    public boolean isCategoryDisplayed() {
+        return categoryDisplayed;
+    }
+    public void setCategoryDisplayed(boolean categoryDisplayed) {
+        this.categoryDisplayed = categoryDisplayed;
+    }
 }

@@ -1,5 +1,7 @@
 package com.uni.julio.supertv.listeners;
 
-public interface MovieSelectedListener {//extends MovieAcceptedListener {
-    void onMovieSelected(int selectedRow, int selectedMovie);//, View child);
+import com.uni.julio.supertv.model.VideoStream;
+
+public interface MovieSelectedListener {
+    void onMovieSelected(VideoStream movie);
  }

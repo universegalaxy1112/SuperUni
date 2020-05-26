@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout-land\\multiseason_row.xml",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\multiseason_row.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout-land\\activity_main.xml",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout-land\\activity_oneseason_detail.xml",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_oneseason_detail.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout-land\\activity_multi_season_detail.xml",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_multi_season_detail.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout-land\\activity_account.xml",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_account.xml"
+    }
+]

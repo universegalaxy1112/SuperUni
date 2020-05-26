@@ -1,0 +1,512 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.uni.julio.supertv"
+4    android:versionCode="2"
+5    android:versionName="2.0.5" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml
+10
+11    <uses-feature
+11-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:7:5-9:36
+12        android:name="android.hardware.touchscreen"
+12-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:8:9-52
+13        android:required="false" />
+13-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:9:9-33
+14    <uses-feature
+14-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:10:5-12:36
+15        android:name="android.software.leanback"
+15-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:11:9-49
+16        android:required="false" />
+16-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:12:9-33
+17    <uses-feature
+17-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:13:5-16:20
+18        android:name="android.hardware.wifi"
+18-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:14:9-45
+19        android:required="false" >
+19-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:15:9-33
+20    </uses-feature>
+21
+22    <uses-permission android:name="android.permission.INTERNET" />
+22-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:17:5-67
+22-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:17:22-64
+23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+23-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:18:5-79
+23-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:18:22-76
+24    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+24-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:19:5-81
+24-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:19:22-78
+25    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+25-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:20:5-80
+25-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:20:22-77
+26    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+26-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:21:5-75
+26-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:21:22-72
+27    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+27-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:22:5-71
+27-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:22:22-68
+28    <uses-permission android:name="android.permission.READ_PROFILE" />
+28-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:23:5-71
+28-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:23:22-68
+29    <uses-permission android:name="android.permission.READ_CONTACTS" />
+29-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:24:5-72
+29-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:24:22-69
+30    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+30-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:25:5-82
+30-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:25:22-80
+31    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+31-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:26:5-75
+31-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:26:22-73
+32    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+32-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:27:5-75
+32-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:27:22-73
+33
+34    <!-- This permission is required to start foreground services in Android P. -->
+35    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+35-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:7:5-77
+35-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:7:22-74
+36    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+36-->[com.github.appbaseio:android-searchbox:0.0.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\76d69d4d3df301e8c902066006b983ef\jetified-android-searchbox-0.0.1\AndroidManifest.xml:12:5-71
+36-->[com.github.appbaseio:android-searchbox:0.0.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\76d69d4d3df301e8c902066006b983ef\jetified-android-searchbox-0.0.1\AndroidManifest.xml:12:22-68
+37    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+37-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cccb173b1360667c1bcd6f788c3b0d92\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:24:5-68
+37-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cccb173b1360667c1bcd6f788c3b0d92\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:24:22-65
+38    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+38-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:26:5-82
+38-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:26:22-79
+39    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> -->
+39-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:26:5-110
+39-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:26:22-107
+40    <application
+40-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:29:5-166:19
+41        android:name="com.uni.julio.supertv.LiveTvApplication"
+41-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:30:9-42
+42        android:allowBackup="true"
+42-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:31:9-35
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.2.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\bab1349933d44f9831a6949ffc31e641\core-1.2.0\AndroidManifest.xml:24:18-86
+44        android:banner="@mipmap/ic_launcher"
+44-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:32:9-45
+45        android:debuggable="true"
+46        android:icon="@mipmap/ic_launcher"
+46-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:37:9-43
+47        android:isGame="true"
+47-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:33:9-30
+48        android:label="@string/app_name"
+48-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:34:9-41
+49        android:logo="@drawable/android_splash"
+49-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:38:9-48
+50        android:networkSecurityConfig="@xml/network_security_config"
+50-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:35:9-69
+51        android:roundIcon="@mipmap/ic_launcher"
+51-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:36:9-48
+52        android:supportsRtl="true"
+52-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:39:9-35
+53        android:testOnly="true"
+54        android:theme="@style/AppTheme" >
+54-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:40:9-40
+55        <provider
+55-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:42:9-52:20
+56            android:name="androidx.core.content.FileProvider"
+56-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:43:13-62
+57            android:authorities="com.uni.julio.supertv.fileprovider"
+57-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:44:13-69
+58            android:exported="false"
+58-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:45:13-37
+59            android:grantUriPermissions="true" >
+59-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:46:13-47
+60            <meta-data
+60-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:48:13-51:52
+61                android:name="android.support.FILE_PROVIDER_PATHS"
+61-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:49:17-67
+62                android:resource="@xml/filepaths" />
+62-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:50:17-50
+63        </provider>
+64
+65        <activity
+65-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:55:9-58:52
+66            android:name="com.uni.julio.supertv.view.MoviesTvActivity"
+66-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:56:13-50
+67            android:screenOrientation="landscape"
+67-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:57:13-50
+68            android:theme="@style/Theme.Leanback" />
+68-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:58:13-50
+69        <activity
+69-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:59:9-61:65
+70            android:name="com.uni.julio.supertv.view.AccountActivity"
+70-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:60:13-49
+71            android:theme="@style/SuperTvDefault.NoActionBar" />
+71-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:61:13-62
+72        <activity
+72-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:62:9-68:65
+73            android:name="com.uni.julio.supertv.view.VideoPlayActivity"
+73-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:63:13-51
+74            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+74-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:64:13-91
+75            android:resizeableActivity="true"
+75-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:66:13-46
+76            android:screenOrientation="landscape"
+76-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:65:13-50
+77            android:supportsPictureInPicture="true"
+77-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:67:13-52
+78            android:theme="@style/SuperTvDefault.NoActionBar" />
+78-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:68:13-62
+79        <activity
+79-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:70:9-72:65
+80            android:name="com.uni.julio.supertv.view.SearchActivity"
+80-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:71:13-48
+81            android:theme="@style/SuperTvDefault.NoActionBar" />
+81-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:72:13-62
+82        <activity
+82-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:73:9-75:65
+83            android:name="com.uni.julio.supertv.view.LoadingActivity"
+83-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:74:13-49
+84            android:theme="@style/SuperTvDefault.NoActionBar" />
+84-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:75:13-62
+85        <activity
+85-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:76:9-78:65
+86            android:name="com.uni.julio.supertv.view.LoginActivity"
+86-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:77:13-47
+87            android:theme="@style/SuperTvDefault.NoActionBar" />
+87-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:78:13-62
+88        <activity
+88-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:79:9-81:65
+89            android:name="com.uni.julio.supertv.view.MultiSeasonDetailActivity"
+89-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:80:13-59
+90            android:theme="@style/SuperTvDefault.NoActionBar" />
+90-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:81:13-62
+91        <activity
+91-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:82:9-85:65
+92            android:name="com.uni.julio.supertv.view.exoplayer.VideoPlayFragment"
+92-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:83:13-61
+93            android:screenOrientation="landscape"
+93-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:84:13-50
+94            android:theme="@style/SuperTvDefault.NoActionBar" />
+94-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:85:13-62
+95        <activity
+95-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:87:9-91:65
+96            android:name="com.uni.julio.supertv.view.LiveTvNewActivity"
+96-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:88:13-51
+97            android:configChanges="keyboard|keyboardHidden|navigation"
+97-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:89:13-71
+98            android:screenOrientation="landscape"
+98-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:90:13-50
+99            android:theme="@style/SuperTvDefault.NoActionBar" />
+99-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:91:13-62
+100        <activity
+100-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:92:9-94:65
+101            android:name="com.uni.julio.supertv.view.MoviesActivity"
+101-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:93:13-48
+102            android:theme="@style/SuperTvDefault.NoActionBar" />
+102-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:94:13-62
+103        <activity
+103-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:95:9-98:65
+104            android:name="com.uni.julio.supertv.view.OneSeasonDetailActivity"
+104-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:96:13-57
+105            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+105-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:97:13-91
+106            android:theme="@style/SuperTvDefault.NoActionBar" />
+106-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:98:13-62
+107        <activity
+107-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:99:9-101:65
+108            android:name="com.uni.julio.supertv.view.MoreVideoActivity"
+108-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:100:13-51
+109            android:theme="@style/SuperTvDefault.NoActionBar" />
+109-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:101:13-62
+110        <activity
+110-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:102:9-104:65
+111            android:name="com.uni.julio.supertv.view.SpeedTestActivity"
+111-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:103:13-51
+112            android:theme="@style/SuperTvDefault.NoActionBar" />
+112-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:104:13-62
+113        <activity
+113-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:106:9-108:65
+114            android:name="com.uni.julio.supertv.view.SelectServerActivity"
+114-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:107:13-54
+115            android:theme="@style/SuperTvDefault.NoActionBar" />
+115-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:108:13-62
+116        <activity
+116-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:109:9-115:20
+117            android:name="com.uni.julio.supertv.view.MainActivity"
+117-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:110:13-46
+118            android:theme="@style/SuperTvDefault.NoActionBar" >
+118-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:111:13-62
+119            <meta-data
+119-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:112:13-114:54
+120                android:name="android.app.searchable"
+120-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:113:17-54
+121                android:resource="@xml/searchable" />
+121-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:114:17-51
+122        </activity>
+123        <activity
+123-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:117:9-131:20
+124            android:name="com.uni.julio.supertv.view.SplashActivity"
+124-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:118:13-48
+125            android:configChanges="keyboard|keyboardHidden|orientation"
+125-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:119:13-72
+126            android:theme="@style/SuperTvDefault.NoActionBar" >
+126-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:120:13-62
+127            <intent-filter>
+127-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:121:13-126:29
+128                <action android:name="android.intent.action.MAIN" />
+128-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:122:17-69
+128-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:122:25-66
+129
+130                <category android:name="android.intent.category.LAUNCHER" />
+130-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:123:17-77
+130-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:123:27-74
+131
+132                <action android:name="android.settings.SETTINGS" />
+132-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:124:17-68
+132-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:124:25-65
+133
+134                <category android:name="android.intent.category.DEFAULT" />
+134-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:125:17-75
+134-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:125:27-73
+135            </intent-filter>
+136            <intent-filter>
+136-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:127:13-130:29
+137                <action android:name="android.intent.action.MAIN" />
+137-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:122:17-69
+137-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:122:25-66
+138
+139                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+139-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:129:17-86
+139-->E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:129:27-83
+140            </intent-filter>
+141        </activity>
+142
+143        <!--
+144        <service
+145            android:name=".service.MyFirebaseMessagingService"
+146            android:permission="com.google.android.c2dm.permission.SEND"
+147            android:enabled="true"
+148            android:exported="false">
+149            <intent-filter>
+150                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+151                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+152            </intent-filter>
+153        </service>
+154        <service
+155            android:name=".service.NotificationReceiveService"
+156            android:enabled="true"
+157            android:permission="android.permission.BIND_JOB_SERVICE"
+158            android:exported="true"
+159            tools:ignore="ExportedService" />
+160        <meta-data
+161            android:name=
+162                "com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
+163            android:value="com.uni.julio.supertv.CastOptionsProvider" />
+164        <meta-data
+165            android:name="com.google.firebase.messaging.default_notification_icon"
+166            android:resource="@drawable/ic_launcher" />
+167        <meta-data
+168            android:name="com.google.firebase.messaging.default_notification_color"
+169            android:resource="@color/netflix_red" />
+170        <meta-data
+171            android:name="com.google.firebase.messaging.default_notification_channel_id"
+172            android:value="@string/channel_Name"/>
+173        <meta-data android:name="com.google.android.gms.version"
+174            android:value="@integer/google_play_services_version" />
+175
+176        <receiver android:name=".service.MyFirebaseInstanceIDService" />
+177        -->
+178        <receiver
+178-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:10:9-12:40
+179            android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver"
+179-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:11:13-91
+180            android:exported="false" />
+180-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:12:13-37
+181
+182        <service
+182-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:14:9-16:40
+183            android:name="com.google.android.gms.cast.framework.media.MediaNotificationService"
+183-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:15:13-96
+184            android:exported="false" />
+184-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:16:13-37
+185        <service
+185-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:17:9-19:40
+186            android:name="com.google.android.gms.cast.framework.ReconnectionService"
+186-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:18:13-85
+187            android:exported="false" />
+187-->[com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:19:13-37
+188        <!--
+189             FirebaseMessagingService performs security checks at runtime,
+190             but set to not exported to explicitly avoid allowing another app to call it.
+191        -->
+192        <service
+192-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:28:9-34:19
+193            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+193-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:29:13-82
+194            android:exported="false" >
+194-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:30:13-37
+195            <intent-filter android:priority="-500" >
+195-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:31:13-33:29
+195-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:31:28-51
+196                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+196-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:32:17-78
+196-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:32:25-75
+197            </intent-filter>
+198        </service>
+199        <service
+199-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:35:9-41:19
+200            android:name="com.google.firebase.components.ComponentDiscoveryService"
+200-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:36:13-84
+201            android:directBootAware="true"
+201-->[com.google.firebase:firebase-common:19.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\45c0e3c56cb7c4e4f628bd7344425ccb\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+202            android:exported="false" >
+202-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:37:13-37
+203            <meta-data
+203-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:38:13-40:85
+204                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+204-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:39:17-119
+205                android:value="com.google.firebase.components.ComponentRegistrar" />
+205-->[com.google.firebase:firebase-messaging:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cb70c9952540d237398de3223d63bb9c\jetified-firebase-messaging-20.1.7\AndroidManifest.xml:40:17-82
+206            <meta-data
+206-->[com.google.firebase:firebase-crashlytics:17.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\06b72530f375b40ea5e5276473e9af1f\jetified-firebase-crashlytics-17.0.0\AndroidManifest.xml:16:13-18:85
+207                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+207-->[com.google.firebase:firebase-crashlytics:17.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\06b72530f375b40ea5e5276473e9af1f\jetified-firebase-crashlytics-17.0.0\AndroidManifest.xml:17:17-115
+208                android:value="com.google.firebase.components.ComponentRegistrar" />
+208-->[com.google.firebase:firebase-crashlytics:17.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\06b72530f375b40ea5e5276473e9af1f\jetified-firebase-crashlytics-17.0.0\AndroidManifest.xml:18:17-82
+209            <meta-data
+209-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cccb173b1360667c1bcd6f788c3b0d92\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:30:13-32:85
+210                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+210-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cccb173b1360667c1bcd6f788c3b0d92\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:31:17-139
+211                android:value="com.google.firebase.components.ComponentRegistrar" />
+211-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\cccb173b1360667c1bcd6f788c3b0d92\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:32:17-82
+212            <meta-data
+212-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:32:13-34:85
+213                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+213-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:33:17-96
+214                android:value="com.google.firebase.components.ComponentRegistrar" />
+214-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:34:17-82
+215            <meta-data
+215-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\57c73be6abcfb918a8274b48c0e14d3b\jetified-firebase-datatransport-17.0.3\AndroidManifest.xml:28:13-30:85
+216                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+216-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\57c73be6abcfb918a8274b48c0e14d3b\jetified-firebase-datatransport-17.0.3\AndroidManifest.xml:29:17-115
+217                android:value="com.google.firebase.components.ComponentRegistrar" />
+217-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\57c73be6abcfb918a8274b48c0e14d3b\jetified-firebase-datatransport-17.0.3\AndroidManifest.xml:30:17-82
+218            <meta-data
+218-->[com.google.firebase:firebase-installations:16.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8f1d718f1d2365bfb583409d81eab179\jetified-firebase-installations-16.3.0\AndroidManifest.xml:17:13-19:85
+219                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+219-->[com.google.firebase:firebase-installations:16.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8f1d718f1d2365bfb583409d81eab179\jetified-firebase-installations-16.3.0\AndroidManifest.xml:18:17-127
+220                android:value="com.google.firebase.components.ComponentRegistrar" />
+220-->[com.google.firebase:firebase-installations:16.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8f1d718f1d2365bfb583409d81eab179\jetified-firebase-installations-16.3.0\AndroidManifest.xml:19:17-82
+221        </service>
+222
+223        <receiver
+223-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:37:9-44:20
+224            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+224-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:38:13-78
+225            android:exported="true"
+225-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:39:13-36
+226            android:permission="com.google.android.c2dm.permission.SEND" >
+226-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:40:13-73
+227            <intent-filter>
+227-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:41:13-43:29
+228                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+228-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:42:17-81
+228-->[com.google.firebase:firebase-iid:20.1.7] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\19cdea0dc46cae8dba3237f47108a052\jetified-firebase-iid-20.1.7\AndroidManifest.xml:42:25-78
+229            </intent-filter>
+230        </receiver>
+231
+232        <activity
+232-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\34c6553d6f2af3f267d921b12d8b3978\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+233            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+233-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\34c6553d6f2af3f267d921b12d8b3978\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+234            android:exported="false"
+234-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\34c6553d6f2af3f267d921b12d8b3978\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+235            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+235-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\34c6553d6f2af3f267d921b12d8b3978\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+236
+237        <provider
+237-->[com.google.firebase:firebase-common:19.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\45c0e3c56cb7c4e4f628bd7344425ccb\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+238            android:name="com.google.firebase.provider.FirebaseInitProvider"
+238-->[com.google.firebase:firebase-common:19.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\45c0e3c56cb7c4e4f628bd7344425ccb\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+239            android:authorities="com.uni.julio.supertv.firebaseinitprovider"
+239-->[com.google.firebase:firebase-common:19.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\45c0e3c56cb7c4e4f628bd7344425ccb\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+240            android:exported="false"
+240-->[com.google.firebase:firebase-common:19.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\45c0e3c56cb7c4e4f628bd7344425ccb\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+241            android:initOrder="100" />
+241-->[com.google.firebase:firebase-common:19.3.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\45c0e3c56cb7c4e4f628bd7344425ccb\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+242
+243        <receiver
+243-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:29:9-33:20
+244            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+244-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:30:13-85
+245            android:enabled="true"
+245-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:31:13-35
+246            android:exported="false" >
+246-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:32:13-37
+247        </receiver>
+248
+249        <service
+249-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:35:9-38:40
+250            android:name="com.google.android.gms.measurement.AppMeasurementService"
+250-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:36:13-84
+251            android:enabled="true"
+251-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:37:13-35
+252            android:exported="false" />
+252-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:38:13-37
+253        <service
+253-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:39:9-43:72
+254            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+254-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:40:13-87
+255            android:enabled="true"
+255-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:41:13-35
+256            android:exported="false"
+256-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:42:13-37
+257            android:permission="android.permission.BIND_JOB_SERVICE" />
+257-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\e9bcff58f8bf4b78530f7eaa4cf29588\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:43:13-69
+258
+259        <meta-data
+259-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\d0ff9aded7cb7f26f7cb9949eb08eab3\jetified-play-services-basement-17.1.0\AndroidManifest.xml:23:9-25:69
+260            android:name="com.google.android.gms.version"
+260-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\d0ff9aded7cb7f26f7cb9949eb08eab3\jetified-play-services-basement-17.1.0\AndroidManifest.xml:24:13-58
+261            android:value="@integer/google_play_services_version" />
+261-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\d0ff9aded7cb7f26f7cb9949eb08eab3\jetified-play-services-basement-17.1.0\AndroidManifest.xml:25:13-66
+262
+263        <provider
+263-->[com.squareup.picasso:picasso:2.71828] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\48f7f18d5fbe5054a8d4190bcb39d248\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+264            android:name="com.squareup.picasso.PicassoProvider"
+264-->[com.squareup.picasso:picasso:2.71828] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\48f7f18d5fbe5054a8d4190bcb39d248\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+265            android:authorities="com.uni.julio.supertv.com.squareup.picasso"
+265-->[com.squareup.picasso:picasso:2.71828] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\48f7f18d5fbe5054a8d4190bcb39d248\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+266            android:exported="false" />
+266-->[com.squareup.picasso:picasso:2.71828] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\48f7f18d5fbe5054a8d4190bcb39d248\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+267
+268        <service
+268-->[com.google.android.datatransport:transport-backend-cct:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\ea725f8cc28f2c0cc3138548e032e1be\jetified-transport-backend-cct-2.2.1\AndroidManifest.xml:29:9-35:19
+269            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+269-->[com.google.android.datatransport:transport-backend-cct:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\ea725f8cc28f2c0cc3138548e032e1be\jetified-transport-backend-cct-2.2.1\AndroidManifest.xml:30:13-103
+270            android:exported="false" >
+270-->[com.google.android.datatransport:transport-backend-cct:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\ea725f8cc28f2c0cc3138548e032e1be\jetified-transport-backend-cct-2.2.1\AndroidManifest.xml:31:13-37
+271            <meta-data
+271-->[com.google.android.datatransport:transport-backend-cct:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\ea725f8cc28f2c0cc3138548e032e1be\jetified-transport-backend-cct-2.2.1\AndroidManifest.xml:32:13-34:39
+272                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+272-->[com.google.android.datatransport:transport-backend-cct:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\ea725f8cc28f2c0cc3138548e032e1be\jetified-transport-backend-cct-2.2.1\AndroidManifest.xml:33:17-94
+273                android:value="cct" />
+273-->[com.google.android.datatransport:transport-backend-cct:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\ea725f8cc28f2c0cc3138548e032e1be\jetified-transport-backend-cct-2.2.1\AndroidManifest.xml:34:17-36
+274        </service>
+275        <service
+275-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:26:9-30:19
+276            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+276-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:27:13-117
+277            android:exported="false"
+277-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:28:13-37
+278            android:permission="android.permission.BIND_JOB_SERVICE" >
+278-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:29:13-69
+279        </service>
+280
+281        <receiver
+281-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:32:9-34:40
+282            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+282-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:33:13-132
+283            android:exported="false" />
+283-->[com.google.android.datatransport:transport-runtime:2.2.1] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\8da1b0c877e03c092ab9af96872ecd55\jetified-transport-runtime-2.2.1\AndroidManifest.xml:34:13-37
+284    </application>
+285
+286</manifest>

@@ -37,9 +37,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/preapp_widget_padding"
         android:gravity="center_vertical"
-        android:focusable="false"
-        android:descendantFocusability="afterDescendants"
-          />
+        app:scrollMode="followScroll" />
 
 </LinearLayout>
 </layout>

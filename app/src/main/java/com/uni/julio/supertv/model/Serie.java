@@ -10,7 +10,6 @@ public class Serie extends Movie implements Cloneable {
     private List<Season> seasons;
     private String seasonCountText;
 
-    private transient int movieCategoryIdOwner = -1;
 
     public Serie() {
         seasons = new ArrayList<>();
@@ -45,15 +44,5 @@ public class Serie extends Movie implements Cloneable {
 
     public void setSeasonCountText(String seasonCountText) { this.seasonCountText = seasonCountText; }
     //    private int position = -1;
-
-    public int getMovieCategoryIdOwner() {
-        return movieCategoryIdOwner;
-    }
-
-    public void setMovieCategoryIdOwner(int movieCategoryIdOwner) {
-        this.movieCategoryIdOwner = movieCategoryIdOwner;
-    }
-
-
 
 }

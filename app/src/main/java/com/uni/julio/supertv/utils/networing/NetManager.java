@@ -1,5 +1,6 @@
 package com.uni.julio.supertv.utils.networing;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,7 +44,9 @@ public class NetManager {
 
     private static NetManager m_NetMInstante;
     private final RequestQueue queue;
- //    private final ImageLoader mImageLoader;
+    private RequestQueue searchQueue ;
+
+    //    private final ImageLoader mImageLoader;
 
     public static NetManager getInstance() {
         if(m_NetMInstante == null) {
@@ -56,7 +59,18 @@ public class NetManager {
          ;//Log.d("NetManager", "NetManager constructor");
 
         queue = Volley.newRequestQueue(LiveTvApplication.getAppContext());
+        searchQueue= Volley.newRequestQueue(LiveTvApplication.getAppContext());
+    }
 
+    public  void cancelAll() {
+
+        NetManager.this.queue.cancelAll(new RequestQueue.RequestFilter() {
+            public boolean apply(Request<?> request) {
+                return true;
+            }
+        });
+
+        this.queue.cancelAll("CurrentRequests");
     }
 
     public void makeStringRequest(String url, final StringRequestListener stringRequestListener) {
@@ -78,20 +92,34 @@ public class NetManager {
     }
 
     public String makeSyncStringRequest(String url) {
-        return makeSyncStringRequest(url, 10);
+        return makeSyncStringRequest(url, 20);
     }
-
+    public String makeSearchStringRequest(String url, int timeOutSeconds) {
+        RequestFuture<String> future = RequestFuture.newFuture();
+        UTF8StringRequest stringRequest = new UTF8StringRequest(0, url, future, future);
+        this.searchQueue.cancelAll(new RequestQueue.RequestFilter() {
+            public boolean apply(Request<?> request) {
+                return true;
+            }
+        });
+        this.searchQueue.add(stringRequest);
+        try {
+            return  future.get( timeOutSeconds, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public String makeSyncStringRequest(String url, int timeOutSeconds) {
-//        HttpRequest.getInstance().trustAllHosts();//for HTTPS issues
-        ;//Log.d("liveTV","Make request to " + url);
         RequestFuture<String> future = RequestFuture.newFuture();
         UTF8StringRequest stringRequest = new UTF8StringRequest(Request.Method.GET, url, future, future);
+        if(url.contains("capitulos_temporada"))
+            stringRequest.setPriority(Request.Priority.IMMEDIATE);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
         try {
-            return future.get(timeOutSeconds, TimeUnit.SECONDS);
+            return future.get(10, TimeUnit.SECONDS);
         } catch (Exception e) {
-            ;//Log.d("liveTV","Error in " + url);
-            ;//Log.d("liveTV","String request error " + e.getMessage());
+           e.printStackTrace();
         }
         return null;
     }
@@ -254,6 +282,7 @@ public class NetManager {
                 .subscribe(new Subscriber<List<? extends VideoStream>>() {
                     @Override
                     public void onCompleted() {
+
                     }
 
                     @Override

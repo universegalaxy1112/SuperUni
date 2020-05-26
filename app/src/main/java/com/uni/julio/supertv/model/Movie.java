@@ -27,7 +27,7 @@ public class Movie extends VideoStream {
     private boolean fullHD;
     private String SubtitleUrl;
     private String searchActors;
-    private transient int movieCategoryIdOwner;
+    private transient int movieCategoryIdOwner = 0;
     public int getMovieCategoryIdOwner() {
         return movieCategoryIdOwner;
     }
@@ -35,6 +35,8 @@ public class Movie extends VideoStream {
     public void setMovieCategoryIdOwner(int movieCategoryIdOwner) {
         this.movieCategoryIdOwner = movieCategoryIdOwner;
     }
+
+
     public String getSearchActors() {
         return searchActors;
     }

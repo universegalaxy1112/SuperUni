@@ -3,6 +3,7 @@ package com.uni.julio.supertv.utils.networing.parser;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.model.LiveProgram;
 import com.uni.julio.supertv.model.LiveTVCategory;
 import com.uni.julio.supertv.model.MainCategory;
@@ -40,16 +41,12 @@ public class FetchJSonFileSync {
 
     public List<MovieCategory> retrieveSubCategories(MainCategory mainCategory) {
         try {
-//            param[0] is cat/modelType
             String subCatURL = getSubCategoriesUrl(mainCategory);
             String dataFromServer = NetManager.getInstance().makeSyncStringRequest(subCatURL);
-            //comment
-                if(dataFromServer.contains("\"Settings\","))
+                if(dataFromServer != null && dataFromServer.contains("\"Settings\",")){
                     dataFromServer = dataFromServer.replace("\"Settings\",","");
-
-            ;//Log.d("liveTV","dataFromServer "+dataFromServer);
-//                    retrieveDataFromServer(subCatURL);
-            return ParserJSonFile.getParsedSubCategories(dataFromServer);
+                }
+            return ParserJSonFile.getParsedSubCategories(dataFromServer, mainCategory.getId());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -115,17 +112,9 @@ public class FetchJSonFileSync {
             }
             else {
                 String moviesForCatURL = getMoviesForCategoryUrl(mainCategory, movieCategory);
-                if(movieCategory.contains("ettings")) {
-                    dataFromServer = "{\"Videos\":[{\"Title\":\"Buscar\",\"SDPosterUrl\":\"lupita\",\"HDPosterUrl\":\"lupita\"}]}";
-                }
-                else {
                     dataFromServer = NetManager.getInstance().makeSyncStringRequest(moviesForCatURL, timeOut);
-                }
-//                    Log.d("liveTV", "dataFromServer for " + moviesForCatURL + " = " + dataFromServer);
             }
-            if(dataFromServer == null ) {
-                return null;
-            }
+            if(dataFromServer != null)
             return ParserJSonFile.getParsedMovies(mainCategory, movieCategory, dataFromServer);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -149,7 +138,7 @@ public class FetchJSonFileSync {
             String subCatURL = getLiveTVCategoriesUrl(mainCategory);
             //String dataFromServer = HttpRequest.getInstance().performRequest(subCatURL);
             String dataFromServer = NetManager.getInstance().makeSyncStringRequest(subCatURL);
-            ;//Log.d("liveTV","retrieveLiveTVCategories "+dataFromServer);
+            //Log.d("liveTV","retrieveLiveTVCategories "+dataFromServer);
             return ParserJSonFile.getParsedLiveTVCategories(dataFromServer);
 
         } catch (JSONException e) {
@@ -159,8 +148,7 @@ public class FetchJSonFileSync {
     }
 
     public List<LiveProgram> retrieveProgramsForLiveTVCategory(LiveTVCategory liveTVCategory) {
-        String theUser = DataManager.getInstance().getString("theUser","");
-        User user = new Gson().fromJson(theUser, User.class);
+        User user = LiveTvApplication.getUser();
         String password = user.getPassword();
          try {
             String moviesForCatURL = getProgramsForLiveTVCategoryUrl(liveTVCategory);
@@ -189,24 +177,31 @@ public class FetchJSonFileSync {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return WebConfig.baseURL + tmpURL;
+
+        return mainCategory.getModelType().equals(ModelTypes.MOVIES_YEAR) ? WebConfig.getCategoriesForYear : WebConfig.baseURL + tmpURL;
     }
     public List<? extends VideoStream> retrieveSearchMovies(MainCategory mainCategory, String pattern, int timeOut) {
         int type = -1;
         try {
             String modelType = mainCategory.getModelType();
-            if(modelType.equals(ModelTypes.MOVIE_CATEGORIES)){
-                type=1;
-            }else if(modelType.equals(ModelTypes.SERIES_CATEGORIES)){
-                type=2;
-            }else if(modelType.equals(ModelTypes.SERIES_KIDS_CATEGORIES)){
-                type=3;
-            }else if(modelType.equals(ModelTypes.EVENTS_CATEGORIES)){
-                type=4;
-            }else if(modelType.equals(ModelTypes.ADULTS_CATEGORIES)){
-                type=5;
+            switch (modelType) {
+                case ModelTypes.MOVIE_CATEGORIES:
+                    type = 1;
+                    break;
+                case ModelTypes.SERIES_CATEGORIES:
+                    type = 2;
+                    break;
+                case ModelTypes.SERIES_KIDS_CATEGORIES:
+                    type = 3;
+                    break;
+                case ModelTypes.EVENTS_CATEGORIES:
+                    type = 4;
+                    break;
+                case ModelTypes.ADULTS_CATEGORIES:
+                    type = 5;
+                    break;
             }
-            return ParserJSonFile.getParsedMovies(mainCategory.getModelType(), "", NetManager.getInstance().makeSyncStringRequest(WebConfig.videoSearchURL.replace("{TYPE}", "" + type).replace("{PATTERN}", pattern), timeOut));
+            return ParserJSonFile.getParsedMovies(mainCategory.getModelType(), "", NetManager.getInstance().makeSearchStringRequest(WebConfig.videoSearchURL.replace("{TYPE}", "" + type).replace("{PATTERN}", pattern), timeOut));
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -245,11 +240,23 @@ public class FetchJSonFileSync {
                     tmpURL = "/entertainment.php?cat="+mainCategoryEncoded;
                     break;
             }
-        } catch (UnsupportedEncodingException e) { }
-        String theUser = DataManager.getInstance().getString("theUser","");
-        User user = new Gson().fromJson(theUser, User.class);
+            if(ModelTypes.TOP_MOVIES.equals(mainCategory) && movieCategory.contains("Movies"))
+                tmpURL = "/getTopMovies.php?";
+            else if(ModelTypes.TOP_MOVIES.equals(mainCategory) && movieCategory.contains("Series"))
+                tmpURL = "/getTopSeries.php?";
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        User user = LiveTvApplication.getUser();
         String password = user.getPassword();
-        return WebConfig.baseURL + tmpURL + "&s=" + password;
+        if(ModelTypes.TOP_MOVIES.equals(mainCategory))
+            return WebConfig.baseURL + tmpURL + "s=" + password;
+        else if(ModelTypes.MOVIES_YEAR.equals(mainCategory))
+            return WebConfig.getMoviesYear.replace("{YEAR}", movieCategory);
+        else
+            return WebConfig.baseURL + tmpURL + "&s=" + password;
+
     }
 
     private String getMoviesForSerieUrl(Serie serie, int season) {

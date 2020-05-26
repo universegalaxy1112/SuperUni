@@ -27,10 +27,6 @@
         <item name="android:background">@color/transparent</item>
         <item name="android:windowBackground">@color/transparent</item>
     </style>
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
     </style>
@@ -39,11 +35,7 @@
         <item name="android:textColorSecondary">@color/netflix_red</item>
         <item name="android:actionMenuTextColor">@color/netflix_red</item>
     </style>
-     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">14sp</item>
 
-        <item name="textAllCaps">true</item>
-    </style>
     <style name="text.subtitle">
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:textStyle">bold</item>
@@ -53,7 +45,6 @@
     <style name="text.castLoadingTitle">
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:textColor">@color/black</item>
-
     </style>
     <style name="text.episode_title">
         <item name="android:textSize">@dimen/sp_12</item>
@@ -68,7 +59,6 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/sp_10</item>
         <item name="android:padding">@dimen/dip_2</item>
-
     </style>
     <style name="text.episodeName">
         <item name="android:textSize">@dimen/sp_11</item>
@@ -85,8 +75,12 @@
         <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <style name="text.livetv">
+        <item name="android:textColor">@color/live_category_text</item>
+        <item name="android:textSize">@dimen/sp_11</item>
+    </style>
+    <style name="text.livetv_category_program_title">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:textSize">@dimen/sp_11</item>
     </style>
     <style name="text.additional_info">
         <item name="android:textSize">@dimen/sp_12</item>
@@ -96,6 +90,16 @@
         <item name="android:textColor">@color/text_secondary_dark</item>
         <item name="android:layout_marginLeft">@dimen/dip_8</item>
     </style>
+
+    <style name="live_channel_epg">
+        <item name="android:textColor">@color/barker_secondary_text_color</item>
+    </style>
+
+    <style name="no_channel">
+        <item name="android:textColor">@color/text_secondary_dark</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+    </style>
+
     <style name="text.error_text">
         <item name="android:textColor">@color/loading_error</item>
         <item name="android:layout_marginLeft">@dimen/dip_8</item>
@@ -248,4 +252,11 @@
         <item name="android:paddingBottom">@dimen/dip_6</item>
         <item name="android:background">@drawable/play_background_trailer</item>
     </style>
+
+    <style name="ExoMediaButton">
+        <item name="android:background">@drawable/exo_player_controller_background</item>
+        <item name="android:layout_width">@dimen/exo_media_button_width</item>
+        <item name="android:layout_height">@dimen/exo_media_button_height</item>
+    </style>
+
 </resources>

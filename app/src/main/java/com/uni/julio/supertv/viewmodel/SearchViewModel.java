@@ -1,32 +1,47 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.GridViewAdapter;
-import com.uni.julio.supertv.adapter.MoviesRecyclerAdapter;
+import com.uni.julio.supertv.databinding.ActivitySearchBinding;
 import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
+import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
+import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.MainCategory;
+import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
-import com.uni.julio.supertv.utils.Device;
+
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.LiveTVServicesManual;
 import com.uni.julio.supertv.utils.networing.NetManager;
-
+import com.uni.julio.supertv.utils.networing.WebConfig;
+import com.uni.julio.supertv.view.LoadingActivity;
+import com.uni.julio.supertv.view.OneSeasonDetailActivity;
+import com.uni.julio.supertv.view.VideoPlayActivity;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,45 +57,30 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     private final MainCategory mMainCategory;
     public ObservableBoolean isConnected;
     private SearchViewModelContract.View viewCallback;
-    private VideoStreamManager videoStreamManager;
     private Context mContext;
     private GridLayoutManager mLayoutManager;
-    private EditText mEditText;
     private List<? extends VideoStream> movies;
-    private int selectedId = -1;//-1 = search
-    private int columns = 3;//default for portrait
-    private TVRecyclerView mMoviesGridRV;
+    private int columns = 3;
     private Pattern pattern;
-    GridViewAdapter moreVideoAdapter;
+    private GridViewAdapter moreVideoAdapter;
     public ObservableBoolean isLoading;
-    public SearchViewModel(Context context, MainCategory mainCategory) {
-        ;//Log.d("liveTV","SearchViewModel from "+mainCategory.getModelType());
+    private EditText editText;
+    public SearchViewModel(Context context, int mainCategory) {
         isConnected = new ObservableBoolean(Connectivity.isConnected());
-        videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
-        mMainCategory = mainCategory;
+        mMainCategory = VideoStreamManager.getInstance().getMainCategory(mainCategory);
         pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         isLoading = new ObservableBoolean(false);
-
     }
 
-    public String removeSpecialChars(String s) {
+    private String removeSpecialChars(String s) {
         String nfdNormalizedString = Normalizer.normalize(s, Normalizer.Form.NFD);
         return pattern.matcher(nfdNormalizedString).replaceAll("");
     }
 
-
-
     @Override
     public void onViewResumed() {
-//        if(mMoviesGridRV != null && mEditText != null) {
-//            if (movies.size() > 0) {
-//                mMoviesGridRV.requestFocus();
-//            }
-//            else {
-//                mEditText.requestFocus();
-//            }
-//        }
+
     }
 
     @Override
@@ -95,11 +95,12 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
     }
 
     @Override
-    public void showMovieList(TVRecyclerView moviesGridRV, String query,final boolean searchSerie) {
+    public void showMovieList(final ActivitySearchBinding activitySearchBinding, TVRecyclerView moviesGridRV, final String query, final boolean searchSerie) {
         isLoading.set(true);
         columns = 3;
-        movies = new ArrayList();
-          moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,0,this);
+        movies = new ArrayList<>();
+        this.editText = activitySearchBinding.editPassword;
+        moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,this);
         mLayoutManager=new GridLayoutManager(mContext,Integer.parseInt(mContext.getString(R.string.more_video)));
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         moviesGridRV.setLayoutManager(mLayoutManager);
@@ -107,37 +108,55 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
         if (moviesGridRV.getItemDecorationCount() == 0) {
             moviesGridRV.addItemDecoration(new RecyclerViewItemDecoration(24,12,24,12));
         }
-        LiveTVServicesManual.searchVideo(mMainCategory,removeSpecialChars(query),10)
+        activitySearchBinding.noResult.setVisibility(View.GONE);
+        LiveTVServicesManual.searchVideo(mMainCategory,removeSpecialChars(query),45)
                 .delay(2, TimeUnit.SECONDS, Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<? extends VideoStream>>() {
                     @Override
                     public void onCompleted() {
+
                     }
                     @Override
                     public void onError(Throwable e) {
                         Log.d("error","error");
                         isLoading.set(false);
+                        Toast.makeText(mContext, R.string.time_out, Toast.LENGTH_SHORT).show();
+                        activitySearchBinding.noResult.setVisibility(View.VISIBLE);
+                        hideKeyboard();
                     }
-
                     @Override
                     public void onNext(List<? extends VideoStream> videos) {
                         isLoading.set(false);
-
                         movies = videos;
-                        int moviecatId = mMainCategory.getMovieCategories().size() - 1;
-                        for (VideoStream vs : movies) {
-                            if (vs instanceof Serie) {
-                                ((Serie) vs).setMovieCategoryIdOwner(moviecatId);
-                            }
-                        }
-                        SearchViewModel.this.mMainCategory.getMovieCategory(moviecatId).setMovieList(movies);
-                        moreVideoAdapter.updateMovies(movies);
-                        moreVideoAdapter.notifyDataSetChanged();
+                        if(movies.size() < 1){
+                            activitySearchBinding.noResult.setVisibility(View.VISIBLE);
+                            Dialogs.showTwoButtonsDialog(mContext,R.string.ok_dialog,R.string.cancel,R.string.title_order_message, new DialogListener() {
 
+                                @Override
+                                public void onAccept() {
+                                    sendOrder(query);
+                                }
+
+                                @Override
+                                public void onCancel() {
+
+                                }
+
+                                @Override
+                                public void onDismiss() {
+
+                                }
+                            });
+                            return;
+                        }
+                        moreVideoAdapter.updateMovies(movies);
                     }
                 });
 
+    }
+    private void hideKeyboard(){
+        editText.clearFocus();
     }
     @Override
     public void onConfigurationChanged() {
@@ -148,20 +167,70 @@ public class SearchViewModel implements SearchViewModelContract.ViewModel, Movie
         }
     }
 
-    @Override
-    public void onMovieSelected(int selectedRow, int selectedMovie) {
-        if(movies.get(selectedMovie) instanceof Serie) {
-             addRecentSerie((Serie) movies.get(selectedMovie));
-            viewCallback.onSerieAccepted(((Serie) movies.get(selectedMovie)).getMovieCategoryIdOwner(),(Serie) movies.get(selectedMovie));
-        }
-        else {
-            int aa=((Movie) movies.get(selectedMovie)).getMovieCategoryIdOwner();
-            viewCallback.onMovieAccepted(aa,(Movie) movies.get(selectedMovie));
-        }
-    }
     private void addRecentSerie(Serie serie) {
         //just save the Serie in localPreferences, for future use
         DataManager.getInstance().saveData("lastSerieSelected",new Gson().toJson(serie));
+    }
+
+    private void sendOrder(String query){
+        String reportUrl = WebConfig.orderUrl.replace("{USER}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName())
+                .replace("{TIPO}", Integer.toString(mMainCategory.getId()))
+                .replace("{TITLE}", query);
+        NetManager.getInstance().makeStringRequest(reportUrl, new StringRequestListener() {
+            @Override
+            public void onCompleted(String response) {
+                Toast.makeText(mContext, "Thanks for requesting. We will add it as soon as possible!", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onError() {
+                Toast.makeText(mContext, "Failed to send request! Please check your network connection.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onMovieSelected(VideoStream movie) {
+        if(movie instanceof Serie) {
+            addRecentSerie((Serie) movie);
+            Bundle extras = new Bundle();
+            extras.putSerializable("selectedType", ModelTypes.SelectedType.SERIES);
+            extras.putInt("mainCategoryId", mMainCategory.getId());
+            extras.putString("serie", new Gson().toJson(movie));
+            Intent launchIntent = new Intent(mContext, LoadingActivity.class);
+            launchIntent.putExtras(extras);
+            mContext.startActivity(launchIntent);
+        }
+        else {
+                if(mMainCategory.getId() == 4 || mMainCategory.getId() == 7){
+                    onPlaySelectedDirect((Movie)movie,mMainCategory.getId());
+                }else{
+                    Bundle extras = new Bundle();
+                    extras.putString("movie", new Gson().toJson(movie));
+                    extras.putInt("mainCategoryId", mMainCategory.getId());
+                    Intent launchIntent = new Intent(mContext, OneSeasonDetailActivity.class);
+                    launchIntent.putExtras(extras);
+                    ActivityCompat.startActivityForResult((AppCompatActivity)mContext, launchIntent,100,
+                            null);
+                }
+        }
+    }
+
+    private void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
+        int movieId = movie.getContentId();
+        String[] uris = {movie.getStreamUrl()};
+        String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
+        Intent launchIntent = new Intent(mContext, VideoPlayActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
+                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", 0)
+                .putExtra("subsURL", movie.getSubtitleUrl())
+                .putExtra("title", movie.getTitle())
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        ActivityCompat.startActivityForResult((AppCompatActivity)mContext, launchIntent,100
+                ,null);
     }
 
 }

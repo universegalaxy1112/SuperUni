@@ -1,0 +1,104 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="liveProgramItem"
+            type="com.uni.julio.supertv.model.LiveProgram" />
+    </data>
+    <LinearLayout
+        android:id="@+id/fl_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height= "wrap_content"
+        android:layout_marginBottom="3dp"
+        android:focusable="true"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/channel_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="@dimen/dip_4"
+            android:paddingEnd="@dimen/dip_4"
+            android:paddingTop="@dimen/dip_4"
+            android:paddingBottom="@dimen/dip_4"
+            android:focusable="false"
+            android:background="@drawable/background_program_item">
+            <TextView
+                android:id="@+id/channel_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style = "@style/text.livetv"
+                android:focusable="false"
+                android:text="@{liveProgramItem.title}"
+                 />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/now_playing"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/dip_4"
+            android:paddingEnd="@dimen/dip_4"
+            android:layout_marginStart="@dimen/dip_4"
+            android:layout_marginEnd="@dimen/dip_4"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_program_item"
+            android:orientation="horizontal"
+            android:focusable="false">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dip_4"
+                android:paddingRight="@dimen/dip_4"
+                android:background="@color/white"
+                android:layout_marginEnd="@dimen/dip_4"
+                android:text="@string/now_schedule"
+                android:textSize="@dimen/sp_9"
+                android:textColor="@color/contact_us_link_color"
+                android:textStyle="italic"
+                android:focusable="false" />
+            <TextView
+                android:id="@+id/now_playing_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style = "@style/text.livetv"
+                android:text="@{liveProgramItem.epg_ahora}"
+                android:focusable="false" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/next_program"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/dip_4"
+            android:paddingEnd="@dimen/dip_4"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_program_item"
+            android:orientation="horizontal"
+            android:focusable="false">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dip_4"
+                android:paddingRight="@dimen/dip_4"
+                android:background="@color/white"
+                android:text="@string/next_schedule"
+                android:textSize="@dimen/sp_9"
+                android:textColor="@color/browse_background"
+                android:textStyle="italic"
+                android:focusable="false"
+                android:layout_marginEnd="@dimen/dip_4" />
+
+            <TextView
+                android:id="@+id/next_program_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style = "@style/text.livetv"
+                android:text="@{liveProgramItem.epg_despues}"
+                android:focusable="false" />
+        </LinearLayout>
+        </LinearLayout>
+</layout>

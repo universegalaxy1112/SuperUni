@@ -12,6 +12,7 @@ public abstract class VideoStream  {//implements Cloneable {
     private boolean HDBranded;
     private boolean seen;
     private boolean favorite;
+    private int tipo = -1;
 
     private String searchTitle;
 
@@ -100,6 +101,14 @@ public abstract class VideoStream  {//implements Cloneable {
         VideoStream that = (VideoStream) o;
         return this.getContentId() == that.getContentId();
     }
+    public int getCategoryType() {
+        return tipo;
+    }
+
+    public void setCategoryType(int categoryType) {
+        this.tipo = categoryType;
+    }
+
 
     @Override
     public int hashCode() {

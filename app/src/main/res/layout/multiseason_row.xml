@@ -30,12 +30,14 @@
 
             />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/textArea"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:padding="@dimen/dip_8"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
             android:background="@color/card_bg">
 
             <TextView
@@ -52,10 +54,7 @@
                 android:scrollHorizontally="true"
                 android:focusableInTouchMode="true"
                 android:freezesText="true"
-                android:paddingBottom="@dimen/dip_6"
-                app:layout_constraintBottom_toBottomOf="@id/detail"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingBottom="@dimen/dip_6" />
 
             <TextView
                 android:id="@+id/detail"
@@ -63,13 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/dip_6"
-                app:setTitleEpisode="@{moviesMenuItem.position}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/title" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
+                app:setTitleEpisode="@{moviesMenuItem.position}" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

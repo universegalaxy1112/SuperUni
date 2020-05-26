@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.listeners.DownloaderListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
@@ -55,6 +56,7 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
 
         if(!TextUtils.isEmpty(theUser)) {
             user = new Gson().fromJson(theUser, User.class);
+            LiveTvApplication.user = user;
             usr = user.getName();
             password = user.getPassword();
             id = user.getDeviceId();
@@ -79,19 +81,19 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
 
                 JSONObject jsonObject = new JSONObject(response);
                 if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
-                    String userAgent = (String) jsonObject.getString("user-agent");
+                    String userAgent =  jsonObject.getString("user-agent");
                     if (!jsonObject.isNull("pin")) {
                         DataManager.getInstance().saveData("adultsPassword", jsonObject.getString("pin"));
                     }
                     if(!TextUtils.isEmpty(userAgent)) {
                         user.setUser_agent(userAgent);
-                        user.setExpiration_date((String) jsonObject.getString("expire_date"));
+                        user.setExpiration_date( jsonObject.getString("expire_date"));
                         user.setDevice(Device.getModel() + " - " + Device.getFW());
                         user.setVersion(Device.getVersion());
+                        user.setAdultos(jsonObject.getInt("adultos"));
                         user.setDeviceId(Device.getIdentifier());
                         DataManager.getInstance().saveData("theUser",new Gson().toJson(user));
                         DataManager.getInstance().saveData("device_num",jsonObject.getString("device_num"));
-
                         viewCallback.onLoginCompleted(true);
                         return;
                     }

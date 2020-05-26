@@ -1,14 +1,14 @@
 package com.uni.julio.supertv.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+import androidx.fragment.app.FragmentActivity;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.utils.Tracking;
-public class MoviesTvActivity extends Activity {
+public class MoviesTvActivity extends FragmentActivity {
     MoviesMenuTVFragment fragment;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class MoviesTvActivity extends Activity {
         setContentView(R.layout.activity_movies_tv);
         LiveTvApplication.appContext = this;
         fragment = new MoviesMenuTVFragment();
-        getFragmentManager()
+        getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.main_browse_fragment,fragment).commit();
     }
@@ -24,24 +24,24 @@ public class MoviesTvActivity extends Activity {
 
     public void onResume(){
         super.onResume();
-        Tracking.getInstance(this).enableTrack(true);
-        Tracking.getInstance(this).enableSleep(false);
-        Tracking.getInstance(this).setAction(getClass().getSimpleName());
-        Tracking.getInstance(this).track();
+        Tracking.getInstance().enableTrack(true);
+        Tracking.getInstance().enableSleep(false);
+        Tracking.getInstance().setAction(getClass().getSimpleName());
+        Tracking.getInstance().track();
         LiveTvApplication.appContext = this;
     }
     @Override
     public void onPause(){
         super.onPause();
-        Tracking.getInstance(this).enableSleep(true);
+        Tracking.getInstance().enableSleep(true);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(Tracking.getInstance(LiveTvApplication.appContext).getSleep()){
-                    Tracking.getInstance(LiveTvApplication.appContext).setAction("Sleeping");
-                    Tracking.getInstance(LiveTvApplication.appContext).track();
-                    Tracking.getInstance(LiveTvApplication.appContext).enableSleep(false);
-                    Tracking.getInstance(LiveTvApplication.appContext).enableTrack(false);
+                if(Tracking.getInstance().getSleep()){
+                    Tracking.getInstance().setAction("Sleeping");
+                    Tracking.getInstance().track();
+                    Tracking.getInstance().enableSleep(false);
+                    Tracking.getInstance().enableTrack(false);
                 }
             }
         },1000);
@@ -55,10 +55,6 @@ public class MoviesTvActivity extends Activity {
             finish();
             return true;
         }
-
-       /* if(keyCode==KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE){
-            fragment.loadData();
-        }*/
 
         return false;
     }

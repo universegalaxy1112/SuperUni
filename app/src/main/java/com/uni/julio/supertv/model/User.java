@@ -10,6 +10,7 @@ public class User {
     private String user_name;
     private String password;
     private String deviceId;
+    private int adultos = 0;
 
     public String getVersion() {
         return version;
@@ -74,5 +75,15 @@ public class User {
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
     }
+
+    public void setAdultos(int adultos) {
+        this.adultos = adultos;
+    }
+
+    public int getAdultos() {
+        return this.adultos;
+    }
+
+
 
 }

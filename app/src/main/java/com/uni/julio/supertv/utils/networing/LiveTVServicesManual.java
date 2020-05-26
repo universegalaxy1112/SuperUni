@@ -70,7 +70,8 @@ public class LiveTVServicesManual {
                     .replace("{DEVICE_ID}", Device.getIdentifier())
                     .replace("{MODEL}", URLEncoder.encode(Device.getModel(), "UTF-8"))
                     .replace("{FW}", URLEncoder.encode(Device.getFW(), "UTF-8"))
-                    .replace("{COUNTRY}", URLEncoder.encode(Device.getCountry(), "UTF-8"));
+                    .replace("{COUNTRY}", URLEncoder.encode(Device.getCountry(), "UTF-8"))
+                    .replace("{ISTV}", Device.treatAsBox ? "1" : "0");
         } catch (Exception e) {
             loginUrl = "";
         }
@@ -131,7 +132,8 @@ public class LiveTVServicesManual {
         try {
             loginCodeUrl = WebConfig.LoginSplash.replace("{USER}", user)
                                                 .replace("{PASS}",code)
-                                                .replace("{DEVICE_ID}",device_id);
+                                                .replace("{DEVICE_ID}",device_id)
+                                                .replace("{ISTV}", Device.treatAsBox ? "1" : "0");
         } catch (Exception e) {
             loginCodeUrl = "";
         }

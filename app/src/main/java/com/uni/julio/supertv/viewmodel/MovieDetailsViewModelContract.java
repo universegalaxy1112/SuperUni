@@ -10,13 +10,12 @@ public interface MovieDetailsViewModelContract {
         void onPlaySelected(Movie movie, int fromStart);
         void finishActivity();
         void onDeviceLoaded(CastDevice castDevice);
-        void showMovieDetails(Movie movie ,int maincategory, int moviecategory);
-        void onMovieSelected(int selectedRow,int SelectedMovie);
+        void showMovieDetails(Movie movie ,int maincategory);
 
      }
 
     //this will have methods that the activity/fragment will call from the ViewModel
     interface ViewModel extends Lifecycle.ViewModel {
-         void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding,   int mainCategoryId,int movieCategoryId);
+         void showMovieDetails(Movie movie, ActivityOneseasonDetailBinding movieDetailsBinding,   int mainCategoryId);
     }
 }

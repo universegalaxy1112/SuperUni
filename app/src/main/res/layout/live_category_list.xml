@@ -1,0 +1,71 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="liveCategory"
+            type="com.uni.julio.supertv.model.LiveTVCategory" />
+        <variable
+            name="liveCategoryAdapter"
+            type="com.uni.julio.supertv.adapter.LiveCategoryAdapter" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/fl_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height= "wrap_content"
+        android:layout_marginBottom="3dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{liveCategoryAdapter::onClickItem}"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/channel_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="@dimen/dip_4"
+            android:paddingEnd="@dimen/dip_4"
+            android:paddingTop="@dimen/dip_4"
+            android:paddingBottom="@dimen/dip_4"
+            android:background="@drawable/background_program_item">
+            <TextView
+                android:id="@+id/channel_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style = "@style/text.livetv"
+                android:text="@{liveCategory.catName}" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/total_channel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/dip_4"
+            android:paddingEnd="@dimen/dip_4"
+            android:layout_marginStart="@dimen/dip_4"
+            android:layout_marginEnd="@dimen/dip_4"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_program_item"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/total_channel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style = "@style/text.livetv"
+                android:text="@{liveCategory.totalChannels}" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/next_program"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/dip_4"
+            android:paddingEnd="@dimen/dip_4"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_program_item"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,13 +1,17 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.adapter.GridViewAdapter;
 import com.uni.julio.supertv.helper.RecyclerViewItemDecoration;
@@ -21,7 +25,12 @@ import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.view.LoadingActivity;
+import com.uni.julio.supertv.view.OneSeasonDetailActivity;
+import com.uni.julio.supertv.view.VideoPlayActivity;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewModel, MovieSelectedListener {
@@ -32,9 +41,7 @@ public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewMode
     private Context mContext;
     private GridLayoutManager mLayoutManager;
     private int mMainCategoryPosition;
-    private int mMovieCategoryPosition;
-    private int mSerieId = -1;
-    private int mSeasonId = -1;
+    private Object SkeletonScreen;
 
     public MoviesGridViewModel(Context context, ModelTypes.SelectedType catPosition) {
         isConnected = new ObservableBoolean(Connectivity.isConnected());
@@ -61,12 +68,12 @@ public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewMode
 
      @Override
     public void showMovieList(TVRecyclerView moviesGridRV, int mainCategoryPosition, int movieCategoryPosition) {
-         boolean showTitles = false;
-         this.mMovieCategoryPosition=movieCategoryPosition;
-         this.mMainCategoryPosition=mainCategoryPosition;
-        List<Movie> movies;
-        movies=(List<Movie>)videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().get(movieCategoryPosition).getMovieList();
-        GridViewAdapter moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,movieCategoryPosition,this);
+        this.mMainCategoryPosition=mainCategoryPosition;
+        List<Movie> movies = new ArrayList<>();
+        if(VideoStreamManager.getInstance().getMainCategory(mainCategoryPosition) != null && videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().size() > movieCategoryPosition){
+            movies = (List<Movie>)(videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().get(movieCategoryPosition).getMovieList());
+        }
+        GridViewAdapter moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,this);
         mLayoutManager=new GridLayoutManager(mContext,Integer.parseInt(mContext.getString(R.string.more_video)));
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         moviesGridRV.setLayoutManager(mLayoutManager);
@@ -76,23 +83,49 @@ public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewMode
      }
     }
 
-    @Override
-    public void onConfigurationChanged() {
 
+    @Override
+    public void onMovieSelected(VideoStream movie) {
+        if (movie instanceof Serie) {
+            addRecentSerie((Serie) movie);
+            Bundle extras = new Bundle();
+            extras.putSerializable("selectedType", ModelTypes.SelectedType.SERIES);
+            extras.putInt("mainCategoryId", mMainCategoryPosition);
+            extras.putString("serie", new Gson().toJson(movie));
+            Intent launchIntent = new Intent(mContext, LoadingActivity.class);
+            launchIntent.putExtras(extras);
+            mContext.startActivity(launchIntent);
+        } else {
+            if (mMainCategoryPosition == 4 || mMainCategoryPosition == 7) {
+                onPlaySelectedDirect((Movie) movie, mMainCategoryPosition);
+            } else {
+                Bundle extras = new Bundle();
+                extras.putString("movie", new Gson().toJson(movie));
+                extras.putInt("mainCategoryId", mMainCategoryPosition);
+                Intent launchIntent = new Intent(mContext, OneSeasonDetailActivity.class);
+                launchIntent.putExtras(extras);
+                ActivityCompat.startActivityForResult((AppCompatActivity) mContext, launchIntent, 100,
+                        null);
+            }
+        }
     }
 
-    @Override
-    public void onMovieSelected(int selectedRow, int selectedMovie) {
-        VideoStream movie =   videoStreamManager.getMainCategory(mMainCategoryPosition).getMovieCategories().get(mMovieCategoryPosition).getMovie(selectedMovie);
-        if(movie instanceof Serie)
-        {
-            addRecentSerie((Serie)movie);
-            viewCallback.onSerieAccepted(selectedRow,(Serie)movie);
-        }
-        else if(movie instanceof Movie)
-        {
-            viewCallback.onMovieAccepted(selectedRow,(Movie)movie);
-        }
+    private void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
+        int movieId = movie.getContentId();
+        String[] uris = {movie.getStreamUrl()};
+        String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
+        Intent launchIntent = new Intent(mContext, VideoPlayActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
+                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", 0)
+                .putExtra("subsURL", movie.getSubtitleUrl())
+                .putExtra("title", movie.getTitle())
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        ActivityCompat.startActivityForResult((AppCompatActivity)mContext, launchIntent,100
+                ,null);
     }
 
     private void addRecentSerie(Serie serie) {

@@ -51,8 +51,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/detail_image__multi_height"
-                            >
+                            android:layout_height="@dimen/detail_image__multi_height">
 
                             <ImageView
                                 android:id="@+id/imageView8"
@@ -62,19 +61,20 @@
                                 android:layout_marginEnd="16dp"
                                 android:focusable="true"
                                 android:onClick="@{movieDetailsVM::onClickFavorite}"
-                                app:showFavoriteIcon="@{movieDetailsVM.isFavorite}"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
+                                app:showFavoriteIcon="@{movieDetailsVM.isFavorite}"
                                 tools:ignore="VectorDrawableCompat" />
+
                             <ImageView
                                 android:id="@+id/imageView7"
                                 android:layout_width="@dimen/dip_28"
                                 android:layout_height="@dimen/dip_28"
                                 android:layout_marginStart="@dimen/bw_generic_16_margin"
+                                android:layout_marginLeft="@dimen/bw_generic_16_margin"
                                 android:layout_marginTop="@dimen/bw_generic_16_margin"
                                 android:clickable="true"
                                 android:focusable="true"
-                                android:nextFocusDown="@id/playHD"
                                 android:foreground="?android:attr/selectableItemBackground"
                                 android:onClick="@{movieDetailsVM::finishActivity}"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -200,7 +200,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:background="@drawable/play_background_trailer"
-                                                android:onClick="@{movieDetailsVM::playTrailor}"
+                                                android:onClick="@{movieDetailsVM::playTrailer}"
                                                 android:focusable="true"
                                                 android:paddingRight="@dimen/dip_12"
                                                 android:paddingLeft="@dimen/dip_12"
@@ -292,9 +292,7 @@
                                         app:tabMode="scrollable"
                                         app:tabSelectedTextColor="@color/white"
                                         app:tabTextAppearance="@style/text.tab"
-                                        app:tabTextColor="@color/grey">
-
-                                    </com.google.android.material.tabs.TabLayout>
+                                        app:tabTextColor="@color/grey"/>
                                 </LinearLayout>
                             </com.bosphere.fadingedgelayout.FadingEdgeLayout>
                             <LinearLayout
@@ -362,6 +360,50 @@
                                             android:text="HD"
                                             />
                                     </androidx.cardview.widget.CardView>
+                                    <LinearLayout
+                                        android:layout_width="@dimen/dip_18"
+                                        android:layout_height="@dimen/dip_20"
+                                        android:background="@drawable/button_like_normal"
+                                        android:focusable="true"
+                                        android:onClick="@{movieDetailsVM::like}"
+                                        android:orientation="horizontal"
+                                        android:layout_marginEnd="@dimen/dip_4"
+                                        app:showLike="@{movieDetailsVM.liked}">
+                                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/like"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        style="@style/text.additional_info"
+                                        android:layout_marginEnd="@dimen/dip_12"
+                                        android:text="0" />
+                                    <LinearLayout
+                                        android:layout_width="@dimen/dip_18"
+                                        android:layout_height="@dimen/dip_20"
+                                        android:background="@drawable/button_dislike_normal"
+                                        android:focusable="true"
+                                        android:onClick="@{movieDetailsVM::dislike}"
+                                        android:orientation="horizontal"
+                                        android:layout_marginEnd="@dimen/dip_4"
+                                        app:showDislike="@{movieDetailsVM.disliked}">
+                                    </LinearLayout>
+                                    <TextView
+                                        android:id="@+id/dislike"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        style="@style/text.additional_info"
+                                        android:layout_marginRight="@dimen/dip_8"
+                                        android:text="0"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="@dimen/dip_22"
+                                        android:layout_height="@dimen/dip_24"
+                                        android:background="@drawable/icon_report"
+                                        android:focusable="true"
+                                        android:onClick="@{movieDetailsVM::report}"
+                                        android:orientation="horizontal"
+                                        android:layout_marginEnd="@dimen/dip_4">
+                                    </LinearLayout>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -385,7 +427,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:paddingTop="4dp"
-                />
+                app:isAutoProcessFocus="true"
+                app:scrollMode="followScroll"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

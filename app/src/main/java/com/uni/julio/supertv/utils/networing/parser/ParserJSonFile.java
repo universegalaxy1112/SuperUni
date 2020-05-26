@@ -31,7 +31,7 @@ public class ParserJSonFile {
 //    private static Set<String> favoriteMovies;
 
 
-    public static List<MovieCategory> getParsedSubCategories(String data) throws JSONException {
+    public static List<MovieCategory> getParsedSubCategories(String data, int mainCategoryId) throws JSONException {
 
         List<MovieCategory> dataArray = new ArrayList<>();
 
@@ -41,7 +41,12 @@ public class ParserJSonFile {
             if(!videoArray.getString(i).toLowerCase().contains("4_k")) {
                 movieCat = new MovieCategory();
                 movieCat.setCatName(videoArray.getString(i));
-                movieCat.setId(i+1);
+                if ((mainCategoryId == 7 || mainCategoryId == 8 || mainCategoryId == 4 || mainCategoryId == 9)) {
+                    movieCat.setId(i);
+                } else {
+                    movieCat.setId(i + 1);
+                }
+
                 dataArray.add(movieCat);
             }
         }
@@ -126,9 +131,7 @@ public class ParserJSonFile {
             videoArray = videosJson.getJSONArray(JSON_ARRAY_VAR);
 
             dataArray = new ArrayList<>();
-
             VideoStream movie = null;
-
             for (int i = 0; i < videoArray.length(); i++) {
 
                 switch (mainCategory) {
@@ -143,12 +146,18 @@ public class ParserJSonFile {
                     case ModelTypes.KARAOKE_CATEGORIES:
                         movie = new Serie();
                         break;
+                    default:
+                        movie = new Movie();
+                        break;
                     //case ModelTypes.LIVE_TV_CATEGORIES:
                 }
+                if(movieCategory.contains("Movies"))
+                    movie = new Movie();
+                else if(movieCategory.contains("Series"))
+                    movie = new Serie();
                 movie.setPosition(i);
                 fillObject(movie, videoArray.getJSONObject(i));
                 dataArray.add(movie);
-
             }
 
 
@@ -184,6 +193,8 @@ public class ParserJSonFile {
                 obj.setSDUrl(json_obj.getString("StreamUrl2"));
             if(json_obj.has("Trailerurl"))
                 obj.setTrailerUrl(json_obj.getString("Trailerurl"));
+            if(json_obj.has("tipo"))
+                obj.setCategoryType(json_obj.getInt("tipo"));
 
             if(VideoStreamManager.getInstance().getSeenMovies().contains(String.valueOf(obj.getContentId())))
                 obj.setSeen(true);
@@ -207,6 +218,10 @@ public class ParserJSonFile {
                     liveProgram.setEpg_ahora(json_obj.getString("epg_ahora"));
                 if (json_obj.has("epg_despues"))
                     liveProgram.setEpg_despues(json_obj.getString("epg_despues"));
+                if (json_obj.has("description") && !json_obj.getString("description").equals(""))
+                    liveProgram.setDescription(json_obj.getString("description"));
+                if (json_obj.has("title") && !json_obj.getString("title").equals(""))
+                    liveProgram.setSub_title(json_obj.getString("title"));
             }
             else  if(obj instanceof  Serie) {
                 Serie movie = (Serie) obj;

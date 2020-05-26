@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v14\\values-v14.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\d398f680de94c9336405db7208e0fb97\\jetified-core-0.8.5.6\\res\\values-v14\\values-v14.xml",
+                    "from": {
+                        "startLines": "2,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,428",
+                        "endLines": "8,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "423,855"
+                    }
+                }
+            ]
+        }
+    ]
+}

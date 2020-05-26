@@ -13,18 +13,7 @@
         <item name="colorAccent">@color/app_color_accent</item>
 
     </style>
-    <style name="VideoDetailTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@color/netflix_red</item>
-        <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabPaddingStart">4dp</item>
-        <item name="tabPaddingEnd">4dp</item>
-        <item name="tabTextColor">@color/translucent_white_18</item>
-        <item name="tabBackground">?attr/selectableItemBackground</item>
-        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
-        <item name="tabSelectedTextColor">@color/netflix_red</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+
     <style name="text.episode_title">
         <item name="android:textSize">@dimen/sp_11</item>
         <item name="android:textStyle">bold</item>

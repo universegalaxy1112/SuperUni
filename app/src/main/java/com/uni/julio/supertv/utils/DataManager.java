@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.uni.julio.supertv.LiveTvApplication;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,6 @@ public class DataManager {
     private static DataManager m_DataMInstance;
     private final SharedPreferences pref;
     private final SharedPreferences.Editor editor;
-
     public static DataManager getInstance() {
         if(m_DataMInstance == null) {
             m_DataMInstance = new DataManager();

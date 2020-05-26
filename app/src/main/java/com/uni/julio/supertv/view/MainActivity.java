@@ -2,24 +2,21 @@ package com.uni.julio.supertv.view;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -27,11 +24,10 @@ import com.afollestad.materialdialogs.Theme;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.helper.TVRecyclerView;
-import com.uni.julio.supertv.listeners.MessageCallbackListener;
+import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.listeners.NotificationListener;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.model.ModelTypes;
@@ -41,41 +37,33 @@ import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
-import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModel;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends BaseActivity implements MainCategoriesMenuViewModelContract.View, NotificationListener {
     private MainCategoriesMenuViewModel mainCategoriesMenuViewModel;
     private boolean requested=false;
-    JSONArray videoArray = null;
-    int index=0;
 
     @Override
     protected Lifecycle.ViewModel getViewModel() {
         return mainCategoriesMenuViewModel;
     }
 
-
-
     @Override
     protected Lifecycle.View getLifecycleView() {
         return this;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
-         this.requested=false;
+        mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
+        this.requested=false;
+
         setContentView(R.layout.activity_main);
         getViewModel().onViewAttached(getLifecycleView());
         NotificationReceiveService.setNotificationListener(this);
@@ -86,7 +74,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             public void run() {
                 showPopup();
             }
-        },1000);
+        },500);
         //subscribeTopic("all");
         setSupportActionBar(toolbar);
         if(Device.treatAsBox){
@@ -94,11 +82,16 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
         }
         TVRecyclerView mainCategoryRecycler=findViewById(R.id.maincategory);
         mainCategoriesMenuViewModel.showMainCategories(mainCategoryRecycler);
-        /*Bundle extras = getIntent().getExtras();
-        int mainCategoryId = extras.getInt("mainCategoryId",-1);
-        if(mainCategoryId != -1)
-            startLoading(mainCategoryId);*/
+        ImageView imageView = findViewById(R.id.imageView2);
+        if(imageView != null )
+            imageView.requestFocus();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -108,6 +101,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     public void onResume(){
          super.onResume();
          requested = false;
+         mainCategoriesMenuViewModel.onViewResumed();
     }
     @Override
     public void onPause(){
@@ -125,7 +119,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
                             msg = getString(R.string.cancel);
                         }
                         Log.d("tag", msg);
-                        //Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -140,13 +133,29 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Tracking.getInstance(this).setAction("Sleeping");
-            Tracking.getInstance(this).track();
+            Tracking.getInstance().setAction("Sleeping");
+            Tracking.getInstance().track();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    android.os.Process.killProcess(android.os.Process.myPid());
 
+                    Dialogs.showTwoButtonsDialog(getActivity(),R.string.ok_dialog,R.string.cancel,R.string.exit_confirm, new DialogListener() {
+
+                        @Override
+                        public void onAccept() {
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onDismiss() {
+
+                        }
+                    });
                 }
             },1000);
             return true;
@@ -167,18 +176,13 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     public void onMainCategorySelected(MainCategory mainCategory) {
          if(requested) return;
         int mainCategoryId = mainCategory.getId();
-        if(mainCategoryId==8){
+        if(mainCategoryId==10){
             onAccountPressed();
             return;
         }
         if(mainCategoryId == 7) {
             String pin=DataManager.getInstance().getString("adultsPassword", "");
-            if(TextUtils.isEmpty(pin)) {
-                //openSetPasswordDialog();
-             }
-            else{
-                openPasswordDialog(pin);
-            }
+            openPasswordDialog(pin);
         }
         else {
            startLoading(mainCategory.getId());
@@ -248,29 +252,35 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
 
 
     private void showPopup(){
-            String theUser = DataManager.getInstance().getString("theUser","");
-            String device_num = DataManager.getInstance().getString("device_num","");
-            User user = new Gson().fromJson(theUser, User.class);
-            //subscribeTopic(user.getName());
-        final MaterialDialog dialog=new MaterialDialog.Builder(this)
-                .customView(R.layout.castloadingdialog,false)
-                .contentLineSpacing(0)
-                .theme(Theme.LIGHT)
-                .backgroundColor(getResources().getColor(R.color.white))
-                .show();
-        TextView titleView= dialog.getCustomView().findViewById(R.id.title);
-        TextView contentView= dialog.getCustomView().findViewById(R.id.content);
-        titleView.setText(R.string.attention);
-        contentView.setText("Dear " + user.getName() + ", " + "Your expiration date is " + user.getExpiration_date()+" and you have "+ device_num+" devices working.");
-        TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
-        cancel.setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Tracking.getInstance(LiveTvApplication.appContext).onStart();
-                dialog.dismiss();
-            }
-        }, 5000);
+        String device_num = DataManager.getInstance().getString("device_num","");
+        User user = LiveTvApplication.getUser();
+        if(LiveTvApplication.appContext instanceof MainActivity){
+            final MaterialDialog dialog=new MaterialDialog.Builder(this)
+                    .customView(R.layout.castloadingdialog,false)
+                    .contentLineSpacing(0)
+                    .theme(Theme.LIGHT)
+                    .backgroundColor(getResources().getColor(R.color.white))
+                    .show();
+            TextView titleView= dialog.getCustomView().findViewById(R.id.title);
+            TextView contentView= dialog.getCustomView().findViewById(R.id.content);
+            titleView.setText(R.string.attention);
+            contentView.setText("Estimado " + ((user ==  null) ? "" : user.getName()) + ", " + " Tu fecha de Vencimiento es: " + user.getExpiration_date()+" Y tienes "+ device_num+" Dispositivos Conectados.");
+            TextView cancel = dialog.getCustomView().findViewById(R.id.cancel);
+            cancel.setVisibility(View.GONE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Tracking.getInstance().onStart();
+                    try {
+                        if(LiveTvApplication.appContext instanceof MainActivity && dialog.isShowing())
+                            dialog.dismiss();
+                    }catch (IllegalArgumentException e){
+                        e.printStackTrace();
+                    }
+
+                }
+            }, 3000);
+        }
     }
 
     @Override

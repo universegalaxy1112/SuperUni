@@ -77,9 +77,11 @@
     <string name="no_connection_message">Por favor verifique su conexión a internet.</string>
 
     <string name="generic_error_title">Error</string>
+    <string name="exception_title">Please check the internet Connection and Try again.</string>
+    <string name="exception_content">Sorry. There was some issues in internet Connection.</string>
     <string name="generic_loading_message">Hubo un error cargando las películas, por favor intenta de nuevo.</string>
-    <string name="generic_video_loading_message">Hubo un error cargando el video que deseas, por favor intenta de nuevo.</string>
-
+    <string name="generic_video_loading_message">Hubo un error cargando el video que deseas, por favor intenta de nuevo. Check NetSpeed?</string>
+    <string name="title_order_message">No se encontró Ningún Resultado, Quieres ordenar esta Película? </string>
     <string name="title_activity_movies_menu">MoviesMenuActivity</string>
     <string name="title_activity_loading_movies">LoadingMoviesActivity</string>
 
@@ -118,6 +120,7 @@
     <string name="login_error_nosession">No se pudo iniciar sesión.</string>
 
     <string name="login_error_demo">Las cuentas de demostración no pueden ser usadas en Android. Por favor comunícate con el Administrador para solicitar una cuenta real.</string>
+    <string name="ip_limitation">You have to use the same ip.</string>
     <!--<string name="login_error_change_account">Este dispositivo está ligado a otra cuenta, desea usar una cuenta nueva?</string>-->
     <string name="login_error_change_account">Este dispositivo está ligado a otra cuenta. \nPor favor comunícate con tu Administrador con el siguiente identificador:\n{ID}</string>
     <!--<string name="login_error_change_device">Esta cuenta está ligada con otro dispositivo, desea cambiar a éste?</string>-->
@@ -139,6 +142,7 @@
     <string name="castTitle">Cast or Phone?</string>
     <string name="castingTitle">Cast to</string>
     <string name="cast">Cast</string>
+    <string name="reportTitle">Reportar Falla</string>
     <string name="castLoading">Searching for devices...</string>
     <string name="phone">Play on Phone</string>
     <string name="castDescription">Make sure your phone and cast device are connected to the same Wi-Fi</string>
@@ -147,4 +151,37 @@
     <string name="channel_description">testChannel</string>
     <string name="title_story">Description</string>
     <string name="transition_image">transition-image</string>
+    <string name="processing">Please Wait...</string>
+    <string name="logo_inapp_link">https://github.com/librespeed/speedtest-android</string>
+    <string name="privacy_policy">file:///android_asset/privacy_en.html</string>
+    <string name="init_init">Loading</string>
+    <string name="initFail_configError">Configuration error</string>
+    <string name="initFail_retry">Retry</string>
+    <string name="init_selecting">Selecting server</string>
+    <string name="initFail_noServers">No servers available</string>
+    <string name="serverSelect_message">Select a server</string>
+    <string name="start">Start</string>
+    <string name="test_dl">Download</string>
+    <string name="test_ul">Upload</string>
+    <string name="test_speedMeasure">Mbps</string>
+    <string name="test_ping">Ping</string>
+    <string name="test_jitter">Jitter</string>
+    <string name="test_timeMeasure">ms</string>
+    <string name="test_share">Share result</string>
+    <string name="test_restart">New test</string>
+    <string name="testFail_err">An error occurred</string>
+    <string name="testFail_retry">Try again</string>
+    <string name="privacy_open"><u>Privacy</u></string>
+    <string name="privacy_close"><u>Back</u></string>
+    <string name="report_audio">Relacionado al audio</string>
+    <string name="report_video">Relacionado al video</string>
+    <string name="report_subtitle">Relacionado a subtitulos</string>
+    <string name="report_content">Contenido no relacionado</string>
+    <string name="no_channel">No hay Canal Seleccionado.</string>
+    <string name="no_content">No Content</string>
+    <string name="exit_confirm">Are you sure?</string>
+    <string name="next_schedule">Next</string>
+    <string name="now_schedule">Now</string>
+    <string name="time_out">Request TimeOut</string>
+    <string name="see_all">See All</string>
 </resources>

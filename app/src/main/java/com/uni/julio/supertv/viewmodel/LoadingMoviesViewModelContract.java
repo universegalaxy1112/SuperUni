@@ -2,6 +2,7 @@ package com.uni.julio.supertv.viewmodel;
 
 
 import com.uni.julio.supertv.listeners.BaseResponseListener;
+import com.uni.julio.supertv.model.Serie;
 
 public interface LoadingMoviesViewModelContract {
 
@@ -18,7 +19,7 @@ public interface LoadingMoviesViewModelContract {
     //this will have methods that the activity/fragment will call from the ViewModel
     interface ViewModel extends Lifecycle.ViewModel {
         void loadSubCategories(int mainCategoryPosition);
-        void loadSeasons(int mainCategoryId, int movieCategoryId, int seriePosition);
+        void loadSeasons(int mainCategoryId, Serie serie);
 //        void loadSettings();
     }
 }

@@ -1,56 +1,47 @@
 package com.uni.julio.supertv.viewmodel;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
+import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.ObservableBoolean;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.adapter.MoviesCategoryAdapter;
 import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.VideoStreamManager;
-import com.uni.julio.supertv.listeners.MovieAcceptedListener;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
-import com.uni.julio.supertv.listeners.SearchSelectedListener;
 import com.uni.julio.supertv.listeners.ShowAsGridListener;
-import com.uni.julio.supertv.model.Episode;
+import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.MovieCategory;
 import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
-import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.view.BaseActivity;
+import com.uni.julio.supertv.view.LoadingActivity;
+import com.uni.julio.supertv.view.OneSeasonDetailActivity;
+import com.uni.julio.supertv.view.VideoPlayActivity;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 
 import java.util.List;
 
-public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewModel, MovieAcceptedListener, MovieSelectedListener, ShowAsGridListener, SearchSelectedListener {
+public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewModel,  MovieSelectedListener, ShowAsGridListener {
 
     public ObservableBoolean isConnected;
-    public ObservableBoolean isTV;
     private MoviesMenuViewModelContract.View viewCallback;
-    private VideoStreamManager videoStreamManager;
     private Context mContext;
-    private GridLayoutManager mLayoutManager;
-    private TVRecyclerView mCategoriesRecyclerview;
-    private int mMainCategoryPosition = -1;
-    private int mMovieCategoryPosition = -1;
-    private int mSeriePosition = -1;
-    private List<MovieCategory> mMoviesList;
-    private List<MovieCategory> mMoviesList1;
-    private ImageView imageView;
     private MoviesCategoryAdapter moviesCategoryAdapter;
-    //mainView is the LoadingMoviesActivity Activity
-    //context provided in LoadingMoviesActivity using getContext() from the MVContract.MainView interface
+    private int mainCategoryPosition = 0;
     public MoviesMenuViewModel(Context context) {
         isConnected = new ObservableBoolean(Connectivity.isConnected());
-        isTV = new ObservableBoolean(Device.canTreatAsBox());
-        videoStreamManager = VideoStreamManager.getInstance();
         mContext = context;
     }
 
@@ -74,20 +65,15 @@ public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewMode
 
     @Override
     public void showMovieLists(TVRecyclerView categoriesRecyclerview, int mainCategoryPosition) {
-        mCategoriesRecyclerview = categoriesRecyclerview;
-        mMainCategoryPosition = mainCategoryPosition;
-        mMoviesList = VideoStreamManager.getInstance().getMainCategory(mainCategoryPosition).getMovieCategories();
-        moviesCategoryAdapter =new MoviesCategoryAdapter(mContext,categoriesRecyclerview,mMoviesList,mMainCategoryPosition,this,this,this,this);
-        mLayoutManager = new GridLayoutManager(mContext,1);
+        List<MovieCategory> mMoviesList = VideoStreamManager.getInstance().getMainCategory(mainCategoryPosition).getMovieCategories();
+        moviesCategoryAdapter =new MoviesCategoryAdapter(mContext, mMoviesList, mainCategoryPosition,this,this);
+        this.mainCategoryPosition = mainCategoryPosition;
+        GridLayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mCategoriesRecyclerview.setLayoutManager(mLayoutManager);
-        mCategoriesRecyclerview.setAdapter(moviesCategoryAdapter);
+        categoriesRecyclerview.setLayoutManager(mLayoutManager);
+        categoriesRecyclerview.setAdapter(moviesCategoryAdapter);
     }
 
-    @Override
-    public void showEpisodeLists(RecyclerView categoriesRecyclerview, int mainCategoryId, int movieCategoryId, int serieId) {
-
-    }
 
     private void addRecentSerie(Serie serie) {
          DataManager.getInstance().saveData("lastSerieSelected",new Gson().toJson(serie));
@@ -99,27 +85,46 @@ public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewMode
     }
 
     @Override
-    public void onMovieSelected(int selectedRow, int selectedMovie) {
-        onMovieAccepted(selectedRow, videoStreamManager.getMainCategory(mMainCategoryPosition).getMovieCategory(selectedRow).getMovie(selectedMovie));
-    }
-
-    public void onSearchClick(View view) {
-        viewCallback.onSearchSelected(true);
-    }
-    @Override
-    public void onSearchSelected(boolean isAccepted) {
-        viewCallback.onSearchSelected(isAccepted);
-    }
-
-    @Override
-    public void onMovieAccepted(int selectedRow, VideoStream video) {
-
-        if( video instanceof  Serie) {
-             addRecentSerie((Serie) video);
-             viewCallback.onSerieAccepted(selectedRow,(Serie) video);
+    public void onMovieSelected(VideoStream movie) {
+        if (movie instanceof Serie) {
+            addRecentSerie((Serie) movie);
+            Bundle extras = new Bundle();
+            extras.putSerializable("selectedType", ModelTypes.SelectedType.SERIES);
+            extras.putInt("mainCategoryId", mainCategoryPosition);
+            extras.putString("serie", new Gson().toJson(movie));
+            Intent launchIntent = new Intent(mContext, LoadingActivity.class);
+            launchIntent.putExtras(extras);
+            mContext.startActivity(launchIntent);
+        } else {
+            if (mainCategoryPosition == 4 || mainCategoryPosition == 7) {
+                onPlaySelectedDirect((Movie) movie, mainCategoryPosition);
+            } else {
+                Bundle extras = new Bundle();
+                extras.putString("movie", new Gson().toJson(movie));
+                extras.putInt("mainCategoryId", mainCategoryPosition);
+                Intent launchIntent = new Intent(mContext, OneSeasonDetailActivity.class);
+                launchIntent.putExtras(extras);
+                ActivityCompat.startActivityForResult((AppCompatActivity) mContext, launchIntent, 100,
+                        null);
+            }
         }
-        else if( video instanceof  Movie || video instanceof Episode) {
-            viewCallback.onMovieAccepted(selectedRow,(Movie) video);
-        }
+    }
+
+    private void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
+        int movieId = movie.getContentId();
+        String[] uris = {movie.getStreamUrl()};
+        String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
+        Intent launchIntent = new Intent(mContext, VideoPlayActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
+                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", 0)
+                .putExtra("subsURL", movie.getSubtitleUrl())
+                .putExtra("title", movie.getTitle())
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        ActivityCompat.startActivityForResult((AppCompatActivity)mContext, launchIntent,100
+                ,null);
     }
 }

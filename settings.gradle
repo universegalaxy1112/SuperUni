@@ -1,5 +1,3 @@
 include ':app'
-gradle.ext.exoplayerRoot = 'E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2'
 gradle.ext.exoplayerModulePrefix = ''
-apply from: new File(gradle.ext.exoplayerRoot, 'core_settings.gradle')
 rootProject.name='My Application'

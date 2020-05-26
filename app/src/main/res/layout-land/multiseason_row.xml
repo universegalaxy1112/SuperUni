@@ -27,16 +27,18 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-
             />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/textArea"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="@dimen/dip_6"
-            android:background="@color/card_bg">
+            android:focusable="false"
+            android:background="@color/card_bg"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/title"
@@ -53,9 +55,7 @@
                 android:focusableInTouchMode="true"
                 android:freezesText="true"
                 android:paddingBottom="@dimen/dip_6"
-                app:layout_constraintBottom_toBottomOf="@id/detail"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:focusable="false" />
 
             <TextView
                 android:id="@+id/detail"
@@ -63,13 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/dip_6"
-                app:setTitleEpisode="@{moviesMenuItem.position}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/title" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+                android:focusable="false"
+                app:setTitleEpisode="@{moviesMenuItem.position}" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

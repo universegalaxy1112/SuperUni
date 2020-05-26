@@ -3,14 +3,17 @@ package com.uni.julio.supertv.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityMultiSeasonDetailBinding;
@@ -35,8 +38,6 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
     EpisodeDetailsViewModel movieDetailsViewModel;
     ActivityMultiSeasonDetailBinding activityMultiSeasonDetailBinding;
     int mainCategoryId;
-    int movieCategoryId;
-    int serieId;
     Serie serie;
     private CustomProgressDialog customProgressDialog;
 
@@ -51,14 +52,25 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extra=getIntent().getExtras();
-        mainCategoryId=extra.getInt("mainCategoryId",-1);
-        movieCategoryId=extra.getInt("movieCategoryId",-1);
-        serieId=extra.getInt("serieId",-1);
-        serie=(Serie) VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategory(movieCategoryId).getMovie(serieId);
-        movieDetailsViewModel=new EpisodeDetailsViewModel(getBaseContext(),mainCategoryId);
-        activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
-        showMovieDetails(serie,mainCategoryId,movieCategoryId);
+        try{
+            Bundle extra=getIntent().getExtras();
+            if(extra != null) {
+                mainCategoryId=extra.getInt("mainCategoryId",-1);
+                serie = new Gson().fromJson(extra.getString("serie"), Serie.class);
+            }
+            movieDetailsViewModel=new EpisodeDetailsViewModel(this,mainCategoryId);
+            activityMultiSeasonDetailBinding= DataBindingUtil.setContentView(this, R.layout.activity_multi_season_detail);
+            showMovieDetails(serie,mainCategoryId);
+        }catch (Exception e){
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
+        }
+
      }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -69,62 +81,55 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         }
         return false;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
     public void onPlaySelected(Movie movie, final int type, int seasonPosition) {
         final int movieId = movie.getContentId();
-
-        String[] uris={};
-     /*   List<? extends VideoStream> episodeList;
-        episodeList = serie.getSeason(seasonPosition).getEpisodeList();
-        for(VideoStream episode: episodeList){
-
-        }*/
-        switch (type){
-            case 0:
-                uris = new String[] {movie.getStreamUrl()};
-                break;
-            case 1:
-                if(movie.getSDUrl()==null){
-                    uris = new String[] {movie.getStreamUrl()};
-                }
-                else{
-                    uris = new String[] {movie.getSDUrl()};
-                }
-                break;
-            case 2:
-                if(movie.getTrailerUrl()==null){
-                    uris = new String[] {movie.getStreamUrl()};
-                }
-                else{
-                    uris = new String[] {movie.getTrailerUrl()};
-                }
-                break;
-            default:
+        List<?extends VideoStream> episodes = serie.getSeason(seasonPosition).getEpisodeList();
+        String[] uris= new String[episodes.size()];
+        String[] extensions = new String[episodes.size()];
+        String subtitleUrl = null;
+        String title = null;
+        long secondsToPlay = 0;
+        String movieUrl = movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
+        String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
+        for(int i = 0 ; i < episodes.size(); i++  ){
+            extensions[i] = extension;
+            switch (type){
+                case 0:
+                    uris[i] = episodes.get(i).getStreamUrl();
+                    break;
+                case 1:
+                    if(episodes.get(i).getSDUrl()==null){
+                        uris[i] = episodes.get(i).getStreamUrl();
+                    }
+                    else{
+                        uris[i] = episodes.get(i).getSDUrl();
+                    }
+                    break;
+                case 2:
+                    if(episodes.get(i).getSDUrl()==null){
+                        uris[i] = episodes.get(i).getStreamUrl();
+                    }
+                    else{
+                        uris[i] = episodes.get(i).getTrailerUrl();
+                    }
+                    break;
+                default:
+            }
+            subtitleUrl= movie.getSubtitleUrl();
+            title = serie.getTitle();
+            secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
         }
-        if(uris[0]==null){
-            uris = new String[] {movie.getStreamUrl()};
-        }
-         String movieUrl = uris[0].replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4");
-            String extension = movie.getStreamUrl().substring(movieUrl.lastIndexOf(".") + 1);
-         String[] extensions = new String[] {extension};
-         String subtitleUrl= movie.getSubtitleUrl();
-         String title = serie.getTitle();
-         long secondsToPlay=DataManager.getInstance().getLong("seconds" + movieId,0L);
-         String[] finalUris = uris;
-         playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
-    }
-    private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
-        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);
-        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
-                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
-                .putExtra("mainCategoryId", mainCategoryId)
-                .putExtra("subsURL", subTitleUrl)
-                .putExtra("title", title)
-                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        startActivity(launchIntent);
-        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
+         playVideo(uris,extensions, movieId, secondsToPlay, type,subtitleUrl,title, seasonPosition, movie.getPosition());
     }
  private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl, String title,  int seasonPosition, int episodePosition){
-     Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
+     Intent launchIntent = new Intent(this, VideoPlayActivity.class);
      launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
              .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
              .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
@@ -137,12 +142,13 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
              .putExtra("subsURL", subTitleUrl)
              .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
      hideProgressDialog();
-     startActivity(launchIntent);
+     ActivityCompat.startActivityForResult(this, launchIntent,100
+             ,null);
      getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
  }
     @Override
-    public void showMovieDetails(Serie serie, int maincategory, int moviecategory) {
-        movieDetailsViewModel.showMovieDetails(serie,activityMultiSeasonDetailBinding,maincategory,moviecategory, this);
+    public void showMovieDetails(Serie serie, int maincategory) {
+        movieDetailsViewModel.showMovieDetails(serie,activityMultiSeasonDetailBinding,maincategory, this);
     }
 
 @Override
@@ -159,11 +165,6 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
                 return false;
             }
         });
-        customProgressDialog.show();
-    }
-    public void showCustomProgressDialog(String message){
-        customProgressDialog = new CustomProgressDialog(this, message);
-        customProgressDialog.setCancelable(false);
         customProgressDialog.show();
     }
     public void hideProgressDialog(){
@@ -188,8 +189,6 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
             noInternetConnection(new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-//                    launchActivity(LoginActivity.class);
-//                    getActivity().finish();
                     finishActivity();
                 }
             });
