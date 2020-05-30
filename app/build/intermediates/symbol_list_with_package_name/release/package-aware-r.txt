@@ -6455,6 +6455,7 @@ id main_frame
 id main_icon
 id main_image
 id main_layout
+id main_search_fragment
 id main_swipe
 id maincategory
 id map
@@ -7896,6 +7897,7 @@ integer mtrl_card_anim_delay_ms
 integer mtrl_card_anim_duration_ms
 integer mtrl_chip_anim_duration
 integer mtrl_tab_indicator_anim_duration_ms
+integer recycler_decoration_padding
 integer show_password_duration
 integer slideEdgeEnd
 integer slideEdgeStart
@@ -7954,6 +7956,7 @@ layout activity_movies_tv
 layout activity_multi_season_detail
 layout activity_oneseason_detail
 layout activity_search
+layout activity_search_tv
 layout activity_selectserver
 layout activity_speedtest
 layout activity_speedtest1
@@ -8552,6 +8555,8 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string permission_audio
+string permission_audio_config
 string permission_button_allow
 string permission_button_reject
 string permission_rationale

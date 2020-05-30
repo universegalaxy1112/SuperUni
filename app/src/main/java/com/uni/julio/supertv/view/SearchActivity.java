@@ -78,7 +78,7 @@ public class SearchActivity extends BaseActivity implements SearchViewModelContr
             if((mainCategoryId == 1 || mainCategoryId == 2) && selectedType == ModelTypes.SelectedType.MAIN_CATEGORY) {
                 searchSerie = true;
             }
-            if(query.equals("")&& Device.treatAsBox){
+            if(query.equals("") && Device.treatAsBox){
                 (activitySearchBinding.editPassword).setOnEditorActionListener(new EditText.OnEditorActionListener(){
 
                     @Override

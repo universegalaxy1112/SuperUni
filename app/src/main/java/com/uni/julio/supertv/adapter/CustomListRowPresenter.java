@@ -1,7 +1,5 @@
 package com.uni.julio.supertv.adapter;
 
-import android.view.ViewGroup;
-
 import androidx.leanback.widget.ListRowPresenter;
 import androidx.leanback.widget.RowPresenter;
 

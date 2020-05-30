@@ -44,7 +44,7 @@
                 android:id="@+id/search_recycler"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
+                android:padding="@dimen/dip_4"
                 app:scrollMode="followScroll"
                 app:isAutoProcessFocus="false"
                 android:gravity="center_vertical"

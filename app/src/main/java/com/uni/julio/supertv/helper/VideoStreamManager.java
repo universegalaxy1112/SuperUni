@@ -53,7 +53,7 @@ public class VideoStreamManager {
         mainCategoriesList.add(createMainCategory("Eventos", R.drawable.eventos, ModelTypes.EVENTS_CATEGORIES, 4));
         mainCategoriesList.add(createMainCategory("Entretenimiento", R.drawable.entertainment, ModelTypes.ENTERTAINMENT_CATEGORIES, 3));
         mainCategoriesList.add(createMainCategory("Karaoke", R.drawable.karaoke, ModelTypes.KARAOKE_CATEGORIES, 6));
-        if(LiveTvApplication.user.getAdultos() == 0)
+        if(LiveTvApplication.getUser() != null && LiveTvApplication.getUser().getAdultos() == 0)
         mainCategoriesList.add(createMainCategory("Adultos", R.drawable.adults, ModelTypes.ADULTS_CATEGORIES, 7));
         if(Device.canTreatAsBox()) {
             mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.setting, ModelTypes.SETTINGS, 10));
@@ -83,8 +83,10 @@ public class VideoStreamManager {
                 }
             }
 
-            return mainCategory;
         }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(mainCategory == null) {
             VideoStreamManager.getInstance().FillMainCategories();
             for(MainCategory item : mainCategoriesList ){
                 if(item.getId() == id) {
@@ -92,25 +94,9 @@ public class VideoStreamManager {
                     break;
                 }
             }
-            return mainCategory;
         }
+        return mainCategory;
     }
-
-/*    public List<VideoStream> searchForMovies(MainCategory mainCategory, String searchString,boolean searchForSeries ) {
-        Set<VideoStream> searchList = new HashSet<>();
-        Set<VideoStream> tmpList;
-
-        tmpList = mainCategory.searchForMovies(searchString, searchForSeries);
-        if(tmpList != null && tmpList.size() != 0) {
-            searchList.addAll(tmpList);
-        }
-
-//        HashSet<Integer> seen = new HashSet<>();
-//        searchList.removeIf(e->!seen.add(e.getContentId()));
-        List<VideoStream> finalList = new ArrayList<>();
-        finalList.addAll(searchList);
-        return finalList;
-    }*/
 
 
     public List<LiveProgram> getAllLivePrograms() {

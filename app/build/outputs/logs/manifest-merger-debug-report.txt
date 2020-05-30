@@ -192,36 +192,12 @@ uses-permission#android.permission.READ_EXTERNAL_STORAGE
 ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:20:5-80
 	android:name
 		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:20:22-77
-uses-permission#android.permission.READ_PHONE_STATE
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:21:5-75
-	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:21:22-72
-uses-permission#android.permission.GET_ACCOUNTS
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:22:5-71
-	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:22:22-68
-uses-permission#android.permission.READ_PROFILE
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:23:5-71
-	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:23:22-68
-uses-permission#android.permission.READ_CONTACTS
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:24:5-72
-	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:24:22-69
 uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:25:5-82
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:21:5-82
 	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:25:22-80
-uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:26:5-75
-	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:26:22-73
-uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:27:5-75
-	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:27:22-73
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:21:22-80
 application
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:29:5-166:19
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:22:5-166:19
 MERGED from [com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:9:5-20:19
 MERGED from [com.google.android.gms:play-services-cast-framework:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4b1591b073a07ad8230f51cee66496d8\jetified-play-services-cast-framework-18.1.0\AndroidManifest.xml:9:5-20:19
 MERGED from [com.google.android.gms:play-services-cast:18.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\a1d8434e1d62fa7e3f0036827fb38b60\jetified-play-services-cast-18.1.0\AndroidManifest.xml:22:5-20
@@ -297,63 +273,71 @@ MERGED from [net.steamcrafted:materialiconlib:1.1.5] C:\Users\dev_1\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.2.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\bab1349933d44f9831a6949ffc31e641\core-1.2.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:39:9-35
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:32:9-35
 	android:label
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:34:9-41
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:27:9-41
 	tools:ignore
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:41:9-48
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:34:9-48
 	android:roundIcon
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:36:9-48
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:29:9-48
 	android:icon
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:37:9-43
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:30:9-43
 	android:allowBackup
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:31:9-35
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:24:9-35
 	android:banner
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:32:9-45
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:25:9-45
 	android:theme
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:40:9-40
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:33:9-40
 	android:networkSecurityConfig
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:35:9-69
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:28:9-69
 	android:logo
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:38:9-48
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:31:9-48
 	android:isGame
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:33:9-30
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:26:9-30
 	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:30:9-42
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:23:9-42
 provider#androidx.core.content.FileProvider
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:42:9-52:20
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:35:9-45:20
 	android:grantUriPermissions
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:46:13-47
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:39:13-47
 	android:authorities
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:44:13-69
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:37:13-69
 	android:exported
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:45:13-37
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:38:13-37
 	tools:replace
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:47:13-48
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:40:13-48
 	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:43:13-62
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:36:13-62
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:48:13-51:52
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:41:13-44:52
 	android:resource
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:50:17-50
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:43:17-50
 	tools:replace
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:51:17-49
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:44:17-49
 	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:49:17-67
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:42:17-67
 activity#com.uni.julio.supertv.view.MoviesTvActivity
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:55:9-58:52
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:48:9-51:52
 	android:screenOrientation
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:57:13-50
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:50:13-50
 	android:theme
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:58:13-50
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:51:13-50
 	android:name
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:49:13-50
+activity#com.uni.julio.supertv.view.SearchTvActivity
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:53:9-56:52
+	android:screenOrientation
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:55:13-50
+	android:theme
 		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:56:13-50
-activity#com.uni.julio.supertv.view.AccountActivity
-ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:59:9-61:65
-	android:theme
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:61:13-62
 	android:name
-		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:60:13-49
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:54:13-50
+activity#com.uni.julio.supertv.view.AccountActivity
+ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:58:9-60:65
+	android:theme
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:60:13-62
+	android:name
+		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:59:13-49
 activity#com.uni.julio.supertv.view.VideoPlayActivity
 ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:62:9-68:65
 	android:screenOrientation

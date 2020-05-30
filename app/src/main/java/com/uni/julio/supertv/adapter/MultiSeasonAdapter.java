@@ -84,7 +84,6 @@ public class MultiSeasonAdapter extends RecyclerView.Adapter<MultiSeasonAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Movie movie = (Movie) mMovies.get(position);
-
         holder.getViewDataBinding().setVariable(BR.moviesMenuItem, movie);
         holder.getViewDataBinding().getRoot().setTag(position);
         holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.moviesAdapter,this);

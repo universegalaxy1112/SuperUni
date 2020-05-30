@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -140,7 +141,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                 extras.putSerializable("selectedType", MoviesMenuTVFragment.this.selectedType);
                 extras.putInt("mainCategoryId", MoviesMenuTVFragment.this.mainCategoryId);
                 extras.putInt("movieCategoryId", MoviesMenuTVFragment.this.movieCategoryId);
-                launchActivity(SearchActivity.class, extras);
+                launchActivity(SearchTvActivity.class, extras);
             }
         });
 
@@ -229,7 +230,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
     private void loadRow(final MovieCategory category) {
         try {
             if(getActivity() != null)
-            new Handler().post(new Runnable() {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
                     category.setCategoryDisplayed(true);
@@ -327,11 +328,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
         ActivityCompat.startActivityForResult(getActivity(), launchIntent,100,null);
     }
-    private Intent getLaunchIntent(Class classToLaunch, Bundle extras) {
-        Intent launchIntent = new Intent(getActivity(), classToLaunch);
-        launchIntent.putExtras(extras);
-        return launchIntent;
-    }
+
     private final class ItemViewSelectedListener implements OnItemViewSelectedListener {
         @SuppressLint("CutPasteId")
         @Override
@@ -380,7 +377,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
 
     }
 
-    public void updateBackground(final String uri) {
+    private void updateBackground(final String uri) {
         try {
             if(getActivity() != null)
                 getActivity().runOnUiThread(new Runnable() {

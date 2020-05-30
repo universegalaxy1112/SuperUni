@@ -68,8 +68,12 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     public void onResume() {
         super.onResume();
         if(!isInit){
-            splashViewModel.checkForUpdate();
-            isInit = true;
+            if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+                requestStoragePermission();
+            } else{
+                splashViewModel.checkForUpdate();
+                isInit = true;
+            }
         }
     }
 
@@ -80,9 +84,7 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
             try{
                 Dialogs.showTwoButtonsDialog( getActivity(),R.string.download , R.string.cancel, R.string.new_version_available,  new DialogListener() {
                     public void onAccept() {
-                        if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
-                            requestStoragePermission();
-                        } else if (Connectivity.isConnected()) {
+                       if (Connectivity.isConnected()) {
                             downloadUpdate(updateLocation);
                         } else {
                             goToNoConnectionError();
@@ -125,10 +127,10 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
             return;
         }
         if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
-            downloadUpdate(this.updateLocation);
-
+            splashViewModel.checkForUpdate();
+            isInit = true;
         } else {
-            requestStoragePermission();
+            finishActivity();
         }
     }
     public int getPermissionStatus(String androidPermissionName) {
@@ -140,6 +142,7 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
         }
         return 2;
     }
+
     public void requestStoragePermission() {
         if (Build.VERSION.SDK_INT < 23 || getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
             return;
@@ -166,12 +169,12 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
             }
 
             public void onCancel() {
-                splashViewModel.login();
+                finishActivity();
             }
 
             @Override
             public void onDismiss() {
-
+                finishActivity();
             }
         });
     }
@@ -179,12 +182,13 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode != 1) {
-            return;
+            finishActivity();
         }
         if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
-            downloadUpdate(this.updateLocation);
+            splashViewModel.checkForUpdate();
+            isInit = true;
         } else {
-            requestStoragePermission();
+            finishActivity();
         }
     }
     public void goToNoConnectionError() {

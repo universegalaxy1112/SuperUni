@@ -47,6 +47,7 @@ boolean denyAll = false;
         super.onResume();
         Tracking.getInstance().enableSleep(false);
         Tracking.getInstance().enableTrack(false);
+        LiveTvApplication.appContext = this;
     }
 
     @Override
@@ -161,16 +162,11 @@ boolean denyAll = false;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent Data) {
         super.onActivityResult(requestCode, resultCode, Data);
-        if (requestCode == 4161) {
-            requestPhonePermission();
-        }
         if (requestCode != 4168) {
-            return;
+            finish();
         }
-        if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") == 0) {
-
-        } else {
-            requestStoragePermission();
+        if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+            finish();
         }
     }
 
@@ -211,6 +207,7 @@ boolean denyAll = false;
     }
 
     private void setupUI() {
+
         setContentView(R.layout.activity_login);
         mUsernameView =  findViewById(R.id.edit_username);
         mPassView =  findViewById(R.id.edit_password);
@@ -218,7 +215,11 @@ boolean denyAll = false;
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+                        requestStoragePermission();
+                    }else{
+                        attemptLogin();
+                    }
                     return true;
                 }
                 return false;
@@ -229,7 +230,11 @@ boolean denyAll = false;
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+                    requestStoragePermission();
+                }else{
+                    attemptLogin();
+                }
             }
         });
         mEmailSignInButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -265,12 +270,9 @@ boolean denyAll = false;
             cancel = true;
         }
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
+
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
              showProgress(true);
              NetManager.getInstance().performLogin(username,password, this);
         }
@@ -281,92 +283,23 @@ boolean denyAll = false;
     }
 
 
-    private boolean requestPhonePermission() {
-        if (Build.VERSION.SDK_INT < 23 || getPermissionStatus("android.permission.READ_PHONE_STATE") == 0) {
-            return true;
-        }
-        this.denyAll = false;
-        int accept = R.string.accept;
-        int message = R.string.permission_rationale;
-        if (getPermissionStatus("android.permission.READ_PHONE_STATE") == 2) {
-            this.denyAll = true;
-            accept = R.string.config;
-            message = R.string.permission_rationale_config;
-        }
-        Dialogs.showTwoButtonsDialog(  this, accept,  R.string.cancel, message,  new DialogListener() {
-            @TargetApi(23)
-            public void onAccept() {
-                if (!LoginActivity.this.denyAll) {
-                    DataManager.getInstance().saveData("permissionRequested", Boolean.TRUE);
-                    LoginActivity.this.requestPermissions(new String[]{"android.permission.READ_PHONE_STATE"}, 0);
-                    return;
-                }
-                Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                intent.setData(Uri.fromParts("package", LoginActivity.this.getPackageName(), null));
-                LoginActivity.this.startActivityForResult(intent, 4161);
-            }
-            public void onCancel() {
-                LoginActivity.this.finish();
-            }
-
-            @Override
-            public void onDismiss() {
-
-            }
-        });
-        return false;
-    }
 
     public int getPermissionStatus(String androidPermissionName) {
-
-        if ((!TextUtils.isEmpty(DataManager.getInstance().getString("deviceIdentifier", "")) && androidPermissionName == "android.permission.READ_PHONE_STATE") || ContextCompat.checkSelfPermission(this, androidPermissionName) == 0) {
+        if (ContextCompat.checkSelfPermission(this, androidPermissionName) == 0) {
             return 0;
         }
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, androidPermissionName)) {
-            return 1;
-        }
-        boolean pref = false;
-        char c = 65535;
-        switch (androidPermissionName.hashCode()) {
-            case -5573545:
-                if (androidPermissionName.equals("android.permission.READ_PHONE_STATE")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case 1365911975:
-                if (androidPermissionName.equals("android.permission.WRITE_EXTERNAL_STORAGE")) {
-                    c = 1;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
-                pref = DataManager.getInstance().getBoolean("permissionRequested", false);
-                break;
-            case 1:
-                pref = DataManager.getInstance().getBoolean("storagePermissionRequested", false);
-                break;
-        }
-        if (!pref) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, androidPermissionName) || !DataManager.getInstance().getBoolean("storagePermissionRequested", false)) {
             return 1;
         }
         return 2;
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 0 && grantResults.length == 1 && grantResults[0] != 0) {
-            requestPhonePermission();
-        }
         if (requestCode != 1) {
-            return;
+            finish();
         }
-        if (grantResults.length != 1 || grantResults[0] == 0) {
-            //Doing something
-        } else {
-            requestStoragePermission();
+        if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+            finish();
         }
     }
     private void showProgress(final boolean show) {

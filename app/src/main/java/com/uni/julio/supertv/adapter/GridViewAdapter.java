@@ -60,8 +60,8 @@ public class GridViewAdapter extends TVRecyclerViewAdapter<GridViewAdapter.MyVie
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((WindowManager)(mContext.getSystemService(Context.WINDOW_SERVICE))).getDefaultDisplay().getMetrics(displayMetrics);
         int screenWidth = displayMetrics.widthPixels;
-        int px=(int)mContext.getResources().getDisplayMetrics().density*32;
-        int width=(screenWidth-24*Integer.parseInt(mContext.getString(R.string.more_video))-px)/Integer.parseInt(mContext.getString(R.string.more_video));
+        int px=(int)mContext.getResources().getDisplayMetrics().density*(int) mContext.getResources().getDimension(R.dimen.dip_4);
+        int width=(screenWidth-16*Integer.parseInt(mContext.getString(R.string.more_video))-px)/Integer.parseInt(mContext.getString(R.string.more_video));
         ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (int) (1.5*width));
         itemView.setLayoutParams(params);
         return new MyViewHolder(mContext,itemView);

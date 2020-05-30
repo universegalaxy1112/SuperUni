@@ -282,6 +282,16 @@ public class ParserJSonFile {
                 if (json_obj.has("HDFondoUrl")) {
                     movie.setHDFondoUrl(json_obj.getString("HDFondoUrl"));
                 }
+
+                if(json_obj.has("Title")) {
+                    String title;
+                    if(movie.getSeasonCountText() != null)
+                        title = json_obj.getString("Title").replace(movie.getSeasonCountText() , "");
+                    else
+                        title = json_obj.getString("Title");
+                    obj.setTitle(title);
+                    obj.setSearchTitle(title);
+                }
             }
             else if(obj instanceof  Episode) {
                 Episode movie = (Episode) obj;

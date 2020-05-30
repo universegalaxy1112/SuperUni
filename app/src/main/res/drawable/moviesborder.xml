@@ -5,10 +5,10 @@
     <item>
         <shape>
             <padding
-                android:bottom="1.2dp"
-                android:left="1.2dp"
-                android:right="1.2dp"
-                android:top="1.2dp" />
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
             <solid android:color="#FFFFFF" />
 
          </shape>
@@ -16,10 +16,10 @@
     <item>
         <shape>
             <padding
-                android:bottom="1.2dp"
-                android:left="1.2dp"
-                android:right="1.2dp"
-                android:top="1.2dp" />
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
 
             <solid android:color="#0548F5FE" />
 

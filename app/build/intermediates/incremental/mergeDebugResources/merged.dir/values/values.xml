@@ -3215,6 +3215,7 @@
     <integer name="mtrl_card_anim_duration_ms">120</integer>
     <integer name="mtrl_chip_anim_duration">100</integer>
     <integer name="mtrl_tab_indicator_anim_duration_ms">250</integer>
+    <integer name="recycler_decoration_padding">8</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="slideEdgeEnd">5</integer>
     <integer name="slideEdgeStart">3</integer>
@@ -3327,7 +3328,7 @@
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="close_session_no_internet">No puedes cerrar sesión sin conexión a internet, por favor verifica que tu conexión este activa.</string>
     <string name="closed">Closed</string>
-    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">4deb72b5-2179-4b95-9a42-b3778961bff2</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">b37db254-ffa2-4c61-ae79-682fcb57b3fc</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>
@@ -3370,7 +3371,7 @@
     <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
     <string name="exception_content">Sorry. There was some issues in internet Connection.</string>
     <string name="exception_title">Please check the internet Connection and Try again.</string>
-    <string name="exit_confirm">Are you sure?</string>
+    <string name="exit_confirm">Estas seguro que quieres salir?</string>
     <string name="exo_controls_fastforward_description">Fast forward</string>
     <string name="exo_controls_fullscreen_description">Fullscreen mode</string>
     <string name="exo_controls_next_description">Next track</string>
@@ -3429,7 +3430,7 @@
     <string name="initFail_retry">Retry</string>
     <string name="init_init">Loading</string>
     <string name="init_selecting">Selecting server</string>
-    <string name="ip_limitation">You have to use the same ip.</string>
+    <string name="ip_limitation">Es necesario usar la misma ip</string>
     <string name="lb_control_display_fast_forward_multiplier">%1$dX</string>
     <string name="lb_control_display_rewind_multiplier">%1$dX</string>
     <string name="lb_guidedaction_continue_title">Continue</string>
@@ -3494,7 +3495,7 @@
     <string name="menu_movies">Movies</string>
     <string name="menu_tvseries">TV SERIES</string>
     <string name="menu_vector_path" translatable="false">M20 30,L80 30,M20 50,L80 50,M20 70,L80 70</string>
-    <string name="more_video">2</string>
+    <string name="more_video">3</string>
     <string name="movies_loading_error">Hubo un error cargando la lista.</string>
     <string name="mr_button_content_description">Cast button</string>
     <string name="mr_cast_button_connected">Cast button. Connected</string>
@@ -3574,6 +3575,8 @@
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="permission_audio">El permiso de Grabado de audio es necesario para hacer búsquedas por reconocimiento de voz.</string>
+    <string name="permission_audio_config">El permiso de Grabado de audio es necesario para hacer búsquedas por reconocimiento de voz. Por favor actívalo desde la configuración de la aplicación.</string>
     <string name="permission_button_allow">Allow microphone access</string>
     <string name="permission_button_reject">No</string>
     <string name="permission_rationale">El permiso de Teléfono es necesario para ligar tu cuenta a tu dispositivo.</string>

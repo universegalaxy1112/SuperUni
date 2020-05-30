@@ -22,7 +22,6 @@ public class DataManager {
     }
 
     private DataManager() {
-        ;//Log.d("DataManager", "DataManager constructor");
         pref = LiveTvApplication.getAppContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         editor = pref.edit();
     }

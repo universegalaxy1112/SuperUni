@@ -27,7 +27,6 @@ public class MainCategoriesMenuViewModel implements MainCategoriesMenuViewModelC
     private MainCategoriesMenuViewModelContract.View viewCallback;
     private Context mContext;
     private MainCategoryAdapter mainCategoryAdapter;
-    private List<MainCategory> mainCategoriesList;
     private GridLayoutManager mLayoutManager;
     public ObservableBoolean isTV;
 
@@ -66,8 +65,7 @@ public class MainCategoriesMenuViewModel implements MainCategoriesMenuViewModelC
     }
     @Override
     public void showMainCategories(TVRecyclerView mainCategoriesRV) {
-        mainCategoriesList = VideoStreamManager.getInstance().getMainCategoriesList();
-        mainCategoryAdapter=new MainCategoryAdapter(mContext, mainCategoriesRV, mainCategoriesList,viewCallback);
+        mainCategoryAdapter=new MainCategoryAdapter(mContext, mainCategoriesRV, viewCallback);
         GridLayoutManager manager = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.maincategory_column_num)));
         if(mContext.getString(R.string.maincategory_direction).equals("0")){
             manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -84,7 +82,6 @@ public class MainCategoriesMenuViewModel implements MainCategoriesMenuViewModelC
 
     @Override
     public void onMainCategorySelected(int position) {
-         viewCallback.onMainCategorySelected(mainCategoriesList.get(position));
+         viewCallback.onMainCategorySelected(VideoStreamManager.getInstance().getMainCategory(position));
     }
-
 }

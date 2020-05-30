@@ -86,7 +86,6 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
                 this.notifyItemChanged(0);
                 this.notifyItemChanged(1);
             }
-
         }catch (Exception e){
             e.printStackTrace();
             Dialogs.showOneButtonDialog(mContext, R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
@@ -170,8 +169,9 @@ public class MoviesCategoryAdapter extends TVRecyclerViewAdapter<MoviesCategoryA
                         }
                     });
                     if (rowsRecycler.getItemDecorationCount() == 0) {
-                        rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(20, 16, 48, 16));
+                        rowsRecycler.addItemDecoration(new RecyclerViewItemDecoration(16, mContext.getResources().getInteger(R.integer.recycler_decoration_padding), 32, mContext.getResources().getInteger(R.integer.recycler_decoration_padding)));
                     }
+
                 }
             }
             holder.getViewDataBinding().executePendingBindings();

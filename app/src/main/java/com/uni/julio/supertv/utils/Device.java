@@ -1,6 +1,4 @@
 package com.uni.julio.supertv.utils;
-
-import android.Manifest;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -11,12 +9,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.uni.julio.supertv.LiveTvApplication;
-import com.uni.julio.supertv.listeners.StringRequestListener;
-import com.uni.julio.supertv.utils.networing.NetManager;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.util.Locale;
 import java.util.Scanner;
@@ -109,21 +101,19 @@ public class Device {
 
     public static String getIdentifier() {
         String id = DataManager.getInstance().getString("deviceIdentifier", "");
-        if (!TextUtils.isEmpty(id) && id.length() >= 6) {
+        /*if (!TextUtils.isEmpty(id) && id.length() >= 6) {
             return id;
         }
 
         TelephonyManager tm = (TelephonyManager) LiveTvApplication.getAppContext().getSystemService(Context.TELEPHONY_SERVICE);
-        /*if (LiveTvApplication.getAppContext().checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        *//*if (LiveTvApplication.getAppContext().checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             id = tm.getDeviceId();
-        }*/
-
+        }*//*
+         */
          if(TextUtils.isEmpty(id) || id.length() < 6) {
             id = UUID.randomUUID().toString();
-
         }
-
         DataManager.getInstance().saveData("deviceIdentifier", id);
 
         return id;
@@ -150,7 +140,5 @@ public class Device {
             return "0.0.1";
         }
     }
-
-
 
 }

@@ -659,6 +659,7 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
             episodePosition = player.getCurrentWindowIndex();
             Intent intent = getActivity().getIntent();
             this.title=intent.getStringExtra("title") == null ? "" : intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + (seasonPosition+1)) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ (episodePosition +1)));
+            Tracking.getInstance().setAction(this.title);
             Tracking.getInstance().track();
         }
     }
