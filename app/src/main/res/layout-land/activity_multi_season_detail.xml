@@ -427,8 +427,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:paddingTop="4dp"
-                app:isAutoProcessFocus="true"
-                app:scrollMode="followScroll"/>
+                app:scrollMode="followScroll"
+                app:focusDrawable="@drawable/moviesborder"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

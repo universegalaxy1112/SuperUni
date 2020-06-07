@@ -23,6 +23,7 @@ import com.uni.julio.supertv.helper.TVRecyclerViewAdapter;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.VideoStream;
+import com.uni.julio.supertv.utils.Device;
 
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class GridViewAdapter extends TVRecyclerViewAdapter<GridViewAdapter.MyVie
         this.mMovies=videoDataList;
         this.mContext=context;
         this.movieSelectedListener=movieSelectedListener;
+        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
+        else
         recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {
@@ -43,13 +46,6 @@ public class GridViewAdapter extends TVRecyclerViewAdapter<GridViewAdapter.MyVie
 
             @Override
             public void onItemViewFocusChanged(boolean gainFocus, View view, int position) {
-                if(view == null) return;
-                if(gainFocus) {
-                    view.findViewById(R.id.fl_main_layout).setBackground(mContext.getResources().getDrawable(R.drawable.moviesborder));
-                }else{
-                    view.findViewById(R.id.fl_main_layout).setBackground(mContext.getResources().getDrawable(R.drawable.md_transparent));
-
-                }
             }
         });
     }

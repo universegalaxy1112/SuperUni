@@ -3,17 +3,11 @@ package com.uni.julio.supertv;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.multidex.MultiDexApplication;
-
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.RenderersFactory;
+/*import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.RenderersFactory;*/
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -29,29 +23,10 @@ import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.networing.NetManager;
-import com.uni.julio.supertv.view.LoginActivity;
-import com.uni.julio.supertv.view.MainActivity;
-import com.uni.julio.supertv.view.OneSeasonDetailActivity;
 import com.uni.julio.supertv.view.SplashActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.OkHttpClient;
-
 
 public class LiveTvApplication extends MultiDexApplication implements StringRequestListener, MessageCallbackListener {
     private static Context applicationContext;
@@ -59,6 +34,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     public Handler handler;
     public static User user = null;
     public static Context appContext=null;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -70,60 +46,16 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                 handler.postDelayed(this, 600000);
             }
         }, 600000);
-
-    }
-    public  void handleSSLHandshake() {
-        try {
-            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-
-                @Override
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-                @Override
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-            }};
-
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-            // Create an ssl socket factory with our all-trusting manager
-            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-            // trustAllCerts信任所有的证书
-            sslContext.init(null, trustAllCerts, new SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.readTimeout(60, TimeUnit.SECONDS);
-            builder.connectTimeout(30, TimeUnit.SECONDS);
-            builder.writeTimeout(30, TimeUnit.SECONDS);
-            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0]);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-
-        } catch (Exception ignored) {
-        }
     }
 
     public void performLogin(){
-
-        if( appContext != null && !(appContext instanceof SplashActivity)){
-            NetManager.getInstance().performLoginCode(LiveTvApplication.getUser().getName(),user.getPassword(), user.getDeviceId(),this);
+        if( appContext != null && !(appContext instanceof SplashActivity) && LiveTvApplication.getUser() != null){
+            NetManager.getInstance().performLoginCode(LiveTvApplication.getUser().getName(),LiveTvApplication.getUser().getPassword(), LiveTvApplication.getUser().getDeviceId(),this);
         }
     }
 
     public static User getUser(){
+
         if(LiveTvApplication.user == null){
             String theUser = DataManager.getInstance().getString("theUser","");
             if(!TextUtils.isEmpty(theUser)) {
@@ -131,7 +63,9 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
             }
         }
         return LiveTvApplication.user;
+
     }
+
     public static Context getAppContext() {
         return applicationContext;
     }
@@ -148,7 +82,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     }
 
 
-    public RenderersFactory buildRenderersFactory(boolean preferExtensionRenderer) {
+   /* public RenderersFactory buildRenderersFactory(boolean preferExtensionRenderer) {
         @DefaultRenderersFactory.ExtensionRendererMode
         int extensionRendererMode =
                 useExtensionRenderers()
@@ -156,9 +90,9 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                         ? DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER
                         : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
                         : DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF;
-        return new DefaultRenderersFactory(/* context= */ this)
+        return new DefaultRenderersFactory(*//* context= *//* this)
                 .setExtensionRendererMode(extensionRendererMode);
-    }
+    }*/
 
     public boolean useExtensionRenderers() {
         return BuildConfig.FLAVOR.equals("withExtensions");
@@ -172,14 +106,14 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
-                            user.setAdultos(jsonObject.getInt("adultos"));
+                            LiveTvApplication.getUser().setAdultos(jsonObject.getInt("adultos"));
                         }else{
                             Tracking.getInstance().enableTrack(false);
                             String errorFound = jsonObject.getString("error_found");
                             switch (errorFound) {
                                 case "103":
                                 case "104":
-                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_change_device).replace("{ID}", user.getDeviceId()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_change_device).replace("{ID}", LiveTvApplication.getUser().getDeviceId()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -188,7 +122,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 //
                                     break;
                                 case "105":
-                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", user.getDeviceId()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", LiveTvApplication.getUser().getDeviceId()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -196,7 +130,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                     });
                                     break;
                                 case "107":
-                                    Dialogs.showCustomDialog(appContext,appContext.getString(R.string.attention),"Dear "+user.getName()+", Your Membership is expired! Please extend your membership.",this);
+                                    Dialogs.showCustomDialog(appContext,appContext.getString(R.string.attention),"Dear "+LiveTvApplication.getUser().getName()+", Your Membership is expired! Please extend your membership.",this);
                                      break;
                                 case "108": {
                                     closeApp();
@@ -212,11 +146,12 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
                                 }
                                 break;
                                 default:
-                                    Dialogs.showCustomDialog(appContext,appContext.getString(R.string.attention),"Dear "+user.getName()+", Your account is inactive due to some problems. Please contact the support.",this);
+                                    Dialogs.showCustomDialog(appContext,appContext.getString(R.string.attention),"Dear "+ LiveTvApplication.getUser().getName()+", Your account is inactive due to some problems. Please contact the support.",this);
                                     break;
                             }
                         }
                     } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
                 }
@@ -224,7 +159,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
             }
 
         }catch (NullPointerException e){
-
+           e.printStackTrace();
         }
     }
     public void closeApp(){

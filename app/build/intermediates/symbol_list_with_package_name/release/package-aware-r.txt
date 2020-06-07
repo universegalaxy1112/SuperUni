@@ -645,6 +645,7 @@ attr insetForeground
 attr is24HourFormat
 attr isAutoProcessFocus
 attr isLightTheme
+attr isLive
 attr isMaterialTheme
 attr isPreferenceVisible
 attr itemBackground
@@ -6898,8 +6899,6 @@ id pizza
 id placeholder
 id plane_shield
 id play
-id playHD
-id playSD
 id play_box_outline
 id play_circle
 id play_circle_outline
@@ -7970,7 +7969,6 @@ layout cast_intro_overlay
 layout cast_mini_controller
 layout cast_tracks_chooser_dialog_layout
 layout cast_tracks_chooser_dialog_row_layout
-layout castasklayout
 layout castloadingdialog
 layout custom_dialog
 layout default_suggestion_item
@@ -8204,6 +8202,8 @@ raw lb_voice_failure
 raw lb_voice_no_input
 raw lb_voice_open
 raw lb_voice_success
+raw superteve
+raw supertvplus
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -9684,7 +9684,7 @@ styleable TextInputLayout android_textColorHint android_hint boxBackgroundColor 
 styleable ThemeEnforcement android_textAppearance enforceMaterialTheme enforceTextAppearance
 styleable TintableImageView tint
 styleable Toolbar android_gravity android_minHeight buttonGravity collapseContentDescription collapseIcon contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation logo logoDescription maxButtonHeight menu navigationContentDescription navigationIcon popupTheme subtitle subtitleTextAppearance subtitleTextColor title titleMargin titleMarginBottom titleMarginEnd titleMarginStart titleMarginTop titleMargins titleTextAppearance titleTextColor
-styleable TvRecyclerView focusDrawable focusScale isAutoProcessFocus scrollMode
+styleable TvRecyclerView focusDrawable focusScale isAutoProcessFocus isLive scrollMode
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation

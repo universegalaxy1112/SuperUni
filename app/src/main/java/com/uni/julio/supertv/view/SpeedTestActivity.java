@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SpeedTestActivity extends AppCompatActivity {
@@ -58,9 +59,14 @@ public class SpeedTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mapValue != null && mapValue.size() > 0) {
-                    Intent launchIntent = new Intent(getBaseContext(),SelectServerActivity.class);
-                    launchIntent.putExtra("SERVERS", mapValue);
-                    startActivityForResult(launchIntent,100);
+                    try{
+                        Intent launchIntent = new Intent(getBaseContext(),SelectServerActivity.class);
+                        launchIntent.putExtra("SERVERS", mapValue);
+                        startActivityForResult(launchIntent,100);
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }else{
                     serverLoaded = false;
                     startButton.setEnabled(true);
@@ -116,6 +122,8 @@ public class SpeedTestActivity extends AppCompatActivity {
                                     return;
                                 }
                             }
+
+                            if(getSpeedTestHostsHandler == null) return;
                             mapKey = getSpeedTestHostsHandler.getMapKey();
                             mapValue = getSpeedTestHostsHandler.getMapValue();
                             //Find closest server
@@ -223,7 +231,7 @@ public class SpeedTestActivity extends AppCompatActivity {
 
                             //Init Test
                             final PingTest pingTest = new PingTest(info.get(6).replace(":8080", ""), 6);
-                            final HttpDownloadTest downloadTest = new HttpDownloadTest(uploadAddr.replace(uploadAddr.split("/")[uploadAddr.split("/").length - 1], ""));
+                            final HttpDownloadTest downloadTest = new HttpDownloadTest(Objects.requireNonNull(uploadAddr).replace(uploadAddr.split("/")[uploadAddr.split("/").length - 1], ""));
                             final HttpUploadTest uploadTest = new HttpUploadTest(uploadAddr);
 
 
@@ -366,11 +374,13 @@ public class SpeedTestActivity extends AppCompatActivity {
                                     try {
                                         Thread.sleep(300);
                                     } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
                                 } else {
                                     try {
                                         Thread.sleep(100);
                                     } catch (InterruptedException e) {
+                                        e.printStackTrace();
                                     }
                                 }
                             }

@@ -22,6 +22,7 @@ public class LivetvnewListBindingImpl extends LivetvnewListBinding  {
     // variables
     // values
     // listeners
+    private OnClickListenerImpl mLivetvAdapterOnClickAndroidViewViewOnClickListener;
     // Inverse Binding Event Handlers
 
     public LivetvnewListBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
@@ -49,7 +50,7 @@ public class LivetvnewListBindingImpl extends LivetvnewListBinding  {
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x2L;
+                mDirtyFlags = 0x4L;
         }
         requestRebind();
     }
@@ -67,7 +68,10 @@ public class LivetvnewListBindingImpl extends LivetvnewListBinding  {
     @Override
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
-        if (BR.liveProgramItem == variableId) {
+        if (BR.livetvAdapter == variableId) {
+            setLivetvAdapter((com.uni.julio.supertv.adapter.LivetvAdapterNew) variable);
+        }
+        else if (BR.liveProgramItem == variableId) {
             setLiveProgramItem((com.uni.julio.supertv.model.LiveProgram) variable);
         }
         else {
@@ -76,10 +80,18 @@ public class LivetvnewListBindingImpl extends LivetvnewListBinding  {
             return variableSet;
     }
 
+    public void setLivetvAdapter(@Nullable com.uni.julio.supertv.adapter.LivetvAdapterNew LivetvAdapter) {
+        this.mLivetvAdapter = LivetvAdapter;
+        synchronized(this) {
+            mDirtyFlags |= 0x1L;
+        }
+        notifyPropertyChanged(BR.livetvAdapter);
+        super.requestRebind();
+    }
     public void setLiveProgramItem(@Nullable com.uni.julio.supertv.model.LiveProgram LiveProgramItem) {
         this.mLiveProgramItem = LiveProgramItem;
         synchronized(this) {
-            mDirtyFlags |= 0x1L;
+            mDirtyFlags |= 0x2L;
         }
         notifyPropertyChanged(BR.liveProgramItem);
         super.requestRebind();
@@ -99,40 +111,68 @@ public class LivetvnewListBindingImpl extends LivetvnewListBinding  {
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
-        java.lang.String liveProgramItemEpgAhora = null;
+        android.view.View.OnClickListener livetvAdapterOnClickAndroidViewViewOnClickListener = null;
         java.lang.String liveProgramItemEpgDespues = null;
+        java.lang.String liveProgramItemEpgAhora = null;
         java.lang.String liveProgramItemTitle = null;
+        com.uni.julio.supertv.adapter.LivetvAdapterNew livetvAdapter = mLivetvAdapter;
         com.uni.julio.supertv.model.LiveProgram liveProgramItem = mLiveProgramItem;
 
-        if ((dirtyFlags & 0x3L) != 0) {
+        if ((dirtyFlags & 0x5L) != 0) {
+
+
+
+                if (livetvAdapter != null) {
+                    // read livetvAdapter::onClick
+                    livetvAdapterOnClickAndroidViewViewOnClickListener = (((mLivetvAdapterOnClickAndroidViewViewOnClickListener == null) ? (mLivetvAdapterOnClickAndroidViewViewOnClickListener = new OnClickListenerImpl()) : mLivetvAdapterOnClickAndroidViewViewOnClickListener).setValue(livetvAdapter));
+                }
+        }
+        if ((dirtyFlags & 0x6L) != 0) {
 
 
 
                 if (liveProgramItem != null) {
-                    // read liveProgramItem.epg_ahora
-                    liveProgramItemEpgAhora = liveProgramItem.getEpg_ahora();
                     // read liveProgramItem.epg_despues
                     liveProgramItemEpgDespues = liveProgramItem.getEpg_despues();
+                    // read liveProgramItem.epg_ahora
+                    liveProgramItemEpgAhora = liveProgramItem.getEpg_ahora();
                     // read liveProgramItem.title
                     liveProgramItemTitle = liveProgramItem.getTitle();
                 }
         }
         // batch finished
-        if ((dirtyFlags & 0x3L) != 0) {
+        if ((dirtyFlags & 0x6L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.channelTitleText, liveProgramItemTitle);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.nextProgramText, liveProgramItemEpgDespues);
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.nowPlayingText, liveProgramItemEpgAhora);
         }
+        if ((dirtyFlags & 0x5L) != 0) {
+            // api target 1
+
+            this.flMainLayout.setOnClickListener(livetvAdapterOnClickAndroidViewViewOnClickListener);
+        }
     }
     // Listener Stub Implementations
+    public static class OnClickListenerImpl implements android.view.View.OnClickListener{
+        private com.uni.julio.supertv.adapter.LivetvAdapterNew value;
+        public OnClickListenerImpl setValue(com.uni.julio.supertv.adapter.LivetvAdapterNew value) {
+            this.value = value;
+            return value == null ? null : this;
+        }
+        @Override
+        public void onClick(android.view.View arg0) {
+            this.value.onClick(arg0); 
+        }
+    }
     // callback impls
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): liveProgramItem
-        flag 1 (0x2L): null
+        flag 0 (0x1L): livetvAdapter
+        flag 1 (0x2L): liveProgramItem
+        flag 2 (0x3L): null
     flag mapping end*/
     //end
 }

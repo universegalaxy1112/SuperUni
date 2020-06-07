@@ -21,7 +21,6 @@ import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
-import com.uni.julio.supertv.utils.networing.HttpRequest;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.SplashViewModel;
 import com.uni.julio.supertv.viewmodel.SplashViewModelContract;
@@ -46,7 +45,6 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Device.setHDMIStatus();
-        HttpRequest.getInstance().trustAllHosts();//trust all HTTPS hosts
         splashViewModel = new SplashViewModel(this);
         setContentView(R.layout.activity_splash);
     }

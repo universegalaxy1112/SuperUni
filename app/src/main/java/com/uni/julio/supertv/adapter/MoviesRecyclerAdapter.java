@@ -20,6 +20,8 @@ import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.model.ImageResponse;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.VideoStream;
+import com.uni.julio.supertv.utils.Device;
+
 import java.util.List;
 
 public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerAdapter.MyViewHolder> {
@@ -34,6 +36,8 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
         this.mRowPosition=rowPosition;
         this.movieSelectedListener=movieSelectedListener;
         this.recyclerView=recyclerView;
+        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
+
     }
     @NonNull
     @Override

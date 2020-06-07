@@ -12,10 +12,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\live_bg_middle.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_player_control_view.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\exo_player_control_view.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_castloadingdialog.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\castloadingdialog.xml"
     },
@@ -72,16 +68,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\video_player_list_divider.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\raw_horizonal_regular.json.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\horizonal_regular.json"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_search_tv.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_search_tv.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_castasklayout.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\castasklayout.xml"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\raw_horizonal_regular.json.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\horizonal_regular.json"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_like_active_focused.xml.flat",
@@ -104,12 +96,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\livetv_bottombar.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_like_active_unfocused.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\button_like_active_unfocused.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_video_play.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_video_play.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_like_active_unfocused.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\button_like_active_unfocused.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bar.png.flat",
@@ -128,12 +120,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\recycler_border.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_login.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_login.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_resolution_button.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\resolution_button.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_login.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_login.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_allbtnbackground.xml.flat",
@@ -236,12 +228,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\setting.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_primary_button_selector.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-xxhdpi-v4\\primary_button_selector.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dislike_normal.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\dislike_normal.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_primary_button_selector.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-xxhdpi-v4\\primary_button_selector.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_favorite_normal.xml.flat",
@@ -252,20 +244,20 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\resolution_normal.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_gradient_background.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-xhdpi-v4\\gradient_background.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_card_shadow.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\card_shadow.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_movies_tv.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_movies_tv.xml"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_gradient_background.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-xhdpi-v4\\gradient_background.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_anim_scale_big.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\anim\\anim_scale_big.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_movies_tv.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_movies_tv.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_background.xml.flat",
@@ -280,12 +272,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\gridview_row.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_program_item.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\background_program_item.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4_ic_launcher.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\mipmap-xhdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_program_item.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\background_program_item.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_search.xml.flat",
@@ -308,16 +300,20 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\entertainment.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\raw_superteve.pem.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\superteve.pem"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_adults.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\adults.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_textview_selector.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\color\\textview_selector.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_like_normal.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\button_like_normal.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_textview_selector.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\color\\textview_selector.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-large_activity_movies.xml.flat",
@@ -328,16 +324,16 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\placeholder.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_multiseason_row.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\multiseason_row.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_exo_player_controller_background.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\exo_player_controller_background.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_live_category_list.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\live_category_list.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_multiseason_row.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\multiseason_row.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_top.png.flat",
@@ -352,12 +348,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_morevideo.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_multi_season_detail.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_multi_season_detail.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mark_img1.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\mark_img1.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_multi_season_detail.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_multi_season_detail.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_dialog_btn_background.xml.flat",
@@ -428,12 +424,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\mipmap-mdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_out.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\anim\\right_out.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_movies_bg.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\movies_bg.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_out.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\anim\\right_out.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_anim_scale_small.xml.flat",
@@ -472,10 +468,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_search_black_24dp.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_default_focus.9.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-mdpi-v4\\default_focus.9.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_reportlayout.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\reportlayout.xml"
     },
@@ -496,12 +488,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\menu\\expanded_controller.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_livetv_border.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\livetv_border.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_show_img.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\dialog_show_img.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_livetv_border.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\livetv_border.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_selectserver.xml.flat",
@@ -512,20 +504,20 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_more_horiz_red_24dp.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_loading_white_outter_img.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_loading_white_outter_img.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_playbuttonbg.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\playbuttonbg.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_trailer.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_trailer.xml"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_loading_white_outter_img.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_loading_white_outter_img.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_lb_rows_fragment.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\lb_rows_fragment.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_trailer.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_trailer.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_eventos.png.flat",
@@ -552,12 +544,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-v23\\notification_collapsed.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_autorenew_red_24dp.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_autorenew_red_24dp.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_multi_season_detail.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\activity_multi_season_detail.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_autorenew_red_24dp.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_autorenew_red_24dp.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
@@ -712,12 +704,16 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\dislike_active.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\menu\\main.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_series.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\series.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\raw_supertvplus.pem.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\supertvplus.pem"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\menu\\main.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_autorenew_white_24dp.xml.flat",
@@ -726,6 +722,14 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_like_normal_unfocused.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\button_like_normal_unfocused.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_default_focus.9.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\default_focus.9.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_player_control_viewa.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\exo_player_control_viewa.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_channel.png.flat",

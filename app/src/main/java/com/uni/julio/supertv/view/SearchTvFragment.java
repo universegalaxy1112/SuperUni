@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +18,6 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.leanback.app.BackgroundManager;
-import androidx.leanback.app.SearchFragment;
 import androidx.leanback.app.SearchSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
@@ -53,11 +51,10 @@ import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 
-import java.net.URI;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -66,15 +63,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class SearchTvFragment extends SearchSupportFragment implements  SearchSupportFragment.SearchResultProvider {
-    public static final int DENIED = 1;
-    public static final int GRANTED = 0;
     private static final int REQUEST_RECORD_AUDIO_STATE = 4;
     private static final int REQUEST_SPEECH = 16;
-    boolean denyAll = false;
-    public BackgroundManager mBackgroundManager;
-    public MainCategory mMainCategory;
-    private DisplayMetrics mMetrics;
-    public ArrayObjectAdapter mRowsAdapter;
+    private boolean denyAll = false;
+    private BackgroundManager mBackgroundManager;
+    private MainCategory mMainCategory;
+    private ArrayObjectAdapter mRowsAdapter;
     protected int mainCategoryId;
     public List<? extends VideoStream> movies;
     private Pattern pattern;
@@ -104,7 +98,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                         extras2.putString("movie", new Gson().toJson(movie));
                         extras2.putInt("mainCategoryId", SearchTvFragment.this.mainCategoryId);
                         launchActivity(OneSeasonDetailActivity.class, extras2);
-                        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                        Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.right_in, R.anim.left_out);
                     }
                 }
             }
@@ -126,7 +120,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .putExtra("title", movie.getTitle())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        ActivityCompat.startActivityForResult(getActivity(), launchIntent, 100, null);
+        ActivityCompat.startActivityForResult(Objects.requireNonNull(getActivity()), launchIntent, 100, null);
     }
 
     private final class ItemViewSelectedListener implements OnItemViewSelectedListener {
@@ -151,8 +145,8 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras = getActivity().getIntent().getExtras();
-        this.selectedType = (ModelTypes.SelectedType) extras.get("selectedType");
+        Bundle extras = Objects.requireNonNull(getActivity()).getIntent().getExtras();
+        this.selectedType = (ModelTypes.SelectedType) Objects.requireNonNull(extras).get("selectedType");
         this.mainCategoryId = extras.getInt("mainCategoryId", 0);
         this.mMainCategory = new MainCategory();
         switch (this.mainCategoryId) {
@@ -185,7 +179,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
         setSearchResultProvider(this);
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
         setOnItemViewClickedListener(new ItemViewClickedListener());
-        if (getPermissionStatus("android.permission.RECORD_AUDIO") == 0) {
+        if (getPermissionStatus() == 0) {
             setupAudioRecognition();
         }
 
@@ -194,7 +188,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
 
     @Override
     public void startRecognition() {
-        if (getPermissionStatus("android.permission.RECORD_AUDIO") == 0) {
+        if (getPermissionStatus() == 0) {
             super.startRecognition();
         } else {
             requestRecordAudioPermission();
@@ -202,14 +196,14 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
     }
 
     public void closeKeyboard() {
-        getActivity().getWindow().setSoftInputMode(2);
+        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(2);
     }
 
-    public void launchActivity(Class classToLaunch, Bundle extras) {
+    private void launchActivity(Class classToLaunch, Bundle extras) {
         Intent launchIntent = new Intent(getActivity(), classToLaunch);
         launchIntent.putExtras(extras);
         startActivityForResult(launchIntent, 100);
-        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     @Override
@@ -229,6 +223,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
 
     @Override
     public boolean onQueryTextSubmit(final String query) {
+        Objects.requireNonNull(getActivity()).findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         LiveTVServicesManual.searchVideo(mMainCategory,removeSpecialChars(query),45)
                 .delay(2, TimeUnit.SECONDS, Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -239,40 +234,62 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                     }
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("error","error");
-                        Toast.makeText(getActivity(), R.string.time_out, Toast.LENGTH_SHORT).show();
+                        try{
+                            if(getActivity() != null) {
+                                Objects.requireNonNull(getActivity()).findViewById(R.id.progressBar).setVisibility(View.GONE);
+                                Log.d("error","error");
+                                Toast.makeText(getActivity(), R.string.time_out, Toast.LENGTH_SHORT).show();
+                            }
+
+                        }catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+
                     }
                     @Override
                     public void onNext(List<? extends VideoStream> videos) {
-                        movies = videos;
-                        if(movies.size() < 1){
-                            Dialogs.showTwoButtonsDialog(getActivity(), R.string.ok_dialog,R.string.cancel,R.string.title_order_message, new DialogListener() {
+                        if(getActivity() != null) {
+                            Objects.requireNonNull(getActivity()).findViewById(R.id.progressBar).setVisibility(View.GONE);
+                            movies = videos;
+                            if(movies.size() < 1){
+                                Dialogs.showTwoButtonsDialog(getActivity(), R.string.ok_dialog,R.string.cancel,R.string.title_order_message, new DialogListener() {
 
-                                @Override
-                                public void onAccept() {
-                                   sendOrder(query);
-                                }
+                                    @Override
+                                    public void onAccept() {
+                                        sendOrder(query);
+                                    }
 
-                                @Override
-                                public void onCancel() {
+                                    @Override
+                                    public void onCancel() {
 
-                                }
+                                    }
 
-                                @Override
-                                public void onDismiss() {
+                                    @Override
+                                    public void onDismiss() {
 
-                                }
-                            });
-                            return;
+                                    }
+                                });
+                                return;
+                            }
+                            SearchTvFragment.this.mRowsAdapter.clear();
+                            SearchTvFragment.this.movies = videos;
+                            ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter( new MoviesPresenter(SearchTvFragment.this.getActivity().getApplicationContext()));
+                            listRowAdapter.addAll(0, SearchTvFragment.this.movies);
+                            SearchTvFragment.this.mRowsAdapter.add(new ListRow(new HeaderItem("Resultados"), listRowAdapter));
                         }
-                        SearchTvFragment.this.mRowsAdapter.clear();
-                        SearchTvFragment.this.movies = videos;
-                        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter( new MoviesPresenter(SearchTvFragment.this.getActivity().getApplicationContext()));
-                        listRowAdapter.addAll(0, SearchTvFragment.this.movies);
-                        SearchTvFragment.this.mRowsAdapter.add(new ListRow(new HeaderItem("Resultados"), listRowAdapter));
                     }
                 });
-        return false;
+            return false;
+    }
+
+    @Override
+    public void onPause() {
+        try{
+            super.onPause();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void sendOrder(String query){
@@ -292,28 +309,28 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
     }
 
 
-    public void requestRecordAudioPermission() {
-        if (Build.VERSION.SDK_INT < 23 || getPermissionStatus("android.permission.RECORD_AUDIO") == 0) {
+    private void requestRecordAudioPermission() {
+        if (Build.VERSION.SDK_INT < 23 || getPermissionStatus() == 0) {
             return;
         }
         this.denyAll = false;
         int accept = R.string.accept;
         int message = R.string.permission_audio;
-        if (getPermissionStatus("android.permission.RECORD_AUDIO") == 2) {
+        if (getPermissionStatus() == 2) {
             this.denyAll = true;
             accept = R.string.config;
             message = R.string.permission_audio_config;
         }
-        Dialogs.showTwoButtonsDialog(getActivity(), accept, (int) R.string.cancel, message, (DialogListener) new DialogListener() {
+        Dialogs.showTwoButtonsDialog(getActivity(), accept,  R.string.cancel, message,  new DialogListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             public void onAccept() {
                 if (!SearchTvFragment.this.denyAll) {
-                    DataManager.getInstance().saveData("audioPermissionRequested", Boolean.valueOf(true));
+                    DataManager.getInstance().saveData("audioPermissionRequested", Boolean.TRUE);
                     SearchTvFragment.this.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, REQUEST_RECORD_AUDIO_STATE);
                     return;
                 }
                 Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                intent.setData(Uri.fromParts("package", SearchTvFragment.this.getActivity().getPackageName(), null));
+                intent.setData(Uri.fromParts("package", Objects.requireNonNull(SearchTvFragment.this.getActivity()).getPackageName(), null));
                 SearchTvFragment.this.startActivityForResult(intent, 4169);
             }
 
@@ -327,11 +344,11 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
         });
     }
 
-    public int getPermissionStatus(String androidPermissionName) {
-        if (ContextCompat.checkSelfPermission(getActivity(), androidPermissionName) == 0) {
+    private int getPermissionStatus() {
+        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), "android.permission.RECORD_AUDIO") == 0) {
             return 0;
         }
-        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), androidPermissionName) || !DataManager.getInstance().getBoolean("recordingPermissionRequested", false)) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), "android.permission.RECORD_AUDIO") || !DataManager.getInstance().getBoolean("recordingPermissionRequested", false)) {
             return 1;
         }
         return 2;
@@ -347,7 +364,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                 }
                 return;
             case 4169:
-                if (getPermissionStatus("android.permission.RECORD_AUDIO") == 0) {
+                if (getPermissionStatus() == 0) {
                     setupAudioRecognition();
                     return;
                 }
@@ -358,12 +375,12 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_RECORD_AUDIO_STATE && getPermissionStatus("android.permission.RECORD_AUDIO") == 0) {
+        if (requestCode == REQUEST_RECORD_AUDIO_STATE && getPermissionStatus() == 0) {
             setupAudioRecognition();
         }
     }
 
-    public void setupAudioRecognition() {
+    private void setupAudioRecognition() {
         setSpeechRecognitionCallback(new SpeechRecognitionCallback() {
             public void recognizeSpeech() {
                 try {
@@ -411,11 +428,16 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
     }
 
     private void prepareBackgroundManager() {
-        this.mBackgroundManager = BackgroundManager.getInstance(getActivity());
-        this.mBackgroundManager.attach(getActivity().getWindow());
-        this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.detail_background));
-        this.mMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(this.mMetrics);
+        try{
+            this.mBackgroundManager = BackgroundManager.getInstance(Objects.requireNonNull(getActivity()));
+            this.mBackgroundManager.attach(getActivity().getWindow());
+            this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.detail_background));
+            DisplayMetrics mMetrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

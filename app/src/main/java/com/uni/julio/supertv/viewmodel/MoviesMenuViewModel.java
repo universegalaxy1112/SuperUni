@@ -25,6 +25,7 @@ import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.view.BaseActivity;
 import com.uni.julio.supertv.view.LoadingActivity;
 import com.uni.julio.supertv.view.OneSeasonDetailActivity;
@@ -65,6 +66,8 @@ public class MoviesMenuViewModel implements MoviesMenuViewModelContract.ViewMode
 
     @Override
     public void showMovieLists(TVRecyclerView categoriesRecyclerview, int mainCategoryPosition) {
+        if(!Device.canTreatAsBox()) categoriesRecyclerview.setIsAutoProcessFocus(false);
+
         List<MovieCategory> mMoviesList = VideoStreamManager.getInstance().getMainCategory(mainCategoryPosition).getMovieCategories();
         moviesCategoryAdapter =new MoviesCategoryAdapter(mContext, mMoviesList, mainCategoryPosition,this,this);
         this.mainCategoryPosition = mainCategoryPosition;

@@ -12,6 +12,7 @@ import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.adapter.LivetvAdapterNew;
 import com.uni.julio.supertv.model.LiveProgram;
 import java.lang.Deprecated;
 import java.lang.Object;
@@ -41,6 +42,9 @@ public abstract class LivetvnewListBinding extends ViewDataBinding {
   @Bindable
   protected LiveProgram mLiveProgramItem;
 
+  @Bindable
+  protected LivetvAdapterNew mLivetvAdapter;
+
   protected LivetvnewListBinding(Object _bindingComponent, View _root, int _localFieldCount,
       LinearLayout channelTitle, TextView channelTitleText, LinearLayout flMainLayout,
       LinearLayout nextProgram, TextView nextProgramText, LinearLayout nowPlaying,
@@ -60,6 +64,13 @@ public abstract class LivetvnewListBinding extends ViewDataBinding {
   @Nullable
   public LiveProgram getLiveProgramItem() {
     return mLiveProgramItem;
+  }
+
+  public abstract void setLivetvAdapter(@Nullable LivetvAdapterNew livetvAdapter);
+
+  @Nullable
+  public LivetvAdapterNew getLivetvAdapter() {
+    return mLivetvAdapter;
   }
 
   @NonNull

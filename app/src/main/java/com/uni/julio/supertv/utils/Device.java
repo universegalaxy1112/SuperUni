@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import com.uni.julio.supertv.LiveTvApplication;
 import java.io.File;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -47,16 +48,13 @@ public class Device {
         } catch (Exception e) {
             treatAsBox = false;
         }
-
-        if (treatAsBox == false) {
-            if (LiveTvApplication.getAppContext().getPackageManager().hasSystemFeature("android.software.live_tv")) {
-                treatAsBox = true;
-            }
-        }
-        if (((UiModeManager) LiveTvApplication.getAppContext().getSystemService(Context.UI_MODE_SERVICE)).getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION && !treatAsBox) {
+        if (LiveTvApplication.getAppContext().getPackageManager().hasSystemFeature("android.software.live_tv")) {
             treatAsBox = true;
         }
-        if (!LiveTvApplication.getAppContext().getPackageManager().hasSystemFeature("android.hardware.touchscreen") && !treatAsBox) {
+        if (((UiModeManager) Objects.requireNonNull(LiveTvApplication.getAppContext().getSystemService(Context.UI_MODE_SERVICE))).getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
+            treatAsBox = true;
+        }
+        if (!LiveTvApplication.getAppContext().getPackageManager().hasSystemFeature("android.hardware.touchscreen")) {
             treatAsBox = true;
         }
      }

@@ -10,6 +10,7 @@
     android:id="@+id/fl_main_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:onClick="@{serverAdapter::onClickItem}">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,8 +20,7 @@
         android:paddingEnd="@dimen/dip_12"
         android:paddingTop="@dimen/dip_4"
         android:paddingBottom="@dimen/dip_4"
-        android:background="@color/card_bg"
-        >
+        android:background="@color/card_bg">
 
         <TextView
             android:id="@+id/serverName"
@@ -51,6 +51,10 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/divider"/>
 </LinearLayout>
 
 </layout>

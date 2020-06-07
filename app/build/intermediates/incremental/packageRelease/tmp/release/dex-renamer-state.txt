@@ -1,4 +1,4 @@
-#Fri May 29 23:48:07 CST 2020
+#Mon Jun 08 02:00:59 CST 2020
 base.0=E\:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\dex\\release\\out\\classes.dex
 path.1=classes2.dex
 renamed.1=classes2.dex

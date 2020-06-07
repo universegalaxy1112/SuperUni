@@ -69,7 +69,7 @@ boolean denyAll = false;
                             user.setName(email);
                             user.setPassword(password);
                             user.setUser_agent(userAgent);
-                            user.setExpiration_date((String) jsonObject.getString("expire_date"));
+                            user.setExpiration_date( jsonObject.getString("expire_date"));
                             user.setDevice(Device.getModel() + " - " + Device.getFW());
                             user.setVersion(Device.getVersion());
                             user.setDeviceId(Device.getIdentifier());

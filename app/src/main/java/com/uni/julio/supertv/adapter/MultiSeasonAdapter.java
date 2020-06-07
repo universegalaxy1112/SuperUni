@@ -24,6 +24,8 @@ import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.listeners.MovieSelectedListener;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.VideoStream;
+import com.uni.julio.supertv.utils.Device;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,7 @@ public class MultiSeasonAdapter extends RecyclerView.Adapter<MultiSeasonAdapter.
         this.mContext=context;
         this.movieSelectedListener=movieSelectedListener;
         this.recyclerView=recyclerView;
+        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
         this.recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {
@@ -49,12 +52,12 @@ public class MultiSeasonAdapter extends RecyclerView.Adapter<MultiSeasonAdapter.
 
             @Override
             public void onItemViewFocusChanged(boolean gainFocus, View view, int position) {
-                if(view == null) return;
+                /*if(view == null) return;
                 if(gainFocus) {
                     view.findViewById(R.id.fl_main_layout).setBackground(mContext.getResources().getDrawable(R.drawable.moviesborder));
                 }else{
                     view.findViewById(R.id.fl_main_layout).setBackground(mContext.getResources().getDrawable(R.drawable.md_transparent));
-                }
+                }*/
             }
         });
     }

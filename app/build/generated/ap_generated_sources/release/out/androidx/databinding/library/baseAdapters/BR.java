@@ -23,21 +23,23 @@ public class BR {
 
   public static final int liveTVFragmentVM = 10;
 
-  public static final int movieCategory = 11;
+  public static final int livetvAdapter = 11;
 
-  public static final int movieDetailItem = 12;
+  public static final int movieCategory = 12;
 
-  public static final int movieDetailsVM = 13;
+  public static final int movieDetailItem = 13;
 
-  public static final int moviesAdapter = 14;
+  public static final int movieDetailsVM = 14;
 
-  public static final int moviesGridFragmentVM = 15;
+  public static final int moviesAdapter = 15;
 
-  public static final int moviesMenuFragmentVM = 16;
+  public static final int moviesGridFragmentVM = 16;
 
-  public static final int moviesMenuItem = 17;
+  public static final int moviesMenuFragmentVM = 17;
 
-  public static final int serverAdapter = 18;
+  public static final int moviesMenuItem = 18;
 
-  public static final int user = 19;
+  public static final int serverAdapter = 19;
+
+  public static final int user = 20;
 }

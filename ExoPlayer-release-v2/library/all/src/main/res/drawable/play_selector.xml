@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="false" android:src="@drawable/exo_controls_play" />
+    <item android:state_focused="false" android:src="@drawable/exo_controls_play" />
+    <item android:state_selected="true" android:src="@drawable/exo_controls_play"
+        android:background="@android:color/holo_blue_light"
+        />
+    <item android:state_focused="true" android:src="@drawable/exo_controls_play"
+        android:background="@android:color/holo_blue_light"
+        />
+    <item android:drawable="@android:color/transparent" />
+</selector>

@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <base-config cleartextTrafficPermitted="true">
+    <base-config cleartextTrafficPermitted="false">
         <trust-anchors>
             <certificates src="system" />
+            <certificates src="@raw/supertvplus"/>
+            <certificates src="@raw/superteve"/>
         </trust-anchors>
     </base-config>
+    <domain-config>
+        <domain includeSubdomains="true">supertvplus.com</domain>
+        <domain includeSubdomains="true">superteve.com</domain>
+        <trust-anchors>
+            <certificates src="system"/>
+            <certificates src="@raw/supertvplus"/>
+            <certificates src="@raw/superteve"/>
+        </trust-anchors>
+    </domain-config>
 </network-security-config>

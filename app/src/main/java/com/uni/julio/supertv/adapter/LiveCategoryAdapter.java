@@ -33,7 +33,9 @@ public class LiveCategoryAdapter extends TVRecyclerViewAdapter<LiveCategoryAdapt
         mContext=context;
         this.categories=categories;
         this.liveTVCategorySelectedListener=liveTVCategorySelectedListener;
+        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
         recyclerView.setSelectedScale(1.0f);
+        recyclerView.setLive(true);
         recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {

@@ -14,15 +14,17 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.uni.julio.supertv.BR;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.helper.TVRecyclerView;
+import com.uni.julio.supertv.helper.TVRecyclerViewAdapter;
 import com.uni.julio.supertv.listeners.LiveProgramSelectedListener;
 import com.uni.julio.supertv.model.LiveProgram;
 import com.uni.julio.supertv.utils.Device;
 
 import java.util.List;
 
-public class LivetvAdapterNew extends RecyclerView.Adapter<LivetvAdapterNew.MyViewHolder> {
+public class LivetvAdapterNew extends TVRecyclerViewAdapter<LivetvAdapterNew.MyViewHolder> {
 
     private Context mContext;
     private List<LiveProgram> livePrograms;
@@ -32,6 +34,8 @@ public class LivetvAdapterNew extends RecyclerView.Adapter<LivetvAdapterNew.MyVi
         this.livePrograms=livePrograms;
         this.liveProgramSelectedListener=liveProgramSelectedListener;
         recyclerView.setSelectedScale(1.0f);
+        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
+        recyclerView.setLive(true);
         recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {
@@ -82,38 +86,47 @@ public class LivetvAdapterNew extends RecyclerView.Adapter<LivetvAdapterNew.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View convertView = inflater.inflate(R.layout.livetvnew_list, viewGroup, false);
-        return new MyViewHolder(convertView);
+        return new MyViewHolder(mContext, convertView);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        LiveProgram liveProgram=livePrograms.get(position);
-        holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.liveProgramItem,liveProgram);
-        holder.getViewDataBinding().getRoot().setTag(position);
-        holder.getViewDataBinding().executePendingBindings();
-    }
 
     public void updateChannels(List<LiveProgram> programs) {
         livePrograms = programs;
         postAndNotifyAdapter();
     }
 
+    public void onClick(View view) {
+        liveProgramSelectedListener.onLiveProgramSelected(livePrograms.get((Integer) view.getTag()), (Integer) view.getTag());
+    }
     @Override
     public int getItemCount() {
         return livePrograms.size();
     }
-    class MyViewHolder extends RecyclerView.ViewHolder{
-        private ViewDataBinding viewDataBinding;
-        MyViewHolder(View itemView){
-            super(itemView);
-            viewDataBinding= DataBindingUtil.bind(itemView);
-            itemView.findViewById(R.id.fl_main_layout).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    liveProgramSelectedListener.onLiveProgramSelected(livePrograms.get((Integer) view.getTag()), (Integer) view.getTag());
-                }
-            });
 
+    @Override
+    protected void focusOut(final View v, int position) {
+
+    }
+
+    @Override
+    protected void focusIn(final View v, int position) {
+
+    }
+
+    @Override
+    protected void onDataBinding(MyViewHolder holder, int position) {
+        LiveProgram liveProgram=livePrograms.get(position);
+        holder.getViewDataBinding().setVariable(com.uni.julio.supertv.BR.liveProgramItem,liveProgram);
+        holder.getViewDataBinding().setVariable(BR.livetvAdapter,this);
+        holder.getViewDataBinding().getRoot().setTag(position);
+        holder.getViewDataBinding().executePendingBindings();
+    }
+
+    class MyViewHolder extends TVRecyclerViewAdapter.ViewHolder{
+        private ViewDataBinding viewDataBinding;
+        public MyViewHolder(Context context, View itemView ){
+            super(context, itemView);
+            viewDataBinding= DataBindingUtil.bind(itemView);
         }
         ViewDataBinding getViewDataBinding(){
             return viewDataBinding;

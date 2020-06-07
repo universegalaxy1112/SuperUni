@@ -232,6 +232,10 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\horizonal_regular.json"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_default_focus.9.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\default_focus.9.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_divider.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\divider.xml"
     },
@@ -240,8 +244,8 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\kids.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_castasklayout.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\castasklayout.xml"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\raw_superteve.pem.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\superteve.pem"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_livetv_bottombar.png.flat",
@@ -414,6 +418,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\anim_anim_scale_big.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\anim\\anim_scale_big.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\raw_supertvplus.pem.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\raw\\supertvplus.pem"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi-v4_ic_launcher.png.flat",
@@ -666,10 +674,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_apptheme_scrubber_control_selector_holo_light.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\apptheme_scrubber_control_selector_holo_light.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_default_focus.9.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-mdpi-v4\\default_focus.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_maincategory_border.xml.flat",

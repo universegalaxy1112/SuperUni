@@ -37,7 +37,8 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dip_4"
         android:gravity="center_vertical"
-        app:scrollMode="followScroll" />
+        app:scrollMode="followScroll"
+        app:focusDrawable="@drawable/moviesborder"/>
 
 </LinearLayout>
 </layout>

@@ -39,22 +39,27 @@ public class SearchTvActivity extends FragmentActivity {
     }
     @Override
     public void onPause(){
-        super.onPause();
-        Tracking.getInstance().enableSleep(true);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(Tracking.getInstance().getSleep()){
-                    Tracking.getInstance().setAction("Sleeping");
-                    Tracking.getInstance().track();
-                    Tracking.getInstance().enableSleep(false);
-                    Tracking.getInstance().enableTrack(false);
+        try{
+            super.onPause();
+            Tracking.getInstance().enableSleep(true);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(Tracking.getInstance().getSleep()){
+                        Tracking.getInstance().setAction("Sleeping");
+                        Tracking.getInstance().track();
+                        Tracking.getInstance().enableSleep(false);
+                        Tracking.getInstance().enableTrack(false);
+                    }
                 }
-            }
-        },1000);
-        Context appCompatActivity= LiveTvApplication.appContext;
-        if(this.equals(appCompatActivity))
-            LiveTvApplication.appContext = null;
+            },1000);
+            Context appCompatActivity= LiveTvApplication.appContext;
+            if(this.equals(appCompatActivity))
+                LiveTvApplication.appContext = null;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

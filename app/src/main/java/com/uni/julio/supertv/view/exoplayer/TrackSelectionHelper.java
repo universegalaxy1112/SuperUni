@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +23,10 @@ import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.RendererCapabilities;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride;
 import com.google.android.exoplayer2.trackselection.FixedTrackSelection;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector.SelectionOverride;
 import com.google.android.exoplayer2.trackselection.RandomTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.util.MimeTypes;
@@ -44,7 +45,7 @@ import java.util.Locale;
   private static final TrackSelection.Factory FIXED_FACTORY = new FixedTrackSelection.Factory();
   private static final TrackSelection.Factory RANDOM_FACTORY = new RandomTrackSelection.Factory();
 
-  private final DefaultTrackSelector selector;
+  private final MappingTrackSelector selector;
   private final TrackSelection.Factory adaptiveVideoTrackSelectionFactory;
 
   private MappedTrackInfo trackInfo;
@@ -59,7 +60,7 @@ import java.util.Locale;
   private CheckedTextView[][] trackViews;
 
 
-  public TrackSelectionHelper(DefaultTrackSelector selector,
+  public TrackSelectionHelper(MappingTrackSelector selector,
                               TrackSelection.Factory adaptiveVideoTrackSelectionFactory) {
     this.selector = selector;
     this.adaptiveVideoTrackSelectionFactory = adaptiveVideoTrackSelectionFactory;
@@ -79,10 +80,8 @@ import java.util.Locale;
               != RendererCapabilities.ADAPTIVE_NOT_SUPPORTED
               && trackGroups.get(i).length > 1;
     }
-    DefaultTrackSelector.Parameters selectionParameters = selector.getParameters();
-
-    isDisabled = selectionParameters.getRendererDisabled(rendererIndex);
-    override = selectionParameters.getSelectionOverride(rendererIndex, trackGroups);
+    isDisabled = selector.getRendererDisabled(rendererIndex);
+    override = selector.getSelectionOverride(rendererIndex, trackGroups);
 
     AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.AppCompatAlertDialogStyle);
     builder.setTitle(title)
@@ -194,7 +193,8 @@ import java.util.Locale;
       enableRandomAdaptationView.setEnabled(enableView);
       enableRandomAdaptationView.setFocusable(enableView);
       if (enableView) {
-        enableRandomAdaptationView.setChecked(!isDisabled);
+        enableRandomAdaptationView.setChecked(!isDisabled
+                && override.factory instanceof RandomTrackSelection.Factory);
       }
     }
   }
@@ -231,7 +231,7 @@ import java.util.Locale;
       int trackIndex = tag.second;
       if (!trackGroupsAdaptive[groupIndex] || override == null
               || override.groupIndex != groupIndex) {
-        override = new SelectionOverride(groupIndex, trackIndex);
+        override = new SelectionOverride(FIXED_FACTORY, groupIndex, trackIndex);
       } else {
         // The group being modified is adaptive and we already have a non-null override.
         boolean isEnabled = ((CheckedTextView) view).isChecked();
@@ -260,7 +260,7 @@ import java.util.Locale;
   private void setOverride(int group, int[] tracks, boolean enableRandomAdaptation) {
     TrackSelection.Factory factory = tracks.length == 1 ? FIXED_FACTORY
             : (enableRandomAdaptation ? RANDOM_FACTORY : adaptiveVideoTrackSelectionFactory);
-    override = new SelectionOverride( group, tracks);
+    override = new SelectionOverride(factory, group, tracks);
   }
 
   // Track array manipulation.

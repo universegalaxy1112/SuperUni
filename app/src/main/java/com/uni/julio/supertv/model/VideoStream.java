@@ -2,12 +2,12 @@ package com.uni.julio.supertv.model;
 
 //base class for other models
 public abstract class VideoStream  {//implements Cloneable {
-    private int ContentId;
-    private String ContentType;
-    private String Title;
-    private String StreamUrl;
-    private String StreamUrl2;
-    private String Trailerurl;
+    private int ContentId = 0;
+    private String ContentType = "";
+    private String Title = "";
+    private String StreamUrl = "";
+    private String StreamUrl2 = "";
+    private String Trailerurl = "";
     private int position;
     private boolean HDBranded;
     private boolean seen;
