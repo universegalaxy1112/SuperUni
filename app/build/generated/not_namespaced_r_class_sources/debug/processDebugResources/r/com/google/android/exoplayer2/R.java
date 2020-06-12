@@ -31,56 +31,56 @@ public final class R {
     public static final class drawable {
         private drawable() {}
 
-        public static final int exo_controls_fastforward = 0x7f0800e0;
-        public static final int exo_controls_next = 0x7f0800e1;
-        public static final int exo_controls_pause = 0x7f0800e2;
-        public static final int exo_controls_play = 0x7f0800e3;
-        public static final int exo_controls_previous = 0x7f0800e4;
-        public static final int exo_controls_rewind = 0x7f0800e5;
-        public static final int play_selector = 0x7f080256;
+        public static final int exo_controls_fastforward = 0x7f0800e3;
+        public static final int exo_controls_next = 0x7f0800e4;
+        public static final int exo_controls_pause = 0x7f0800e5;
+        public static final int exo_controls_play = 0x7f0800e6;
+        public static final int exo_controls_previous = 0x7f0800e7;
+        public static final int exo_controls_rewind = 0x7f0800e8;
+        public static final int play_selector = 0x7f08025b;
     }
     public static final class id {
         private id() {}
 
-        public static final int exo_artwork = 0x7f0a0439;
-        public static final int exo_content_frame = 0x7f0a043a;
-        public static final int exo_controller_placeholder = 0x7f0a043b;
-        public static final int exo_duration = 0x7f0a043c;
-        public static final int exo_ffwd = 0x7f0a043d;
-        public static final int exo_next = 0x7f0a043e;
-        public static final int exo_overlay = 0x7f0a043f;
-        public static final int exo_pause = 0x7f0a0440;
-        public static final int exo_play = 0x7f0a0441;
-        public static final int exo_position = 0x7f0a0444;
-        public static final int exo_prev = 0x7f0a0445;
-        public static final int exo_progress = 0x7f0a0446;
-        public static final int exo_rew = 0x7f0a0447;
-        public static final int exo_shutter = 0x7f0a0448;
-        public static final int exo_subtitles = 0x7f0a0449;
-        public static final int fill = 0x7f0a0490;
-        public static final int fit = 0x7f0a04a4;
-        public static final int fixed_height = 0x7f0a04a7;
-        public static final int fixed_width = 0x7f0a04a8;
-        public static final int none = 0x7f0a07eb;
-        public static final int surface_view = 0x7f0a0a85;
-        public static final int texture_view = 0x7f0a0af5;
+        public static final int exo_artwork = 0x7f0a043e;
+        public static final int exo_content_frame = 0x7f0a043f;
+        public static final int exo_controller_placeholder = 0x7f0a0440;
+        public static final int exo_duration = 0x7f0a0441;
+        public static final int exo_ffwd = 0x7f0a0442;
+        public static final int exo_next = 0x7f0a0443;
+        public static final int exo_overlay = 0x7f0a0444;
+        public static final int exo_pause = 0x7f0a0445;
+        public static final int exo_play = 0x7f0a0446;
+        public static final int exo_position = 0x7f0a0449;
+        public static final int exo_prev = 0x7f0a044a;
+        public static final int exo_progress = 0x7f0a044b;
+        public static final int exo_rew = 0x7f0a044c;
+        public static final int exo_shutter = 0x7f0a044d;
+        public static final int exo_subtitles = 0x7f0a044e;
+        public static final int fill = 0x7f0a0495;
+        public static final int fit = 0x7f0a04a9;
+        public static final int fixed_height = 0x7f0a04ac;
+        public static final int fixed_width = 0x7f0a04ad;
+        public static final int none = 0x7f0a07f2;
+        public static final int surface_view = 0x7f0a0a8c;
+        public static final int texture_view = 0x7f0a0afc;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int exo_playback_control_view = 0x7f0d004c;
-        public static final int exo_simple_player_view = 0x7f0d004e;
+        public static final int exo_playback_control_view = 0x7f0d004e;
+        public static final int exo_simple_player_view = 0x7f0d0050;
     }
     public static final class string {
         private string() {}
 
-        public static final int exo_controls_fastforward_description = 0x7f120094;
-        public static final int exo_controls_next_description = 0x7f120095;
-        public static final int exo_controls_pause_description = 0x7f120096;
-        public static final int exo_controls_play_description = 0x7f120097;
-        public static final int exo_controls_previous_description = 0x7f120098;
-        public static final int exo_controls_rewind_description = 0x7f120099;
-        public static final int exo_controls_stop_description = 0x7f12009a;
+        public static final int exo_controls_fastforward_description = 0x7f120096;
+        public static final int exo_controls_next_description = 0x7f120097;
+        public static final int exo_controls_pause_description = 0x7f120098;
+        public static final int exo_controls_play_description = 0x7f120099;
+        public static final int exo_controls_previous_description = 0x7f12009a;
+        public static final int exo_controls_rewind_description = 0x7f12009b;
+        public static final int exo_controls_stop_description = 0x7f12009c;
     }
     public static final class style {
         private style() {}

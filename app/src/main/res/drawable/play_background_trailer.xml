@@ -5,5 +5,5 @@
         android:drawable="@color/netflix_red"/>
     <item android:state_focused="true"
         android:drawable="@drawable/background_button_border_active"/>
-    <item android:drawable="@drawable/background_button_border"/>
+    <item android:drawable="@drawable/background_button_border_active"/>
 </selector>

@@ -3233,6 +3233,7 @@
     <string name="adults_set_password_empty_message">Debes agregar al menos 4 dígitos para la contraseña.</string>
     <string name="adults_set_password_message">Por favor introduce la nueva contraseña personalizada para la sección de adultos.</string>
     <string name="adults_set_password_success_message">La contraseña ha sido configurada correctamente.</string>
+    <string name="already_have_account">Already have an account?</string>
     <string name="app_id">4F8B3483</string>
     <string name="app_name">SuperTV</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
@@ -3301,7 +3302,7 @@
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="close_session_no_internet">No puedes cerrar sesión sin conexión a internet, por favor verifica que tu conexión este activa.</string>
     <string name="closed">Closed</string>
-    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">d0df57ee-6284-46ae-84b5-f434e81004ea</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">04059a02-70a9-42f4-b9c1-0c71c99eaa20</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>
@@ -3326,6 +3327,7 @@
     <string name="downloading">Descargando...</string>
     <string name="enable_random_adaptation">Enable random adaptation</string>
     <string name="end_session_message">Estás seguro que deseas cerrar tu sesión?</string>
+    <string name="enter_code">Enter code</string>
     <string name="episode">1</string>
     <string name="episode_text">Episode</string>
     <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
@@ -3358,6 +3360,7 @@
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
     <string name="firebase_database_url" translatable="false">https://supertv-2fdbf.firebaseio.com</string>
+    <string name="forgot_password">Forgot password?</string>
     <string name="from_start">Continuar viendo?</string>
     <string name="gcm_defaultSenderId" translatable="false">755358522006</string>
     <string name="generic_error_message">Hubo un error reproduciendo su video, por favor intenta de nuevo.</string>
@@ -3379,6 +3382,7 @@
     <string name="init_init">Loading</string>
     <string name="init_selecting">Selecting server</string>
     <string name="ip_limitation">Es necesario usar la misma ip</string>
+    <string name="just_one_more_step">Just one more step…</string>
     <string name="lb_control_display_fast_forward_multiplier">%1$dX</string>
     <string name="lb_control_display_rewind_multiplier">%1$dX</string>
     <string name="lb_guidedaction_continue_title">Continue</string>
@@ -3428,8 +3432,10 @@
     <string name="login_error_no_authorized">Este dispositivo no está autorizado.</string>
     <string name="login_error_nosession">No se pudo iniciar sesión.</string>
     <string name="login_error_usr_pss_incorrect">Usuario o contraseña incorrectos.</string>
-    <string name="login_screen_login">Login</string>
+    <string name="login_screen_email">Email</string>
+    <string name="login_screen_next">Next</string>
     <string name="login_screen_password">Password</string>
+    <string name="login_screen_password_confirm">Confirm Password</string>
     <string name="login_screen_username">Username</string>
     <string name="logo_inapp_link">https://github.com/librespeed/speedtest-android</string>
     <string name="maincategory_column_num">2</string>
@@ -3508,6 +3514,7 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="new_member">New Member?</string>
     <string name="new_version_available">Hay una nueva versión, descargala ya!</string>
     <string name="new_version_generic_error_message">Hubo un error descargando la actualización, por favor intenta de nuevo más tarde.</string>
     <string name="next_schedule">Next</string>
@@ -3546,6 +3553,7 @@
     <string name="report_content">Contenido no relacionado</string>
     <string name="report_subtitle">Relacionado a subtitulos</string>
     <string name="report_video">Relacionado al video</string>
+    <string name="resend">Resend</string>
     <string name="retry">Reintentar</string>
     <string name="sample_list_load_error">One or more sample lists failed to load</string>
     <string name="search_menu_title">Search</string>
@@ -3555,6 +3563,13 @@
     <string name="selection_default_none">Default (none)</string>
     <string name="selection_disabled">Deshabilitado</string>
     <string name="serverSelect_message">Select a server</string>
+    <string name="sign_in_lower">Sign In</string>
+    <string name="sign_up_lower">Sign Up</string>
+    <string name="sign_up_upper">SIGN UP</string>
+    <string name="signin_upper">SIGN IN</string>
+    <string name="signin_with_facebook">Sign In with Facebook</string>
+    <string name="signin_with_google">Sign In with Google</string>
+    <string name="signup_with_google">Sign Up with Google</string>
     <string name="solved">Solved</string>
     <string name="splash_content_txt">Super Splash</string>
     <string name="start">Start</string>
@@ -3590,13 +3605,15 @@
     <string name="title_story">Description</string>
     <string name="trailers_text">Trailers</string>
     <string name="transition_image">transition-image</string>
+    <string name="type_code">Please type your verification code</string>
     <string name="unexpected_intent_action">Unexpected intent action: <ns1:g id="action">%1$s</ns1:g></string>
     <string name="v7_preference_off">OFF</string>
     <string name="v7_preference_on">ON</string>
     <string name="verify_unknown_sources">Por favor verifica que tengas activado el permiso de instalación de aplicaciones de fuentes desconocidas.</string>
     <string name="video">Video</string>
     <string name="view_all">More</string>
-    <string name="wait">Please Wait...</string>
+    <string name="wait">Please Wait…</string>
+    <string name="we_sent_email_confirm_code">We\'ve sent the confirmation code to \n your email. Please enter the code.</string>
     <style name="AVLoadingIndicatorView">
         <item name="minWidth">48dip</item>
         <item name="maxWidth">48dip</item>
@@ -8614,8 +8631,8 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">@dimen/dip_16</item>
         <item name="android:paddingEnd">@dimen/dip_16</item>
-        <item name="android:paddingTop">@dimen/dip_6</item>
-        <item name="android:paddingBottom">@dimen/dip_6</item>
+        <item name="android:paddingTop">@dimen/dip_10</item>
+        <item name="android:paddingBottom">@dimen/dip_10</item>
         <item name="android:background">@drawable/play_background_trailer</item>
     </style>
     <style name="text">

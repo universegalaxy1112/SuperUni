@@ -37,8 +37,10 @@
     <string name="episode">1</string>
     <string name="login_screen_username">Username</string>
     <string name="login_screen_password">Password</string>
-    <string name="login_screen_login">Login</string>
-    <string name="wait">Please Wait...</string>
+    <string name="login_screen_email">Email</string>
+    <string name="login_screen_password_confirm">Confirm Password</string>
+    <string name="login_screen_next">Next</string>
+    <string name="wait">Please Wait&#8230;</string>
     <string name="tag_esp_srt">Español</string>
     <string name="tag_esp">Español</string>
     <string name="tag_eng">Ingles</string>
@@ -185,4 +187,19 @@
     <string name="now_schedule">Now</string>
     <string name="time_out">Request TimeOut</string>
     <string name="see_all">See All</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="sign_up_upper">SIGN UP</string>
+    <string name="sign_up_lower">Sign Up</string>
+    <string name="signin_upper">SIGN IN</string>
+    <string name="sign_in_lower">Sign In</string>
+    <string name="new_member">New Member?</string>
+    <string name="signin_with_facebook">Sign In with Facebook</string>
+    <string name="signin_with_google">Sign In with Google</string>
+    <string name="signup_with_google">Sign Up with Google</string>
+    <string name="just_one_more_step">Just one more step&#8230;</string>
+    <string name="enter_code">Enter code</string>
+    <string name="type_code">Please type your verification code</string>
+    <string name="we_sent_email_confirm_code">We\'ve sent the confirmation code to \n your email. Please enter the code.</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="resend">Resend</string>
 </resources>

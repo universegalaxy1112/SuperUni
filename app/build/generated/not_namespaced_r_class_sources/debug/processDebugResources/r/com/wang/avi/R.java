@@ -22,7 +22,7 @@ public final class R {
     public static final class string {
         private string() {}
 
-        public static final int app_name = 0x7f120025;
+        public static final int app_name = 0x7f120026;
     }
     public static final class style {
         private style() {}

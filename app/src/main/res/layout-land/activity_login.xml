@@ -92,7 +92,7 @@
                             android:layout_height="wrap_content"
                             android:focusable="true"
                             style="@style/play_text"
-                            android:text="@string/login_screen_login"
+                            android:text="@string/sign_up_lower"
                             />
                     </RelativeLayout>
 

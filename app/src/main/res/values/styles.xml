@@ -248,8 +248,8 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">@dimen/dip_16</item>
         <item name="android:paddingEnd">@dimen/dip_16</item>
-        <item name="android:paddingTop">@dimen/dip_6</item>
-        <item name="android:paddingBottom">@dimen/dip_6</item>
+        <item name="android:paddingTop">@dimen/dip_10</item>
+        <item name="android:paddingBottom">@dimen/dip_10</item>
         <item name="android:background">@drawable/play_background_trailer</item>
     </style>
 
