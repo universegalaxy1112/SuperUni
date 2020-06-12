@@ -55,7 +55,7 @@ import java.util.Locale;
 /**
  * Logs player events using {@link Log}.
  */
-/* package */ final class EventLogger implements ExoPlayer.EventListener,
+/* package */ final class EventLogger implements
         AudioRendererEventListener, VideoRendererEventListener, AdaptiveMediaSourceEventListener,
         ExtractorMediaSource.EventListener, StreamingDrmSessionManager.EventListener,
         MetadataRenderer.Output {
@@ -83,121 +83,6 @@ import java.util.Locale;
   }
 
   // ExoPlayer.EventListener
-
-  @Override
-  public void onLoadingChanged(boolean isLoading) {
-    ;//Log.d(TAG, "loading [" + isLoading + "]");
-  }
-
-  @Override
-  public void onPlayerStateChanged(boolean playWhenReady, int state) {
-    // ;//Log.d(TAG, "state [" + getSessionTimeString() + ", " + playWhenReady + ", "
-    // + getStateString(state) + "]");
-  }
-
-  @Override
-  public void onPositionDiscontinuity() {
-    ;//Log.d(TAG, "positionDiscontinuity");
-  }
-
-  @Override
-  public void onTimelineChanged(Timeline timeline, Object manifest) {
-    if (timeline == null) {
-      return;
-    }
-    int periodCount = timeline.getPeriodCount();
-    int windowCount = timeline.getWindowCount();
-    ;//Log.d(TAG, "sourceInfo [periodCount=" + periodCount + ", windowCount=" + windowCount);
-    for (int i = 0; i < Math.min(periodCount, MAX_TIMELINE_ITEM_LINES); i++) {
-      timeline.getPeriod(i, period);
-      ;//Log.d(TAG, "  " +  "period [" + getTimeString(period.getDurationMs()) + "]");
-    }
-    if (periodCount > MAX_TIMELINE_ITEM_LINES) {
-      ;//Log.d(TAG, "  ...");
-    }
-    for (int i = 0; i < Math.min(windowCount, MAX_TIMELINE_ITEM_LINES); i++) {
-      timeline.getWindow(i, window);
-      ;//Log.d(TAG, "  " +  "window [" + getTimeString(window.getDurationMs()) + ", "
-      //+ window.isSeekable + ", " + window.isDynamic + "]");
-    }
-    if (windowCount > MAX_TIMELINE_ITEM_LINES) {
-      ;//Log.d(TAG, "  ...");
-    }
-    ;//Log.d(TAG, "]");
-  }
-
-  @Override
-  public void onPlayerError(ExoPlaybackException e) {
-    ;//Log.e(TAG, "playerFailed [" + getSessionTimeString() + "]", e);
-  }
-
-  @Override
-  public void onTracksChanged(TrackGroupArray ignored, TrackSelectionArray trackSelections) {
-    MappedTrackInfo mappedTrackInfo = trackSelector.getCurrentMappedTrackInfo();
-    if (mappedTrackInfo == null) {
-      ;//Log.d(TAG, "Tracks []");
-      return;
-    }
-    ;//Log.d(TAG, "Tracks [");
-    // Log tracks associated to renderers.
-    for (int rendererIndex = 0; rendererIndex < mappedTrackInfo.length; rendererIndex++) {
-      TrackGroupArray rendererTrackGroups = mappedTrackInfo.getTrackGroups(rendererIndex);
-      TrackSelection trackSelection = trackSelections.get(rendererIndex);
-      if (rendererTrackGroups.length > 0) {
-        ;//Log.d(TAG, "  Renderer:" + rendererIndex + " [");
-        for (int groupIndex = 0; groupIndex < rendererTrackGroups.length; groupIndex++) {
-          TrackGroup trackGroup = rendererTrackGroups.get(groupIndex);
-          String adaptiveSupport = getAdaptiveSupportString(trackGroup.length,
-                  mappedTrackInfo.getAdaptiveSupport(rendererIndex, groupIndex, false));
-          ;//Log.d(TAG, "    Group:" + groupIndex + ", adaptive_supported=" + adaptiveSupport + " [");
-          for (int trackIndex = 0; trackIndex < trackGroup.length; trackIndex++) {
-            String status = getTrackStatusString(trackSelection, trackGroup, trackIndex);
-            String formatSupport = getFormatSupportString(
-                    mappedTrackInfo.getTrackFormatSupport(rendererIndex, groupIndex, trackIndex));
-            // ;//Log.d(TAG, "      " + status + " Track:" + trackIndex + ", "
-            // + getFormatString(trackGroup.getFormat(trackIndex))
-            // + ", supported=" + formatSupport);
-          }
-          ;//Log.d(TAG, "    ]");
-        }
-        // Log metadata for at most one of the tracks selected for the renderer.
-        if (trackSelection != null) {
-          for (int selectionIndex = 0; selectionIndex < trackSelection.length(); selectionIndex++) {
-            Metadata metadata = trackSelection.getFormat(selectionIndex).metadata;
-            if (metadata != null) {
-              ;//Log.d(TAG, "    Metadata [");
-              printMetadata(metadata, "      ");
-              ;//Log.d(TAG, "    ]");
-              break;
-            }
-          }
-        }
-        ;//Log.d(TAG, "  ]");
-      }
-    }
-    // Log tracks not associated with a renderer.
-    TrackGroupArray unassociatedTrackGroups = mappedTrackInfo.getUnassociatedTrackGroups();
-    if (unassociatedTrackGroups.length > 0) {
-      ;//Log.d(TAG, "  Renderer:None [");
-      for (int groupIndex = 0; groupIndex < unassociatedTrackGroups.length; groupIndex++) {
-        ;//Log.d(TAG, "    Group:" + groupIndex + " [");
-        TrackGroup trackGroup = unassociatedTrackGroups.get(groupIndex);
-        for (int trackIndex = 0; trackIndex < trackGroup.length; trackIndex++) {
-          String status = getTrackStatusString(false);
-          String formatSupport = getFormatSupportString(
-                  RendererCapabilities.FORMAT_UNSUPPORTED_TYPE);
-          // ;//Log.d(TAG, "      " + status + " Track:" + trackIndex + ", "
-          // + getFormatString(trackGroup.getFormat(trackIndex))
-          // + ", supported=" + formatSupport);
-        }
-        ;//Log.d(TAG, "    ]");
-      }
-      ;//Log.d(TAG, "  ]");
-    }
-    ;//Log.d(TAG, "]");
-  }
-
-  // MetadataRenderer.Output
 
   @Override
   public void onMetadata(Metadata metadata) {

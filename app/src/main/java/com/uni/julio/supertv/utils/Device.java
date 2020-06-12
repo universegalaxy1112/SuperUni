@@ -57,12 +57,19 @@ public class Device {
         if (!LiveTvApplication.getAppContext().getPackageManager().hasSystemFeature("android.hardware.touchscreen")) {
             treatAsBox = true;
         }
+        String model = Build.MODEL;
+        if(model != null && (model.toLowerCase().contains("tx3") || model.toLowerCase().contains("t95") || model.toLowerCase().contains("mxq") || model.toLowerCase().contains("mbox"))) {
+            treatAsBox = true;
+        }
+
      }
 
     public static String getFW() {
         return android.os.Build.VERSION.RELEASE;
     }
+
     public static String getModel() {
+
         return android.os.Build.MODEL;
     }
 

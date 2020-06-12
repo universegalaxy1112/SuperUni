@@ -67,16 +67,6 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
                 launchActivity(SpeedTestActivity.class);
             }
         });
-
-        int devicemodel =  (((UiModeManager) Objects.requireNonNull(LiveTvApplication.getAppContext().getSystemService(Context.UI_MODE_SERVICE))).getCurrentModeType());
-
-        Dialogs.showOneButtonDialog(this, "Test", String.valueOf(devicemodel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
     }
 
 

@@ -270,30 +270,30 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerBrLookup {
-    static final SparseArray<String> sKeys = new SparseArray<String>(21);
+    static final SparseArray<String> sKeys = new SparseArray<String>(22);
 
     static {
-      sKeys.put(1, "SearchFM");
       sKeys.put(0, "_all");
-      sKeys.put(2, "accountDetailsVM");
-      sKeys.put(3, "activityMainBindingVM");
-      sKeys.put(4, "categoryAdapter");
-      sKeys.put(5, "currentCategory");
-      sKeys.put(6, "currentProgram");
-      sKeys.put(7, "liveCategory");
-      sKeys.put(8, "liveCategoryAdapter");
-      sKeys.put(9, "liveProgramItem");
-      sKeys.put(10, "liveTVFragmentVM");
-      sKeys.put(11, "livetvAdapter");
-      sKeys.put(12, "movieCategory");
-      sKeys.put(13, "movieDetailItem");
+      sKeys.put(1, "currentProgram");
+      sKeys.put(2, "liveCategoryAdapter");
+      sKeys.put(3, "serverAdapter");
+      sKeys.put(4, "currentCategory");
+      sKeys.put(5, "activityMainBindingVM");
+      sKeys.put(6, "accountDetailsVM");
+      sKeys.put(7, "moviesAdapter");
+      sKeys.put(8, "moviesMenuItem");
+      sKeys.put(9, "liveTVFragmentVM");
+      sKeys.put(10, "movieDetailItem");
+      sKeys.put(11, "liveProgramItem");
+      sKeys.put(12, "categoryAdapter");
+      sKeys.put(13, "moviesGridFragmentVM");
       sKeys.put(14, "movieDetailsVM");
-      sKeys.put(15, "moviesAdapter");
-      sKeys.put(16, "moviesGridFragmentVM");
-      sKeys.put(17, "moviesMenuFragmentVM");
-      sKeys.put(18, "moviesMenuItem");
-      sKeys.put(19, "serverAdapter");
-      sKeys.put(20, "user");
+      sKeys.put(15, "livetvAdapter");
+      sKeys.put(16, "movieCategory");
+      sKeys.put(17, "liveCategory");
+      sKeys.put(18, "SearchFM");
+      sKeys.put(19, "user");
+      sKeys.put(20, "moviesMenuFragmentVM");
     }
   }
 

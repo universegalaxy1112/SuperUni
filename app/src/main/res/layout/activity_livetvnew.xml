@@ -13,6 +13,7 @@
             type="com.uni.julio.supertv.model.LiveProgram" />
     </data>
     <FrameLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="false">

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-bs-rBA\\values-bs-rBA.xml",
+            "map": [
+                {
+                    "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\release\\values-bs-rBA\\values-bs-rBA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,129,205,275,348,429,500",
+                        "endColumns": "73,75,69,72,80,70,68",
+                        "endOffsets": "124,200,270,343,424,495,564"
+                    }
+                }
+            ]
+        }
+    ]
+}

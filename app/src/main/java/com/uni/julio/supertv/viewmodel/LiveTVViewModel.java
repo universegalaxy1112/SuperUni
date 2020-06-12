@@ -103,7 +103,10 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
         if(isFullscreen) return;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((AppCompatActivity)mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(displayMetrics.widthPixels, displayMetrics.heightPixels);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(activityLiveBinding.parent.getMeasuredWidth(),
+                activityLiveBinding.parent.getMeasuredHeight(),
+                1.0f);
         layoutParams.setMargins(0,0,0,0);
         activityLiveBinding.exoPlayer.setLayoutParams(layoutParams);
         activityLiveBinding.programmingRecycler.setVisibility(View.GONE);

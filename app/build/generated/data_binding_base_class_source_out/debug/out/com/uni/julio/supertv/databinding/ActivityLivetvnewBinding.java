@@ -4,6 +4,7 @@ package com.uni.julio.supertv.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -43,6 +44,9 @@ public abstract class ActivityLivetvnewBinding extends ViewDataBinding {
   public final CircleImageView markImg;
 
   @NonNull
+  public final FrameLayout parent;
+
+  @NonNull
   public final LinearLayout playerContainer;
 
   @NonNull
@@ -66,8 +70,8 @@ public abstract class ActivityLivetvnewBinding extends ViewDataBinding {
   protected ActivityLivetvnewBinding(Object _bindingComponent, View _root, int _localFieldCount,
       TextView epg, LinearLayout exoPlayer, LinearLayout exoPlayerVirtual, LinearLayout guide,
       TVRecyclerView liveCategoryRecycler, LinearLayout logo, CircleImageView markImg,
-      LinearLayout playerContainer, TVRecyclerView programmingRecycler, TextView subTitle,
-      TextView title) {
+      FrameLayout parent, LinearLayout playerContainer, TVRecyclerView programmingRecycler,
+      TextView subTitle, TextView title) {
     super(_bindingComponent, _root, _localFieldCount);
     this.epg = epg;
     this.exoPlayer = exoPlayer;
@@ -76,6 +80,7 @@ public abstract class ActivityLivetvnewBinding extends ViewDataBinding {
     this.liveCategoryRecycler = liveCategoryRecycler;
     this.logo = logo;
     this.markImg = markImg;
+    this.parent = parent;
     this.playerContainer = playerContainer;
     this.programmingRecycler = programmingRecycler;
     this.subTitle = subTitle;

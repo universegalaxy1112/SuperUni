@@ -8,12 +8,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_morevideo.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\livetvnew_list.xml",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\livetvnew_list.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_livetvnew.xml",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_livetvnew.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\livetvnew_list.xml",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\livetvnew_list.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_account.xml",

@@ -146,7 +146,7 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
         Intent intent = getActivity().getIntent();
         seasonPosition = intent.getIntExtra("seasonPosition", -1);
         episodePosition = intent.getIntExtra("episodePosition", -1);
-        this.title=intent.getStringExtra("title") == null ? "" :intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ episodePosition +1));
+        this.title=intent.getStringExtra("title") == null ? "" :intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + (seasonPosition+1)) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ (episodePosition +1)));
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -270,7 +270,7 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
         isTimelineStatic = false;
         seasonPosition = intent.getIntExtra("seasonPosition", -1);
         episodePosition = intent.getIntExtra("episodePosition" , -1);
-        this.title=intent.getStringExtra("title") == null ? "" :intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ episodePosition +1));
+        this.title=intent.getStringExtra("title") == null ? "" :intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + (seasonPosition+1)) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ (episodePosition +1)));
         BindingAdapters.loadImage(channel_icon, intent.getStringExtra("icon_url"));
         Tracking.getInstance().setAction(this.title);
         Tracking.getInstance().track();
@@ -426,14 +426,13 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
                 trackSelectionHelper = new TrackSelectionHelper(trackSelector, videoTrackSelectionFactory);
                 player = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, new DefaultLoadControl(),
                         drmSessionManager, extensionRendererMode);
-                player.addListener(this);
+
 
                 eventLogger = new EventLogger(trackSelector);
-                player.addListener(eventLogger);
                 player.setAudioDebugListener(eventLogger);
                 player.setVideoDebugListener(eventLogger);
                 player.setId3Output(eventLogger);
-
+                player.addListener(this);
                 simpleExoPlayerView.setPlayer(player);
 
                 player.setPlayWhenReady(shouldAutoPlay);
@@ -484,7 +483,7 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
                 else {
                     player.prepare(mediaSource, !isTimelineStatic, !isTimelineStatic);
                 }
-                if(mainCategory == 1 || mainCategory == 2 && mainCategory == 6)
+                if(player != null)
                     player.seekTo(seasonPosition == -1 || episodePosition == -1 ? 0:episodePosition, 0);
                 if(mainCategory != 4 && intent.getIntExtra("type",1) != 2 && playerPosition != 0L) {//eventso
                     Dialogs.showTwoButtonsDialog((AppCompatActivity) this.getActivity(), R.string.accept, R.string.cancel, R.string.from_start, new DialogListener() {
@@ -693,7 +692,7 @@ public class VideoPlayFragment extends Fragment implements View.OnClickListener,
         if(player != null){
             episodePosition = player.getCurrentWindowIndex();
             Intent intent = getActivity().getIntent();
-            this.title=intent.getStringExtra("title") == null ? "" : intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + seasonPosition+1) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ episodePosition +1));
+            this.title=intent.getStringExtra("title") == null ? "" :intent.getStringExtra("title") + ((seasonPosition == -1) ? "": " S" + (seasonPosition+1)) + ((seasonPosition == -1 || episodePosition == -1? "":" E"+ (episodePosition +1)));
             Tracking.getInstance().track();
         }
 

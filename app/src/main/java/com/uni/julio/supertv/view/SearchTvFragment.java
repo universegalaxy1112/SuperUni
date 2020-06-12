@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.leanback.app.BackgroundManager;
@@ -239,6 +241,8 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                                 Objects.requireNonNull(getActivity()).findViewById(R.id.progressBar).setVisibility(View.GONE);
                                 Log.d("error","error");
                                 Toast.makeText(getActivity(), R.string.time_out, Toast.LENGTH_SHORT).show();
+                                hideKeyboard();
+
                             }
 
                         }catch (Exception exception) {
@@ -248,6 +252,7 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                     }
                     @Override
                     public void onNext(List<? extends VideoStream> videos) {
+                        hideKeyboard();
                         if(getActivity() != null) {
                             Objects.requireNonNull(getActivity()).findViewById(R.id.progressBar).setVisibility(View.GONE);
                             movies = videos;
@@ -280,6 +285,22 @@ public class SearchTvFragment extends SearchSupportFragment implements  SearchSu
                     }
                 });
             return false;
+    }
+
+    private void hideKeyboard() {
+
+        if(getActivity() != null){
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
+            //Find the currently focused view, so we can grab the correct window token from it.
+            View view = getActivity().getCurrentFocus();
+            //If no view currently has focus, create a new one, just so we can grab a window token from it
+            if (view == null) {
+                view = new View(getActivity());
+            }
+            if(imm != null)
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
     }
 
     @Override

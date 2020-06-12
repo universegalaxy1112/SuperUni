@@ -38,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4b1591b073a07ad8230f51cee66496d8\\jetified-play-services-cast-framework-18.1.0\\res\\values-land\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9",
-                        "startColumns": "0,0,0,0,0,0",
-                        "startOffsets": "183,264,344,414,483,578",
-                        "endColumns": "80,79,69,68,94,90",
-                        "endOffsets": "263,343,413,482,577,668"
-                    },
-                    "to": {
-                        "startLines": "104,105,106,107,108,109",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "6440,6525,6609,6683,6756,6855",
-                        "endColumns": "84,83,73,72,98,94",
-                        "endOffsets": "6520,6604,6678,6751,6850,6945"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\cf89a6ce41223c536577cbc63b850f60\\material-1.1.0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -71,6 +54,23 @@
                         "endLines": "925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,1614,1615,1623,1629,1634",
                         "endColumns": "72,69,71,69,64,66,69,71,68,68,81,89,75,67,66,77,64,66,10,10,10",
                         "endOffsets": "46711,46781,46853,46923,46988,47055,47125,47197,47266,47335,47417,47507,47583,47651,47718,47796,77209,77276,77634,78029,78298"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\values-land\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9",
+                        "startColumns": "0,0,0,0,0,0",
+                        "startOffsets": "183,264,344,414,483,578",
+                        "endColumns": "80,79,69,68,94,90",
+                        "endOffsets": "263,343,413,482,577,668"
+                    },
+                    "to": {
+                        "startLines": "104,105,106,107,108,109",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "6440,6525,6609,6683,6756,6855",
+                        "endColumns": "84,83,73,72,98,94",
+                        "endOffsets": "6520,6604,6678,6751,6850,6945"
                     }
                 },
                 {

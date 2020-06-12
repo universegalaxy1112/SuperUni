@@ -16,10 +16,6 @@ public class SearchTvActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-
-        }
         setContentView(R.layout.activity_search_tv);
         LiveTvApplication.appContext = this;
         fragment = new SearchTvFragment();

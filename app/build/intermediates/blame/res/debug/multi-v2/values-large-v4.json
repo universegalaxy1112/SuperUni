@@ -4,6 +4,23 @@
             "outputFile": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,177",
+                        "endColumns": "121,133",
+                        "endOffsets": "172,306"
+                    },
+                    "to": {
+                        "startLines": "1020,1021",
+                        "startColumns": "4,4",
+                        "startOffsets": "42381,42503",
+                        "endColumns": "121,133",
+                        "endOffsets": "42498,42632"
+                    }
+                },
+                {
                     "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\values-large\\styles.xml",
                     "from": {
                         "startLines": "3,20,16",
@@ -23,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\cc03d9e12242d2c501b57a9bee5064ad\\appcompat-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -37,23 +54,6 @@
                         "startOffsets": "55,114,185,256,326,396,464,42161,42265",
                         "endColumns": "58,70,70,69,69,67,67,103,115",
                         "endOffsets": "109,180,251,321,391,459,527,42260,42376"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\cf89a6ce41223c536577cbc63b850f60\\material-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,177",
-                        "endColumns": "121,133",
-                        "endOffsets": "172,306"
-                    },
-                    "to": {
-                        "startLines": "1020,1021",
-                        "startColumns": "4,4",
-                        "startOffsets": "42381,42503",
-                        "endColumns": "121,133",
-                        "endOffsets": "42498,42632"
                     }
                 },
                 {

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ka-rGE\\values-ka-rGE.xml",
+            "map": [
+                {
+                    "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\release\\values-ka-rGE\\values-ka-rGE.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,136,213,280,347,425,502",
+                        "endColumns": "80,76,66,66,77,76,68",
+                        "endOffsets": "131,208,275,342,420,497,566"
+                    }
+                }
+            ]
+        }
+    ]
+}
