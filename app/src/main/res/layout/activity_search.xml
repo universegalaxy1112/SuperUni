@@ -25,13 +25,14 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
         </com.google.android.material.appbar.AppBarLayout>
         <EditText
-            android:id="@+id/edit_password"
+            android:id="@+id/editPassword"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_40"
             android:imeActionId="@+id/login"
             android:layout_margin="@dimen/dip_20"
             android:nextFocusDown="@id/cv_loginScreen_login"
-            android:backgroundTint="@android:color/holo_red_light"
+            android:backgroundTint="@color/netflix_red"
+            android:textColorHint="@color/netflix_red"
             android:inputType="textAutoComplete"
             android:tooltipText="Search"
             tools:ignore="InvalidImeActionId"
@@ -47,7 +48,6 @@
                 android:focusable="false"
                 android:gravity="center_vertical"
                 app:hidden="@{SearchFM.isLoading}"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -71,6 +71,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.3" />
+            <TextView
+                android:id="@+id/noResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                style = "@style/text.error_text"
+                android:text="No Result"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

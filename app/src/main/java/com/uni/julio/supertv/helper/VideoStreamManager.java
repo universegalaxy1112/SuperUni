@@ -42,6 +42,7 @@ public class VideoStreamManager {
     }
 
     public void FillMainCategories() {
+        mainCategoriesList.clear();
         mainCategoriesList.add(createMainCategory("Peliculas", R.drawable.movies, ModelTypes.MOVIE_CATEGORIES, 0));
         mainCategoriesList.add(createMainCategory("Series", R.drawable.series, ModelTypes.SERIES_CATEGORIES, 1));
         mainCategoriesList.add(createMainCategory("Infantiles", R.drawable.kids, ModelTypes.SERIES_KIDS_CATEGORIES, 2));
@@ -50,11 +51,12 @@ public class VideoStreamManager {
         mainCategoriesList.add(createMainCategory("TV", R.drawable.tv, ModelTypes.LIVE_TV_CATEGORIES, 5));
         mainCategoriesList.add(createMainCategory("Karaoke", R.drawable.karaoke, ModelTypes.KARAOKE_CATEGORIES, 6));
         mainCategoriesList.add(createMainCategory("Adultos", R.drawable.adults, ModelTypes.ADULTS_CATEGORIES, 7));
+        mainCategoriesList.add(createMainCategory("Top", R.drawable.top, ModelTypes.TOP_MOVIES, 8));
+        mainCategoriesList.add(createMainCategory("Year", R.drawable.moviesyear, ModelTypes.MOVIES_YEAR, 9));
         if(Device.canTreatAsBox()) {
-            mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.setting, ModelTypes.SETTINGS, 8));
+            mainCategoriesList.add(createMainCategory("Mi cuenta", R.drawable.setting, ModelTypes.SETTINGS, 10));
         }
     }
-
 
     private MainCategory createMainCategory(String name, int imageId, String modelType, int id) {
         MainCategory cat = new MainCategory();
@@ -68,7 +70,14 @@ public class VideoStreamManager {
     public List<MainCategory> getMainCategoriesList() {
         return mainCategoriesList;
     }
-    public MainCategory getMainCategory(int id) { return mainCategoriesList.get(id); }
+    public MainCategory getMainCategory(int id) {
+        try{
+            return mainCategoriesList.get(id);
+        }catch (Exception e){
+            VideoStreamManager.getInstance().FillMainCategories();
+            return mainCategoriesList.get(id);
+        }
+    }
 
 /*    public List<VideoStream> searchForMovies(MainCategory mainCategory, String searchString,boolean searchForSeries ) {
         Set<VideoStream> searchList = new HashSet<>();

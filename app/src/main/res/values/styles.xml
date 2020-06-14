@@ -85,8 +85,12 @@
         <item name="android:textSize">@dimen/sp_12</item>
     </style>
     <style name="text.livetv">
+        <item name="android:textColor">@color/live_category_text</item>
+        <item name="android:textSize">@dimen/sp_11</item>
+    </style>
+    <style name="text.livetv_category_program_title">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:textSize">@dimen/sp_11</item>
     </style>
     <style name="text.additional_info">
         <item name="android:textSize">@dimen/sp_12</item>
@@ -96,6 +100,16 @@
         <item name="android:textColor">@color/text_secondary_dark</item>
         <item name="android:layout_marginLeft">@dimen/dip_8</item>
     </style>
+
+    <style name="live_channel_epg">
+        <item name="android:textColor">@color/barker_secondary_text_color</item>
+    </style>
+
+    <style name="no_channel">
+        <item name="android:textColor">@color/text_secondary_dark</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+    </style>
+
     <style name="text.error_text">
         <item name="android:textColor">@color/loading_error</item>
         <item name="android:layout_marginLeft">@dimen/dip_8</item>

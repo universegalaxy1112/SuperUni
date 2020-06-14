@@ -1,9 +1,12 @@
 package com.uni.julio.supertv.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,13 +22,14 @@ import com.uni.julio.supertv.listeners.LiveTVToggleUIListener;
 import com.uni.julio.supertv.model.CastDevice;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.MovieDetailsViewModelContract;
 
 
-public class OneSeasonDetailActivity extends BaseActivity implements MovieDetailsViewModelContract.View, LiveTVToggleUIListener {
+public class OneSeasonDetailActivity extends BaseActivity implements MovieDetailsViewModelContract.View {
     MovieDetailsViewModel movieDetailsViewModel;
     ActivityOneseasonDetailBinding activityOneseaosnDetailBinding;
     Movie movie;
@@ -41,41 +45,48 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras=getIntent().getExtras();
-        mainCategoryId= extras.getInt("mainCategoryId",0);
-        movieCategoryId= extras.getInt("movieCategoryId",0);
-        movie=(Movie) new Gson().fromJson(extras.getString("movie"), Movie.class);
-        if(mainCategoryId == 4 || mainCategoryId == 6 || mainCategoryId == 7){
-            onPlaySelectedDirect(movie, mainCategoryId);
-            finish();
-            return;
+        try {
+            Bundle extras=getIntent().getExtras();
+            mainCategoryId= extras.getInt("mainCategoryId",0);
+            movieCategoryId= extras.getInt("movieCategoryId",0);
+            movie=(Movie) new Gson().fromJson(extras.getString("movie"), Movie.class);
+            movieDetailsViewModel = new MovieDetailsViewModel(this, mainCategoryId);
+            activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
+            activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
+            showMovieDetails(movie,mainCategoryId,movieCategoryId);
+            /*new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    movieDetailsViewModel.playTrailor();
+                }
+            },3000);*/
+        }catch (Exception e){
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
         }
-        movieDetailsViewModel = new MovieDetailsViewModel(this, mainCategoryId);
-        activityOneseaosnDetailBinding= DataBindingUtil.setContentView(this,R.layout.activity_oneseason_detail);
-        activityOneseaosnDetailBinding.setMovieDetailsVM(movieDetailsViewModel);
-        showMovieDetails(movie,mainCategoryId,movieCategoryId);
-
     }
     @Override
     public void onResume() {
         super.onResume();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
     @Override
     public void onPause() {
 
         super.onPause();
     }
-    private void playTrailer(String[] uris, String[] extensions,  String subTitleUrl,String title){
-        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), TrailerActivity.class);
-        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
-                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
-                .putExtra("mainCategoryId", mainCategoryId)
-                .putExtra("subsURL", subTitleUrl)
-                .putExtra("title", title)
-                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        startActivity(launchIntent);
-        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
-    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -83,23 +94,6 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
             return true;
         }
         return false;
-    }
-
-    public void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
-        int movieId = movie.getContentId();
-        String[] uris = {movie.getStreamUrl()};
-        String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
-        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
-        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
-                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
-                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
-                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
-                .putExtra("mainCategoryId", mainCategoryId)
-                .putExtra("type", 0)
-                .putExtra("subsURL", movie.getSubtitleUrl())
-                .putExtra("title", movie.getTitle())
-                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        startActivity(launchIntent);
     }
 
     public void onPlaySelected(final Movie movie, final int type) {
@@ -125,8 +119,7 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
          String subtitleUrl= movie.getSubtitleUrl();
          String title= movie.getTitle();
          String[] finalUris = uris;
-            playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
-
+         playVideo(finalUris,extensions, movieId,secondsToPlay, type,subtitleUrl,title);
     }
 
     private void playVideo(String[] uris, String[] extensions, int movieId, long secondsToPlay, int type, String subTitleUrl,String title){
@@ -140,7 +133,8 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
                 .putExtra("subsURL", subTitleUrl)
                 .putExtra("title", title)
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        startActivity(launchIntent);
+        ActivityCompat.startActivityForResult(this, launchIntent,100
+                ,null);
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
     @Override
@@ -165,8 +159,4 @@ public class OneSeasonDetailActivity extends BaseActivity implements MovieDetail
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
-    @Override
-    public void onToggleUI(boolean show) {
-
-    }
 }

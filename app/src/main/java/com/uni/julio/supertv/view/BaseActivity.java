@@ -1,13 +1,12 @@
 package com.uni.julio.supertv.view;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.KeyEvent;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,28 +21,26 @@ import com.uni.julio.supertv.viewmodel.Lifecycle;
 public abstract class BaseActivity extends AppCompatActivity {
     protected abstract Lifecycle.ViewModel getViewModel();
 
-    //force sub-fragments to implement the getFragmentInstance to pass to onViewAttached
     protected abstract Lifecycle.View getLifecycleView();
     protected ModelTypes.SelectedType selectedType;
     protected int mainCategoryId;
     protected int movieCategoryId;
-    private CustomProgressDialog customProgressDialog;
-    private ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         LiveTvApplication.appContext = this;
     }
-
 
     @Override
     public void onResume() {
         super.onResume();
-        Tracking.getInstance(this).enableTrack(true);
-        Tracking.getInstance(this).enableSleep(false);
-        Tracking.getInstance(this).setAction(getClass().getSimpleName());
-        Tracking.getInstance(this).track();
+        Tracking.getInstance().enableTrack(true);
+        Tracking.getInstance().enableSleep(false);
+        if(!(this instanceof VideoPlayActivity)){
+            Tracking.getInstance().setAction(getClass().getSimpleName());
+        }
+        Tracking.getInstance().track();
         if(getViewModel() != null)
             getViewModel().onViewResumed();
         LiveTvApplication.appContext = this;
@@ -52,16 +49,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onPause(){
         super.onPause();
-        Tracking.getInstance(this).enableTrack(true);
-        Tracking.getInstance(this).enableSleep(true);
+        Tracking.getInstance().enableTrack(true);
+        Tracking.getInstance().enableSleep(true);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(Tracking.getInstance(LiveTvApplication.appContext).getSleep()){
-                    Tracking.getInstance(LiveTvApplication.appContext).setAction("Sleeping");
-                    Tracking.getInstance(LiveTvApplication.appContext).track();
-                    Tracking.getInstance(LiveTvApplication.appContext).enableSleep(false);
-                    Tracking.getInstance(LiveTvApplication.appContext).enableTrack(false);
+                if(Tracking.getInstance().getSleep()){
+                    Tracking.getInstance().setAction("Sleeping");
+                    Tracking.getInstance().track();
+                    Tracking.getInstance().enableSleep(false);
+                    Tracking.getInstance().enableTrack(false);
                 }
             }
         },1000);

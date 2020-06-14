@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.listeners.DownloaderListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
@@ -55,6 +56,7 @@ public class SplashViewModel implements SplashViewModelContract.ViewModel, Strin
 
         if(!TextUtils.isEmpty(theUser)) {
             user = new Gson().fromJson(theUser, User.class);
+            LiveTvApplication.user = user;
             usr = user.getName();
             password = user.getPassword();
             id = user.getDeviceId();

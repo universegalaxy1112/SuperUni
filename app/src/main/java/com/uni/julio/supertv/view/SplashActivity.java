@@ -1,43 +1,30 @@
 package com.uni.julio.supertv.view;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
-import com.uni.julio.supertv.utils.Tracking;
 import com.uni.julio.supertv.utils.networing.HttpRequest;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.SplashViewModel;
 import com.uni.julio.supertv.viewmodel.SplashViewModelContract;
-
 import java.io.File;
 
 public class SplashActivity extends BaseActivity implements SplashViewModelContract.View {
@@ -58,11 +45,10 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
         Device.setHDMIStatus();
         HttpRequest.getInstance().trustAllHosts();//trust all HTTPS hosts
         splashViewModel = new SplashViewModel(this);
-        Device.getInstance().getIP();
+        setContentView(R.layout.activity_splash);
     }
 
 
@@ -92,9 +78,8 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     public void onCheckForUpdateCompleted(boolean hasNewVersion, String location) {
         this.updateLocation = location;
         if (hasNewVersion) {
-            Resources res = getResources();
             try{
-                Dialogs.showTwoButtonsDialog((AppCompatActivity) getActivity(),R.string.download , R.string.cancel, R.string.new_version_available, (DialogListener) new DialogListener() {
+                Dialogs.showTwoButtonsDialog( getActivity(),R.string.download , R.string.cancel, R.string.new_version_available,  new DialogListener() {
                     public void onAccept() {
                         if (getPermissionStatus("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                             requestStoragePermission();
@@ -168,17 +153,17 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
             accept = R.string.config;
             message = R.string.permission_storage_config;
         }
-        Dialogs.showTwoButtonsDialog( this, accept, (int) R.string.cancel, message, (DialogListener) new DialogListener() {
+        Dialogs.showTwoButtonsDialog( this, accept,  R.string.cancel, message,  new DialogListener() {
             @TargetApi(23)
             public void onAccept() {
                 if (!denyAll) {
-                    DataManager.getInstance().saveData("storagePermissionRequested", Boolean.valueOf(true));
+                    DataManager.getInstance().saveData("storagePermissionRequested", Boolean.TRUE);
                     requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                     return;
                 }
                 Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                 intent.setData(Uri.fromParts("package", getPackageName(), null));
-               startActivityForResult(intent, 4168);
+                startActivityForResult(intent, 4168);
             }
 
             public void onCancel() {
@@ -252,24 +237,21 @@ public class SplashActivity extends BaseActivity implements SplashViewModelContr
     public void onDownloadUpdateError(int error) {
         downloadProgress.dismiss();
 
-        switch (error) {
-            case 1:
-                Dialogs.showOneButtonDialog(  getActivity(),   R.string.verify_unknown_sources, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        splashViewModel.login();
-                    }
-                });
-                return;
-            default:
-                Dialogs.showOneButtonDialog(  getActivity(),   R.string.new_version_generic_error_message, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        splashViewModel.login();
-                    }
-                });
-                return;
+        if (error == 1) {
+            Dialogs.showOneButtonDialog(getActivity(), R.string.verify_unknown_sources, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    splashViewModel.login();
+                }
+            });
+            return;
         }
+        Dialogs.showOneButtonDialog(getActivity(), R.string.new_version_generic_error_message, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                splashViewModel.login();
+            }
+        });
     }
 
     @Override

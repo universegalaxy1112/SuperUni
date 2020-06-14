@@ -267,18 +267,22 @@
                     style="@style/text.description"
                     android:text="Al cerrar sesión desautorizas este dispositivo para reproducir contenido con tu cuenta, esto te permite utilizar un nuevo dispositivo."
                     />
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dip_16"
-                    app:cardBackgroundColor="@color/transparent"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="@dimen/dip_12"
-                    app:cardUseCompatPadding="true"
-                    >
-                    <RelativeLayout
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/transparent"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="@dimen/dip_12"
+                        app:cardUseCompatPadding="true"
+                        >
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/cv_loginScreen_login"
                                 android:layout_width="wrap_content"
@@ -287,8 +291,30 @@
                                 android:text="Cerrar sesión"
                                 android:onClick="@{accountDetailsVM::onCloseSession}"
                                 />
-                </RelativeLayout>
-                </androidx.cardview.widget.CardView>
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/transparent"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="@dimen/dip_12"
+                        app:cardUseCompatPadding="true">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/testspeed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/play_text"
+                                android:text="Test Speed"
+                                />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

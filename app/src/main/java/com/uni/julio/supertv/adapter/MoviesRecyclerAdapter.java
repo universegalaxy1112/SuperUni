@@ -35,16 +35,14 @@ import java.util.Map;
 
 public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerAdapter.MyViewHolder> implements ImageLoadedListener {
     List<?extends VideoStream> mMovies;
-    Context mContext;
+    private Context mContext;
     private int mRowPosition;
     private MovieSelectedListener movieSelectedListener;
     private MovieAcceptedListener movieAcceptedListener;
     private boolean mShowTitle=false;
-    private boolean mTreatAsBox=false;
     private Map<Integer, Bitmap> loadedImages=new HashMap<>();
     private Handler handler=new Handler();
     private TVRecyclerView recyclerView;
-    private File directory;
     private ImageView imageView;
     public MoviesRecyclerAdapter(Context context, TVRecyclerView recyclerView, List<?extends VideoStream> videoDataList, int rowPosition, MovieSelectedListener movieSelectedListener) {
         this.mMovies=videoDataList;
@@ -57,7 +55,7 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View itemView= LayoutInflater.from(mContext).inflate(R.layout.video_list_row,viewGroup,false);
-        directory = Files.GetFile(Files.GetCacheDir());
+        File directory = Files.GetFile(Files.GetCacheDir());
         if(directory != null && !directory.exists()) {
             directory.mkdirs();
         }
@@ -87,7 +85,6 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
 
     }
     public void setTreatAsBox(boolean treatAsBox) {
-        mTreatAsBox = treatAsBox;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -114,10 +111,7 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
 
     @Override
     public void onLoaded(ImageResponse response) {
-
-
     }
-
     class MyViewHolder extends TVRecyclerViewAdapter.ViewHolder{
         private ViewDataBinding viewDataBinding;
         public MyViewHolder(Context context,View itemView){
@@ -130,7 +124,7 @@ public class MoviesRecyclerAdapter extends TVRecyclerViewAdapter<MoviesRecyclerA
             return viewDataBinding;
         }
     }
-    protected void postAndNotifyAdapter(final Handler handler, final TVRecyclerView.Adapter adapter, final ImageResponse response) {
+    private void postAndNotifyAdapter(final Handler handler, final TVRecyclerView.Adapter adapter, final ImageResponse response) {
         handler.post(new Runnable() {
             @Override
             public void run() {

@@ -6,20 +6,15 @@
             name="liveTVFragmentVM"
             type="com.uni.julio.supertv.viewmodel.LiveTVViewModel" />
     </data>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_general">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-      >
+        android:background="@color/bg_general">
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/exo_player"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/exo_player"
+            android:orientation="horizontal">
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,5 +61,4 @@
                 android:nextFocusUp="@id/category_tab"/>
         </LinearLayout>
     </FrameLayout>
- </LinearLayout>
 </layout>

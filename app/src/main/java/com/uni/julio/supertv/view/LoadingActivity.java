@@ -65,12 +65,10 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-
         if (keyCode == KeyEvent.KEYCODE_BACK) {
              finishActivity();
             return true;
         }
-
          return false;
     }
     @Override
@@ -79,14 +77,12 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
         extras.putSerializable("selectedType", ModelTypes.SelectedType.MAIN_CATEGORY);
         extras.putInt("mainCategoryId", mainCategoryId);
         if(LiveTvApplication.appContext instanceof LoadingActivity){
-            if(Device.treatAsBox){
+            if(Device.treatAsBox)
                 launchActivity(MoviesTvActivity.class, extras);
-            }else{
+            else
                 launchActivity(MoviesActivity.class, extras);
-            }
             getActivity().finish();
         }
-
     }
 
     @Override
@@ -116,7 +112,6 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
             }
         }catch (IllegalStateException e){
             finishActivity();
-
         }
 
     }
@@ -138,9 +133,7 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
 
     @Override
     public void onProgramsForLiveTVCategoriesLoaded() {
-        List<LiveTVCategory> liveTVCategoryList = VideoStreamManager.getInstance().getLiveTVCategoriesList();
-        liveTVCategoryList = VideoStreamManager.getInstance().getLiveTVCategoriesList();
-        launchActivity(LiveActivity.class);
+        launchActivity(LiveTvNewActivity.class);
         getActivity().finish();
 
     }

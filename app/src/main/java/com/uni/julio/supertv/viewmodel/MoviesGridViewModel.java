@@ -22,6 +22,7 @@ import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.Connectivity;
 import com.uni.julio.supertv.utils.DataManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewModel, MovieSelectedListener {
@@ -61,11 +62,13 @@ public class MoviesGridViewModel implements MoviesGridViewModelContract.ViewMode
 
      @Override
     public void showMovieList(TVRecyclerView moviesGridRV, int mainCategoryPosition, int movieCategoryPosition) {
-         boolean showTitles = false;
-         this.mMovieCategoryPosition=movieCategoryPosition;
-         this.mMainCategoryPosition=mainCategoryPosition;
-        List<Movie> movies;
-        movies=(List<Movie>)videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().get(movieCategoryPosition).getMovieList();
+        boolean showTitles = false;
+        this.mMovieCategoryPosition=movieCategoryPosition;
+        this.mMainCategoryPosition=mainCategoryPosition;
+        List<Movie> movies = new ArrayList<>();
+        if(videoStreamManager.getMainCategoriesList().size() > mainCategoryPosition && videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().size() > movieCategoryPosition){
+            movies = (List<Movie>)videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().get(movieCategoryPosition).getMovieList();
+        }
         GridViewAdapter moreVideoAdapter=new GridViewAdapter(mContext,moviesGridRV,movies,movieCategoryPosition,this);
         mLayoutManager=new GridLayoutManager(mContext,Integer.parseInt(mContext.getString(R.string.more_video)));
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

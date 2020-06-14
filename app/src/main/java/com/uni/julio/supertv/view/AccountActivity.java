@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
@@ -22,7 +23,6 @@ import com.uni.julio.supertv.viewmodel.Lifecycle;
 
 public class AccountActivity extends BaseActivity implements AccountDetailsViewModelContract.View {
     private AccountDetailsViewModel accountDetailsViewModel;
-    private ActivityAccountBinding activityAccountBinding;
 
     @Override
     protected Lifecycle.ViewModel getViewModel() {
@@ -36,9 +36,8 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        activityAccountBinding= DataBindingUtil.setContentView(this, R.layout.activity_account);
-        accountDetailsViewModel = new AccountDetailsViewModel(getActivity(),activityAccountBinding);
+        ActivityAccountBinding activityAccountBinding = DataBindingUtil.setContentView(this, R.layout.activity_account);
+        accountDetailsViewModel = new AccountDetailsViewModel(getActivity(), activityAccountBinding);
         activityAccountBinding.setAccountDetailsVM(accountDetailsViewModel);
         Toolbar toolbar = activityAccountBinding.toolbar;
         toolbar.setTitle("Mi Cuenta");
@@ -49,11 +48,17 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
              (activityAccountBinding.Appbarlayout).setVisibility(View.GONE);
         }
         accountDetailsViewModel.showAccountDetails();
+        TextView textView = activityAccountBinding.testspeed;
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchActivity(SpeedTestActivity.class);
+            }
+        });
     }
     @Override
     public void onCloseSessionSelected() {
         DataManager.getInstance().saveData("theUser","");
-
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -61,9 +66,8 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home)
             finish();
-        }
         return super.onOptionsItemSelected(item);
     }
     @Override
@@ -87,6 +91,5 @@ public class AccountActivity extends BaseActivity implements AccountDetailsViewM
     @Override
     public void onError() {
         finishActivity();
-
     }
 }

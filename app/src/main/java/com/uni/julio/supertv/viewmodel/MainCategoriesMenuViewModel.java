@@ -55,7 +55,7 @@ public class MainCategoriesMenuViewModel implements MainCategoriesMenuViewModelC
     public void showMainCategories(TVRecyclerView mainCategoriesRV) {
         mMainCategoriesRV=mainCategoriesRV;
         mainCategoriesList = VideoStreamManager.getInstance().getMainCategoriesList();
-        mainCategoryAdapter=new MainCategoryAdapter(mContext,mainCategoriesList,viewCallback);
+        mainCategoryAdapter=new MainCategoryAdapter(mContext, mainCategoriesRV, mainCategoriesList,viewCallback);
         GridLayoutManager manager = new GridLayoutManager(mContext, Integer.parseInt(mContext.getString(R.string.maincategory_column_num)));
         if(mContext.getString(R.string.maincategory_direction).equals("0")){
             manager.setOrientation(LinearLayoutManager.VERTICAL);

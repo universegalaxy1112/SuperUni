@@ -51,7 +51,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     private static Context applicationContext;
     protected String userAgent;
     public Handler handler;
-    public User user = null;
+    public static User user = null;
     public static Context appContext=null;
     @Override
     public void onCreate() {
@@ -61,11 +61,11 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
         handler.postDelayed(new Runnable(){
             public void run(){
                 sendLocation();
-                handler.postDelayed(this, 600000);
+                handler.postDelayed(this, 1000000);
             }
-        }, 600000);
+        }, 1000000);
 
-        //handleSSLHandshake();
+        handleSSLHandshake();
     }
     public  void handleSSLHandshake() {
         try {
@@ -97,15 +97,20 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     }
 
     public void sendLocation(){
+
         if( appContext != null && !(appContext instanceof SplashActivity)){
-            if(user == null){
-               String theUser = DataManager.getInstance().getString("theUser","");
-                if(!TextUtils.isEmpty(theUser)) {
-                    user = new Gson().fromJson(theUser, User.class);
-                }
-            }
-                NetManager.getInstance().performLoginCode(user.getName(),user.getPassword(), user.getDeviceId(),this);
+            NetManager.getInstance().performLoginCode(LiveTvApplication.getUser().getName(),user.getPassword(), user.getDeviceId(),this);
         }
+    }
+
+    public static User getUser(){
+        if(LiveTvApplication.user == null){
+            String theUser = DataManager.getInstance().getString("theUser","");
+            if(!TextUtils.isEmpty(theUser)) {
+                LiveTvApplication.user = new Gson().fromJson(theUser, User.class);
+            }
+        }
+        return LiveTvApplication.user;
     }
     public static Context getAppContext() {
         return applicationContext;
@@ -118,11 +123,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 
     public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
         userAgent = "";
-        String theUser = DataManager.getInstance().getString("theUser","");
-        if(!TextUtils.isEmpty(theUser)) {
-            User user = new Gson().fromJson(theUser, User.class);
-            userAgent = user.getUser_agent();
-        }
+        userAgent = LiveTvApplication.getUser().getUser_agent();
         return new DefaultHttpDataSourceFactory(userAgent,bandwidthMeter);
     }
 
@@ -135,18 +136,17 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
        try{
             if(appContext !=null){
                 if (!TextUtils.isEmpty(response)) {
-
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.has("status") && "1".equals(jsonObject.getString("status"))) {
                             return;
                         }else{
-                            Tracking.getInstance(appContext).enableTrack(false);
+                            Tracking.getInstance().enableTrack(false);
                             String errorFound = jsonObject.getString("error_found");
                             switch (errorFound) {
                                 case "103":
                                 case "104":
-                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_change_device).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_change_device).replace("{ID}", user.getDeviceId()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -155,7 +155,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
 //
                                     break;
                                 case "105":
-                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", Device.getIdentifier()), new DialogInterface.OnClickListener() {
+                                    Dialogs.showOneButtonDialog(appContext, appContext.getString(R.string.attention), appContext.getString(R.string.login_error_usr_pss_incorrect).replace("{ID}", user.getDeviceId()), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             closeApp();
@@ -200,7 +200,7 @@ public class LiveTvApplication extends MultiDexApplication implements StringRequ
     }
     public void showErrorMessage() {
         if(appContext != null)
-            Tracking.getInstance(appContext).enableTrack(true);
+            Tracking.getInstance().enableTrack(true);
             Dialogs.showOneButtonDialog(appContext, R.string.no_connection_title,  R.string.no_connection_message);
     }
 

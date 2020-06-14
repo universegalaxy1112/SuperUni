@@ -1,5 +1,6 @@
 package com.uni.julio.supertv.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,9 @@ import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.ModelTypes;
 import com.uni.julio.supertv.model.Movie;
 import com.uni.julio.supertv.model.Serie;
+import com.uni.julio.supertv.model.VideoStream;
+import com.uni.julio.supertv.utils.Dialogs;
+import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
 import com.uni.julio.supertv.viewmodel.MoviesMenuViewModel;
 import com.uni.julio.supertv.viewmodel.MoviesMenuViewModelContract;
@@ -35,6 +39,7 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
     ActivityMoviesBinding activityMoviesBinding;
     private int serieId;
     SearchView searchView;
+    private boolean isPip = false;
     private WaveSwipeRefreshLayout waveSwipeRefreshLayout;
     @Override
     protected Lifecycle.ViewModel getViewModel() {
@@ -49,39 +54,52 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        moviesMenuViewModel=new MoviesMenuViewModel(getBaseContext());
-        activityMoviesBinding= DataBindingUtil.setContentView(this,R.layout.activity_movies);
-        activityMoviesBinding.setMoviesMenuFragmentVM(moviesMenuViewModel);
-        Bundle extras = getActivity().getIntent().getExtras();
-        selectedType = (ModelTypes.SelectedType) extras.get("selectedType");
-        mainCategoryId = extras.getInt("mainCategoryId",-1);
-        movieCategoryId = extras.getInt("movieCategoryId",-1);
-        serieId = extras.getInt("serieId",-1);
-        Toolbar toolbar = activityMoviesBinding.toolbar;
-        toolbar.setTitle(VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getCatName());
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            toolbar.setElevation(0);
-        }
-        waveSwipeRefreshLayout =  findViewById(R.id.main_swipe);
-        waveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
-            @Override public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
-                            moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
-                        }
-                        waveSwipeRefreshLayout.setRefreshing(false);
-                    }
-                },3000);
+        try {
+            moviesMenuViewModel=new MoviesMenuViewModel(getBaseContext());
+            activityMoviesBinding= DataBindingUtil.setContentView(this,R.layout.activity_movies);
+            activityMoviesBinding.setMoviesMenuFragmentVM(moviesMenuViewModel);
+            Bundle extras = getActivity().getIntent().getExtras();
+            selectedType = (ModelTypes.SelectedType) extras.get("selectedType");
+            mainCategoryId = extras.getInt("mainCategoryId",-1);
+            movieCategoryId = extras.getInt("movieCategoryId",-1);
+            serieId = extras.getInt("serieId",-1);
+            Toolbar toolbar = activityMoviesBinding.toolbar;
+            if(VideoStreamManager.getInstance().getMainCategoriesList().size() > mainCategoryId)
+                toolbar.setTitle(VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getCatName());
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                toolbar.setElevation(0);
             }
-        });
-        if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
-            moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
+            waveSwipeRefreshLayout =  findViewById(R.id.main_swipe);
+            waveSwipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
+                @Override public void onRefresh() {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
+                                moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
+                            }
+                            waveSwipeRefreshLayout.setRefreshing(false);
+                        }
+                    },3000);
+                }
+            });
+            if(selectedType== ModelTypes.SelectedType.MAIN_CATEGORY){
+                moviesMenuViewModel.showMovieLists(activityMoviesBinding.moviecategoryrecycler,mainCategoryId);
+            }
+        }catch (Exception e){
+            Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    getActivity().finish();
+                }
+            });
+            e.printStackTrace();
         }
+
      }
     private long mLastKeyDownTime = 0;
 
@@ -137,19 +155,19 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
 
     @Override
     public void onMovieAccepted(int selectedRow,Movie movie) {
-        Bundle extras = new Bundle();
-        extras.putString("movie", new Gson().toJson(movie));
-        extras.putInt("mainCategoryId", mainCategoryId);
-        extras.putInt("movieCategoryId", selectedRow);
-        Intent launchIntent = getLaunchIntent(OneSeasonDetailActivity.class, extras);
-       // startActivity(launchIntent);
-       // getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
-
-
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this, activityMoviesBinding.moviecategoryrecycler, getResources().getString(R.string.transition_image));
-        ActivityCompat.startActivity(this, launchIntent,
-                options.toBundle());
+        if(mainCategoryId == 4 || mainCategoryId == 7){
+            onPlaySelectedDirect(movie,mainCategoryId);
+        }else{
+            Bundle extras = new Bundle();
+            extras.putString("movie", new Gson().toJson(movie));
+            extras.putInt("mainCategoryId", mainCategoryId);
+            extras.putInt("movieCategoryId", selectedRow);
+            Intent launchIntent = getLaunchIntent(OneSeasonDetailActivity.class, extras);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this, activityMoviesBinding.moviecategoryrecycler, getResources().getString(R.string.transition_image));
+            ActivityCompat.startActivityForResult(this, launchIntent,100,
+                    options.toBundle());
+        }
     }
     @Override
     public void onShowAsGridSelected(Integer position) {
@@ -160,6 +178,25 @@ public class MoviesActivity extends BaseActivity implements MoviesMenuViewModelC
             extras.putInt("movieCategoryId", position);
         }
         launchActivity(MoreVideoActivity.class, extras);
+    }
+    public void onPlaySelectedDirect(Movie movie, int mainCategoryId) {
+        int movieId = movie.getContentId();
+        String[] uris = {movie.getStreamUrl()};
+        String[] extensions = {movie.getStreamUrl().substring(movie.getStreamUrl().replace(".mkv.mkv", ".mkv").replace(".mp4.mp4", ".mp4").lastIndexOf(".") + 1)};
+        Intent launchIntent = new Intent(LiveTvApplication.getAppContext(), VideoPlayActivity.class);
+        launchIntent.putExtra(VideoPlayFragment.URI_LIST_EXTRA, uris)
+                .putExtra(VideoPlayFragment.EXTENSION_LIST_EXTRA, extensions)
+                .putExtra(VideoPlayFragment.MOVIE_ID_EXTRA, movieId)
+                .putExtra(VideoPlayFragment.SECONDS_TO_START_EXTRA, 0L)
+                .putExtra("mainCategoryId", mainCategoryId)
+                .putExtra("type", 0)
+                .putExtra("subsURL", movie.getSubtitleUrl())
+                .putExtra("title", movie.getTitle())
+                .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
+        int EVENT_REQUEST_CODE = 100;
+        ActivityCompat.startActivityForResult(this, launchIntent, EVENT_REQUEST_CODE
+                ,null);
+       // startActivityForResult(launchIntent,EVENT_REQUEST_CODE);
     }
 
     @Override

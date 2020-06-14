@@ -3,6 +3,7 @@ package com.uni.julio.supertv.viewmodel;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,22 +32,17 @@ import java.util.List;
 public class AccountDetailsViewModel implements AccountDetailsViewModelContract.ViewModel {
 
     private final AppCompatActivity mActivity;
-    //    private int mMainCategoryId = 0;
     private AccountDetailsViewModelContract.View viewCallback;
     public ObservableBoolean isLoading;
-    public ObservableBoolean isTV;
-    public List<String> modelList = new ArrayList<>();
-    public ActivityAccountBinding activityAccountBinding;
-//    private VideoStreamManager videoStreamManager;
-//    private Context mContext;
+    private ObservableBoolean isTV;
+    private List<String> modelList = new ArrayList<>();
+    private ActivityAccountBinding activityAccountBinding;
 
     public AccountDetailsViewModel(AppCompatActivity activity,ActivityAccountBinding activityAccountBinding) {
         this.activityAccountBinding = activityAccountBinding;
         isLoading = new ObservableBoolean(false);
 
         getModels();
-        isTV = new ObservableBoolean(Device.canTreatAsBox());
-//        videoStreamManager = VideoStreamManager.getInstance();
         mActivity = activity;
     }
 
@@ -66,9 +62,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
         this.viewCallback = null;
     }
 
-    public void onGoToMenu(View view) {
-        viewCallback.onError();
-    }
    public void onCloseSession(View view) {
         if (Device.canTreatAsBox()) {
             Dialogs.showTwoButtonsDialog(this.mActivity,R.string.accept ,  (R.string.cancel),  R.string.end_session_message,  new DialogListener() {
@@ -91,10 +84,9 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     private void getModels(){
         if (Connectivity.isConnected()) {
             this.isLoading.set(true);
-            String theUser = DataManager.getInstance().getString("theUser", "");
-            final User user = new Gson().fromJson(theUser,User.class);
-            if (!TextUtils.isEmpty(theUser)) {
-                String url=WebConfig.getMessage.replace("{USER}", ((User) new Gson().fromJson(theUser, User.class)).getName());
+            final User user = LiveTvApplication.getUser();
+            if (user != null) {
+                String url=WebConfig.getMessage.replace("{USER}", user.getName());
                 NetManager.getInstance().makeStringRequest(url, new StringRequestListener() {
                     public void onCompleted(String response) {
                         AccountDetailsViewModel.this.isLoading.set(false);
@@ -104,7 +96,6 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
                                 case 1:
                                     modelList.add("Not Registered");
                                     modelList.add("Not Registered");
-
                                     break;
                                 case 2:
                                     modelList.add(user.getDevice().contains(jsonArray.getString(0))? jsonArray.getString(1):jsonArray.getString(0));
@@ -112,8 +103,8 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
                                     break;
                                 case 3:
                                     int flag = 0;
-                                    for(int i=0;i<3;i++){
-                                        if(jsonArray.length()>i){
+                                    for(int i=0;i < 3;i++){
+                                        if(jsonArray.length() > i){
                                             if(!(user.getDevice().contains(jsonArray.getString(i))) || flag == 1)
                                             {
                                                 flag = 1;
@@ -124,7 +115,9 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
                                     break;
                                 default:
                             }
+                            if(modelList.size() > 0)
                             activityAccountBinding.device1.setText(modelList.get(0));
+                            if(modelList.size() > 1)
                             activityAccountBinding.device2.setText(modelList.get(1));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -139,15 +132,12 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
         }
         this.viewCallback.onCloseSessionNoInternet();
     }
-            return;
-
     }
     public void onCloseSession() {
         if (Connectivity.isConnected()) {
             this.isLoading.set(true);
-            String theUser = DataManager.getInstance().getString("theUser", "");
-            if (!TextUtils.isEmpty(theUser)) {
-                String url=WebConfig.removeUserURL.replace("{USER}", ((User) new Gson().fromJson(theUser, User.class)).getName()).replace("{DEVICE_ID}",new Gson().fromJson(theUser,User.class).getDeviceId());
+            if (LiveTvApplication.getUser() != null) {
+                String url=WebConfig.removeUserURL.replace("{USER}", LiveTvApplication.getUser().getName()).replace("{DEVICE_ID}",LiveTvApplication.getUser().getDeviceId());
                 NetManager.getInstance().makeStringRequest(url, new StringRequestListener() {
                     public void onCompleted(String response) {
                         if (response.toLowerCase().contains("success")) {
@@ -168,10 +158,8 @@ public class AccountDetailsViewModel implements AccountDetailsViewModelContract.
     }
     @Override
     public void showAccountDetails() {
-        String theUser = DataManager.getInstance().getString("theUser","");
-        if(!TextUtils.isEmpty(theUser)) {
-            User user = new Gson().fromJson(theUser, User.class);
-            this.activityAccountBinding.setUser(user);
+        if(LiveTvApplication.getUser() != null) {
+            this.activityAccountBinding.setUser(LiveTvApplication.getUser());
         }
         else {
             viewCallback.onError();

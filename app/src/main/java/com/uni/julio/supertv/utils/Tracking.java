@@ -10,21 +10,19 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.listeners.MessageCallbackListener;
 import com.uni.julio.supertv.listeners.StringRequestListener;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
+import com.uni.julio.supertv.view.LoadingActivity;
+import com.uni.julio.supertv.view.MainActivity;
 import com.uni.julio.supertv.view.SplashActivity;
-
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class Tracking implements StringRequestListener, OnClickListener {
-    private static Context mContext = null;
-    private static Tracking mInstance = null;
+    private static Tracking mInstance;
     private String action = "IDLE";
     /* access modifiers changed from: private */
     public Handler handler = new Handler();
@@ -34,10 +32,9 @@ public class Tracking implements StringRequestListener, OnClickListener {
     private Runnable trackingThread = new Runnable() {
         public void run() {
             Tracking.this.track();
-            Tracking.this.handler.postDelayed(this, 30000);
+            Tracking.this.handler.postDelayed(this, 60000);
         }
     };
-    private String usr = "";
     public void enableTrack(boolean isTracking){
         this.isTracking = isTracking;
     }
@@ -47,18 +44,14 @@ public class Tracking implements StringRequestListener, OnClickListener {
     public boolean getSleep(){
         return sleeping;
     }
-    public static Tracking getInstance(Context activity) {
+    public static Tracking getInstance() {
         if (mInstance == null) {
             mInstance = new Tracking();
         }
-        mContext = activity;
         return mInstance;
     }
 
     public void onStart() {
-        String theUser = DataManager.getInstance().getString("theUser", "");
-        if (!TextUtils.isEmpty(theUser))
-            this.usr = ( new Gson().fromJson(theUser, User.class)).getName();
         this.isTracking = true;
         this.handler.removeCallbacks(trackingThread);
         this.handler.postDelayed(trackingThread,0);
@@ -66,13 +59,12 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     /* access modifiers changed from: private */
     public void track() {
-        if(this.isTracking && !(mContext instanceof SplashActivity)){
+        if(this.isTracking && !(LiveTvApplication.appContext instanceof LoadingActivity || LiveTvApplication.appContext instanceof MainActivity  || LiveTvApplication.appContext instanceof SplashActivity)){
             try{
-                String ip =Device.ip;
                 String istv = "1"; //Device.treatAsBox ? "1":"0";
-                String url = WebConfig.trackingURL.replace("{USER}", this.usr).replace("{MOVIE}", URLEncoder.encode(this.action,"UTF-8")).replace("{IP}",ip).replace("{DEVICE_ID}",Device.getIdentifier()).replace("{ISTV}",istv);
+                String url = WebConfig.trackingURL.replace("{USER}", (LiveTvApplication.getUser().getName())).replace("{MOVIE}", (URLEncoder.encode(this.action, "UTF-8")).replace("+", "%20")).replace("{DEVICE_ID}",(LiveTvApplication.getUser().getDeviceId())).replace("{ISTV}",istv);
                 NetManager.getInstance().makeStringRequest(url, this);
-            }catch (UnsupportedEncodingException e){
+            }catch (Exception e){
                 e.printStackTrace();
             }
 
@@ -89,8 +81,8 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     public void onCompleted(String response) {
         try {
-            if(!response.contains("false") && !response.contains("Mantenimiento")) {
-                Dialogs.showCustomDialog(mContext, "Atencion", response, new MessageCallbackListener() {
+            if(!response.contains("false") && !response.contains("Mantenimiento") && !(LiveTvApplication.appContext instanceof MainActivity)) {
+                Dialogs.showCustomDialog(LiveTvApplication.appContext, "Atencion", response, new MessageCallbackListener() {
                     @Override
                     public void onDismiss() {
 

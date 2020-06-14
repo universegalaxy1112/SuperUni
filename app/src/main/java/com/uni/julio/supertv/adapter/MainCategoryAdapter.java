@@ -16,8 +16,10 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.uni.julio.supertv.R;
+import com.uni.julio.supertv.helper.TVRecyclerView;
 import com.uni.julio.supertv.helper.TVRecyclerViewAdapter;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
@@ -25,12 +27,14 @@ import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
 import java.util.List;
 
 public class MainCategoryAdapter extends TVRecyclerViewAdapter<TVRecyclerViewAdapter.ViewHolder> {
-    List<MainCategory> mainCategoryDataList;
-    MainCategoriesMenuViewModelContract.View viewCallback;
-    Context mContext;
-    public MainCategoryAdapter(Context context, final List<MainCategory> mainCategoryDatalist, final MainCategoriesMenuViewModelContract.View viewCallback){
+    private List<MainCategory> mainCategoryDataList;
+    private MainCategoriesMenuViewModelContract.View viewCallback;
+    private Context mContext;
+    private TVRecyclerView tvRecyclerView;
+    public MainCategoryAdapter(Context context, TVRecyclerView recyclerView, final List<MainCategory> mainCategoryDatalist, final MainCategoriesMenuViewModelContract.View viewCallback){
         this.mainCategoryDataList=mainCategoryDatalist;
         this.viewCallback=viewCallback;
+        this.tvRecyclerView = recyclerView;
         mContext=context;
         setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -50,7 +54,7 @@ public class MainCategoryAdapter extends TVRecyclerViewAdapter<TVRecyclerViewAda
             int screenWidth = displayMetrics.widthPixels;
             int px=(int)mContext.getResources().getDisplayMetrics().density*50;
             int width=(screenWidth-2*mContext.getResources().getInteger(R.integer.main_padding)*Integer.parseInt(mContext.getString(R.string.maincategory_column_num))-px)/Integer.parseInt(mContext.getString(R.string.maincategory_column_num));
-            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, width);
+            ViewGroup.LayoutParams params= new ViewGroup.LayoutParams(width, (width));
             itemView.setLayoutParams(params);
         }
         return new MyViewHolder(mContext,itemView);
@@ -66,6 +70,7 @@ public class MainCategoryAdapter extends TVRecyclerViewAdapter<TVRecyclerViewAda
     }
     @Override
     protected void focusIn(View v, int position) {
+        this.tvRecyclerView.scrollToPosition(position);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.05f, 1.1f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.05f, 1.1f);
         AnimatorSet set = new AnimatorSet();
