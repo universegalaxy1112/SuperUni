@@ -6,12 +6,14 @@ import com.uni.julio.supertv.model.LiveProgram;
 import com.uni.julio.supertv.model.LiveTVCategory;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.model.ModelTypes;
+import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
+import com.uni.julio.supertv.utils.networing.NetManager;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import rx.Observable;
@@ -114,21 +116,13 @@ public class VideoStreamManager {
     public List<LiveProgram> getAllLivePrograms() {
         List<LiveProgram> allPrograms = new ArrayList<>();
         for(LiveTVCategory livePrograms : liveTVCategoriesList) {
-            if(livePrograms != null)
-                allPrograms.addAll(Objects.requireNonNull(livePrograms).getLivePrograms());
+            allPrograms.addAll(livePrograms.getLivePrograms());
         }
-
         return allPrograms;
-
     }
 
     public List<LiveTVCategory> getLiveTVCategoriesList() { return liveTVCategoriesList; }
-    public LiveTVCategory getLiveTVCategory(int id) {
-        if(liveTVCategoriesList.size() > id)
-        return liveTVCategoriesList.get(id);
-        else return null;
-
-    }
+    public LiveTVCategory getLiveTVCategory(int id) { return liveTVCategoriesList.get(id); }
     public void resetLiveTVCategory(int count) {
         liveTVCategoriesList = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {

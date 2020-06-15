@@ -168,8 +168,7 @@ public class MultiSeasonDetailActivity extends BaseActivity implements EpisodeDe
         customProgressDialog.show();
     }
     public void hideProgressDialog(){
-        if(customProgressDialog != null && LiveTvApplication.appContext instanceof MultiSeasonDetailActivity && customProgressDialog.isShowing())
-            customProgressDialog.dismiss();
+        if(customProgressDialog != null) customProgressDialog.dismiss();
     }
 
     @Override

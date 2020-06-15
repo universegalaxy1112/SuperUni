@@ -23,7 +23,6 @@ import com.uni.julio.supertv.helper.TVRecyclerViewAdapter;
 import com.uni.julio.supertv.listeners.LiveProgramSelectedListener;
 import com.uni.julio.supertv.model.LiveProgram;
 import com.uni.julio.supertv.service.test.GetSpeedTestHostsHandler;
-import com.uni.julio.supertv.utils.Device;
 
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
@@ -49,7 +48,6 @@ public class ServerAdapter extends TVRecyclerViewAdapter<ServerAdapter.MyViewHol
         setSearchResult("");
         this.recyclerView=recyclerView;
         this.liveProgramSelectedListener = liveProgramSelectedListener;
-        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
         this.recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {
@@ -58,12 +56,12 @@ public class ServerAdapter extends TVRecyclerViewAdapter<ServerAdapter.MyViewHol
 
             @Override
             public void onItemViewFocusChanged(boolean gainFocus, View view, int position) {
-               /* if(view == null) return;
+                if(view == null) return;
                 if(gainFocus) {
                     view.findViewById(R.id.fl_main_layout).setBackground(mContext.getResources().getDrawable(R.drawable.moviesborder));
                 }else{
                     view.findViewById(R.id.fl_main_layout).setBackground(mContext.getResources().getDrawable(R.drawable.md_transparent));
-                }*/
+                }
             }
         });
     }
@@ -101,6 +99,7 @@ public class ServerAdapter extends TVRecyclerViewAdapter<ServerAdapter.MyViewHol
     }
     @Override
     protected void focusIn(View v, int position) {
+        this.recyclerView.scrollToPosition(position);
 
     }
 

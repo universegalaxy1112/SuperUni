@@ -45,14 +45,14 @@
         android:layout_gravity="center"
         android:gravity="center"
         >
+
         <com.uni.julio.supertv.helper.TVRecyclerView
             android:id="@+id/maincategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
-            app:scrollMode="followScroll"
-            app:focusDrawable="@drawable/default_focus"/>
+            app:scrollMode="followScroll" />
     </LinearLayout>
 
 </LinearLayout>

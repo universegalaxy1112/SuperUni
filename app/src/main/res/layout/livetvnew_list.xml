@@ -5,10 +5,6 @@
         <variable
             name="liveProgramItem"
             type="com.uni.julio.supertv.model.LiveProgram" />
-        <variable
-            name="livetvAdapter"
-            type="com.uni.julio.supertv.adapter.LivetvAdapterNew" />
-
     </data>
     <LinearLayout
         android:id="@+id/fl_main_layout"
@@ -16,8 +12,7 @@
         android:layout_height= "wrap_content"
         android:layout_marginBottom="3dp"
         android:focusable="true"
-        android:orientation="horizontal"
-        android:onClick="@{livetvAdapter::onClick}">
+        android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/channel_title"
             android:layout_width="0dp"
@@ -92,7 +87,7 @@
                 android:background="@color/white"
                 android:text="@string/next_schedule"
                 android:textSize="@dimen/sp_9"
-                android:textColor="@color/dark_green"
+                android:textColor="@color/browse_background"
                 android:textStyle="italic"
                 android:focusable="false"
                 android:layout_marginEnd="@dimen/dip_4" />

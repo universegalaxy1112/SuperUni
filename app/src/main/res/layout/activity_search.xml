@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:scrollMode="followScroll"
-                app:focusDrawable="@drawable/moviesborder"
+                app:isAutoProcessFocus="false"
                 android:gravity="center_vertical"
                 app:hidden="@{SearchFM.isLoading}"
                 app:layout_constraintBottom_toBottomOf="parent"

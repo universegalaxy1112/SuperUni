@@ -157,15 +157,13 @@
                             android:id="@+id/programming_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:scrollMode="followScroll"
-                            app:isLive = "true"/>
+                            app:scrollMode="followScroll" />
                         <com.uni.julio.supertv.helper.TVRecyclerView
                             android:id="@+id/live_category_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:visibility="gone"
-                            app:scrollMode="followScroll"
-                            app:isLive = "true"/>
+                            app:scrollMode="followScroll" />
                     </LinearLayout>
                 </LinearLayout>
 

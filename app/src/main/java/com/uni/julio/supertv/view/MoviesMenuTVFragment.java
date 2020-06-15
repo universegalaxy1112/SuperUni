@@ -14,13 +14,17 @@ import android.view.View.OnClickListener;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.BindingAdapter;
 import androidx.leanback.app.BackgroundManager;
+import androidx.leanback.app.BrowseFragment;
 import androidx.leanback.app.BrowseSupportFragment;
+import androidx.leanback.app.HeadersFragment;
 import androidx.leanback.app.HeadersSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
@@ -32,8 +36,11 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowHeaderPresenter;
 import androidx.leanback.widget.RowPresenter;
 
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.gson.Gson;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.uni.julio.supertv.LiveTvApplication;
@@ -55,8 +62,9 @@ import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.view.exoplayer.VideoPlayFragment;
+import java.net.URI;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 
 public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadMoviesForCategoryResponseListener {
@@ -65,8 +73,9 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
     private ModelTypes.SelectedType selectedType;
     private int serieId;
     public int mainCategoryId;
-    private int movieCategoryId;
+    public  int movieCategoryId;
     private BackgroundManager mBackgroundManager;
+    private URI mBackgroundURI;
     private List<MovieCategory> mCategoriesList;
     private TextView title;
     private TextView release_date;
@@ -81,8 +90,8 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras = Objects.requireNonNull(getActivity()).getIntent().getExtras();
-        this.selectedType = (ModelTypes.SelectedType) Objects.requireNonNull(extras).get("selectedType");
+        Bundle extras = getActivity().getIntent().getExtras();
+        this.selectedType = (ModelTypes.SelectedType) extras.get("selectedType");
         this.mainCategoryId = extras.getInt("mainCategoryId", -1);
         this.movieCategoryId = extras.getInt("movieCategoryId", -1);
         this.serieId = extras.getInt("serieId", -1);
@@ -93,11 +102,11 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
         super.onStop();
     }
 
-    private void launchActivity(Class classToLaunch, Bundle extras) {
+    public void launchActivity(Class classToLaunch, Bundle extras) {
         Intent launchIntent = new Intent(getActivity(), classToLaunch);
         launchIntent.putExtras(extras);
         startActivityForResult(launchIntent, 100);
-        Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -107,7 +116,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
             setupEventListeners();
             prepareEntranceTransition();
             prepareBackgroundManager();
-            this.mRowsAdapter = new SortedArrayObjectAdapter( new ListRowComparator(),  new CustomListRowPresenter());
+            this.mRowsAdapter = new SortedArrayObjectAdapter( new ListRowComparator(), (Presenter) new CustomListRowPresenter());
             setAdapter(this.mRowsAdapter);
         }catch (Exception e){
             e.printStackTrace();
@@ -115,7 +124,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-                    Objects.requireNonNull(getActivity()).finish();
+                    getActivity().finish();
                 }
             });
         }
@@ -123,7 +132,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
 
 
     private void setupEventListeners() {
-        setSearchAffordanceColor(ContextCompat.getColor(Objects.requireNonNull(getActivity()), R.color.wp_yellow));
+        setSearchAffordanceColor(ContextCompat.getColor(getActivity(), R.color.wp_yellow));
         if(mainCategoryId != 4 && mainCategoryId != 7 && mainCategoryId != 8 && mainCategoryId != 9 )
         setOnSearchClickedListener(new OnClickListener() {
             public void onClick(android.view.View v) {
@@ -152,22 +161,18 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
     }
     private void prepareBackgroundManager() {
-        try{
-            this.mBackgroundManager = BackgroundManager.getInstance(Objects.requireNonNull(getActivity()));
-            this.mBackgroundManager.attach(getActivity().getWindow());
-            this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.detail_background));
-            DisplayMetrics mMetrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.mBackgroundManager = BackgroundManager.getInstance(getActivity());
+        this.mBackgroundManager.attach(getActivity().getWindow());
+        this.mBackgroundManager.setColor(ContextCompat.getColor(getActivity(), R.color.detail_background));
+        DisplayMetrics mMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
     }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setupUIElements() {
         setTitle("Movies");
         setHeadersState(1);
         setHeadersTransitionOnBackEnabled(true);
-        setBrandColor(ContextCompat.getColor(Objects.requireNonNull(getActivity()), R.color.contact_us_link_color));
+        setBrandColor(ContextCompat.getColor(getActivity(), R.color.contact_us_link_color));
     }
     private void loadData(int start) {
             mCategoriesList = VideoStreamManager.getInstance().getMainCategory(this.mainCategoryId).getMovieCategories();
@@ -216,7 +221,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-                    Objects.requireNonNull(getActivity()).finish();
+                    getActivity().finish();
                 }
             });
         }
@@ -298,7 +303,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                         extras2.putString("movie", new Gson().toJson( movie));
                         extras2.putInt("mainCategoryId", MoviesMenuTVFragment.this.mainCategoryId);
                         launchActivity(OneSeasonDetailActivity.class, extras2);
-                        Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
                     }
                 }
             }
@@ -320,7 +325,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                 .putExtra("subsURL", movie.getSubtitleUrl())
                 .putExtra("title", movie.getTitle())
                 .setAction(VideoPlayFragment.ACTION_VIEW_LIST);
-        ActivityCompat.startActivityForResult(Objects.requireNonNull(getActivity()), launchIntent,100,null);
+        ActivityCompat.startActivityForResult(getActivity(), launchIntent,100,null);
     }
     private Intent getLaunchIntent(Class classToLaunch, Bundle extras) {
         Intent launchIntent = new Intent(getActivity(), classToLaunch);
@@ -362,7 +367,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                     BindingAdapters.bindInvisibleVisibility(hd,!((Movie)item).isHDBranded());
                     BindingAdapters.setRating(ratingBar,(((Movie)item).getStarRating()));
                 }else{
-                    View view= Objects.requireNonNull(getActivity()).findViewById(R.id.scale_frame);
+                    View view=getActivity().findViewById(R.id.scale_frame);
                     title=view.findViewById(R.id.title);
                     release_date=view.findViewById(R.id.release_date);
                     ratingBar= view.findViewById(R.id.ratingBar);
@@ -384,7 +389,7 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                         Target target = new Target() {
                             @Override
                             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                                Objects.requireNonNull(mBackgroundManager).setBitmap(bitmap);
+                                mBackgroundManager.setBitmap(bitmap);
                             }
 
                             @Override
@@ -396,6 +401,9 @@ public class MoviesMenuTVFragment extends BrowseSupportFragment implements LoadM
                         Picasso.get().load(uri).placeholder(R.drawable.placeholder).into(target);
                     }
                 });
+
+
+
         }catch (Exception e){
             e.printStackTrace();
         }

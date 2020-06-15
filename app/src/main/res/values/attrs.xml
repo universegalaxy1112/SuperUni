@@ -29,7 +29,6 @@
         <attr name="focusDrawable" format="reference" />
         <attr name="isAutoProcessFocus" format="boolean" />
         <attr name="focusScale" format="float" />
-        <attr name="isLive" format="boolean" />
     </declare-styleable>
     <declare-styleable name="GaugeView">
         <attr name="gauge_backgroundColor" format="color" />

@@ -37,8 +37,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/preapp_widget_padding"
         android:gravity="center_vertical"
-        app:scrollMode="followScroll"
-        app:focusDrawable="@drawable/moviesborder"/>
+        app:scrollMode="followScroll" />
 
 </LinearLayout>
 </layout>

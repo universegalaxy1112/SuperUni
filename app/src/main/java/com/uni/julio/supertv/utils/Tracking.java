@@ -80,10 +80,14 @@ public class Tracking implements StringRequestListener, OnClickListener {
     public void onCompleted(String response) {
         try {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(!response.contains("false") && !response.contains("Mantenimiento") && !response.equals("") && !(LiveTvApplication.appContext instanceof MainActivity)) {
 =======
             if(!response.contains("false") && !response.contains("Mantenimiento") && !(LiveTvApplication.appContext instanceof MainActivity)) {
 >>>>>>> parent of 98ab7aee... finish Live and Player update
+=======
+            if(!response.contains("false") && !response.contains("Mantenimiento") && !response.equals("") && response != null && !(LiveTvApplication.appContext instanceof MainActivity)) {
+>>>>>>> parent of 74dd6739... test
                 Dialogs.showCustomDialog(LiveTvApplication.appContext, "Atencion", response, new MessageCallbackListener() {
                     @Override
                     public void onDismiss() {

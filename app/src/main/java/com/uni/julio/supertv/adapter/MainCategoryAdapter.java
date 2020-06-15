@@ -32,7 +32,6 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public MainCategoryAdapter(Context context, TVRecyclerView recyclerView, List<MainCategory> mainCategoryDatalist,  MainCategoriesMenuViewModelContract.View viewCallback){
         this.mainCategoryDataList=mainCategoryDatalist;
         this.viewCallback=viewCallback;
-        if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
         recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {
@@ -41,12 +40,12 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             @Override
             public void onItemViewFocusChanged(boolean gainFocus, View view, int position) {
-                /*if(view == null || !Device.treatAsBox) return;
+                if(view == null || !Device.treatAsBox) return;
 
                 if(gainFocus)
                     view.findViewById(R.id.parent).setBackground(mContext.getResources().getDrawable(R.drawable.maincategory_border));
                 else
-                    view.findViewById(R.id.parent).setBackground(mContext.getResources().getDrawable(R.drawable.md_transparent));*/
+                    view.findViewById(R.id.parent).setBackground(mContext.getResources().getDrawable(R.drawable.md_transparent));
             }
         });
         mContext=context;

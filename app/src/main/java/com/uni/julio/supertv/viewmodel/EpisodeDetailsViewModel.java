@@ -452,7 +452,7 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                             .replace("{MOVIEID}",Integer.toString(serie.getContentId()))
                             .replace("{LIKE}","-1")
                             .replace("{DISLIKE}","0")
-                            .replace("{USERID}", LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
+                            .replace("{USERID}",LiveTvApplication.getUser() == null ? "" : LiveTvApplication.getUser().getName()), this);
             movieDetailsBinding.like.setText(String.valueOf(--this.likes));
         }
         liked.set(!liked.get());

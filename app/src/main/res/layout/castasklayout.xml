@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="@dimen/dip_120"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/dip_12"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dip_12">
+        <TextView
+            style="@style/castoptionButton"
+            android:id="@+id/playHD"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dip_8"
+            android:paddingRight="@dimen/dip_8"
+            android:text="HD"
+            android:textColor="@color/textview_selector"
+            android:textStyle="bold|italic" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dip_12"
+        >
+        <TextView
+            style="@style/castoptionButton"
+            android:id="@+id/playSD"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dip_8"
+            android:paddingRight="@dimen/dip_8"
+            android:text="SD"
+            android:textColor="@color/textview_selector"
+            android:textStyle="bold|italic" />
+
+    </LinearLayout>
+</LinearLayout>

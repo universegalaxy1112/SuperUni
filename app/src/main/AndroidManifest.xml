@@ -43,7 +43,12 @@
         android:icon="@mipmap/ic_launcher"
         android:logo="@drawable/banner"
         android:supportsRtl="true"
+<<<<<<< HEAD
         android:theme="@style/AppTheme">
+=======
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+>>>>>>> parent of 74dd6739... test
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.uni.julio.supertv.fileprovider"

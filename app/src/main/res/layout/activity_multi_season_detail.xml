@@ -306,12 +306,17 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
+<<<<<<< HEAD
                                         app:scrollMode="followScroll"
 <<<<<<< HEAD
                                         app:focusDrawable="@drawable/moviesborder"/>
 =======
                                         app:isAutoProcessFocus="true" />
 >>>>>>> parent of 98ab7aee... finish Live and Player update
+=======
+                                        app:isAutoProcessFocus="true"
+                                        app:scrollMode="followScroll" />
+>>>>>>> parent of 74dd6739... test
                                 </LinearLayout>
                             </com.bosphere.fadingedgelayout.FadingEdgeLayout>
 

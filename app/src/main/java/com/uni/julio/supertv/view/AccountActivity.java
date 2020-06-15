@@ -1,10 +1,8 @@
 package com.uni.julio.supertv.view;
 
-import android.app.UiModeManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -16,19 +14,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
-
-import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.databinding.ActivityAccountBinding;
-import com.uni.julio.supertv.listeners.DialogListener;
 import com.uni.julio.supertv.utils.DataManager;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.utils.Dialogs;
 import com.uni.julio.supertv.viewmodel.AccountDetailsViewModel;
 import com.uni.julio.supertv.viewmodel.AccountDetailsViewModelContract;
 import com.uni.julio.supertv.viewmodel.Lifecycle;
-
-import java.util.Objects;
 
 public class AccountActivity extends BaseActivity implements AccountDetailsViewModelContract.View {
     private AccountDetailsViewModel accountDetailsViewModel;

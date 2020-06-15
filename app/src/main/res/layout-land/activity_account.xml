@@ -46,7 +46,6 @@
                 android:layout_centerInParent="true"
                 style="?android:attr/progressBarStyleLarge"
                 android:indeterminateOnly="true"
-                android:indeterminateDrawable="@drawable/progressbackground"
                 app:hidden="@{!accountDetailsVM.isLoading}"
                 />
             <LinearLayout

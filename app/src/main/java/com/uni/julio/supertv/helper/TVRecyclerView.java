@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -33,7 +35,7 @@ public class TVRecyclerView extends RecyclerView {
 
     public static final String TAG = "TvRecyclerView";
     static boolean DEBUG = false;
-    private static final float DEFAULT_SELECT_SCALE = 1f;
+    private static final float DEFAULT_SELECT_SCALE = 1.04f;
     private static final int NORMAL_SCROLL_COMPENSATION_VAL = 45;
 
     private static final int SCROLL_ALIGN = 0;
@@ -47,7 +49,9 @@ public class TVRecyclerView extends RecyclerView {
 
     private static final int DEFAULT_DIRECTION = -1;
 
+/*
     private FocusBorderView mFocusBorderView;
+*/
 
     private Drawable mDrawableFocus;
     public boolean mIsDrawFocusMoveAnim;
@@ -76,7 +80,6 @@ public class TVRecyclerView extends RecyclerView {
     private int mDirection;
     private boolean mIsSetItemSelected = false;
     private boolean mIsNeedMoveForSelect = false;
-    private boolean isLive = false;
     private int mNumRows = 1;
 
 
@@ -122,12 +125,13 @@ public class TVRecyclerView extends RecyclerView {
         mNextFocused = null;
         mInLayout = false;
         mSelectedScaleValue = DEFAULT_SELECT_SCALE;
+        mIsAutoProcessFocus = true;
         mSelectedItem = null;
         mPendingMoveSmoothScroller = null;
-        mFocusFrameLeft = 6;
-        mFocusFrameTop = 6;
-        mFocusFrameRight = 6;
-        mFocusFrameBottom = 6;
+        mFocusFrameLeft = 4;
+        mFocusFrameTop = 4;
+        mFocusFrameRight = 4;
+        mFocusFrameBottom = 4;
     }
 
     private void setAttributeSet(AttributeSet attrs) {
@@ -141,8 +145,7 @@ public class TVRecyclerView extends RecyclerView {
             }
 
             mSelectedScaleValue = typeArray.getFloat(R.styleable.TvRecyclerView_focusScale, DEFAULT_SELECT_SCALE);
-            mIsAutoProcessFocus = true;//typeArray.getBoolean(R.styleable.TvRecyclerView_isAutoProcessFocus, false);
-            isLive = typeArray.getBoolean(R.styleable.TvRecyclerView_isLive, false);
+            mIsAutoProcessFocus = true;//typeArray.getBoolean(R.styleable.TvRecyclerView_isAutoProcessFocus, true);
             if (!mIsAutoProcessFocus) {
                 mSelectedScaleValue = 1.0f;
                 setChildrenDrawingOrderEnabled(true);
@@ -155,17 +158,14 @@ public class TVRecyclerView extends RecyclerView {
         }
     }
 
-    public void setLive(boolean isLive) {
-        this.isLive = isLive;
-    }
     private void addFlyBorderView(Context context) {
-        if (!isLive && mFocusBorderView == null) {
+       /* if (mFocusBorderView == null) {
             mFocusBorderView = new FocusBorderView(context);
             ((Activity) context).getWindow().addContentView(mFocusBorderView,
                     new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             mFocusBorderView.setSelectPadding(mFocusFrameLeft, mFocusFrameTop,
                     mFocusFrameRight, mFocusFrameBottom);
-        }
+        }*/
     }
 
     public static void openDEBUG() {
@@ -243,11 +243,11 @@ public class TVRecyclerView extends RecyclerView {
     }
 
     public void setIsAutoProcessFocus(boolean isAuto) {
+        isAuto = true;
         mIsAutoProcessFocus = isAuto;
         if (!isAuto) {
             mSelectedScaleValue = 1.0f;
             setChildrenDrawingOrderEnabled(true);
-            mFocusBorderView = null;
         } else {
             if (mSelectedScaleValue == 1.0f) {
                 mSelectedScaleValue = DEFAULT_SELECT_SCALE;
@@ -343,41 +343,35 @@ public class TVRecyclerView extends RecyclerView {
      */
     @Override
     public void requestChildFocus(View child, View focused) {
-        try{
-            if (mSelectedPosition < 0) {
-                mSelectedPosition = getChildAdapterPosition(focused);
-            }
-            super.requestChildFocus(child, focused);
-            if (mIsAutoProcessFocus) {
-                requestFocus();
-            } else {
-                int position = getChildAdapterPosition(focused);
-                if (mSelectedPosition != position) {
-                    mSelectedPosition = position;
-                    mSelectedItem = focused;
-                    int distance = getNeedScrollDistance(focused);
-                    if (distance != 0) {
-                        if (DEBUG) {
-                            Log.d(TAG, "requestChildFocus: scroll distance=" + distance);
-                        }
-                        smoothScrollView(distance);
+        if (mSelectedPosition < 0) {
+            mSelectedPosition = getChildAdapterPosition(focused);
+        }
+        super.requestChildFocus(child, focused);
+        if (mIsAutoProcessFocus) {
+            requestFocus();
+        } else {
+            int position = getChildAdapterPosition(focused);
+            if (mSelectedPosition != position) {
+                mSelectedPosition = position;
+                mSelectedItem = focused;
+                int distance = getNeedScrollDistance(focused);
+                if (distance != 0) {
+                    if (DEBUG) {
+                        Log.d(TAG, "requestChildFocus: scroll distance=" + distance);
                     }
+                    smoothScrollView(distance);
                 }
             }
-            if (DEBUG) {
-                Log.d(TAG, "requestChildFocus: SelectPos=" + mSelectedPosition);
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
         }
-
+        if (DEBUG) {
+            Log.d(TAG, "requestChildFocus: SelectPos=" + mSelectedPosition);
+        }
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
-        if (!isLive && mIsAutoProcessFocus) {
+        if (mIsAutoProcessFocus) {
             if (DEBUG) {
                 Log.d(TAG, "onFinishInflate: add fly border view");
             }
@@ -398,12 +392,12 @@ public class TVRecyclerView extends RecyclerView {
             mItemStateListener.onItemViewFocusChanged(gainFocus, mSelectedItem,
                     mSelectedPosition);
         }
-        if ((isLive && mFocusBorderView == null) || !mIsAutoProcessFocus) {
+       /* if (mFocusBorderView == null) {
             return;
         }
-        mFocusBorderView.setTvRecyclerView(this);
+        mFocusBorderView.setTvRecyclerView(this);*/
         if (gainFocus) {
-            mFocusBorderView.bringToFront();
+            //mFocusBorderView.bringToFront();
         }
         if (mSelectedItem != null) {
             if (gainFocus) {
@@ -412,11 +406,11 @@ public class TVRecyclerView extends RecyclerView {
                 mSelectedItem.setSelected(false);
             }
             if (gainFocus && !mInLayout) {
-                mFocusBorderView.startFocusAnim();
+                //mFocusBorderView.startFocusAnim();
             }
         }
         if (!gainFocus) {
-            mFocusBorderView.dismissFocus();
+            // mFocusBorderView.dismissFocus();
         }
     }
 
@@ -461,12 +455,12 @@ public class TVRecyclerView extends RecyclerView {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (mFocusBorderView != null && mFocusBorderView.getTvRecyclerView() != null) {
+       /* if (mFocusBorderView != null && mFocusBorderView.getTvRecyclerView() != null) {
             if (DEBUG) {
                 Log.d(TAG, "dispatchDraw: Border view invalidate.");
             }
             mFocusBorderView.invalidate();
-        }
+        }*/
     }
 
     @Override
@@ -534,7 +528,7 @@ public class TVRecyclerView extends RecyclerView {
         return false;
     }
 
-    private void processPendingMovement(boolean forward) {
+    private void processPendingMovement(final boolean forward) {
         try {
             if (forward ? hasCreatedLastItem() : hasCreatedFirstItem()) {
                 return;
@@ -559,6 +553,7 @@ public class TVRecyclerView extends RecyclerView {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -590,9 +585,9 @@ public class TVRecyclerView extends RecyclerView {
                 if (mReceivedInvokeKeyDown) {
                     if ((getAdapter() != null) && (mSelectedItem != null)) {
                         if (mItemStateListener != null) {
-                            if (mFocusBorderView != null){
-                                mFocusBorderView.startClickAnim();
-                            }
+                            /*if (mFocusBorderView != null){
+                                //mFocusBorderView.startClickAnim();
+                            }*/
                             mItemStateListener.onItemViewClick(mSelectedItem, mSelectedPosition);
                         }
                     }
@@ -608,32 +603,26 @@ public class TVRecyclerView extends RecyclerView {
 
     @Override
     public void computeScroll() {
-
-        try{
-            if (mScrollerFocusMoveAnim.computeScrollOffset()) {
-                if (mIsDrawFocusMoveAnim) {
-                    mFocusMoveAnimScale = ((float) (mScrollerFocusMoveAnim.getCurrX())) / 100;
+        if (mScrollerFocusMoveAnim.computeScrollOffset()) {
+            if (mIsDrawFocusMoveAnim) {
+                mFocusMoveAnimScale = ((float) (mScrollerFocusMoveAnim.getCurrX())) / 100;
+            }
+            postInvalidate();
+        } else {
+            if (mIsDrawFocusMoveAnim) {
+                if (mNextFocused != null) {
+                    mSelectedItem = mNextFocused;
+                    mSelectedPosition = getChildAdapterPosition(mSelectedItem);
                 }
+                mIsDrawFocusMoveAnim = false;
+                setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                 postInvalidate();
-            } else {
-                if (mIsDrawFocusMoveAnim) {
-                    if (mNextFocused != null) {
-                        mSelectedItem = mNextFocused;
-                        mSelectedPosition = getChildAdapterPosition(mSelectedItem);
-                    }
-                    mIsDrawFocusMoveAnim = false;
-                    setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-                    postInvalidate();
-                    if (mItemStateListener != null) {
-                        mItemStateListener.onItemViewFocusChanged(true, mSelectedItem,
-                                mSelectedPosition);
-                    }
+                if (mItemStateListener != null) {
+                    mItemStateListener.onItemViewFocusChanged(true, mSelectedItem,
+                            mSelectedPosition);
                 }
             }
-        }catch (Exception e) {
-            e.printStackTrace();
         }
-
     }
 
     private boolean processMoves(int keyCode) {
@@ -913,7 +902,7 @@ public class TVRecyclerView extends RecyclerView {
             mItemStateListener.onItemViewFocusChanged(false, mSelectedItem,
                     mSelectedPosition);
         }
-        mScrollerFocusMoveAnim.startScroll(0, 0, 100, 100, 50);
+        mScrollerFocusMoveAnim.startScroll(0, 0, 100, 100, 0);
         invalidate();
     }
 
@@ -951,10 +940,10 @@ public class TVRecyclerView extends RecyclerView {
         mFocusFrameRight = right;
         mFocusFrameBottom = bottom;
 
-        if (mFocusBorderView != null) {
+        /*if (mFocusBorderView != null) {
             mFocusBorderView.setSelectPadding(mFocusFrameLeft, mFocusFrameTop,
                     mFocusFrameRight, mFocusFrameBottom);
-        }
+        }*/
     }
 
 

@@ -2,6 +2,7 @@ package com.uni.julio.supertv.utils.networing.parser;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.uni.julio.supertv.LiveTvApplication;
 import com.uni.julio.supertv.model.LiveProgram;
 import com.uni.julio.supertv.model.LiveTVCategory;
@@ -12,6 +13,7 @@ import com.uni.julio.supertv.model.Serie;
 import com.uni.julio.supertv.model.User;
 import com.uni.julio.supertv.model.VideoStream;
 import com.uni.julio.supertv.utils.DataManager;
+import com.uni.julio.supertv.utils.networing.HttpRequest;
 import com.uni.julio.supertv.utils.networing.NetManager;
 import com.uni.julio.supertv.utils.networing.WebConfig;
 
@@ -134,6 +136,7 @@ public class FetchJSonFileSync {
     public List<LiveTVCategory> retrieveLiveTVCategories(MainCategory mainCategory) {
         try {
             String subCatURL = getLiveTVCategoriesUrl(mainCategory);
+            //String dataFromServer = HttpRequest.getInstance().performRequest(subCatURL);
             String dataFromServer = NetManager.getInstance().makeSyncStringRequest(subCatURL);
             //Log.d("liveTV","retrieveLiveTVCategories "+dataFromServer);
             return ParserJSonFile.getParsedLiveTVCategories(dataFromServer);
