@@ -36,7 +36,7 @@
                 android:id="@+id/moviecategoryrecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dip_4"
+                android:padding="@dimen/dip_16"
                 app:scrollMode="followScroll"
                 app:isAutoProcessFocus="false">
             </com.uni.julio.supertv.helper.TVRecyclerView>

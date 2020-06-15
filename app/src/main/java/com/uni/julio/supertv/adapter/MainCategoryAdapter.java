@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.uni.julio.supertv.R;
 import com.uni.julio.supertv.helper.TVRecyclerView;
-import com.uni.julio.supertv.helper.VideoStreamManager;
 import com.uni.julio.supertv.model.MainCategory;
 import com.uni.julio.supertv.utils.Device;
 import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
@@ -26,16 +25,18 @@ import com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModelContract;
 import java.util.List;
 
 public class MainCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private List<MainCategory> mainCategoryDataList;
     private MainCategoriesMenuViewModelContract.View viewCallback;
     private Context mContext;
 
-    public MainCategoryAdapter(Context context, TVRecyclerView recyclerView,   MainCategoriesMenuViewModelContract.View viewCallback){
+    public MainCategoryAdapter(Context context, TVRecyclerView recyclerView, List<MainCategory> mainCategoryDatalist,  MainCategoriesMenuViewModelContract.View viewCallback){
+        this.mainCategoryDataList=mainCategoryDatalist;
         this.viewCallback=viewCallback;
         if(!Device.canTreatAsBox()) recyclerView.setIsAutoProcessFocus(false);
         recyclerView.setOnItemStateListener(new TVRecyclerView.OnItemStateListener() {
             @Override
             public void onItemViewClick(View view, int position) {
-                MainCategoryAdapter.this.viewCallback.onMainCategorySelected(VideoStreamManager.getInstance().getMainCategory((int)view.getTag()));
+                MainCategoryAdapter.this.viewCallback.onMainCategorySelected(MainCategoryAdapter.this.mainCategoryDataList.get((int)view.getTag()));
             }
 
             @Override
@@ -69,18 +70,19 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        MyViewHolder viewHolder=(MyViewHolder)holder;
-        MainCategory data=VideoStreamManager.getInstance().getMainCategoriesList().get(position);
+        final MyViewHolder viewHolder=(MyViewHolder)holder;
+        final MainCategory data=mainCategoryDataList.get(position);
         viewHolder.img.setImageResource(data.getCatImageId());
-        viewHolder.parent.setTag(data.getId());
+        viewHolder.parent.setTag(position);
     }
 
     public void update(List<MainCategory> mainCategories) {
+        mainCategoryDataList = mainCategories;
         notifyDataSetChanged();
     }
     @Override
     public int getItemCount() {
-        return VideoStreamManager.getInstance().getMainCategoriesList().size();
+        return mainCategoryDataList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
@@ -92,7 +94,7 @@ public class MainCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainCategoryAdapter.this.viewCallback.onMainCategorySelected(VideoStreamManager.getInstance().getMainCategory((int)v.getTag()));
+                    viewCallback.onMainCategorySelected(MainCategoryAdapter.this.mainCategoryDataList.get((int)v.getTag()));
                 }
             });
             img=itemView.findViewById(R.id.img);

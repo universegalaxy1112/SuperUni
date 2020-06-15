@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this);
+        mainCategoriesMenuViewModel = new MainCategoriesMenuViewModel(this.getBaseContext());
         this.requested=false;
 
         setContentView(R.layout.activity_main);

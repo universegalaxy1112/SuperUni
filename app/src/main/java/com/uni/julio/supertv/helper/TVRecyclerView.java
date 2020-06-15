@@ -505,8 +505,6 @@ public class TVRecyclerView extends RecyclerView {
                 }
             } catch (Exception e) {
                 Log.e(TAG, "dispatchKeyEvent: get next focus item error: " + e.getMessage());
-                this.init();
-                this.scrollToPosition(0);
                 mNextFocused = null;
             }
         }
@@ -546,8 +544,7 @@ public class TVRecyclerView extends RecyclerView {
                 stopScroll();
                 PendingMoveSmoothScroller linearSmoothScroller = new PendingMoveSmoothScroller(
                         getContext(), forward ? 1 : -1);
-                //if(getLayoutManager() != null)
-                //getLayoutManager().startSmoothScroll(linearSmoothScroller);
+                getLayoutManager().startSmoothScroll(linearSmoothScroller);
                 if (linearSmoothScroller.isRunning()) {
                     mPendingMoveSmoothScroller = linearSmoothScroller;
                 }

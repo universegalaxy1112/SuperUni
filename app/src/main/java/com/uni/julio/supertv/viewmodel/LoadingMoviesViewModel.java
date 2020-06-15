@@ -47,23 +47,17 @@ public class LoadingMoviesViewModel implements LoadingMoviesViewModelContract.Vi
 
     @Override
     public void loadSubCategories(int mainCategoryPosition) {
-        try
-        {
-            if(videoStreamManager.getMainCategory(mainCategoryPosition).getModelType() == ModelTypes.LIVE_TV_CATEGORIES) {
-                netManager.retrieveLiveTVPrograms(videoStreamManager.getMainCategory(mainCategoryPosition), (LoadProgramsForLiveTVCategoryResponseListener)this);
+        if(videoStreamManager.getMainCategory(mainCategoryPosition).getModelType() == ModelTypes.LIVE_TV_CATEGORIES) {
+             netManager.retrieveLiveTVPrograms(videoStreamManager.getMainCategory(mainCategoryPosition), (LoadProgramsForLiveTVCategoryResponseListener)this);
+        }
+        else {
+            if(videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().size() > 0 && mainCategoryPosition != 8 ) {
+                viewCallback.onSubCategoriesForMainCategoryLoaded();
             }
             else {
-                if(videoStreamManager.getMainCategory(mainCategoryPosition).getMovieCategories().size() > 0 && mainCategoryPosition != 8 ) {
-                    viewCallback.onSubCategoriesForMainCategoryLoaded();
-                }
-                else {
-                    netManager.retrieveSubCategories(videoStreamManager.getMainCategory(mainCategoryPosition), (LoadSubCategoriesResponseListener) this);
-                }
+                netManager.retrieveSubCategories(videoStreamManager.getMainCategory(mainCategoryPosition), (LoadSubCategoriesResponseListener) this);
             }
-        }catch (Exception e){
-            e.printStackTrace();
         }
-
     }
 
     @Override

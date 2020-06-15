@@ -137,7 +137,7 @@ public class LiveTVViewModel implements LiveTVViewModelContract.ViewModel, LiveP
     public void onLiveTVCategorySelected(LiveTVCategory category) {
         if(category.getPosition() == -1)
             rowsRecyclerAdapter.updateChannels(videoStreamManager.getAllLivePrograms());
-        else if(videoStreamManager.getLiveTVCategory(category.getPosition()) != null)
+        else
             rowsRecyclerAdapter.updateChannels(videoStreamManager.getLiveTVCategory(category.getPosition()).getLivePrograms());
         activityLiveBinding.setVariable(BR.currentCategory,category);
         activityLiveBinding.programmingRecycler.init();

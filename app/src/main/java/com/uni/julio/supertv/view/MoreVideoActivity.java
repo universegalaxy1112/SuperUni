@@ -62,10 +62,8 @@ public class MoreVideoActivity extends BaseActivity implements MoviesGridViewMod
              (activityMorevideoBinding.appBarLayout).setVisibility(View.GONE);
         }
         try {
-            if(VideoStreamManager.getInstance().getMainCategory(mainCategoryId) != null) {
-                String title= VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategories().get(movieCategoryId).getCatName();
-                getSupportActionBar().setTitle(title);
-            }
+            String title= VideoStreamManager.getInstance().getMainCategory(mainCategoryId).getMovieCategories().get(movieCategoryId).getCatName();
+            getSupportActionBar().setTitle(title);
         }catch (IndexOutOfBoundsException e){
             e.printStackTrace();
             Dialogs.showOneButtonDialog(getActivity(), R.string.exception_title, R.string.exception_content, new DialogInterface.OnClickListener() {

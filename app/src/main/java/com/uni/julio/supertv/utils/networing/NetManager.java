@@ -112,10 +112,12 @@ public class NetManager {
     public String makeSyncStringRequest(String url, int timeOutSeconds) {
         RequestFuture<String> future = RequestFuture.newFuture();
         UTF8StringRequest stringRequest = new UTF8StringRequest(Request.Method.GET, url, future, future);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        if(url.contains("capitulos_temporada"))
+            stringRequest.setPriority(Request.Priority.IMMEDIATE);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
         try {
-            return future.get(timeOutSeconds, TimeUnit.SECONDS);
+            return future.get(10, TimeUnit.SECONDS);
         } catch (Exception e) {
            e.printStackTrace();
         }

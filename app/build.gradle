@@ -19,8 +19,13 @@ android {
         applicationId "com.uni.julio.supertv"
         minSdkVersion 21
         targetSdkVersion 29
+<<<<<<< HEAD
         versionCode 8
         versionName "3.0.2"
+=======
+        versionCode 2
+        versionName "2.0.5"
+>>>>>>> parent of 98ab7aee... finish Live and Player update
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

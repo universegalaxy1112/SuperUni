@@ -294,10 +294,8 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
             serieType = "favoriteSerie";
         } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.SERIES_KIDS_CATEGORIES)) {
             serieType = "favoriteKids";
-        }else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.KARAOKE_CATEGORIES)){
-            serieType = "favoriteKara";
         }else{
-            serieType = "favoriteSerie";
+            serieType = "favoriteKara";
         }
         String favoriteSeries=DataManager.getInstance().getString(serieType,"");
         Serie newserie;
@@ -372,10 +370,8 @@ public class EpisodeDetailsViewModel implements EpisodeDetailsViewModelContract.
                     serieType = "recentSeries";
                 } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.SERIES_KIDS_CATEGORIES) {
                     serieType = "recentKids";
-                }else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType() == ModelTypes.KARAOKE_CATEGORIES){
-                    serieType = "recentKara";
                 }else{
-                    serieType = "recentSeries";
+                    serieType = "recentKara";
                 }
                 recentSeries = DataManager.getInstance().getString(serieType, "");
 

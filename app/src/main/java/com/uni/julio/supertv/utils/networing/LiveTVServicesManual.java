@@ -87,8 +87,7 @@ public class LiveTVServicesManual {
                 public void onError() {
                     stringRequestListener.onError();
                 }
-            });
-        }
+            });        }
         return true;
     }
     public static Observable<Boolean> performLoginCode(final String user,final String code, final String device_id,final StringRequestListener stringRequestListener) {

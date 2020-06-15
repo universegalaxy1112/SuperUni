@@ -102,7 +102,7 @@ public class SpeedTestActivity extends AppCompatActivity {
                         public void run() {
                             //Get egcodes.speedtest hosts
                             int timeCount = 600; //1min
-                            while (getSpeedTestHostsHandler != null && !getSpeedTestHostsHandler.isFinished()) {
+                            while (!getSpeedTestHostsHandler.isFinished()) {
                                 timeCount--;
                                 try {
                                     Thread.sleep(100);

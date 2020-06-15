@@ -33,7 +33,7 @@
     <string name="info_text">Info</string>
     <string name="maincategory_column_num">2</string>
     <string name="maincategory_direction">0</string>
-    <string name="more_video">3</string>
+    <string name="more_video">2</string>
     <string name="episode">1</string>
     <string name="login_screen_username">Username</string>
     <string name="login_screen_password">Password</string>
@@ -112,8 +112,7 @@
     <string name="permission_storage_config">El permiso de Escritura en memoria externa es necesario para descargar actualizaciones a tu dispositivo. Por favor actívalo desde la configuración de la aplicación.</string>
     <string name="permission_rationale">El permiso de Teléfono es necesario para ligar tu cuenta a tu dispositivo.</string>
     <string name="permission_rationale_config">El permiso de Teléfono es necesario para ligar tu cuenta a tu dispositivo. Por favor actívalo desde la configuración de la aplicación.</string>
-    <string name="permission_audio">El permiso de Grabado de audio es necesario para hacer búsquedas por reconocimiento de voz.</string>
-    <string name="permission_audio_config">El permiso de Grabado de audio es necesario para hacer búsquedas por reconocimiento de voz. Por favor actívalo desde la configuración de la aplicación.</string>
+
     <string name="login_error_already_registered">Este dispositivo ya está registrado a otro usuario.</string>
     <string name="login_error_no_authorized">Este dispositivo no está autorizado.</string>
     <string name="login_error_usr_pss_incorrect">Usuario o contraseña incorrectos.</string>
@@ -121,7 +120,7 @@
     <string name="login_error_nosession">No se pudo iniciar sesión.</string>
 
     <string name="login_error_demo">Las cuentas de demostración no pueden ser usadas en Android. Por favor comunícate con el Administrador para solicitar una cuenta real.</string>
-    <string name="ip_limitation">Es necesario usar la misma ip</string>
+    <string name="ip_limitation">You have to use the same ip.</string>
     <!--<string name="login_error_change_account">Este dispositivo está ligado a otra cuenta, desea usar una cuenta nueva?</string>-->
     <string name="login_error_change_account">Este dispositivo está ligado a otra cuenta. \nPor favor comunícate con tu Administrador con el siguiente identificador:\n{ID}</string>
     <!--<string name="login_error_change_device">Esta cuenta está ligada con otro dispositivo, desea cambiar a éste?</string>-->
@@ -180,7 +179,7 @@
     <string name="report_content">Contenido no relacionado</string>
     <string name="no_channel">No hay Canal Seleccionado.</string>
     <string name="no_content">No Content</string>
-    <string name="exit_confirm">Estas seguro que quieres salir?</string>
+    <string name="exit_confirm">Are you sure?</string>
     <string name="next_schedule">Next</string>
     <string name="now_schedule">Now</string>
     <string name="time_out">Request TimeOut</string>

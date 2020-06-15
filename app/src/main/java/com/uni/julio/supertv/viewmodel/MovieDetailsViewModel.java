@@ -277,8 +277,6 @@ public class MovieDetailsViewModel implements MovieDetailsViewModelContract.View
             serieType = "favoriteMovies";
         } else if(videoStreamManager.getMainCategory(mMainCategoryId).getModelType().equals(ModelTypes.ENTERTAINMENT_CATEGORIES)){
             serieType = "favoriteEntertainment";
-        }else{
-            serieType = "favoriteMovies";
         }
        String favoriteMovies=DataManager.getInstance().getString(serieType,"");
        if(TextUtils.isEmpty(favoriteMovies)){

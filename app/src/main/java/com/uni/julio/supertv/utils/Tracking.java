@@ -29,12 +29,12 @@ public class Tracking implements StringRequestListener, OnClickListener {
     /* access modifiers changed from: private */
     private boolean isTracking = false;
     private boolean sleeping = false;
-    private Runnable trackingThread = new Runnable() {
+   /* private Runnable trackingThread = new Runnable() {
         public void run() {
             Tracking.this.track();
             Tracking.this.handler.postDelayed(this, 60000);
         }
-    };
+    };*/
     public void enableTrack(boolean isTracking){
         this.isTracking = isTracking;
     }
@@ -53,12 +53,12 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     public void onStart() {
         this.isTracking = true;
-        this.handler.removeCallbacks(trackingThread);
-        this.handler.postDelayed(trackingThread,0);
+        //this.handler.removeCallbacks(trackingThread);
+       // this.handler.postDelayed(trackingThread,0);
     }
 
     public void track() {
-        if(this.isTracking && LiveTvApplication.appContext != null && !(LiveTvApplication.appContext instanceof LoadingActivity || LiveTvApplication.appContext instanceof MainActivity  || LiveTvApplication.appContext instanceof SplashActivity)){
+        if(this.isTracking && !(LiveTvApplication.appContext instanceof LoadingActivity || LiveTvApplication.appContext instanceof MainActivity  || LiveTvApplication.appContext instanceof SplashActivity)){
             try{
                 String istv = "1"; //Device.treatAsBox ? "1":"0";
                 String url = WebConfig.trackingURL.replace("{USER}", (LiveTvApplication.getUser().getName())).replace("{MOVIE}", (URLEncoder.encode(this.action, "UTF-8")).replace("+", "%20")).replace("{DEVICE_ID}",(LiveTvApplication.getUser().getDeviceId())).replace("{ISTV}",istv);
@@ -79,7 +79,11 @@ public class Tracking implements StringRequestListener, OnClickListener {
 
     public void onCompleted(String response) {
         try {
+<<<<<<< HEAD
             if(!response.contains("false") && !response.contains("Mantenimiento") && !response.equals("") && !(LiveTvApplication.appContext instanceof MainActivity)) {
+=======
+            if(!response.contains("false") && !response.contains("Mantenimiento") && !(LiveTvApplication.appContext instanceof MainActivity)) {
+>>>>>>> parent of 98ab7aee... finish Live and Player update
                 Dialogs.showCustomDialog(LiveTvApplication.appContext, "Atencion", response, new MessageCallbackListener() {
                     @Override
                     public void onDismiss() {

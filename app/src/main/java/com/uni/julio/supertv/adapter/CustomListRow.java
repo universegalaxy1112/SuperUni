@@ -26,20 +26,20 @@ public class CustomListRow extends ListRow {
     @Override
     public CharSequence getContentDescription() {
         if (mContentDescription != null) {
-            return mContentDescription;
+            return mContentDescription+"a";
         }
         final HeaderItem headerItem = getHeaderItem();
         if (headerItem != null) {
             CharSequence contentDescription = headerItem.getContentDescription();
             if (contentDescription != null) {
-                return contentDescription;
+                return contentDescription + "a";
             }
-            return headerItem.getName();
+            return headerItem.getName() + "a";
         }
         return null;
     }
 
     public void setContentDescription(CharSequence contentDescription) {
-        mContentDescription = contentDescription;
+        mContentDescription = contentDescription+"a";
     }
 }

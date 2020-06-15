@@ -70,10 +70,9 @@ public class LoadingActivity extends BaseActivity implements LoadingMoviesViewMo
     private void cancelCalls() {
         NetManager.getInstance().cancelAll();
         for(int i = 0; i < VideoStreamManager.getInstance().getMainCategoriesList().size();i++) {
-            int categoryId = VideoStreamManager.getInstance().getMainCategoriesList().get(i).getId();
-            if(VideoStreamManager.getInstance().getMainCategory(categoryId) != null && i != mainCategoryId)
-                for(int j = 0; j < VideoStreamManager.getInstance().getMainCategory(categoryId).getMovieCategories().size();j++) {
-                    VideoStreamManager.getInstance().getMainCategory(categoryId).getMovieCategory(j).setLoading(false);
+            if(VideoStreamManager.getInstance().getMainCategory(i) != null && i != mainCategoryId)
+                for(int j = 0; j < VideoStreamManager.getInstance().getMainCategory(i).getMovieCategories().size();j++) {
+                    VideoStreamManager.getInstance().getMainCategory(i).getMovieCategory(j).setLoading(false);
                 }
         }
     }
