@@ -87,6 +87,13 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Abrir no smartphone"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Fazer login"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Fazer login com o Google"</string>
+    <string name="exo_controls_fastforward_description">"Avançar"</string>
+    <string name="exo_controls_next_description">"Próxima faixa"</string>
+    <string name="exo_controls_pause_description">"Pausar"</string>
+    <string name="exo_controls_play_description">"Reproduzir"</string>
+    <string name="exo_controls_previous_description">"Faixa anterior"</string>
+    <string name="exo_controls_rewind_description">"Retroceder"</string>
+    <string name="exo_controls_stop_description">"Parar"</string>
     <string msgid="1234962710353108940" name="expand_button_title">"Avançado"</string>
     <string msgid="2721825378927619928" name="lb_control_display_fast_forward_multiplier">"%1$dX"</string>
     <string msgid="6173753802428649303" name="lb_control_display_rewind_multiplier">"%1$dX"</string>

@@ -72,7 +72,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-cast-framework:18.1.0'
     implementation 'androidx.mediarouter:mediarouter:1.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-      implementation 'com.google.firebase:firebase-ads:19.1.0'
+    implementation project(':library-all')
+    implementation project(':extension-ffmpeg')
+    implementation project(':extension-flac')
+    implementation project(':extension-opus')
+    implementation project(':extension-vp9')
+
+    implementation 'com.google.firebase:firebase-ads:19.1.0'
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
 
 }

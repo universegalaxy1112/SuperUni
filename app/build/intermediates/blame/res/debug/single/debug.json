@@ -20,14 +20,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_text_dot_one.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_repeat_off.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_repeat_off.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_repeat_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_repeat_off.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_popupmenu_background.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\drawable\\mtrl_popupmenu_background.xml"
     },
@@ -38,10 +30,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_disconnected_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_disconnected_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_stop.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_stop.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_switch_track.xml.flat",
@@ -64,12 +52,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\xml\\provider_paths.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_controls_rewind.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_controls_rewind.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_repeat_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_repeat_off.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mr_cast_mute_button.xml.flat",
@@ -136,10 +124,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_11_light.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_play.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9f523610c78d6c15f067f1e03be68563\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
     },
@@ -158,10 +142,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_dislike_active_focused.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\button_dislike_active_focused.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_fastforward.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_fastforward.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_lb_ic_search_mic.png.flat",
@@ -194,10 +174,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_skip_next_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxxhdpi-v4\\quantum_ic_skip_next_white_24.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_pause.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_pause.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action.xml.flat",
@@ -296,10 +272,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_popup_background_mtrl_mult.9.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_repeat_one.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_repeat_one.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_03_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_03_dark.png"
     },
@@ -360,6 +332,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\color\\mtrl_error.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_controls_rewind.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_controls_rewind.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_replay_30_grey600_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_replay_30_grey600_36.png"
     },
@@ -370,10 +346,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_07_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_07_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_shuffle_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_shuffle_off.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_07.png.flat",
@@ -424,6 +396,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_29_light.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_controls_rewind.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_controls_rewind.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_focused.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9f523610c78d6c15f067f1e03be68563\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
     },
@@ -434,10 +410,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_picker_actions.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\layout\\mtrl_picker_actions.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_previous.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_previous.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_07_dark.png.flat",
@@ -454,10 +426,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_server.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\item_server.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_shuffle_on.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_shuffle_on.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
@@ -524,10 +492,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\castloadingdialog.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_shuffle_on.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_shuffle_on.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_vol_type_speaker_group_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-hdpi-v4\\ic_vol_type_speaker_group_dark.png"
     },
@@ -546,10 +510,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_livetv_bg.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\livetv_bg.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_shuffle_on.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_shuffle_on.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -596,24 +556,16 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\layout\\mtrl_alert_select_dialog_singlechoice.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_cast_ic_notification_2.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\89a328062a5624f2d98d598039a41d3a\\res\\drawable-xxhdpi-v4\\cast_ic_notification_2.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_test_toolbar_elevation.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\layout\\test_toolbar_elevation.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_cast_ic_notification_2.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\89a328062a5624f2d98d598039a41d3a\\res\\drawable-xxhdpi-v4\\cast_ic_notification_2.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_transformation_sheet_collapse_spec.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\animator\\mtrl_fab_transformation_sheet_collapse_spec.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_repeat_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_repeat_off.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_fullscreen_enter.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_fullscreen_enter.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-land_activity_oneseason_detail.xml.flat",
@@ -672,14 +624,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout-land\\video_player_track_selector_dialog.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_repeat_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_repeat_off.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_repeat_one.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_repeat_one.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\interpolator_mr_linear_out_slow_in.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\interpolator\\mr_linear_out_slow_in.xml"
     },
@@ -690,14 +634,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_loading.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_loading.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_circular_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_circular_play.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_previous.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_previous.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_apptheme_scrubber_control_disabled_holo.png.flat",
@@ -718,10 +654,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_videofragment_normal.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\videofragment_normal.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_repeat_one.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_repeat_one.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_seekbar_tick_mark_material.xml.flat",
@@ -804,10 +736,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_21_dark.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_rewind.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_rewind.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_checkbox_unchecked_to_checked_mtrl_animation.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable\\btn_checkbox_unchecked_to_checked_mtrl_animation.xml"
     },
@@ -858,6 +786,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_notification_connecting.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\89a328062a5624f2d98d598039a41d3a\\res\\drawable\\cast_ic_notification_connecting.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_controls_next.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_controls_next.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_23_light.png.flat",
@@ -928,8 +860,8 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\41e9af9ac32216272ad72ced57d48fb2\\res\\layout\\leanback_preferences_list.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_fullscreen_exit.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_fullscreen_exit.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_controls_rewind.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_controls_rewind.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_00_dark.png.flat",
@@ -940,12 +872,20 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_ic_notification_play.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_controls_fastforward.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_controls_fastforward.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_arrow_left_black_48dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\drawable-xxhdpi-v4\\ic_arrow_left_black_48dp.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_controls_fastforward.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_controls_fastforward.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dislike_active.xml.flat",
@@ -1184,10 +1124,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\color\\textview_selector.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_shuffle_on.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_shuffle_on.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_skip_previous_white_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_skip_previous_white_36.png"
     },
@@ -1248,10 +1184,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-mdpi-v4\\cast_abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_next.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_next.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_loading.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\dialog_loading.xml"
     },
@@ -1274,10 +1206,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_progress_indeterminate_horizontal.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\da6632fcd8eff128b7d53ade1b5d8fa7\\res\\layout\\md_dialog_progress_indeterminate_horizontal.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_circular_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_circular_play.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_vol_mute.png.flat",
@@ -1460,10 +1388,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_fastforward.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_fastforward.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_audiotrack_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-mdpi-v4\\ic_audiotrack_light.png"
     },
@@ -1478,10 +1402,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_stop_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-mdpi-v4\\quantum_ic_stop_white_24.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_play.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_vol_mute.xml.flat",
@@ -1536,6 +1456,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_19_dark.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_controls_play.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_controls_play.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
@@ -1566,10 +1490,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_18_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_18_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_repeat_one.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_repeat_one.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_layout_snackbar.xml.flat",
@@ -1636,6 +1556,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_15_light.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_controls_play.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_controls_play.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_search_view.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\layout\\abc_search_view.xml"
     },
@@ -1668,12 +1592,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e3554639e66495b2929ef852e1d906c9\\res\\drawable-xxhdpi-v4\\ic_arrow_down_24dp.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_15.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_group_collapse_15.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_01_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_01_light.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_15.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_group_collapse_15.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_stroke_color_selector.xml.flat",
@@ -1856,10 +1780,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-mdpi-v4\\ic_vol_type_tv_light.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_vr.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_vr.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_radio_material.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable\\abc_btn_radio_material.xml"
     },
@@ -1914,10 +1834,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_expanded_controller_stop.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_ic_expanded_controller_stop.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_vr.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_vr.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
@@ -1990,6 +1906,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_16_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_16_light.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_controls_pause.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_controls_pause.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_stub_actionbuttons.xml.flat",
@@ -2128,10 +2048,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_stop_grey600_48.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_next.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_next.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_closed_caption_grey600_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-mdpi-v4\\quantum_ic_closed_caption_grey600_36.png"
     },
@@ -2172,6 +2088,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\anim\\btn_radio_to_off_mtrl_ring_outer_path_animation.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_controls_pause.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_controls_pause.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_forward_30_white_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxxhdpi-v4\\quantum_ic_forward_30_white_36.png"
     },
@@ -2204,6 +2124,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\layout\\default_suggestion_item.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_controls_previous.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_controls_previous.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_29_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_29_dark.png"
     },
@@ -2214,10 +2138,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_vol_type_speaker_group_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-hdpi-v4\\ic_vol_type_speaker_group_light.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_shuffle_on.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_shuffle_on.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\transition-v21_lb_browse_return_transition.xml.flat",
@@ -2238,10 +2158,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_track_selection_dialog.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\layout\\exo_track_selection_dialog.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_pause_grey600_36.png.flat",
@@ -2336,12 +2252,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable\\mr_cast_group_seekbar_track.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_up_container.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_mtrl_picker_text_input_date.xml.flat",
@@ -2366,10 +2282,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_48dp.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_pause.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_pause.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_on_mtrl_dot_group_animation.xml.flat",
@@ -2402,10 +2314,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_round_corners.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\drawable\\round_corners.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_next.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_next.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_menu_item_action_area.xml.flat",
@@ -2524,10 +2432,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_vr.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_vr.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
@@ -2592,10 +2496,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\karaoke.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_play.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_19_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_19_light.png"
     },
@@ -2628,28 +2528,20 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\interpolator\\btn_radio_to_on_mtrl_animation_interpolator_0.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_08.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_group_collapse_08.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_48dp.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_expand_07.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_group_expand_07.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_48dp.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_48dp.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_fullscreen_enter.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_fullscreen_enter.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_08.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_group_collapse_08.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_27_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_27_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_previous.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_previous.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_lb_ic_shuffle.png.flat",
@@ -2730,6 +2622,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_forward_30_white_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_forward_30_white_36.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_controls_play.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_controls_play.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_navigation_item_text_color.xml.flat",
@@ -2936,6 +2832,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\lb_picker.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_controls_previous.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_controls_previous.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_36dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png"
     },
@@ -2952,10 +2852,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\live_bg_middle.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_play.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_17_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_17_light.png"
     },
@@ -2968,16 +2864,8 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\cast_abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_list_divider.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\layout\\exo_list_divider.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_previous.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_previous.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_progressbackground.xml.flat",
@@ -3026,10 +2914,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_mr_controller_material_dialog_b.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\layout\\mr_controller_material_dialog_b.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_shuffle_on.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_shuffle_on.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -3136,6 +3020,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_bigtop_updates_white_24.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_controls_play.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_controls_play.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\animator_lb_playback_rows_fade_out.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\animator\\lb_playback_rows_fade_out.xml"
     },
@@ -3208,10 +3096,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xhdpi-v4\\quantum_ic_pause_grey600_36.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_repeat_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_repeat_off.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4_ic_launcher.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\mipmap-mdpi-v4\\ic_launcher.png"
     },
@@ -3242,6 +3126,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\interpolator_btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\interpolator\\btn_checkbox_unchecked_mtrl_animation_interpolator_1.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_controls_previous.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_controls_previous.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_text_view_with_line_height_from_appearance.xml.flat",
@@ -3292,12 +3180,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\menu\\expanded_controller.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9f523610c78d6c15f067f1e03be68563\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9f523610c78d6c15f067f1e03be68563\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_lb_details_fragment.xml.flat",
@@ -3318,10 +3206,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_person.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-xxhdpi-v4\\ic_person.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_vr.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_vr.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_checkbox_themeable_attribute_color.xml.flat",
@@ -3358,10 +3242,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_lb_picker_item.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\lb_picker_item.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_rewind.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_rewind.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
@@ -3440,10 +3320,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\da6632fcd8eff128b7d53ade1b5d8fa7\\res\\layout-ldrtl-v17\\md_listitem_singlechoice.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_rewind.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_rewind.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_bottom.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\anim\\abc_slide_out_bottom.xml"
     },
@@ -3454,10 +3330,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13_mtrl_layout_snackbar.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\layout-sw600dp-v13\\mtrl_layout_snackbar.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_repeat_one.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_repeat_one.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_cast_connected_white_24.png.flat",
@@ -3608,6 +3480,10 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\menu\\browse.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_controls_next.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_controls_next.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_25_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_25_dark.png"
     },
@@ -3648,10 +3524,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_shuffle_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_shuffle_off.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
@@ -3668,16 +3540,16 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\entertainment.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_controls_next.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_controls_next.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_banner.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\banner.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_repeat_all.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_repeat_all.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mark_img1.png.flat",
@@ -3688,12 +3560,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xhdpi-v4\\quantum_ic_forward_30_white_24.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_16_light.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_16_light.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_art_track_grey600_48.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xhdpi-v4\\quantum_ic_art_track_grey600_48.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_16_light.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_16_light.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_cast_ic_stop_circle_filled_grey600.png.flat",
@@ -3714,10 +3586,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_vol_mute.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_vol_mute.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_rewind.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_rewind.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_apptheme_scrubber_secondary_holo.9.png.flat",
@@ -4012,10 +3880,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxxhdpi-v4\\quantum_ic_pause_circle_filled_white_36.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_fastforward.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_fastforward.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_close_icon_tint.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\color\\mtrl_chip_close_icon_tint.xml"
     },
@@ -4113,7 +3977,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_playback_control_view.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\layout\\exo_playback_control_view.xml"
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\layout\\exo_playback_control_view.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_12.png.flat",
@@ -4152,10 +4016,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_07_light.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_fullscreen_exit.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_fullscreen_exit.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_calendar_black_24dp.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\drawable\\ic_calendar_black_24dp.xml"
     },
@@ -4168,20 +4028,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_11_light.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_shuffle_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_shuffle_off.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_sign_in_up.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\background_sign_in_up.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_10_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_10_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_fastforward.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_fastforward.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_surface_color.xml.flat",
@@ -4218,6 +4070,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_default.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_controls_fastforward.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_controls_fastforward.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_23_light.png.flat",
@@ -4288,12 +4144,12 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_livetvnew.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_skip_previous_white_24.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_skip_previous_white_24.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_play_selector.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable\\play_selector.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_vr.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_vr.png"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_skip_previous_white_24.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_skip_previous_white_24.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_media_pause_dark.png.flat",
@@ -4356,10 +4212,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-hdpi-v4\\ic_media_stop_dark.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_rewind.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_rewind.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_material_on_background_disabled.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\color\\material_on_background_disabled.xml"
     },
@@ -4374,10 +4226,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_lb_list_row_hovercard.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\lb_list_row_hovercard.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_stop.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_stop.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_pause_white_24.png.flat",
@@ -4432,6 +4280,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-mdpi-v4\\ic_media_pause_dark.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_controls_pause.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_controls_pause.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_vol_unmute.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_vol_unmute.png"
     },
@@ -4462,10 +4314,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_dialog.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_dialog.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_stop.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_stop.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_material.xml.flat",
@@ -4532,10 +4380,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\adults.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_pause.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_pause.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_pause_grey600_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_pause_grey600_36.png"
     },
@@ -4562,10 +4406,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_volume_off_grey600_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_volume_off_grey600_36.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_fullscreen_enter.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_fullscreen_enter.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -4656,10 +4496,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\lb_picker_column.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_edit_mode_logo.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_edit_mode_logo.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-ldrtl-hdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
@@ -4670,10 +4506,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_popupmenu_background_dark.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\drawable\\mtrl_popupmenu_background_dark.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_edit_mode_logo.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_edit_mode_logo.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_loading_back_bg.xml.flat",
@@ -4704,6 +4536,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_controls_previous.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_controls_previous.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_lb_rows_fragment.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\lb_rows_fragment.xml"
     },
@@ -4730,10 +4566,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_stop.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_stop.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_leanback_list_preference_item_multi.xml.flat",
@@ -4944,10 +4776,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_video_play.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_fastforward.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_fastforward.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\animator_menu_to_back_rotation.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\animator\\menu_to_back_rotation.xml"
     },
@@ -4972,10 +4800,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_forward_30_white_24.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_next.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_next.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_skip_previous_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxxhdpi-v4\\quantum_ic_skip_previous_white_24.png"
     },
@@ -4986,6 +4810,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_magnify_black_48dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\drawable-hdpi-v4\\ic_magnify_black_48dp.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_controls_rewind.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_controls_rewind.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_dislike_active.xml.flat",
@@ -5010,10 +4838,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_19_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_19_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_stop.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_stop.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_checkbox_to_unchecked_icon_null_animation.xml.flat",
@@ -5048,10 +4872,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\89a328062a5624f2d98d598039a41d3a\\res\\drawable-hdpi-v4\\cast_ic_notification_2.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_fullscreen_enter.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_fullscreen_enter.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4_ic_launcher.png.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\mipmap-xhdpi-v4\\ic_launcher.png"
     },
@@ -5064,10 +4884,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\ic_favorite_like_focused.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_fullscreen_enter.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_fullscreen_enter.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
@@ -5078,10 +4894,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_expanded_controller_skip_next.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_ic_expanded_controller_skip_next.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_play.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_play.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_email_verify.xml.flat",
@@ -5152,14 +4964,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_fullscreen_enter.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_fullscreen_enter.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_pause.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_pause.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mtrl_tabs_default_indicator.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\drawable\\mtrl_tabs_default_indicator.xml"
     },
@@ -5186,10 +4990,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_13.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_group_collapse_13.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_fastforward.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_fastforward.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -5256,12 +5056,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\interpolator-v21\\mtrl_fast_out_linear_in.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_lb_ic_actions_right_arrow.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-mdpi-v4\\lb_ic_actions_right_arrow.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_tint.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9f523610c78d6c15f067f1e03be68563\\res\\color\\common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_lb_ic_actions_right_arrow.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-mdpi-v4\\lb_ic_actions_right_arrow.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_lb_ic_actions_right_arrow.png.flat",
@@ -5314,10 +5114,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_off_mtrl_ring_outer_animation.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\anim\\btn_radio_to_off_mtrl_ring_outer_animation.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_repeat_all.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_repeat_all.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_vol_type_tv_dark.png.flat",
@@ -5394,10 +5190,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_arrow_left_black_48dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\drawable-mdpi-v4\\ic_arrow_left_black_48dp.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_edit_mode_logo.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_edit_mode_logo.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_volume_off_white_36.png.flat",
@@ -5504,10 +5296,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_refresh_white_24.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_player_view.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\layout\\exo_player_view.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_pause_circle_filled_grey600_36.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_pause_circle_filled_grey600_36.png"
     },
@@ -5522,10 +5310,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_28_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_28_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_circular_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_circular_play.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_holo_dark.xml.flat",
@@ -5556,6 +5340,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_controls_fastforward.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_controls_fastforward.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_replay_10_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_replay_10_white_24.png"
     },
@@ -5572,12 +5360,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_in_app_search_shadow_focused.9.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_16_dark.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_16_dark.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_expanded_controller_rewind30.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_ic_expanded_controller_rewind30.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_16_dark.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_16_dark.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_card_shadow.xml.flat",
@@ -5586,10 +5374,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_menu_item.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\layout\\design_navigation_menu_item.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_edit_mode_logo.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_edit_mode_logo.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_replay_10_white_24.png.flat",
@@ -5610,10 +5394,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_preference_widget_seekbar.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e3554639e66495b2929ef852e1d906c9\\res\\layout\\preference_widget_seekbar.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_circular_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_circular_play.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_01_dark.png.flat",
@@ -5696,6 +5476,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\lb_search_orb.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_controls_play.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_controls_play.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_cast_connected_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-mdpi-v4\\quantum_ic_cast_connected_white_24.png"
     },
@@ -5706,6 +5490,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_lb_image_card_view_themed_badge_left.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\lb_image_card_view_themed_badge_left.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_controls_next.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_controls_next.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_livetv_border.xml.flat",
@@ -5740,6 +5528,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\layout\\video_surface_fragment.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_controls_previous.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_controls_previous.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim-v21_mtrl_bottom_sheet_slide_out.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\anim-v21\\mtrl_bottom_sheet_slide_out.xml"
     },
@@ -5766,10 +5558,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_radio.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\layout\\abc_list_menu_item_radio.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_repeat_all.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_repeat_all.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -6028,10 +5816,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_20_dark.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_next.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_next.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_28_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_28_light.png"
     },
@@ -6088,10 +5872,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\drawable-xxxhdpi-v4\\design_ic_visibility_off.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_play.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_check_material.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable\\abc_btn_check_material.xml"
     },
@@ -6106,10 +5886,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_stop_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xxhdpi-v4\\quantum_ic_stop_white_24.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_circular_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_circular_play.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\interpolator-v21_mtrl_fast_out_slow_in.xml.flat",
@@ -6168,20 +5944,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_fullscreen_exit.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_fullscreen_exit.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_replay_30_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_replay_30_white_24.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_exo_edit_mode_logo.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxxhdpi-v4\\exo_edit_mode_logo.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_positive_background_ripple.xml.flat",
@@ -6244,10 +6012,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\da6632fcd8eff128b7d53ade1b5d8fa7\\res\\layout-v14\\md_stub_progress.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_shuffle_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_shuffle_off.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_stub_titleframe_lesspadding.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\da6632fcd8eff128b7d53ade1b5d8fa7\\res\\layout\\md_stub_titleframe_lesspadding.xml"
     },
@@ -6258,10 +6022,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_mini_controller_forward30.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_ic_mini_controller_forward30.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_edit_mode_logo.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_edit_mode_logo.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_17_dark.png.flat",
@@ -6294,10 +6054,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_11_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_11_dark.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_edit_mode_logo.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_edit_mode_logo.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_12_light.png.flat",
@@ -6360,10 +6116,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-mdpi-v4\\quantum_ic_skip_previous_grey600_36.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_shuffle_off.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_shuffle_off.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_filled_stroke_color.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\color\\mtrl_filled_stroke_color.xml"
     },
@@ -6410,10 +6162,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_07_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_07_light.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_player_control_view.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\layout\\exo_player_control_view.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
@@ -6512,10 +6260,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_next.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_next.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_cast_abc_scrubber_control_off_mtrl_alpha.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xhdpi-v4\\cast_abc_scrubber_control_off_mtrl_alpha.png"
     },
@@ -6558,10 +6302,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\xml\\filepaths.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_repeat_all.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_repeat_all.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -6684,10 +6424,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_card_shadow_focused.9.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_shuffle_off.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_shuffle_off.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9f523610c78d6c15f067f1e03be68563\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
     },
@@ -6782,6 +6518,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_28_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_28_light.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_controls_pause.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_controls_pause.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
@@ -6928,10 +6668,6 @@
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\season_background.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_fullscreen_exit.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_fullscreen_exit.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\214c1052c1cd2dfcc04a5b041539c080\\res\\layout\\notification_template_big_media_custom.xml"
     },
@@ -7012,10 +6748,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\color\\switch_thumb_material_light.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_rewind.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_rewind.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_03_dark.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_03_dark.png"
     },
@@ -7085,7 +6817,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_exo_simple_player_view.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\layout\\exo_simple_player_view.xml"
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\layout\\exo_simple_player_view.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_dark_normal.xml.flat",
@@ -7212,10 +6944,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-mdpi-v4\\quantum_ic_play_arrow_grey600_48.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_fullscreen_exit.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_fullscreen_exit.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\color_design_icon_tint.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\color\\design_icon_tint.xml"
     },
@@ -7308,12 +7036,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_repeat_all.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_repeat_all.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_lb_ic_actions_right_arrow.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-hdpi-v4\\lb_ic_actions_right_arrow.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_controls_pause.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_controls_pause.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
@@ -7404,10 +7132,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_exo_icon_pause.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-hdpi-v4\\exo_icon_pause.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_icon_report.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\icon_report.xml"
     },
@@ -7458,10 +7182,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_notification_skip_prev.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_ic_notification_skip_prev.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_previous.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_previous.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mr_cast_route_seekbar_track.xml.flat",
@@ -7526,10 +7246,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable_recycler_bg.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\recycler_bg.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_pause.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_pause.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_out.xml.flat",
@@ -7604,10 +7320,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_ic_sad_cloud.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_exo_icon_circular_play.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxxhdpi-v4\\exo_icon_circular_play.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_forward_30_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\quantum_ic_forward_30_white_24.png"
     },
@@ -7664,12 +7376,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_21_dark.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_lb_in_app_search_shadow_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_in_app_search_shadow_normal.9.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_25_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_25_light.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_lb_in_app_search_shadow_normal.9.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_in_app_search_shadow_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_ic_mr_button_disabled_dark.png.flat",
@@ -7686,10 +7398,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_lb_decelerator_4.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\anim\\lb_decelerator_4.xml"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_icon_previous.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_icon_previous.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
@@ -7712,6 +7420,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\anim\\fade_out_left.xml"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_exo_controls_next.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-xxhdpi-v4\\exo_controls_next.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connecting_10_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_10_light.png"
     },
@@ -7720,12 +7432,16 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_04_dark.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_design_snackbar_in.xml.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\anim\\design_snackbar_in.xml"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_design_snackbar_in.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\994461c1c4aeb7a8762d07ce376b584a\\res\\anim\\design_snackbar_in.xml"
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_controls_fastforward.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_controls_fastforward.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_placeholder_small_cover.png.flat",
@@ -7760,10 +7476,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\7670af5d7b345ffc47b6edce4df7102a\\res\\drawable-mdpi-v4\\ic_menu_vector.xml"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_exo_icon_repeat_all.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-mdpi-v4\\exo_icon_repeat_all.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_ic_vol_unmute.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxxhdpi-v4\\ic_vol_unmute.png"
     },
@@ -7776,10 +7488,6 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_13_dark.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_exo_icon_stop.xml.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-anydpi-v21\\exo_icon_stop.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\anim_lb_decelerator_2.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\anim\\lb_decelerator_2.xml"
     },
@@ -7790,10 +7498,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_09_light.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_09_light.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_exo_icon_repeat_one.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-xhdpi-v4\\exo_icon_repeat_one.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_selectserver.xml.flat",
@@ -7948,12 +7652,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xhdpi-v4\\ic_mr_button_connecting_02_dark.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\transition-v21_lb_browse_headers_in.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\transition-v21\\lb_browse_headers_in.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-mdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_lb_ic_guidedactions_item_chevron.png.flat",
@@ -7962,10 +7666,6 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_ic_vol_mute.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-mdpi-v4\\ic_vol_mute.png"
-    },
-    {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_exo_icon_fullscreen_exit.png.flat",
-        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\ui\\build\\intermediates\\packaged_res\\debug\\drawable-ldpi-v4\\exo_icon_fullscreen_exit.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_36dp.png.flat",

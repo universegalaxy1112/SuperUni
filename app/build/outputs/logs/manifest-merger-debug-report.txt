@@ -60,8 +60,6 @@ MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\dev_1\.gr
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\35d457cc28c5998d040da125cf1099ef\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\c09641e2a10541247ef8a3d5f20da14a\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f52a0d1de639bacd167bcbf0c1371156\AndroidManifest.xml:17:1-22:12
-MERGED from [:library] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\all\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
-MERGED from [:library-ui] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\ui\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.media:media:1.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\214c1052c1cd2dfcc04a5b041539c080\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\6334ecc45194b9ff4f8902ba709547ff\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\368c877f1c4a6c3358f55f45e212ff6d\AndroidManifest.xml:17:1-24:12
@@ -79,6 +77,7 @@ MERGED from [:extension-ffmpeg] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperU
 MERGED from [:extension-flac] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\extensions\flac\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
 MERGED from [:extension-opus] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\extensions\opus\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
 MERGED from [:extension-vp9] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\extensions\vp9\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-26:12
+MERGED from [:library-all] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\all\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\1c1fc52f546c831b84e6ea2534ec9412\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\2e01b5b999838449e29013fe6865c8ae\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\4bdaace8ad014d8c9d98d910fbdc137e\AndroidManifest.xml:17:1-27:12
@@ -86,10 +85,6 @@ MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\dev_1\.gradle\
 MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\469bcc0a7d27db31f5c26ba1823c7bf9\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f79c5d522b22f5afaf90831e0df4b50e\AndroidManifest.xml:15:1-38:12
 MERGED from [com.google.android.datatransport:transport-runtime:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\37bcfc54b219f8f8fd59c3bbd745ed60\AndroidManifest.xml:15:1-41:12
-MERGED from [:library-dash] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\dash\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
-MERGED from [:library-hls] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\hls\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
-MERGED from [:library-smoothstreaming] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\smoothstreaming\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-24:12
-MERGED from [:library-core] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\core\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\dd2afeddf61155409c69ed017cef2ec2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f690da012c4e13c01b34f5d8bcb9065a\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\800ca92889c8c59f3494eff6ff479d4a\AndroidManifest.xml:17:1-22:12
@@ -167,8 +162,6 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:2.1.0] C:\Us
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f79c5d522b22f5afaf90831e0df4b50e\AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\37bcfc54b219f8f8fd59c3bbd745ed60\AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\37bcfc54b219f8f8fd59c3bbd745ed60\AndroidManifest.xml:22:5-79
-MERGED from [:library-core] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\core\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:5-79
-MERGED from [:library-core] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\core\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:5-79
 	android:name
 		ADDED from E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\app\src\main\AndroidManifest.xml:7:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
@@ -639,10 +632,6 @@ MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\dev_1\
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\c09641e2a10541247ef8a3d5f20da14a\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f52a0d1de639bacd167bcbf0c1371156\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f52a0d1de639bacd167bcbf0c1371156\AndroidManifest.xml:20:5-44
-MERGED from [:library] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\all\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\all\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-ui] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\ui\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-ui] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\ui\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.media:media:1.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\214c1052c1cd2dfcc04a5b041539c080\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.media:media:1.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\214c1052c1cd2dfcc04a5b041539c080\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\6334ecc45194b9ff4f8902ba709547ff\AndroidManifest.xml:20:5-44
@@ -677,6 +666,8 @@ MERGED from [:extension-opus] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni
 MERGED from [:extension-opus] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\extensions\opus\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
 MERGED from [:extension-vp9] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\extensions\vp9\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
 MERGED from [:extension-vp9] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\extensions\vp9\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
+MERGED from [:library-all] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\all\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
+MERGED from [:library-all] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\all\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\1c1fc52f546c831b84e6ea2534ec9412\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\1c1fc52f546c831b84e6ea2534ec9412\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\2e01b5b999838449e29013fe6865c8ae\AndroidManifest.xml:20:5-44
@@ -691,14 +682,6 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:2.1.0] C:\Us
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f79c5d522b22f5afaf90831e0df4b50e\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.android.datatransport:transport-runtime:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\37bcfc54b219f8f8fd59c3bbd745ed60\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-runtime:2.1.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\37bcfc54b219f8f8fd59c3bbd745ed60\AndroidManifest.xml:18:5-20:41
-MERGED from [:library-dash] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\dash\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-dash] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\dash\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-hls] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\hls\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-hls] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\hls\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-smoothstreaming] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\smoothstreaming\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-smoothstreaming] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\smoothstreaming\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-core] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\core\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
-MERGED from [:library-core] E:\workspace\2019\10_Oct\AndroidTV\Github\SuperUni\ExoPlayer-release-v2\library\core\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\dd2afeddf61155409c69ed017cef2ec2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\dd2afeddf61155409c69ed017cef2ec2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\dev_1\.gradle\caches\transforms-2\files-2.1\f690da012c4e13c01b34f5d8bcb9065a\AndroidManifest.xml:20:5-44

@@ -92,8 +92,7 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
 
                 @Override
                 public void onAdClosed() {
-                    // Load the next interstitial.
-                    // mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                    startLoading(mainCategoryId);
                 }
             });
         }
@@ -125,8 +124,6 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
          super.onResume();
         requested = false;
         mainCategoriesMenuViewModel.onViewResumed();
-        if(mInterstitialAd != null && mInterstitialAd.isLoaded())
-            mInterstitialAd.show();
     }
 
     @Override
@@ -208,8 +205,9 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
     @Override
     public void onMainCategorySelected(MainCategory mainCategory) {
          if(requested) return;
-        int mainCategoryId = mainCategory.getId();
-        if(mainCategoryId==10){
+         mainCategoryId = mainCategory.getId();
+        if(mainCategoryId==10) {
+            onAccountPressed();
             onAccountPressed();
             return;
         }
@@ -218,7 +216,10 @@ public class MainActivity extends BaseActivity implements MainCategoriesMenuView
             openPasswordDialog(pin);
         }
         else {
-           startLoading(mainCategory.getId());
+            if(mInterstitialAd != null && mInterstitialAd.isLoaded())
+                mInterstitialAd.show();
+            else
+                startLoading(mainCategoryId);
         }
     }
     private void startLoading(int mainCategoryId){
