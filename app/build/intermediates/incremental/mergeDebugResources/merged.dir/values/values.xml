@@ -9,11 +9,8 @@
 <item>@id/cast_button_type_empty</item>
 <item>@id/cast_button_type_play_pause_toggle</item>
 </array>
-    <attr format="color" name="ad_marker_color"/>
-    <attr format="dimension" name="ad_marker_width"/>
     <attr name="appBarLayoutStyle"/>
     <attr format="reference" name="badgeStyle"/>
-    <attr format="dimension" name="bar_height"/>
     <attr format="boolean" name="barrierAllowsGoneWidgets"/>
     <attr format="enum" name="barrierDirection">
         <enum name="left" value="0"/>
@@ -27,7 +24,6 @@
     <attr format="reference" name="bottomNavigationStyle"/>
     <attr format="reference" name="bottomSheetDialogTheme"/>
     <attr format="reference" name="bottomSheetStyle"/>
-    <attr format="color" name="buffered_color"/>
     <attr format="reference" name="cardViewStyle"/>
     <attr format="reference" name="castExpandedControllerToolbarStyle"/>
     <attr format="boolean" name="chainUseRtl"/>
@@ -257,21 +253,14 @@
     <attr format="reference" name="mediaRouteTvIconDrawable"/>
     <attr format="dimension" name="minTouchTargetSize"/>
     <attr format="reference" name="navigationViewStyle"/>
-    <attr format="color" name="played_ad_marker_color"/>
-    <attr format="color" name="played_color"/>
+    <attr format="reference" name="player_layout_id"/>
     <attr format="reference" name="popupMenuBackground"/>
     <attr format="reference" name="recyclerViewStyle"/>
-    <attr name="repeat_toggle_modes">
-    <flag name="none" value="0"/>
-    <flag name="one" value="1"/>
-    <flag name="all" value="2"/>
-  </attr>
     <attr format="enum" name="resize_mode">
     <enum name="fit" value="0"/>
     <enum name="fixed_width" value="1"/>
     <enum name="fixed_height" value="2"/>
     <enum name="fill" value="3"/>
-    <enum name="zoom" value="4"/>
   </attr>
     <attr format="integer" name="rewind_increment"/>
     <attr format="color" name="rippleColor"/>
@@ -281,16 +270,10 @@
         <enum name="followScroll" value="1"/>
         <enum name="normalScroll" value="2"/>
     </attr>
-    <attr format="color" name="scrubber_color"/>
-    <attr format="dimension" name="scrubber_disabled_size"/>
-    <attr format="dimension" name="scrubber_dragged_size"/>
-    <attr format="reference" name="scrubber_drawable"/>
-    <attr format="dimension" name="scrubber_enabled_size"/>
     <attr format="reference" name="shapeAppearanceLargeComponent"/>
     <attr format="reference" name="shapeAppearanceMediumComponent"/>
     <attr format="reference" name="shapeAppearanceSmallComponent"/>
     <attr format="reference" name="showMotionSpec"/>
-    <attr format="boolean" name="show_shuffle_button"/>
     <attr format="integer" name="show_timeout"/>
     <attr format="boolean" name="singleSelection"/>
     <attr format="color" name="strokeColor"/>
@@ -319,10 +302,7 @@
     <attr format="reference" name="textAppearanceSubtitle2"/>
     <attr format="reference" name="textInputStyle"/>
     <attr format="dimension" name="themeLineHeight"/>
-    <attr format="integer" name="time_bar_min_update_interval"/>
     <attr format="string" name="title"/>
-    <attr format="dimension" name="touch_target_height"/>
-    <attr format="color" name="unplayed_color"/>
     <attr format="boolean" name="useMaterialThemeColors"/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_allow_stacked_button_bar">false</bool>
@@ -524,8 +504,6 @@
     <color name="eog_text_color">@color/white</color>
     <color name="error_color_material_dark">#ff7043</color>
     <color name="error_color_material_light">#ff5722</color>
-    <color name="exo_edit_mode_background_color">#FFF4F3F0</color>
-    <color name="exo_error_message_background_color">#AA000000</color>
     <color name="failButton_background">#6060AA</color>
     <color name="failButton_text">#FFFFFF</color>
     <color name="focused_button">#FB4646</color>
@@ -3015,28 +2993,6 @@
     <dimen name="word_party_card_plus_shadow_height">184dp</dimen>
     <dimen name="word_party_card_width">288dp</dimen>
     <dimen name="wp_close_button_size">48dp</dimen>
-    <drawable name="exo_controls_fastforward">@drawable/exo_icon_fastforward</drawable>
-    <drawable name="exo_controls_fullscreen_enter">@drawable/exo_icon_fullscreen_enter</drawable>
-    <drawable name="exo_controls_fullscreen_exit">@drawable/exo_icon_fullscreen_exit</drawable>
-    <drawable name="exo_controls_next">@drawable/exo_icon_next</drawable>
-    <drawable name="exo_controls_pause">@drawable/exo_icon_pause</drawable>
-    <drawable name="exo_controls_play">@drawable/exo_icon_play</drawable>
-    <drawable name="exo_controls_previous">@drawable/exo_icon_previous</drawable>
-    <drawable name="exo_controls_repeat_all">@drawable/exo_icon_repeat_all</drawable>
-    <drawable name="exo_controls_repeat_off">@drawable/exo_icon_repeat_off</drawable>
-    <drawable name="exo_controls_repeat_one">@drawable/exo_icon_repeat_one</drawable>
-    <drawable name="exo_controls_rewind">@drawable/exo_icon_rewind</drawable>
-    <drawable name="exo_controls_shuffle_off">@drawable/exo_icon_shuffle_off</drawable>
-    <drawable name="exo_controls_shuffle_on">@drawable/exo_icon_shuffle_on</drawable>
-    <drawable name="exo_controls_vr">@drawable/exo_icon_vr</drawable>
-    <drawable name="exo_notification_fastforward">@drawable/exo_icon_fastforward</drawable>
-    <drawable name="exo_notification_next">@drawable/exo_icon_next</drawable>
-    <drawable name="exo_notification_pause">@drawable/exo_icon_pause</drawable>
-    <drawable name="exo_notification_play">@drawable/exo_icon_play</drawable>
-    <drawable name="exo_notification_previous">@drawable/exo_icon_previous</drawable>
-    <drawable name="exo_notification_rewind">@drawable/exo_icon_rewind</drawable>
-    <drawable name="exo_notification_small_icon">@drawable/exo_icon_circular_play</drawable>
-    <drawable name="exo_notification_stop">@drawable/exo_icon_stop</drawable>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
     <item name="lb_browse_header_unselect_alpha" type="fraction">50%</item>
@@ -3100,14 +3056,10 @@
     <item name="cast_featurehighlight_view" type="id"/>
     <item name="cast_notification_id" type="id"/>
     <item name="dataBinding" type="id"/>
-    <item name="exo_ad_overlay" type="id"/>
     <item name="exo_artwork" type="id"/>
-    <item name="exo_buffering" type="id"/>
     <item name="exo_content_frame" type="id"/>
-    <item name="exo_controller" type="id"/>
     <item name="exo_controller_placeholder" type="id"/>
     <item name="exo_duration" type="id"/>
-    <item name="exo_error_message" type="id"/>
     <item name="exo_ffwd" type="id"/>
     <item name="exo_next" type="id"/>
     <item name="exo_overlay" type="id"/>
@@ -3116,13 +3068,9 @@
     <item name="exo_position" type="id"/>
     <item name="exo_prev" type="id"/>
     <item name="exo_progress" type="id"/>
-    <item name="exo_progress_placeholder" type="id"/>
-    <item name="exo_repeat_toggle" type="id"/>
     <item name="exo_rew" type="id"/>
-    <item name="exo_shuffle" type="id"/>
     <item name="exo_shutter" type="id"/>
     <item name="exo_subtitles" type="id"/>
-    <item name="exo_vr" type="id"/>
     <item name="ghost_view" type="id"/>
     <item name="ghost_view_holder" type="id"/>
     <item name="glide_custom_view_target_tag" type="id"/>
@@ -3194,8 +3142,6 @@
     <integer name="config_tooltipAnimTime">150</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
     <integer name="design_tab_indicator_anim_duration_ms">300</integer>
-    <integer name="exo_media_button_opacity_percentage_disabled">33</integer>
-    <integer name="exo_media_button_opacity_percentage_enabled">100</integer>
     <integer name="google_play_services_version">12451000</integer>
     <integer name="hide_password_duration">320</integer>
     <integer name="icon_animation_duration">250</integer>
@@ -3409,45 +3355,12 @@
     <string name="exception_title">Please check the internet Connection and Try again.</string>
     <string name="exit_confirm">Estas seguro que quieres salir?</string>
     <string name="exo_controls_fastforward_description">Fast forward</string>
-    <string name="exo_controls_fullscreen_description">Fullscreen mode</string>
-    <string name="exo_controls_hide">Hide player controls</string>
     <string name="exo_controls_next_description">Next track</string>
     <string name="exo_controls_pause_description">Pause</string>
     <string name="exo_controls_play_description">Play</string>
     <string name="exo_controls_previous_description">Previous track</string>
-    <string name="exo_controls_repeat_all_description">Repeat all</string>
-    <string name="exo_controls_repeat_off_description">Repeat none</string>
-    <string name="exo_controls_repeat_one_description">Repeat one</string>
     <string name="exo_controls_rewind_description">Rewind</string>
-    <string name="exo_controls_show">Show player controls</string>
-    <string name="exo_controls_shuffle_off_description">Shuffle off</string>
-    <string name="exo_controls_shuffle_on_description">Shuffle on</string>
     <string name="exo_controls_stop_description">Stop</string>
-    <string name="exo_controls_vr_description">VR mode</string>
-    <string name="exo_download_completed">Download completed</string>
-    <string name="exo_download_description">Download</string>
-    <string name="exo_download_downloading">Downloading</string>
-    <string name="exo_download_failed">Download failed</string>
-    <string name="exo_download_notification_channel_name">Downloads</string>
-    <string name="exo_download_removing">Removing downloads</string>
-    <string name="exo_item_list"><ns1:g example="apple, pear" id="list">%1$s</ns1:g>, <ns1:g example="banana" id="item">%2$s</ns1:g></string>
-    <string name="exo_track_bitrate"><ns1:g example="5.2" id="bitrate">%1$.2f</ns1:g> Mbps</string>
-    <string name="exo_track_mono">Mono</string>
-    <string name="exo_track_resolution"><ns1:g example="1024" id="width">%1$d</ns1:g> × <ns1:g example="768" id="height">%2$d</ns1:g></string>
-    <string name="exo_track_role_alternate">Alternate</string>
-    <string name="exo_track_role_closed_captions">CC</string>
-    <string name="exo_track_role_commentary">Commentary</string>
-    <string name="exo_track_role_supplementary">Supplementary</string>
-    <string name="exo_track_selection_auto">Auto</string>
-    <string name="exo_track_selection_none">None</string>
-    <string name="exo_track_selection_title_audio">Audio</string>
-    <string name="exo_track_selection_title_text">Text</string>
-    <string name="exo_track_selection_title_video">Video</string>
-    <string name="exo_track_stereo">Stereo</string>
-    <string name="exo_track_surround">Surround sound</string>
-    <string name="exo_track_surround_5_point_1">5.1 surround sound</string>
-    <string name="exo_track_surround_7_point_1">7.1 surround sound</string>
-    <string name="exo_track_unknown">Unknown</string>
     <string name="expand_button_title">Advanced</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
@@ -5713,10 +5626,6 @@
     <style name="ExoMediaButton.Rewind">
     <item name="android:src">@drawable/exo_controls_rewind</item>
     <item name="android:contentDescription">@string/exo_controls_rewind_description</item>
-  </style>
-    <style name="ExoMediaButton.VR">
-    <item name="android:src">@drawable/exo_controls_vr</item>
-    <item name="android:contentDescription">@string/exo_controls_vr_description</item>
   </style>
     <style name="LeanbackPreference">
         <item name="android:layout">@layout/leanback_preference</item>
@@ -10312,21 +10221,6 @@
 
 <attr format="reference" name="castExpandedControllerStyle"/>
 </declare-styleable>
-    <declare-styleable name="DefaultTimeBar">
-    <attr name="bar_height"/>
-    <attr name="touch_target_height"/>
-    <attr name="ad_marker_width"/>
-    <attr name="scrubber_enabled_size"/>
-    <attr name="scrubber_disabled_size"/>
-    <attr name="scrubber_dragged_size"/>
-    <attr name="scrubber_drawable"/>
-    <attr name="played_color"/>
-    <attr name="scrubber_color"/>
-    <attr name="buffered_color"/>
-    <attr name="unplayed_color"/>
-    <attr name="ad_marker_color"/>
-    <attr name="played_ad_marker_color"/>
-  </declare-styleable>
     <declare-styleable name="DialogPreference">
         <!-- The title in the dialog. -->
         <attr format="string" name="dialogTitle"/>
@@ -13810,70 +13704,11 @@
         <!-- Attribute for background color of the arrow in PagingIndicator. -->
         <attr format="reference" name="arrowBgColor"/>
     </declare-styleable>
-    <declare-styleable name="PlayerControlView">
+    <declare-styleable name="PlaybackControlView">
     <attr name="show_timeout"/>
     <attr name="rewind_increment"/>
     <attr name="fastforward_increment"/>
-    <attr name="repeat_toggle_modes"/>
-    <attr name="show_shuffle_button"/>
-    <attr name="time_bar_min_update_interval"/>
     <attr name="controller_layout_id"/>
-    <!-- DefaultTimeBar attributes -->
-    <attr name="bar_height"/>
-    <attr name="touch_target_height"/>
-    <attr name="ad_marker_width"/>
-    <attr name="scrubber_enabled_size"/>
-    <attr name="scrubber_disabled_size"/>
-    <attr name="scrubber_dragged_size"/>
-    <attr name="scrubber_drawable"/>
-    <attr name="played_color"/>
-    <attr name="scrubber_color"/>
-    <attr name="buffered_color"/>
-    <attr name="unplayed_color"/>
-    <attr name="ad_marker_color"/>
-    <attr name="played_ad_marker_color"/>
-  </declare-styleable>
-    <declare-styleable name="PlayerView">
-    <attr format="boolean" name="use_artwork"/>
-    <attr format="color" name="shutter_background_color"/>
-    <attr format="reference" name="default_artwork"/>
-    <attr format="boolean" name="use_controller"/>
-    <attr format="boolean" name="hide_on_touch"/>
-    <attr format="boolean" name="hide_during_ads"/>
-    <attr format="boolean" name="auto_show"/>
-    <attr format="enum" name="show_buffering">
-      <enum name="never" value="0"/>
-      <enum name="when_playing" value="1"/>
-      <enum name="always" value="2"/>
-    </attr>
-    <attr format="boolean" name="keep_content_on_player_reset"/>
-    <attr format="boolean" name="use_sensor_rotation"/>
-    <attr format="reference" name="player_layout_id"/>
-    <attr name="surface_type"/>
-    <!-- AspectRatioFrameLayout attributes -->
-    <attr name="resize_mode"/>
-    <!-- PlayerControlView attributes -->
-    <attr name="show_timeout"/>
-    <attr name="rewind_increment"/>
-    <attr name="fastforward_increment"/>
-    <attr name="repeat_toggle_modes"/>
-    <attr name="show_shuffle_button"/>
-    <attr name="time_bar_min_update_interval"/>
-    <attr name="controller_layout_id"/>
-    <!-- DefaultTimeBar attributes -->
-    <attr name="bar_height"/>
-    <attr name="touch_target_height"/>
-    <attr name="ad_marker_width"/>
-    <attr name="scrubber_enabled_size"/>
-    <attr name="scrubber_disabled_size"/>
-    <attr name="scrubber_dragged_size"/>
-    <attr name="scrubber_drawable"/>
-    <attr name="played_color"/>
-    <attr name="scrubber_color"/>
-    <attr name="buffered_color"/>
-    <attr name="unplayed_color"/>
-    <attr name="ad_marker_color"/>
-    <attr name="played_ad_marker_color"/>
   </declare-styleable>
     <declare-styleable name="PopupWindow">
         <!-- Whether the popup window should overlap its anchor view. -->
@@ -14258,6 +14093,17 @@
 
 <attr format="reference|string" name="scopeUris"/>
 </declare-styleable>
+    <declare-styleable name="SimpleExoPlayerView">
+    <attr format="boolean" name="use_artwork"/>
+    <attr format="boolean" name="use_controller"/>
+    <attr name="surface_type"/>
+    <attr name="show_timeout"/>
+    <attr name="rewind_increment"/>
+    <attr name="fastforward_increment"/>
+    <attr name="resize_mode"/>
+    <attr name="player_layout_id"/>
+    <attr name="controller_layout_id"/>
+  </declare-styleable>
     <declare-styleable name="Snackbar">
     <!-- Style to use for Snackbars in this theme. -->
     <attr format="reference" name="snackbarStyle"/>

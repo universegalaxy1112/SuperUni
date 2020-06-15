@@ -151,11 +151,11 @@ public class DataBinderMapperImpl extends DataBinderMapper {
           throw new IllegalArgumentException("The tag for activity_movies is invalid. Received: " + tag);
         }
         case  LAYOUT_ACTIVITYMULTISEASONDETAIL: {
-          if ("layout-land/activity_multi_season_detail_0".equals(tag)) {
-            return new ActivityMultiSeasonDetailBindingLandImpl(component, view);
-          }
           if ("layout/activity_multi_season_detail_0".equals(tag)) {
             return new ActivityMultiSeasonDetailBindingImpl(component, view);
+          }
+          if ("layout-land/activity_multi_season_detail_0".equals(tag)) {
+            return new ActivityMultiSeasonDetailBindingLandImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for activity_multi_season_detail is invalid. Received: " + tag);
         }
@@ -311,8 +311,8 @@ public class DataBinderMapperImpl extends DataBinderMapper {
       sKeys.put("layout/activity_morevideo_0", com.uni.julio.supertvplus.R.layout.activity_morevideo);
       sKeys.put("layout/activity_movies_0", com.uni.julio.supertvplus.R.layout.activity_movies);
       sKeys.put("layout-large/activity_movies_0", com.uni.julio.supertvplus.R.layout.activity_movies);
-      sKeys.put("layout-land/activity_multi_season_detail_0", com.uni.julio.supertvplus.R.layout.activity_multi_season_detail);
       sKeys.put("layout/activity_multi_season_detail_0", com.uni.julio.supertvplus.R.layout.activity_multi_season_detail);
+      sKeys.put("layout-land/activity_multi_season_detail_0", com.uni.julio.supertvplus.R.layout.activity_multi_season_detail);
       sKeys.put("layout/activity_oneseason_detail_0", com.uni.julio.supertvplus.R.layout.activity_oneseason_detail);
       sKeys.put("layout-land/activity_oneseason_detail_0", com.uni.julio.supertvplus.R.layout.activity_oneseason_detail);
       sKeys.put("layout/activity_search_0", com.uni.julio.supertvplus.R.layout.activity_search);

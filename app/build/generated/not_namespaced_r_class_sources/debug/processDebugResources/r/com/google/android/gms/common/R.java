@@ -12,7 +12,7 @@ public final class R {
     public static final class integer {
         private integer() {}
 
-        public static final int google_play_services_version = 0x7f0b000c;
+        public static final int google_play_services_version = 0x7f0b000a;
     }
     public static final class string {
         private string() {}
