@@ -4,10 +4,10 @@
     <data>
         <variable
             name="moviesMenuItem"
-            type="com.uni.julio.supertv.model.Movie" />
+            type="com.uni.julio.supertvplus.model.Movie" />
         <variable
             name="moviesAdapter"
-            type="com.uni.julio.supertv.adapter.GridViewAdapter" />
+            type="com.uni.julio.supertvplus.adapter.GridViewAdapter" />
     </data>
 
     <LinearLayout

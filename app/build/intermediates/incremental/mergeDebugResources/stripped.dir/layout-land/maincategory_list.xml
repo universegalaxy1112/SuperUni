@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="@dimen/dip_120"
+        android:layout_height="@dimen/dip_120"
+        app:srcCompat="@drawable/entertainment"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"/>
+</LinearLayout>

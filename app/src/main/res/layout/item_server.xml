@@ -4,7 +4,7 @@
     <data>
         <variable
             name="serverAdapter"
-            type="com.uni.julio.supertv.adapter.ServerAdapter" />
+            type="com.uni.julio.supertvplus.adapter.ServerAdapter" />
     </data>
 <LinearLayout
     android:id="@+id/fl_main_layout"

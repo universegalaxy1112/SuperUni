@@ -4,10 +4,10 @@
     <data>
         <variable
             name="movieCategory"
-            type="com.uni.julio.supertv.model.MovieCategory" />
+            type="com.uni.julio.supertvplus.model.MovieCategory" />
         <variable
             name="categoryAdapter"
-            type="com.uni.julio.supertv.adapter.MoviesCategoryAdapter" />
+            type="com.uni.julio.supertvplus.adapter.MoviesCategoryAdapter" />
     </data>
 <LinearLayout
     android:orientation="vertical"
@@ -98,7 +98,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <com.uni.julio.supertv.helper.TVRecyclerView
+        <com.uni.julio.supertvplus.helper.TVRecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

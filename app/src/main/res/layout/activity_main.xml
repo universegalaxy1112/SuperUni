@@ -5,7 +5,7 @@
     <data>
         <variable
             name="activityMainBindingVM"
-            type="com.uni.julio.supertv.viewmodel.MainCategoriesMenuViewModel"
+            type="com.uni.julio.supertvplus.viewmodel.MainCategoriesMenuViewModel"
             />
     </data>
 <LinearLayout
@@ -45,7 +45,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         >
-        <com.uni.julio.supertv.helper.TVRecyclerView
+        <com.uni.julio.supertvplus.helper.TVRecyclerView
             android:id="@+id/maincategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

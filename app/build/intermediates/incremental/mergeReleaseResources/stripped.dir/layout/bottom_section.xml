@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomSection"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dip_40"
+        android:layout_marginBottom="@dimen/dip_16"
+        android:src="@drawable/android_splash"
+        android:scaleType="centerInside"/>
+    <View android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_30"
+        android:background="@color/info_red"/>
+</LinearLayout>

@@ -1,4 +1,4 @@
-com.uni.julio.supertv
+com.uni.julio.supertvplus
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -126,6 +126,9 @@ attr actionTextColorAlpha
 attr actionViewClass
 attr activatedAnimationDuration
 attr activityChooserViewStyle
+attr adSize
+attr adSizes
+attr adUnitId
 attr adjustable
 attr alertDialogButtonGroupStyle
 attr alertDialogCenterButtons
@@ -1220,6 +1223,8 @@ color accent_material_light
 color action_bar_bg_gradient_end_color
 color action_bar_bg_white
 color actionbar_bg_color
+color androidx_core_ripple_material_light
+color androidx_core_secondary_text_default_material_light
 color appBackground
 color app_color_accent
 color app_color_primary
@@ -1254,6 +1259,10 @@ color bright_foreground_inverse_material_light
 color bright_foreground_material_dark
 color bright_foreground_material_light
 color browse_background
+color browser_actions_bg_grey
+color browser_actions_divider_color
+color browser_actions_text_color
+color browser_actions_title_color
 color button_bg
 color button_material_dark
 color button_material_light
@@ -1869,6 +1878,8 @@ dimen billboard_info_phone_height
 dimen billboard_info_width
 dimen billboard_tv_card_regular_height
 dimen billboard_tv_card_regular_width
+dimen browser_actions_context_menu_max_width
+dimen browser_actions_context_menu_min_padding
 dimen buffetbar_padding_vertical
 dimen buffetbar_padding_vertical_2lines
 dimen button_min_height
@@ -4053,6 +4064,9 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable background_button_border
 drawable background_button_border_active
+drawable background_google_signup
+drawable background_google_signup_active
+drawable background_google_signup_normal
 drawable background_program_item
 drawable background_program_item_focused
 drawable banner
@@ -4198,12 +4212,14 @@ drawable ic_dialog_close_dark
 drawable ic_dialog_close_light
 drawable ic_dots_vertical_black_48dp
 drawable ic_edit_black_24dp
+drawable ic_facebook
 drawable ic_favorite_like
 drawable ic_favorite_like_focused
 drawable ic_favorite_like_unfocus
 drawable ic_favorite_normal
 drawable ic_favorite_normal_focused
 drawable ic_favorite_normal_unfocus
+drawable ic_google
 drawable ic_group_collapse_00
 drawable ic_group_collapse_01
 drawable ic_group_collapse_02
@@ -4733,6 +4749,7 @@ id activated
 id activity_chooser_view_content
 id actors
 id actors_detail
+id adView
 id ad_background_image_view
 id ad_container
 id ad_image_view
@@ -5085,9 +5102,16 @@ id browse_headers
 id browse_headers_dock
 id browse_headers_root
 id browse_title_group
+id browser_actions_header_text
+id browser_actions_menu_item_icon
+id browser_actions_menu_item_text
+id browser_actions_menu_items
+id browser_actions_menu_view
 id brush
 id btnCancel
 id btnClosed
+id btnResend
+id btnSignin
 id btnSolved
 id buffer
 id bug
@@ -5647,6 +5671,8 @@ id earth_off
 id edge
 id editPassword
 id editText
+id edit_confirm_password
+id edit_email
 id edit_password
 id edit_query
 id edit_username
@@ -5690,6 +5716,7 @@ id eraser_variant
 id error_frame
 id error_txt
 id escalator
+id etCode
 id ethereum
 id ethernet
 id ethernet_cable
@@ -6363,6 +6390,8 @@ id live_indicator_dot
 id live_indicator_text
 id live_indicators
 id live_programs
+id ll_FacebookSignin
+id ll_SignUp
 id loading
 id loadingBar
 id loading_indicator
@@ -7540,6 +7569,7 @@ id tumblr_box
 id tumblr_reblog
 id tune
 id tune_vertical
+id tv_ForgotPw
 id twitch
 id twitter
 id twitter_box
@@ -7891,6 +7921,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_account
 layout activity_dialog
+layout activity_email_verify
 layout activity_live
 layout activity_livetvnew
 layout activity_loading
@@ -7904,12 +7935,15 @@ layout activity_oneseason_detail
 layout activity_search
 layout activity_search_tv
 layout activity_selectserver
+layout activity_signup
 layout activity_speedtest
 layout activity_speedtest1
 layout activity_splash
 layout activity_trailer
 layout activity_video_play
 layout bottom_section
+layout browser_actions_context_menu_page
+layout browser_actions_context_menu_row
 layout cast_expanded_controller_activity
 layout cast_help_text
 layout cast_intro_overlay
@@ -8182,6 +8216,7 @@ string adults_password_message
 string adults_set_password_empty_message
 string adults_set_password_message
 string adults_set_password_success_message
+string already_have_account
 string app_id
 string app_name
 string appbar_scrolling_view_behavior
@@ -8250,7 +8285,6 @@ string chip_text
 string clear_text_end_icon_content_description
 string close_session_no_internet
 string closed
-string com_crashlytics_android_build_id
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -8275,6 +8309,7 @@ string download
 string downloading
 string enable_random_adaptation
 string end_session_message
+string enter_code
 string episode
 string episode_text
 string error_drm_not_supported
@@ -8305,8 +8340,8 @@ string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-string fcm_fallback_notification_channel_label
 string firebase_database_url
+string forgot_password
 string from_start
 string gcm_defaultSenderId
 string generic_error_message
@@ -8328,6 +8363,7 @@ string initFail_retry
 string init_init
 string init_selecting
 string ip_limitation
+string just_one_more_step
 string lb_control_display_fast_forward_multiplier
 string lb_control_display_rewind_multiplier
 string lb_guidedaction_continue_title
@@ -8377,8 +8413,10 @@ string login_error_generic
 string login_error_no_authorized
 string login_error_nosession
 string login_error_usr_pss_incorrect
-string login_screen_login
+string login_screen_email
+string login_screen_next
 string login_screen_password
+string login_screen_password_confirm
 string login_screen_username
 string logo_inapp_link
 string maincategory_column_num
@@ -8457,6 +8495,7 @@ string nav_header_subtitle
 string nav_header_title
 string navigation_drawer_close
 string navigation_drawer_open
+string new_member
 string new_version_available
 string new_version_generic_error_message
 string next_schedule
@@ -8495,7 +8534,15 @@ string report_audio
 string report_content
 string report_subtitle
 string report_video
+string resend
 string retry
+string s1
+string s2
+string s3
+string s4
+string s5
+string s6
+string s7
 string sample_list_load_error
 string search_menu_title
 string search_title
@@ -8504,6 +8551,13 @@ string selection_default
 string selection_default_none
 string selection_disabled
 string serverSelect_message
+string sign_in_lower
+string sign_up_lower
+string sign_up_upper
+string signin_upper
+string signin_with_facebook
+string signin_with_google
+string signup_with_google
 string solved
 string splash_content_txt
 string start
@@ -8539,6 +8593,7 @@ string title_setting
 string title_story
 string trailers_text
 string transition_image
+string type_code
 string unexpected_intent_action
 string v7_preference_off
 string v7_preference_on
@@ -8546,6 +8601,7 @@ string verify_unknown_sources
 string video
 string view_all
 string wait
+string we_sent_email_confirm_code
 style AVLoadingIndicatorView
 style AVLoadingIndicatorView_Large
 style AVLoadingIndicatorView_Small
@@ -9072,6 +9128,7 @@ style Theme_Design_Light
 style Theme_Design_Light_BottomSheetDialog
 style Theme_Design_Light_NoActionBar
 style Theme_Design_NoActionBar
+style Theme_IAPTheme
 style Theme_Leanback
 style Theme_Leanback_Browse
 style Theme_Leanback_Details
@@ -9479,6 +9536,7 @@ styleable ActionMenuItemView android_minWidth
 styleable ActionMenuView
 styleable ActionMode background backgroundSplit closeItemLayout height subtitleTextStyle titleTextStyle
 styleable ActivityChooserView expandActivityOverflowButtonDrawable initialActivityCount
+styleable AdsAttrs adSize adSizes adUnitId
 styleable AlertDialog android_layout buttonIconDimen buttonPanelSideLayout listItemLayout listLayout multiChoiceItemLayout showTitle singleChoiceItemLayout
 styleable AnimatedStateListDrawableCompat android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable AnimatedStateListDrawableItem android_id android_drawable

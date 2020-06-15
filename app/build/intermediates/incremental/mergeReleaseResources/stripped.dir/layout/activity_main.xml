@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                       
+      
+    
+                 
+                                        
+                                                                                  
+              
+           
+<LinearLayout
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" android:tag="layout/activity_main_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/Appbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/actionbar_bg_color"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dip_24"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <com.uni.julio.supertvplus.helper.TVRecyclerView
+            android:id="@+id/maincategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            app:scrollMode="followScroll"
+            app:focusDrawable="@drawable/default_focus"/>
+    </LinearLayout>
+
+</LinearLayout>
+         

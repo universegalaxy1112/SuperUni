@@ -6,7 +6,7 @@
     <data>
         <variable
             name="moviesMenuFragmentVM"
-            type="com.uni.julio.supertv.viewmodel.MoviesMenuViewModel" />
+            type="com.uni.julio.supertvplus.viewmodel.MoviesMenuViewModel" />
     </data>
 
 <LinearLayout
@@ -32,14 +32,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_swipe">
-            <com.uni.julio.supertv.helper.TVRecyclerView
+            <com.uni.julio.supertvplus.helper.TVRecyclerView
                 android:id="@+id/moviecategoryrecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dip_4"
                 app:scrollMode="followScroll"
                 app:isAutoProcessFocus="false">
-            </com.uni.julio.supertv.helper.TVRecyclerView>
+            </com.uni.julio.supertvplus.helper.TVRecyclerView>
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 </LinearLayout>
  </layout>

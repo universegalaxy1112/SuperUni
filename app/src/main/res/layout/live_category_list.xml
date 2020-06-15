@@ -4,10 +4,10 @@
     <data>
         <variable
             name="liveCategory"
-            type="com.uni.julio.supertv.model.LiveTVCategory" />
+            type="com.uni.julio.supertvplus.model.LiveTVCategory" />
         <variable
             name="liveCategoryAdapter"
-            type="com.uni.julio.supertv.adapter.LiveCategoryAdapter" />
+            type="com.uni.julio.supertvplus.adapter.LiveCategoryAdapter" />
     </data>
 
     <LinearLayout

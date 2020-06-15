@@ -21,9 +21,9 @@ public class BR {
 
   public static final int liveTVFragmentVM = 9;
 
-  public static final int movieDetailItem = 10;
+  public static final int liveProgramItem = 10;
 
-  public static final int liveProgramItem = 11;
+  public static final int movieDetailItem = 11;
 
   public static final int categoryAdapter = 12;
 
@@ -31,9 +31,9 @@ public class BR {
 
   public static final int movieDetailsVM = 14;
 
-  public static final int searchFM = 15;
+  public static final int livetvAdapter = 15;
 
-  public static final int livetvAdapter = 16;
+  public static final int searchFM = 16;
 
   public static final int movieCategory = 17;
 

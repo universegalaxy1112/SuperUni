@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "755358522006",
-    "firebase_url": "https://supertv-2fdbf.firebaseio.com",
-    "project_id": "supertv-2fdbf",
-    "storage_bucket": "supertv-2fdbf.appspot.com"
+    "project_number": "974620506787",
+    "firebase_url": "https://super-tv-add.firebaseio.com",
+    "project_id": "super-tv-add",
+    "storage_bucket": "super-tv-add.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:755358522006:android:b2f0b910bb29a48cccc0b7",
+        "mobilesdk_app_id": "1:974620506787:android:282710e2d2176877035d16",
         "android_client_info": {
-          "package_name": "com.uni.julio.supertv"
+          "package_name": "com.uni.julio.supertvplus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "755358522006-4205fdpmke2vbvbdlc6fmpv7adj5uad8.apps.googleusercontent.com",
+          "client_id": "974620506787-0hm37e16gtjdmoplu5hflalqln10q3s0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uni.julio.supertvplus",
+            "certificate_hash": "f57996b53be3e79dc1f4fcb629c20e740e6c89de"
+          }
+        },
+        {
+          "client_id": "974620506787-6d2jhvu69nsevaqdrbicgqqa3sva69j6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD6IkPNLOr8KCjABN4fK8HtiBpxDmLsUJk"
+          "current_key": "AIzaSyDw0YF321bCgRUH6VHUmPKJZfscRLyl730"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "755358522006-4205fdpmke2vbvbdlc6fmpv7adj5uad8.apps.googleusercontent.com",
+              "client_id": "974620506787-6d2jhvu69nsevaqdrbicgqqa3sva69j6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

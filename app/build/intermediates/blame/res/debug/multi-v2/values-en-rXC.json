@@ -38,23 +38,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "203",
-                        "endOffsets": "254"
-                    },
-                    "to": {
-                        "startLines": "91",
-                        "startColumns": "4",
-                        "startOffsets": "18217",
-                        "endColumns": "203",
-                        "endOffsets": "18416"
-                    }
-                },
-                {
                     "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
@@ -86,6 +69,23 @@
                         "startOffsets": "5503,18421,18722,18902",
                         "endColumns": "187,300,179,179",
                         "endOffsets": "5686,18717,18897,19077"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "203",
+                        "endOffsets": "254"
+                    },
+                    "to": {
+                        "startLines": "91",
+                        "startColumns": "4",
+                        "startOffsets": "18217",
+                        "endColumns": "203",
+                        "endOffsets": "18416"
                     }
                 }
             ]

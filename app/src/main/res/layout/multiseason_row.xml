@@ -4,10 +4,10 @@
     <data>
         <variable
             name="moviesMenuItem"
-            type="com.uni.julio.supertv.model.Episode" />
+            type="com.uni.julio.supertvplus.model.Episode" />
         <variable
             name="moviesAdapter"
-            type="com.uni.julio.supertv.adapter.MultiSeasonAdapter" />
+            type="com.uni.julio.supertvplus.adapter.MultiSeasonAdapter" />
     </data>
 
     <LinearLayout

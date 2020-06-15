@@ -4,13 +4,13 @@
     <data>
         <variable
             name="liveTVFragmentVM"
-            type="com.uni.julio.supertv.viewmodel.LiveTVViewModel" />
+            type="com.uni.julio.supertvplus.viewmodel.LiveTVViewModel" />
         <variable
             name="currentCategory"
-            type="com.uni.julio.supertv.model.LiveTVCategory" />
+            type="com.uni.julio.supertvplus.model.LiveTVCategory" />
         <variable
             name="currentProgram"
-            type="com.uni.julio.supertv.model.LiveProgram" />
+            type="com.uni.julio.supertvplus.model.LiveProgram" />
     </data>
     <FrameLayout
         android:id="@+id/parent"
@@ -153,13 +153,13 @@
                         android:layout_weight="4"
                         android:focusable="false"
                         android:orientation="horizontal">
-                        <com.uni.julio.supertv.helper.TVRecyclerView
+                        <com.uni.julio.supertvplus.helper.TVRecyclerView
                             android:id="@+id/programming_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:scrollMode="followScroll"
                             app:isLive = "true"/>
-                        <com.uni.julio.supertv.helper.TVRecyclerView
+                        <com.uni.julio.supertvplus.helper.TVRecyclerView
                             android:id="@+id/live_category_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

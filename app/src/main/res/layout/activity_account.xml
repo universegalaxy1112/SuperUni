@@ -6,10 +6,10 @@
     <data>
         <variable
             name="accountDetailsVM"
-            type="com.uni.julio.supertv.viewmodel.AccountDetailsViewModel" />
+            type="com.uni.julio.supertvplus.viewmodel.AccountDetailsViewModel" />
         <variable
             name="user"
-            type="com.uni.julio.supertv.model.User" />
+            type="com.uni.julio.supertvplus.model.User" />
     </data>
     <LinearLayout
         android:id="@+id/mainLayout"

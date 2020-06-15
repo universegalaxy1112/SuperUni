@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.LoginActivity">
     <LinearLayout
@@ -25,6 +26,7 @@
         android:orientation="vertical">
         <TextView
             style="@style/text"
+            android:textSize="@dimen/sp_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_screen_username" />
@@ -36,6 +38,7 @@
             android:nextFocusDown="@id/edit_password"
             android:textColorHint="@color/netflix_red"
             android:inputType="textEmailAddress"
+            android:textSize="@dimen/sp_10"
             android:imeOptions="actionNext"/>
         <View
             android:layout_width="match_parent"
@@ -43,6 +46,7 @@
             android:background="@color/transparent" />
         <TextView
             style="@style/text"
+            android:textSize="@dimen/sp_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_screen_password" />
@@ -56,13 +60,14 @@
             android:inputType="textPassword"
             android:textColorHint="@color/netflix_red"
             tools:ignore="InvalidImeActionId"
+            android:textSize="@dimen/sp_10"
             android:imeOptions="actionDone"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dip_32"
             app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="@dimen/dip_16"
+            app:cardCornerRadius="@dimen/dip_20"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -73,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="true"
                     style="@style/play_text"
+                    android:background="@drawable/background_sign_in_up"
                     android:text="@string/sign_in_lower"
                     />
             </RelativeLayout>
@@ -80,6 +86,7 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -124,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dip_32"
                 app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/dip_16">
+                app:cardCornerRadius="@dimen/dip_20">
                     <LinearLayout
                      android:id="@+id/ll_FacebookSignin"
                      android:gravity="center_vertical"
@@ -155,34 +162,14 @@
                              />
                     </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <!--<androidx.cardview.widget.CardView
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/dip_12">
-                <LinearLayout
-                    android:id="@+id/ll_GoogleSignin"
-                    android:layout_marginTop="@dimen/dip_16"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/play_background_trailer">
-                <ImageView
-                    android:layout_width="@dimen/dip_25"
-                    android:layout_height="@dimen/dip_20"
-                    android:src="@drawable/ic_google"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/signin_with_google"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp_15"
-                    android:layout_marginStart="@dimen/dip_10"
-                    />
-            </LinearLayout>
-            </androidx.cardview.widget.CardView>-->
+                android:layout_marginTop="@dimen/dip_32"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            </com.google.android.gms.ads.AdView>
         </LinearLayout>
         <LinearLayout
             android:layout_alignParentBottom="true"
@@ -238,6 +225,7 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
 

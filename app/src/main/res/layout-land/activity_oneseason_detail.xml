@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:ads="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="movieDetailsVM"
-            type="com.uni.julio.supertv.viewmodel.MovieDetailsViewModel" />
+            type="com.uni.julio.supertvplus.viewmodel.MovieDetailsViewModel" />
         <variable
             name="movieDetailItem"
-            type="com.uni.julio.supertv.model.Movie" />
+            type="com.uni.julio.supertvplus.model.Movie" />
     </data>
 
     <LinearLayout
@@ -137,10 +136,17 @@
                                     android:background="@color/detail_background"
                                     android:orientation="vertical"
                                     android:paddingLeft="@dimen/dip_12"
-                                    android:paddingTop="@dimen/dip_100"
+                                    android:paddingTop="@dimen/dip_90"
                                     android:paddingBottom="@dimen/dip_16"
                                     android:paddingRight="@dimen/dip_12">
-
+                                    <com.google.android.gms.ads.AdView
+                                        android:id="@+id/adView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/dip_4"
+                                        ads:adSize="BANNER"
+                                        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+                                    </com.google.android.gms.ads.AdView>
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -348,6 +354,7 @@
                                     style="@style/text.movie_detail_title"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:maxLines="1"
                                     android:text="@{movieDetailItem.Title}" />
 
                                 <LinearLayout

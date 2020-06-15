@@ -4,7 +4,7 @@
     <data>
         <variable
             name="liveTVFragmentVM"
-            type="com.uni.julio.supertv.viewmodel.LiveTVViewModel" />
+            type="com.uni.julio.supertvplus.viewmodel.LiveTVViewModel" />
     </data>
     <FrameLayout
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <com.uni.julio.supertv.helper.TVRecyclerView
+            <com.uni.julio.supertvplus.helper.TVRecyclerView
                 android:id="@+id/programming_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

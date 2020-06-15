@@ -365,7 +365,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_action_tombstone.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout-v21\\notification_action_tombstone.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_button_negative_background.xml.flat",
@@ -389,7 +389,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_template_icon_group.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout-v21\\notification_template_icon_group.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -498,6 +498,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_ic_arrow_down_24dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e3554639e66495b2929ef852e1d906c9\\res\\drawable-xhdpi-v4\\ic_arrow_down_24dp.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_background_google_signup_active.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\background_google_signup_active.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_ic_vol_unmute.png.flat",
@@ -966,6 +970,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_quantum_ic_clear_white_24.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-xhdpi-v4\\quantum_ic_clear_white_24.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_browser_actions_context_menu_row.xml.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\a7839e6e5747a8c81ff1e6af0a5b9606\\res\\layout\\browser_actions_context_menu_row.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -1769,7 +1777,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_notification_template_part_chronometer.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout\\notification_template_part_chronometer.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi-v4_ic_group_collapse_15.png.flat",
@@ -1841,7 +1849,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_template_custom_big.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout-v21\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4_ic_mr_button_connected_30_dark.png.flat",
@@ -2068,12 +2076,12 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable-hdpi-v4\\cast_ic_stop_circle_filled_grey600.png"
     },
     {
-        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-v21_abc_action_bar_item_background_material.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
-    },
-    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-v21_abc_action_bar_item_background_material.xml.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_md_nav_back.png.flat",
@@ -2769,11 +2777,11 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_action.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout-v21\\notification_action.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout-v21\\notification_action.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
@@ -2965,7 +2973,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_bg_low.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable\\notification_bg_low.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable\\notification_bg_low.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\color_mtrl_chip_ripple_color.xml.flat",
@@ -3005,11 +3013,11 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_mtrl_calendar_month_labeled.xml.flat",
@@ -3153,7 +3161,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_radio_background.xml.flat",
@@ -3253,7 +3261,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_bg.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable\\notification_bg.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable\\notification_bg.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout-sw600dp-v13_mtrl_layout_snackbar.xml.flat",
@@ -3462,6 +3470,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_abc_tab_indicator_material.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_background_google_signup.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\background_google_signup.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_mtrl_picker_header_fullscreen.xml.flat",
@@ -3785,7 +3797,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
@@ -3853,7 +3865,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi-v4_dialog_btn_background.xml.flat",
@@ -3922,6 +3934,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_background_google_signup_normal.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable\\background_google_signup_normal.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\anim_btn_checkbox_to_checked_icon_null_animation.xml.flat",
@@ -4001,7 +4017,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_md_nav_back.png.flat",
@@ -4254,6 +4270,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\4eae12b8040261ada83512afa36a8487\\res\\drawable-xxxhdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_signup.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_signup.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_lb_ic_pip.png.flat",
@@ -4585,7 +4605,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_abc_ic_star_half_black_36dp.png.flat",
@@ -4849,7 +4869,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_default_focus.9.png.flat",
@@ -5145,7 +5165,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_custom_dialog.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout\\custom_dialog.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout\\custom_dialog.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -5194,6 +5214,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_exo_playback_control_view.xml.flat",
         "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\release\\layout\\exo_playback_control_view.xml"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_email_verify.xml.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\layout\\activity_email_verify.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_quantum_ic_play_arrow_white_24.png.flat",
@@ -5369,7 +5393,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_icon_background.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable\\notification_icon_background.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable\\notification_icon_background.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
@@ -5709,7 +5733,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-v21_notification_action_background.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-v21\\notification_action_background.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-v21\\notification_action_background.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
@@ -5757,7 +5781,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_cast_ic_mini_controller_play_large.xml.flat",
@@ -6421,7 +6445,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_ic_vol_type_tv_light.png.flat",
@@ -6553,7 +6577,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_tile_bg.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable\\notification_tile_bg.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable\\notification_tile_bg.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\interpolator_mr_linear_out_slow_in.xml.flat",
@@ -6708,6 +6732,10 @@
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\8450325a38a916bf35b43d894f534553\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_16_dark.png"
     },
     {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_ic_facebook.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-hdpi-v4\\ic_facebook.png"
+    },
+    {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_cast_expanded_controller_seekbar_thumb.xml.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9d77dd87cb041be65c30297a251fd9d4\\res\\drawable\\cast_expanded_controller_seekbar_thumb.xml"
     },
@@ -6769,7 +6797,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_notification_template_part_time.xml.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\layout\\notification_template_part_time.xml"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-v21_lb_card_foreground.xml.flat",
@@ -6801,7 +6829,11 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\layout_browser_actions_context_menu_page.xml.flat",
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\a7839e6e5747a8c81ff1e6af0a5b9606\\res\\layout\\browser_actions_context_menu_page.xml"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_ic_mr_button_connecting_29_dark.png.flat",
@@ -7165,7 +7197,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_loading_white_outter_img.png.flat",
@@ -7209,7 +7241,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_ic_audiotrack_dark.png.flat",
@@ -7573,7 +7605,7 @@
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\9af2e8aa1c81cb11cb7708c8c745c88b\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+        "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\e391c9750c2024f5cafde4a3f63f35b2\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_cast_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -7610,6 +7642,10 @@
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_lb_ic_in_app_search.png.flat",
         "source": "C:\\Users\\dev_1\\.gradle\\caches\\transforms-2\\files-2.1\\6f93168f4979b3381c830c1668868dcc\\res\\drawable-xhdpi-v4\\lb_ic_in_app_search.png"
+    },
+    {
+        "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_ic_google.png.flat",
+        "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\src\\main\\res\\drawable-hdpi-v4\\ic_google.png"
     },
     {
         "merged": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",

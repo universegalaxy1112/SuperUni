@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:keepScreenOn="true">
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/player_view_progress_bar"
+        android:layout_height="@dimen/dip_28"
+        android:layout_width="@dimen/dip_28"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyleLarge"
+        android:indeterminateOnly="true"
+        android:indeterminateDrawable="@drawable/progressbackground"
+        android:background="@color/transparent"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/no_channel_text"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/no_channel"
+        style="@style/no_channel"
+        android:visibility="gone"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tooltip"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/debug_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dip_4"
+            android:paddingRight="@dimen/dip_4"
+            android:textSize="12sp"
+            android:visibility="gone"
+            />
+
+        <LinearLayout android:id="@+id/controls_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/retry_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Retry"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/titleText"
+            style="@style/text.movie_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/channel_icon"
+            android:layout_width="@dimen/dip_28"
+            android:layout_height="@dimen/dip_28"
+            android:layout_marginTop="@dimen/dip_2"
+            android:layout_marginStart="@dimen/dip_4"
+            android:focusable="false"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextClock
+            android:id="@+id/textClock1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:format12Hour="hh:mm:ss a"
+            android:textColor="@color/netflix_red"
+            android:textSize="@dimen/sp_12"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

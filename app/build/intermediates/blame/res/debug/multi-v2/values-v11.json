@@ -12,25 +12,6 @@
                         "endLines": "18,35",
                         "endColumns": "12,12",
                         "endOffsets": "1089,2110"
-                    },
-                    "to": {
-                        "startLines": "7,24",
-                        "startColumns": "4,4",
-                        "startOffsets": "334,1373",
-                        "endLines": "23,40",
-                        "endColumns": "12,12",
-                        "endOffsets": "1368,2389"
-                    }
-                },
-                {
-                    "source": "E:\\workspace\\2019\\10_Oct\\AndroidTV\\Github\\SuperUni\\ExoPlayer-release-v2\\library\\all\\build\\intermediates\\packaged_res\\debug\\values-v11\\values-v11.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "6",
-                        "endColumns": "10",
-                        "endOffsets": "329"
                     }
                 }
             ]

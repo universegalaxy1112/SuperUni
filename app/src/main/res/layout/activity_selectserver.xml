@@ -5,7 +5,7 @@
     <data>
         <variable
             name="SearchFM"
-            type="com.uni.julio.supertv.viewmodel.SearchViewModel" />
+            type="com.uni.julio.supertvplus.viewmodel.SearchViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.uni.julio.supertv.helper.TVRecyclerView
+            <com.uni.julio.supertvplus.helper.TVRecyclerView
                 android:id="@+id/server_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
                 android:descendantFocusability="afterDescendants">
-            </com.uni.julio.supertv.helper.TVRecyclerView>
+            </com.uni.julio.supertvplus.helper.TVRecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

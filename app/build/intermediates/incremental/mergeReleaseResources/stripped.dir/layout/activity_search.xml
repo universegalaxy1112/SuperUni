@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                       
+                                                   
+    
+                 
+                           
+                                                                         
+           
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:orientation="vertical" android:tag="layout/activity_search_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/actionbar_bg_color"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </com.google.android.material.appbar.AppBarLayout>
+        <EditText
+            android:id="@+id/editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:imeActionId="@+id/login"
+            android:layout_margin="@dimen/dip_20"
+            android:nextFocusDown="@id/cv_loginScreen_login"
+            android:backgroundTint="@color/netflix_red"
+            android:textColorHint="@color/netflix_red"
+            android:inputType="textAutoComplete"
+            android:tooltipText="Search"
+            tools:ignore="InvalidImeActionId"
+            android:imeOptions="actionDone"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.uni.julio.supertvplus.helper.TVRecyclerView
+                android:id="@+id/search_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dip_4"
+                app:scrollMode="followScroll"
+                app:focusDrawable="@drawable/moviesborder"
+                android:gravity="center_vertical"
+                android:tag="binding_1"           
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                android:descendantFocusability="afterDescendants">
+            </com.uni.julio.supertvplus.helper.TVRecyclerView>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateOnly="true"
+                android:tag="binding_2"            
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+            <TextView
+                android:id="@+id/noResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                style = "@style/text.error_text"
+                android:text="@string/no_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+         
